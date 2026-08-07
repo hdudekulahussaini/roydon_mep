@@ -30,91 +30,40 @@
             <span>Dashboard</span>
         </a>
 
-        <a href="{{ url('/admin/projects') }}"
+        <a href="{{ route('admin.home-banners.index') }}"
             class="sidebar-link
-            {{ request()->is('admin/projects*') ? 'active' : '' }}">
-
+          {{ request()->routeIs('admin.home-banners.*') ? 'active' : '' }}">
             <span class="sidebar-icon">
-                <i class="fa-solid fa-building"></i>
+                <i class="fa-regular fa-image"></i>
             </span>
-
-            <span>Projects</span>
+            <span>Home Banner</span>
         </a>
 
-        <a href="{{ url('/admin/services') }}"
+        <a href="{{ route('admin.premium-stats.index') }}"
             class="sidebar-link
-            {{ request()->is('admin/services*') ? 'active' : '' }}">
-
-            <span class="sidebar-icon">
-                <i class="fa-solid fa-screwdriver-wrench"></i>
-            </span>
-
-            <span>Services</span>
-        </a>
-
-        <a href="{{ url('/admin/enquiries') }}"
-            class="sidebar-link
-            {{ request()->is('admin/enquiries*') ? 'active' : '' }}">
-
-            <span class="sidebar-icon">
-                <i class="fa-regular fa-envelope"></i>
-            </span>
-
-            <span>Enquiries</span>
-
-            @if (($stats['new_enquiries'] ?? 0) > 0)
-                <span class="sidebar-badge">
-                    {{ $stats['new_enquiries'] }}
-                </span>
-            @endif
-        </a>
-
-        <a href="{{ url('/admin/statistics') }}"
-            class="sidebar-link
-            {{ request()->is('admin/statistics*') ? 'active' : '' }}">
-
+          {{ request()->routeIs('admin.premium-stats.*') ? 'active' : '' }}">
             <span class="sidebar-icon">
                 <i class="fa-solid fa-chart-simple"></i>
             </span>
-
-            <span>Statistics</span>
+            <span>Premium Stats</span>
         </a>
 
-        <a href="{{ url('/admin/locations') }}"
+        <a href="{{ route('admin.civil-services.index') }}"
             class="sidebar-link
-            {{ request()->is('admin/locations*') ? 'active' : '' }}">
-
+          {{ request()->routeIs('admin.civil-services.*') ? 'active' : '' }}">
             <span class="sidebar-icon">
-                <i class="fa-solid fa-location-dot"></i>
+                <i class="fa-solid fa-helmet-safety"></i>
             </span>
-
-            <span>Locations</span>
+            <span>Civil Services</span>
         </a>
 
-        <div class="sidebar-section-title second-title">
-            WEBSITE
-        </div>
-
-        <a href="{{ url('/admin/homepage') }}"
+        <a href="{{ route('admin.hospital-specialisations.index') }}"
             class="sidebar-link
-            {{ request()->is('admin/homepage*') ? 'active' : '' }}">
-
+          {{ request()->routeIs('admin.hospital-specialisations.*') ? 'active' : '' }}">
             <span class="sidebar-icon">
-                <i class="fa-solid fa-house"></i>
+                <i class="fa-solid fa-house-medical-flag"></i>
             </span>
-
-            <span>Homepage</span>
-        </a>
-
-        <a href="{{ url('/admin/settings') }}"
-            class="sidebar-link
-            {{ request()->is('admin/settings*') ? 'active' : '' }}">
-
-            <span class="sidebar-icon">
-                <i class="fa-solid fa-gear"></i>
-            </span>
-
-            <span>Settings</span>
+            <span>Specialisations</span>
         </a>
 
     </nav>

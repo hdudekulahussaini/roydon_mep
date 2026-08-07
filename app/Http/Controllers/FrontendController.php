@@ -2,13 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HomeBanner;
+use App\Models\PremiumStat;
+use App\Models\CivilService;
+use App\Models\HospitalSpecialisation;
 use Illuminate\Contracts\View\View;
 
 class FrontendController extends Controller
 {
     public function index(): View
     {
-        return view('frontend.pages.index');
+        $banner = \Illuminate\Support\Facades\Schema::hasTable('home_banners')
+            ? HomeBanner::latest()->first()
+            : null;
+
+        $stats = \Illuminate\Support\Facades\Schema::hasTable('premium_stats')
+            ? PremiumStat::all()
+            : collect();
+
+        $civilServices = \Illuminate\Support\Facades\Schema::hasTable('civil_services')
+            ? CivilService::all()
+            : collect();
+
+        $specialisations = \Illuminate\Support\Facades\Schema::hasTable('hospital_specialisations')
+            ? HospitalSpecialisation::all()
+            : collect();
+
+        return view('frontend.pages.index', compact('banner', 'stats', 'civilServices', 'specialisations'));
     }
 
     public function about(): View

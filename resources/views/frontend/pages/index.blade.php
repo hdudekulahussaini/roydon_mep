@@ -4,226 +4,236 @@
     <!-- main-area -->
     <main>
         <!-- slider-area -->
-        <section id="home" class="slider-area fix p-relative">
+        @if ($banner)
+            <section id="home" class="slider-area fix p-relative">
 
-            <div class="slider-active2 pl-50 pr-50">
-                <div class="single-slider slider-bg d-flex align-items-center img"
-                    style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url({{ asset('assets/img/slider/hospital_mep_hero.webp') }}); background-size: cover;">
-                    <div class="container">
-                        <div class="row ">
-
-                            <div class="col-lg-7 col-md-12">
-                                <div class="slider-content s-slider-content mt-80">
-                                    <h2 class="">Hospital Civil & <span>MEP</span> Turnkey Contractors</h2>
-                                    <p data-animation="fadeInUp" data-delay=".4s">End-to-end Civil & MEP contracting for
-                                        hospitals & healthcare facilities — All civil works, OT HVAC, ICU systems,
-                                        Medical Gas Pipelines, Electrical, Plumbing and Fire Fighting with BIM and NABH
-                                        compliant. Zero defect handovers.</p>
-                                    <div class="slider-btn mt-50" data-animation="fadeInUp" data-delay=".4s">
-                                        <a href="{{ route('services.hvac') }}" class="btn mr-15">Explore Services <i
-                                                class="fa-solid fa-arrow-right"></i></a>
-                                        <a href="{{ route('projects') }}" class="btn ss-btn active"
-                                            style="background: transparent; border: 2px solid #0E9B9B; color: #fff;">View
-                                            Projects <i class="fa-light fa-building"></i></a>
+                <div class="slider-active2 pl-50 pr-50">
+                    <div class="single-slider slider-bg d-flex align-items-center img"
+                        style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url({{ asset('storage/' . $banner->background_image) }}); background-size: cover; background-position: center;">
+                        <div class="container">
+                            <div class="row ">
+                                <div class="col-lg-7 col-md-12">
+                                    <div class="slider-content s-slider-content mt-80">
+                                        @php
+                                            $rawTitle = e($banner->title);
+                                            if (str_contains($rawTitle, '{') && str_contains($rawTitle, '}')) {
+                                                $formattedTitle = preg_replace('/\{([^}]+)\}/', '<span>$1</span>', $rawTitle);
+                                            } else {
+                                                $formattedTitle = preg_replace('/\b(MEP)\b/i', '<span>$1</span>', $rawTitle);
+                                            }
+                                        @endphp
+                                        <h2 class="">{!! $formattedTitle !!}</h2>
+                                        <p data-animation="fadeInUp" data-delay=".4s">{{ $banner->description }}</p>
+                                        <div class="slider-btn mt-50" data-animation="fadeInUp" data-delay=".4s">
+                                            <a href="{{ route('services.hvac') }}" class="btn mr-15">Explore Services <i
+                                                    class="fa-solid fa-arrow-right"></i></a>
+                                            <a href="{{ route('projects') }}" class="btn ss-btn active"
+                                                style="background: transparent; border: 2px solid #0E9B9B; color: #fff;">View
+                                                Projects <i class="fa-light fa-building"></i></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Horizontal ISO Badges right above marquee -->
-                    <div class="hero-iso-badges-horizontal d-none d-lg-flex" data-animation="fadeInUp" data-delay=".5s"
-                        style="position: absolute; bottom: 110px; right: 50px; z-index: 10; display: flex; gap: 20px; align-items: flex-start;">
-                        <div class="iso-badge-wrapper text-center">
-                            <img src="{{ asset('assets/img/ISO_certificates/ISO_9001-2015_QMS.png') }}" alt="ISO 9001-2015 QMS"
-                                class="iso-cert-img mb-10">
-                            <span class="iso-cert-name">ISO 9001:2015<br>QMS</span>
+                        <!-- Horizontal ISO Badges right above marquee -->
+                        <div class="hero-iso-badges-horizontal d-none d-lg-flex" data-animation="fadeInUp" data-delay=".5s"
+                            style="position: absolute; bottom: 110px; right: 50px; z-index: 10; display: flex; gap: 20px; align-items: flex-start;">
+                            @if ($banner->iso_9001_image)
+                                <div class="iso-badge-wrapper text-center">
+                                    <img src="{{ asset('storage/' . $banner->iso_9001_image) }}" alt="{{ $banner->iso_9001_title }}"
+                                        class="iso-cert-img mb-10">
+                                    <span class="iso-cert-name">{!! str_replace('|', '<br>', e($banner->iso_9001_title)) !!}</span>
+                                </div>
+                            @endif
+                            @if ($banner->iso_14001_image)
+                                <div class="iso-badge-wrapper text-center">
+                                    <img src="{{ asset('storage/' . $banner->iso_14001_image) }}" alt="{{ $banner->iso_14001_title }}"
+                                        class="iso-cert-img iso-cert-middle mb-10">
+                                    <span class="iso-cert-name">{!! str_replace('|', '<br>', e($banner->iso_14001_title)) !!}</span>
+                                </div>
+                            @endif
+                            @if ($banner->iso_45001_image)
+                                <div class="iso-badge-wrapper text-center">
+                                    <img src="{{ asset('storage/' . $banner->iso_45001_image) }}" alt="{{ $banner->iso_45001_title }}"
+                                        class="iso-cert-img mb-10">
+                                    <span class="iso-cert-name">{!! str_replace('|', '<br>', e($banner->iso_45001_title)) !!}</span>
+                                </div>
+                            @endif
                         </div>
-                        <div class="iso-badge-wrapper text-center">
-                            <img src="{{ asset('assets/img/ISO_certificates/ISO_14001-2015_EMS.png') }}" alt="ISO 14001-2015 EMS"
-                                class="iso-cert-img iso-cert-middle mb-10">
-                            <span class="iso-cert-name">ISO 14001:2015<br>EMS</span>
-                        </div>
-                        <div class="iso-badge-wrapper text-center">
-                            <img src="{{ asset('assets/img/ISO_certificates/ISO_45001-2018_OHSMS.png') }}" alt="ISO 45001-2018 OHSMS"
-                                class="iso-cert-img mb-10">
-                            <span class="iso-cert-name">ISO 45001:2018<br>OHSMS</span>
-                        </div>
-                    </div>
 
-                    <div class="hero-marquee-container" data-animation="fadeInUp" data-delay=".6s"
-                        style="position: absolute; bottom: 40px; left: 0; width: 100%; z-index: 9;">
-                        <div class="hero-tags">
-                            <span class="hero-tag"><i class="fa-light fa-fan"></i> OT HVAC Systems</span>
-                            <span class="hero-tag"><i class="fa-light fa-lungs"></i> Medical Gas (MGPS)</span>
-                            <span class="hero-tag"><i class="fa-light fa-heart-pulse"></i> ICU MEP Execution</span>
-                            <span class="hero-tag"><i class="fa-light fa-sparkles"></i> Clean Room Contractor</span>
-                            <span class="hero-tag"><i class="fa-light fa-certificate"></i> NABH Compliant</span>
-                            <span class="hero-tag"><i class="fa-light fa-x-ray"></i> Cath Lab MEP</span>
-                            <!-- Duplicate for seamless scroll -->
-                            <span class="hero-tag"><i class="fa-light fa-fan"></i> OT HVAC Systems</span>
-                            <span class="hero-tag"><i class="fa-light fa-lungs"></i> Medical Gas (MGPS)</span>
-                            <span class="hero-tag"><i class="fa-light fa-heart-pulse"></i> ICU MEP Execution</span>
-                            <span class="hero-tag"><i class="fa-light fa-sparkles"></i> Clean Room Contractor</span>
-                            <span class="hero-tag"><i class="fa-light fa-certificate"></i> NABH Compliant</span>
-                            <span class="hero-tag"><i class="fa-light fa-x-ray"></i> Cath Lab MEP</span>
+                        @if ($banner->specializations && count($banner->specializations) > 0)
+                            <div class="hero-marquee-container" data-animation="fadeInUp" data-delay=".6s"
+                                style="position: absolute; bottom: 40px; left: 0; width: 100%; z-index: 9;">
+                                <div class="hero-tags">
+                                    {{-- Render tags twice for seamless scrolling marquee --}}
+                                    @foreach (array_merge($banner->specializations, $banner->specializations) as $spec)
+                                        @php
+                                            $tag = strtolower($spec);
+                                            $icon = 'fa-circle-check'; // Default fallback icon
+
+                                            if (str_contains($tag, 'hvac') || str_contains($tag, 'fan')) {
+                                                $icon = 'fa-fan';
+                                            } elseif (str_contains($tag, 'gas') || str_contains($tag, 'mgps')) {
+                                                $icon = 'fa-lungs';
+                                            } elseif (str_contains($tag, 'icu') || str_contains($tag, 'heart')) {
+                                                $icon = 'fa-heart-pulse';
+                                            } elseif (str_contains($tag, 'clean') || str_contains($tag, 'sterile')) {
+                                                $icon = 'fa-sparkles';
+                                            } elseif (str_contains($tag, 'nabh') || str_contains($tag, 'compliance')) {
+                                                $icon = 'fa-certificate';
+                                            } elseif (str_contains($tag, 'cath') || str_contains($tag, 'x-ray')) {
+                                                $icon = 'fa-x-ray';
+                                            }
+                                        @endphp
+                                        <span class="hero-tag"><i class="fa-light {{ $icon }}"></i> {{ $spec }}</span>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </section>
+        @else
+            <section id="home" class="slider-area fix p-relative">
+                <div class="slider-active2 pl-50 pr-50">
+                    <div class="single-slider slider-bg d-flex align-items-center img"
+                        style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url({{ asset('assets/img/slider/hospital_mep_hero.webp') }}); background-size: cover; background-position: center;">
+                        <div class="container">
+                            <div class="row ">
+
+                                <div class="col-lg-7 col-md-12">
+                                    <div class="slider-content s-slider-content mt-80">
+                                        <h2 class="">Hospital Civil & <span>MEP</span> Turnkey Contractors</h2>
+                                        <p data-animation="fadeInUp" data-delay=".4s">End-to-end Civil & MEP contracting for
+                                            hospitals & healthcare facilities — All civil works, OT HVAC, ICU systems,
+                                            Medical Gas Pipelines, Electrical, Plumbing and Fire Fighting with BIM and NABH
+                                            compliant. Zero defect handovers.</p>
+                                        <div class="slider-btn mt-50" data-animation="fadeInUp" data-delay=".4s">
+                                            <a href="{{ route('services.hvac') }}" class="btn mr-15">Explore Services <i
+                                                    class="fa-solid fa-arrow-right"></i></a>
+                                            <a href="{{ route('projects') }}" class="btn ss-btn active"
+                                                style="background: transparent; border: 2px solid #0E9B9B; color: #fff;">View
+                                                Projects <i class="fa-light fa-building"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Horizontal ISO Badges right above marquee -->
+                        <div class="hero-iso-badges-horizontal d-none d-lg-flex" data-animation="fadeInUp" data-delay=".5s"
+                            style="position: absolute; bottom: 110px; right: 50px; z-index: 10; display: flex; gap: 20px; align-items: flex-start;">
+                            <div class="iso-badge-wrapper text-center">
+                                <img src="{{ asset('assets/img/ISO_certificates/ISO_9001-2015_QMS.png') }}" alt="ISO 9001-2015 QMS"
+                                    class="iso-cert-img mb-10">
+                                <span class="iso-cert-name">ISO 9001:2015<br>QMS</span>
+                            </div>
+                            <div class="iso-badge-wrapper text-center">
+                                <img src="{{ asset('assets/img/ISO_certificates/ISO_14001-2015_EMS.png') }}" alt="ISO 14001-2015 EMS"
+                                    class="iso-cert-img iso-cert-middle mb-10">
+                                <span class="iso-cert-name">ISO 14001:2015<br>EMS</span>
+                            </div>
+                            <div class="iso-badge-wrapper text-center">
+                                <img src="{{ asset('assets/img/ISO_certificates/ISO_45001-2018_OHSMS.png') }}" alt="ISO 45001-2018 OHSMS"
+                                    class="iso-cert-img mb-10">
+                                <span class="iso-cert-name">ISO 45001:2018<br>OHSMS</span>
+                            </div>
+                        </div>
+
+                        <div class="hero-marquee-container" data-animation="fadeInUp" data-delay=".6s"
+                            style="position: absolute; bottom: 40px; left: 0; width: 100%; z-index: 9;">
+                            <div class="hero-tags">
+                                <span class="hero-tag"><i class="fa-light fa-fan"></i> OT HVAC Systems</span>
+                                <span class="hero-tag"><i class="fa-light fa-lungs"></i> Medical Gas (MGPS)</span>
+                                <span class="hero-tag"><i class="fa-light fa-heart-pulse"></i> ICU MEP Execution</span>
+                                <span class="hero-tag"><i class="fa-light fa-sparkles"></i> Clean Room Contractor</span>
+                                <span class="hero-tag"><i class="fa-light fa-certificate"></i> NABH Compliant</span>
+                                <span class="hero-tag"><i class="fa-light fa-x-ray"></i> Cath Lab MEP</span>
+                                <!-- Duplicate for seamless scroll -->
+                                <span class="hero-tag"><i class="fa-light fa-fan"></i> OT HVAC Systems</span>
+                                <span class="hero-tag"><i class="fa-light fa-lungs"></i> Medical Gas (MGPS)</span>
+                                <span class="hero-tag"><i class="fa-light fa-heart-pulse"></i> ICU MEP Execution</span>
+                                <span class="hero-tag"><i class="fa-light fa-sparkles"></i> Clean Room Contractor</span>
+                                <span class="hero-tag"><i class="fa-light fa-certificate"></i> NABH Compliant</span>
+                                <span class="hero-tag"><i class="fa-light fa-x-ray"></i> Cath Lab MEP</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        @endif
         <!-- slider-area-end -->
+         
         <!-- premium-stats-area -->
-        <section class="premium-stats-area">
-            <div class="container">
-                <div class="stats-wrapper">
-                    <div class="row">
-                        <!-- Stat 1 -->
-                        <div class="col-lg-3 col-md-6 col-sm-6">
-                            <div class="single-premium-stat wow fadeInUp" data-delay=".2s">
-                                <div class="stat-icon"><i class="fa-light fa-building"></i></div>
-                                <div class="stat-content">
-                                    <h3 class="stat-count">8+</h3>
-                                    <h4 class="stat-title">Projects</h4>
-                                    <p class="stat-desc">Delivered 2018–2026</p>
+        @if ($stats && $stats->isNotEmpty())
+            <section class="premium-stats-area">
+                <div class="container">
+                    <div class="stats-wrapper">
+                        <div class="row">
+                            @php
+                                $defaultIcons = [
+                                    'fa-light fa-building',
+                                    'fa-light fa-clock',
+                                    'fa-light fa-chart-area',
+                                    'fa-light fa-headset'
+                                ];
+                            @endphp
+
+                            @foreach ($stats as $index => $stat)
+                                <div class="col-lg-3 col-md-6 col-sm-6">
+                                    <div class="single-premium-stat wow fadeInUp" data-delay=".{{ ($index + 1) * 2 }}s">
+                                        <div class="stat-icon">
+                                            <i class="{{ $defaultIcons[$index] ?? 'fa-light fa-circle-check' }}"></i>
+                                        </div>
+                                        <div class="stat-content">
+                                            <h3 class="stat-count">{{ $stat->count }}</h3>
+                                            <h4 class="stat-title">{{ $stat->title }}</h4>
+                                            <p class="stat-desc">{{ $stat->description }}</p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <!-- Stat 2 -->
-                        <div class="col-lg-3 col-md-6 col-sm-6">
-                            <div class="single-premium-stat wow fadeInUp" data-delay=".4s">
-                                <div class="stat-icon"><i class="fa-light fa-clock"></i></div>
-                                <div class="stat-content">
-                                    <h3 class="stat-count">0</h3>
-                                    <h4 class="stat-title">Missed Handovers</h4>
-                                    <p class="stat-desc">On schedule. On spec. Every time.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Stat 3 -->
-                        <div class="col-lg-3 col-md-6 col-sm-6">
-                            <div class="single-premium-stat wow fadeInUp" data-delay=".6s">
-                                <div class="stat-icon"><i class="fa-light fa-chart-area"></i></div>
-                                <div class="stat-content">
-                                    <h3 class="stat-count">3.4M</h3>
-                                    <h4 class="stat-title">Sq.Ft Engineered</h4>
-                                    <p class="stat-desc">Healthcare & Commercial</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Stat 4 -->
-                        <div class="col-lg-3 col-md-6 col-sm-6">
-                            <div class="single-premium-stat wow fadeInUp" data-delay=".8s">
-                                <div class="stat-icon"><i class="fa-light fa-headset"></i></div>
-                                <div class="stat-content">
-                                    <h3 class="stat-count">24/7</h3>
-                                    <h4 class="stat-title">Warranty Response</h4>
-                                    <p class="stat-desc">Our team, our number.</p>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        @endif
         <!-- premium-stats-area-end -->
 
         <!-- hospital-civil-services-area -->
-        <section class="hospital-civil-services-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-7">
-                        <div class="civil-section-title">
-                            <span class="civil-sub-heading">HOSPITAL CIVIL SERVICES</span>
-                            <h2 class="civil-elegant-heading">Complete civil & structural works built for hospital-grade
-                                precision</h2>
-                            <p class="civil-section-desc">From foundation to finish — structural civil works engineered
-                                and executed to hospital tolerances, coordinated with MEP from day one.</p>
+        @if ($civilServices && $civilServices->isNotEmpty())
+            <section class="hospital-civil-services-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <div class="civil-section-title">
+                                <span class="civil-sub-heading">HOSPITAL CIVIL SERVICES</span>
+                                <h2 class="civil-elegant-heading">Complete civil & structural works built for hospital-grade
+                                    precision</h2>
+                                <p class="civil-section-desc">From foundation to finish — structural civil works engineered
+                                    and executed to hospital tolerances, coordinated with MEP from day one.</p>
+                            </div>
                         </div>
+                    </div>
+                    <div class="row">
+                        @foreach ($civilServices as $index => $service)
+                            <div class="col-lg-4 col-md-6">
+                                <div class="civil-service-card wow fadeInUp" data-delay=".{{ ($index % 6) + 2 }}s">
+                                    <div class="civil-card-header">
+                                        <div class="civil-icon-wrapper icon-bg-{{ ($index % 6) + 1 }}">
+                                            <i class="{{ $service->icon }}"></i>
+                                        </div>
+                                        <h3>{{ $service->title }}</h3>
+                                    </div>
+                                    <p>{{ $service->description }}</p>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
-                <div class="row">
-                    <!-- Card 1 -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="civil-service-card wow fadeInUp" data-delay=".2s">
-                            <div class="civil-card-header">
-                                <div class="civil-icon-wrapper icon-bg-1">
-                                    <i class="fa-light fa-building-columns"></i>
-                                </div>
-                                <h3>Structural & RCC Works</h3>
-                            </div>
-                            <p>Foundations, columns, beams, slabs and RCC framework engineered for hospital loads,
-                                vibration control and future vertical expansion.</p>
-                        </div>
-                    </div>
-                    <!-- Card 2 -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="civil-service-card wow fadeInUp" data-delay=".3s">
-                            <div class="civil-card-header">
-                                <div class="civil-icon-wrapper icon-bg-2">
-                                    <i class="fa-light fa-hospital"></i>
-                                </div>
-                                <h3>Hospital Building Construction</h3>
-                            </div>
-                            <p>Full shell & core construction — masonry, blockwork, plastering and structural finishing
-                                for new hospital buildings and additions.</p>
-                        </div>
-                    </div>
-                    <!-- Card 3 -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="civil-service-card wow fadeInUp" data-delay=".4s">
-                            <div class="civil-card-header">
-                                <div class="civil-icon-wrapper icon-bg-3">
-                                    <i class="fa-light fa-palette"></i>
-                                </div>
-                                <h3>Interior Fit-Out & Finishes</h3>
-                            </div>
-                            <p>Hospital-grade flooring, false ceilings, wall finishes and partitions — seamless,
-                                cleanable surfaces built for infection control.</p>
-                        </div>
-                    </div>
-                    <!-- Card 4 -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="civil-service-card wow fadeInUp" data-delay=".5s">
-                            <div class="civil-card-header">
-                                <div class="civil-icon-wrapper icon-bg-4">
-                                    <i class="fa-light fa-road-barrier"></i>
-                                </div>
-                                <h3>Site Development & Earthwork</h3>
-                            </div>
-                            <p>Excavation, grading, site levelling and external development works, sequenced to keep MEP
-                                and structural trades on schedule.</p>
-                        </div>
-                    </div>
-                    <!-- Card 5 -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="civil-service-card wow fadeInUp" data-delay=".6s">
-                            <div class="civil-card-header">
-                                <div class="civil-icon-wrapper icon-bg-5">
-                                    <i class="fa-light fa-droplet"></i>
-                                </div>
-                                <h3>Waterproofing & Insulation</h3>
-                            </div>
-                            <p>Terrace, basement and wet-area waterproofing, thermal insulation and expansion joint
-                                treatment to prevent long-term structural issues.</p>
-                        </div>
-                    </div>
-                    <!-- Card 6 -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="civil-service-card wow fadeInUp" data-delay=".7s">
-                            <div class="civil-card-header">
-                                <div class="civil-icon-wrapper icon-bg-6">
-                                    <i class="fa-light fa-helmet-safety"></i>
-                                </div>
-                                <h3>Turnkey Civil & Structural</h3>
-                            </div>
-                            <p>Single-point civil contracting from design coordination to handover — integrated with our
-                                MEP scope for true turnkey delivery.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+            </section>
+        @endif
         <!-- hospital-civil-services-area-end -->
 
 
@@ -535,104 +545,37 @@
         <!-- services-area-end -->
 
         <!-- hospital-specialisations-area -->
-        <section class="hospital-specialisations-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="spec-section-title">
-                            <span class="spec-sub-heading">HOSPITAL SPECIALISATIONS</span>
-                            <h2 class="spec-elegant-heading">Every critical area of the modern hospital</h2>
-                            <p class="spec-section-desc">OT to clean room, ICU to cath lab — each area demands
-                                specialist knowledge. We have executed them all.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="spec-grid-container">
+        @if ($specialisations && $specialisations->isNotEmpty())
+            <section class="hospital-specialisations-area">
+                <div class="container">
                     <div class="row">
-                        <!-- Item 1 -->
-                        <div class="col-lg-3 col-md-6 col-sm-6 mb-30">
-                            <div class="spec-item wow fadeInUp" data-delay=".2s">
-                                <div class="spec-card-header">
-                                    <i class="fa-light fa-microscope icon-color-1"></i>
-                                    <h4>Operation Theatre</h4>
-                                </div>
-                                <p>Laminar airflow, HEPA H14, isolated power, NABH validated commissioning.</p>
-                            </div>
-                        </div>
-                        <!-- Item 2 -->
-                        <div class="col-lg-3 col-md-6 col-sm-6 mb-30">
-                            <div class="spec-item wow fadeInUp" data-delay=".3s">
-                                <div class="spec-card-header">
-                                    <i class="fa-light fa-hospital-user icon-color-2"></i>
-                                    <h4>ICU & NICU</h4>
-                                </div>
-                                <p>Bed-head units, MGPS outlets, UPS-backed power, HEPA H13 HVAC.</p>
-                            </div>
-                        </div>
-                        <!-- Item 3 -->
-                        <div class="col-lg-3 col-md-6 col-sm-6 mb-30">
-                            <div class="spec-item wow fadeInUp" data-delay=".4s">
-                                <div class="spec-card-header">
-                                    <i class="fa-light fa-heart-pulse icon-color-3"></i>
-                                    <h4>Cath Lab</h4>
-                                </div>
-                                <p>Radiation-shielded penetrations, isolated power, precision cooling.</p>
-                            </div>
-                        </div>
-                        <!-- Item 4 -->
-                        <div class="col-lg-3 col-md-6 col-sm-6 mb-30">
-                            <div class="spec-item wow fadeInUp" data-delay=".5s">
-                                <div class="spec-card-header">
-                                    <i class="fa-light fa-broom icon-color-4"></i>
-                                    <h4>Clean Rooms</h4>
-                                </div>
-                                <p>ISO Class 5–8 validated ACH, pressure differentials, HEPA H14.</p>
-                            </div>
-                        </div>
-                        <!-- Item 5 -->
-                        <div class="col-lg-3 col-md-6 col-sm-6 mb-30">
-                            <div class="spec-item wow fadeInUp" data-delay=".6s">
-                                <div class="spec-card-header">
-                                    <i class="fa-light fa-telescope icon-color-5"></i>
-                                    <h4>Diagnostic Centres</h4>
-                                </div>
-                                <p>MRI/CT cooling, quench pipe, EMF shielding, UPS conditioning.</p>
-                            </div>
-                        </div>
-                        <!-- Item 6 -->
-                        <div class="col-lg-3 col-md-6 col-sm-6 mb-30">
-                            <div class="spec-item wow fadeInUp" data-delay=".7s">
-                                <div class="spec-card-header">
-                                    <i class="fa-light fa-vial icon-color-6"></i>
-                                    <h4>CSSD</h4>
-                                </div>
-                                <p>Steam supply, 93°C HWS, validated HVAC, sterile drainage.</p>
-                            </div>
-                        </div>
-                        <!-- Item 7 -->
-                        <div class="col-lg-3 col-md-6 col-sm-6 mb-30">
-                            <div class="spec-item wow fadeInUp" data-delay=".8s">
-                                <div class="spec-card-header">
-                                    <i class="fa-light fa-industry icon-color-7"></i>
-                                    <h4>Modular OT</h4>
-                                </div>
-                                <p>Prefab OT MEP, factory-coordinated, NABH-ready in 8–12 weeks.</p>
-                            </div>
-                        </div>
-                        <!-- Item 8 -->
-                        <div class="col-lg-3 col-md-6 col-sm-6 mb-30">
-                            <div class="spec-item wow fadeInUp" data-delay=".9s">
-                                <div class="spec-card-header">
-                                    <i class="fa-light fa-shield-check icon-color-8"></i>
-                                    <h4>NABH Projects</h4>
-                                </div>
-                                <p>Entry & Full Accreditation, pre-assessment audit support.</p>
+                        <div class="col-lg-8">
+                            <div class="spec-section-title">
+                                <span class="spec-sub-heading">HOSPITAL SPECIALISATIONS</span>
+                                <h2 class="spec-elegant-heading">Every critical area of the modern hospital</h2>
+                                <p class="spec-section-desc">OT to clean room, ICU to cath lab — each area demands
+                                    specialist knowledge. We have executed them all.</p>
                             </div>
                         </div>
                     </div>
+                    <div class="spec-grid-container">
+                        <div class="row">
+                            @foreach ($specialisations as $index => $spec)
+                                <div class="col-lg-3 col-md-6 col-sm-6 mb-30">
+                                    <div class="spec-item wow fadeInUp" data-delay=".{{ ($index % 8) + 2 }}s">
+                                        <div class="spec-card-header">
+                                            <i class="{{ $spec->icon }} icon-color-{{ ($index % 8) + 1 }}"></i>
+                                            <h4>{{ $spec->title }}</h4>
+                                        </div>
+                                        <p>{{ $spec->description }}</p>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        @endif
         <!-- hospital-specialisations-area-end -->
 
         <!-- why-hoose-us-area -->

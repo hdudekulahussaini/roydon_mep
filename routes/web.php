@@ -3,6 +3,10 @@
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\backend\HomeBannerController;
+use App\Http\Controllers\backend\PremiumStatController;
+use App\Http\Controllers\backend\CivilServiceController;
+use App\Http\Controllers\backend\HospitalSpecialisationController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -19,6 +23,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::middleware('auth')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::resource('home-banners', HomeBannerController::class)->except('show');
+        Route::resource('premium-stats', PremiumStatController::class)->except('show');
+        Route::resource('civil-services', CivilServiceController::class)->except('show');
+        Route::resource('hospital-specialisations', HospitalSpecialisationController::class)->except('show');
         Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
     });
 });
