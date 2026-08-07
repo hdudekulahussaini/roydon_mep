@@ -1,0 +1,120 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Contracts\View\View;
+
+class FrontendController extends Controller
+{
+    public function index(): View
+    {
+        return view('frontend.pages.index');
+    }
+
+    public function about(): View
+    {
+        return view('frontend.pages.about');
+    }
+
+    public function contact(): View
+    {
+        return view('frontend.pages.contact');
+    }
+
+    public function projects(): View
+    {
+        return view('frontend.pages.projects');
+    }
+
+    public function standards(): View
+    {
+        return view('frontend.pages.standards');
+    }
+
+    public function process(): View
+    {
+        return view('frontend.pages.process');
+    }
+
+    public function offices(): View
+    {
+        return view('frontend.pages.offices');
+    }
+
+    // Services
+    public function hospitalHvacSystems(): View
+    {
+        return view('frontend.pages.hospital-hvac-systems');
+    }
+
+    public function medicalGasPipeline(): View
+    {
+        return view('frontend.pages.medical-gas-pipeline');
+    }
+
+    public function hospitalElectricalSystems(): View
+    {
+        return view('frontend.pages.hospital-electrical-systems');
+    }
+
+    public function plumbingAndSanitation(): View
+    {
+        return view('frontend.pages.plumbing-and-sanitation');
+    }
+
+    public function fireFightingAndLifeSafety(): View
+    {
+        return view('frontend.pages.fire-fighting-and-life-safety');
+    }
+
+    public function turnkeyHospitalMep(): View
+    {
+        return view('frontend.pages.turnkey-hospital-mep');
+    }
+
+    public function civilWorks(): View
+    {
+        return view('frontend.pages.civil-works');
+    }
+
+    // Specialisations
+    public function specialisationOtMep(): View
+    {
+        return view('frontend.pages.specialisation-ot-mep');
+    }
+
+    public function specialisationIcuMep(): View
+    {
+        return view('frontend.pages.specialisation-icu-mep');
+    }
+
+    public function specialisationCathLab(): View
+    {
+        return view('frontend.pages.specialisation-cath-lab');
+    }
+
+    public function specialisationCleanRoom(): View
+    {
+        return view('frontend.pages.specialisation-clean-room');
+    }
+
+    public function specialisationDiagnostic(): View
+    {
+        return view('frontend.pages.specialisation-diagnostic');
+    }
+
+    public function specialisationCssd(): View
+    {
+        return view('frontend.pages.specialisation-cssd');
+    }
+
+    public function specialisationModularOt(): View
+    {
+        return view('frontend.pages.specialisation-modular-ot');
+    }
+
+    public function specialisationNabh(): View
+    {
+        return view('frontend.pages.specialisation-nabh');
+    }
+}
