@@ -121,7 +121,7 @@
 
     // mainSlider
     function mainSlider() {
-        var BasicSlider = $('.slider-active');
+        var BasicSlider = $('.slider-active, .slider-active2');
         BasicSlider.on('init', function (e, slick) {
             var $firstAnimatingElements = $('.single-slider:first-child').find('[data-animation]');
             doAnimations($firstAnimatingElements);

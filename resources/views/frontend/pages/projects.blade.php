@@ -7,7 +7,7 @@
     <main>
         <!-- breadcrumb-area -->
         <section class="pl-50 pr-50 ">
-            <div class="breadcrumb-area d-flex justify-content-center align-items-center" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(img/slider/hospital_mep_hero.webp); background-size: cover; background-position: center;">
+            <div class="breadcrumb-area d-flex justify-content-center align-items-center" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url({{ asset('assets/img/slider/hospital_mep_hero.webp') }}); background-size: cover; background-position: center;">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-xl-12 col-lg-12">
@@ -17,7 +17,7 @@
                                     <div class="breadcrumb-wrap">
                                         <nav aria-label="breadcrumb">
                                             <ol class="breadcrumb">
-                                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                                <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                                                 <li class="breadcrumb-item active" aria-current="page" style="color: #0E9B9B; font-weight: 700;">Projects</li>
                                             </ol>
                                         </nav>
@@ -41,7 +41,7 @@
                         <div class="custom-project-card wow fadeInUp" data-delay=".1s">
                             <div class="custom-project-img-wrapper">
                                 <span class="project-meta-type">Multispeciality</span>
-                                <img src="img/projects/neelima_hospital.webp" alt="Neelima Hospitals - Healthcare Project Execution by Roydon MEP" class="custom-project-img">
+                                <img src="{{ asset('assets/img/projects/neelima_hospital.webp') }}" alt="Neelima Hospitals - Healthcare Project Execution by Roydon MEP" class="custom-project-img">
                             </div>
                             <div class="custom-project-content">
                                 <h3 class="project-title">Neelima Hospitals, Hyderabad</h3>
@@ -83,7 +83,7 @@
                         <div class="custom-project-card wow fadeInUp" data-delay=".2s">
                             <div class="custom-project-img-wrapper">
                                 <span class="project-meta-type">Multispeciality</span>
-                                <img src="img/projects/trust_hospital.webp" alt="Trust Multispeciality Hospitals - MEP Engineering Company" class="custom-project-img">
+                                <img src="{{ asset('assets/img/projects/trust_hospital.webp') }}" alt="Trust Multispeciality Hospitals - MEP Engineering Company" class="custom-project-img">
                             </div>
                             <div class="custom-project-content">
                                 <h3 class="project-title">Trust Multispeciality Hospitals, Kakinada</h3>
@@ -125,7 +125,7 @@
                         <div class="custom-project-card wow fadeInUp" data-delay=".1s">
                             <div class="custom-project-img-wrapper">
                                 <span class="project-meta-type">Multispeciality</span>
-                                <img src="img/projects/landmark_hospital.webp" alt="Landmark Hospital - EPC Contractors South India" class="custom-project-img">
+                                <img src="{{ asset('assets/img/projects/landmark_hospital.webp') }}" alt="Landmark Hospital - EPC Contractors South India" class="custom-project-img">
                             </div>
                             <div class="custom-project-content">
                                 <h3 class="project-title">Landmark Multi-Speciality Hospital, Hyderabad</h3>
@@ -167,7 +167,7 @@
                         <div class="custom-project-card wow fadeInUp" data-delay=".2s">
                             <div class="custom-project-img-wrapper">
                                 <span class="project-meta-type">Multispeciality</span>
-                                <img src="img/projects/hope_hospital.webp" alt="Hope Hospital - Turnkey Hospital MEP Contractors" class="custom-project-img">
+                                <img src="{{ asset('assets/img/projects/hope_hospital.webp') }}" alt="Hope Hospital - Turnkey Hospital MEP Contractors" class="custom-project-img">
                             </div>
                             <div class="custom-project-content">
                                 <h3 class="project-title">Hope Hospital, Bengaluru</h3>
@@ -209,7 +209,7 @@
                         <div class="custom-project-card wow fadeInUp" data-delay=".1s">
                             <div class="custom-project-img-wrapper">
                                 <span class="project-meta-type">Commercial</span>
-                                <img src="img/projects/corporate_office.webp" alt="Roydon MEP - Turnkey MEP Contractors in Hyderabad" class="custom-project-img">
+                                <img src="{{ asset('assets/img/projects/corporate_office.webp') }}" alt="Roydon MEP - Turnkey MEP Contractors in Hyderabad" class="custom-project-img">
                             </div>
                             <div class="custom-project-content">
                                 <h3 class="project-title">Corporate Office, Hyderabad</h3>
@@ -251,7 +251,7 @@
                         <div class="custom-project-card wow fadeInUp" data-delay=".2s">
                             <div class="custom-project-img-wrapper">
                                 <span class="project-meta-type">Hospitality</span>
-                                <img src="img/projects/hotel_project.webp" alt="Roydon MEP - Turnkey MEP Contractors in Hyderabad" class="custom-project-img">
+                                <img src="{{ asset('assets/img/projects/hotel_project.webp') }}" alt="Roydon MEP - Turnkey MEP Contractors in Hyderabad" class="custom-project-img">
                             </div>
                             <div class="custom-project-content">
                                 <h3 class="project-title">Hotel Project, Bengaluru</h3>
@@ -293,7 +293,7 @@
                         <div class="custom-project-card wow fadeInUp" data-delay=".1s">
                             <div class="custom-project-img-wrapper">
                                 <span class="project-meta-type">Commercial</span>
-                                <img src="img/projects/n_square_building.webp" alt="Roydon MEP - Turnkey MEP Contractors in Hyderabad" class="custom-project-img">
+                                <img src="{{ asset('assets/img/projects/n_square_building.webp') }}" alt="Roydon MEP - Turnkey MEP Contractors in Hyderabad" class="custom-project-img">
                             </div>
                             <div class="custom-project-content">
                                 <h3 class="project-title">N Square Building, Hyderabad</h3>
@@ -335,7 +335,7 @@
                         <div class="custom-project-card wow fadeInUp" data-delay=".2s">
                             <div class="custom-project-img-wrapper">
                                 <span class="project-meta-type">Life Safety</span>
-                                <img src="img/projects/fire_fighting_system.webp" alt="Roydon MEP - Turnkey MEP Contractors in Hyderabad" class="custom-project-img">
+                                <img src="{{ asset('assets/img/projects/fire_fighting_system.webp') }}" alt="Roydon MEP - Turnkey MEP Contractors in Hyderabad" class="custom-project-img">
                             </div>
                             <div class="custom-project-content">
                                 <h3 class="project-title">Fire Fighting System, Pan-India</h3>

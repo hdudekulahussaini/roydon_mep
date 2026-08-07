@@ -6,7 +6,7 @@
     <main>
         <!-- breadcrumb-area -->
         <section class="pl-50 pr-50">
-            <div class="breadcrumb-area d-flex justify-content-center align-items-center" style="background-image: linear-gradient(rgba(15, 32, 68, 0.7), rgba(15, 32, 68, 0.7)), url({{ asset('assets/img/bg/standards-bg.webp') }}); background-size: cover; background-position: center; border-radius: 15px; margin-top: 20px;">
+            <div class="breadcrumb-area d-flex justify-content-center align-items-center" style="background-image: linear-gradient(rgba(15, 32, 68, 0.7), rgba(15, 32, 68, 0.7)), url({{ asset('assets/img/standards.webp') }}); background-size: cover; background-position: center; border-radius: 15px; margin-top: 20px;">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-xl-12 col-lg-12">

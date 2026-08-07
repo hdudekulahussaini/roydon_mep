@@ -8,7 +8,7 @@
 
             <div class="slider-active2 pl-50 pr-50">
                 <div class="single-slider slider-bg d-flex align-items-center img"
-                    style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(img/slider/hospital_mep_hero.webp); background-size: cover;">
+                    style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url({{ asset('assets/img/slider/hospital_mep_hero.webp') }}); background-size: cover;">
                     <div class="container">
                         <div class="row ">
 
@@ -20,9 +20,9 @@
                                         Medical Gas Pipelines, Electrical, Plumbing and Fire Fighting with BIM and NABH
                                         compliant. Zero defect handovers.</p>
                                     <div class="slider-btn mt-50" data-animation="fadeInUp" data-delay=".4s">
-                                        <a href="hospital-hvac-systems.html" class="btn mr-15">Explore Services <i
+                                        <a href="{{ route('services.hvac') }}" class="btn mr-15">Explore Services <i
                                                 class="fa-solid fa-arrow-right"></i></a>
-                                        <a href="projects.html" class="btn ss-btn active"
+                                        <a href="{{ route('projects') }}" class="btn ss-btn active"
                                             style="background: transparent; border: 2px solid #0E9B9B; color: #fff;">View
                                             Projects <i class="fa-light fa-building"></i></a>
                                     </div>
@@ -35,17 +35,17 @@
                     <div class="hero-iso-badges-horizontal d-none d-lg-flex" data-animation="fadeInUp" data-delay=".5s"
                         style="position: absolute; bottom: 110px; right: 50px; z-index: 10; display: flex; gap: 20px; align-items: flex-start;">
                         <div class="iso-badge-wrapper text-center">
-                            <img src="img/ISO_certificates/ISO_9001-2015_QMS.png" alt="ISO 9001-2015 QMS"
+                            <img src="{{ asset('assets/img/ISO_certificates/ISO_9001-2015_QMS.png') }}" alt="ISO 9001-2015 QMS"
                                 class="iso-cert-img mb-10">
                             <span class="iso-cert-name">ISO 9001:2015<br>QMS</span>
                         </div>
                         <div class="iso-badge-wrapper text-center">
-                            <img src="img/ISO_certificates/ISO_14001-2015_EMS.png" alt="ISO 14001-2015 EMS"
+                            <img src="{{ asset('assets/img/ISO_certificates/ISO_14001-2015_EMS.png') }}" alt="ISO 14001-2015 EMS"
                                 class="iso-cert-img iso-cert-middle mb-10">
                             <span class="iso-cert-name">ISO 14001:2015<br>EMS</span>
                         </div>
                         <div class="iso-badge-wrapper text-center">
-                            <img src="img/ISO_certificates/ISO_45001-2018_OHSMS.png" alt="ISO 45001-2018 OHSMS"
+                            <img src="{{ asset('assets/img/ISO_certificates/ISO_45001-2018_OHSMS.png') }}" alt="ISO 45001-2018 OHSMS"
                                 class="iso-cert-img mb-10">
                             <span class="iso-cert-name">ISO 45001:2018<br>OHSMS</span>
                         </div>
@@ -226,10 +226,108 @@
         </section>
         <!-- hospital-civil-services-area-end -->
 
+
+        <!-- about-area -->
+        <!-- <section class="about-area about-p p-relative pt-120 pb-120">
+            <div class="animations-02"><img src="img/bg/an-img-01.webp"
+                    alt="Roydon MEP - Turnkey MEP Contractors in Hyderabad"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-md-12 col-sm-12">
+                        <div class="s-about-img p-relative  wow fadeInLeft animated" data-animation="fadeInLeft"
+                            data-delay=".4s">
+
+                            <div class="about-experience-badge">
+                                <h2>15+</h2>
+                                <span>Years of<br>Experience</span>
+                            </div>
+                            <div class="about-image-grid img-custom-anim-left wow fadeInLeft" data-delay=".1s">
+                                <img src="img/bg/hvac_service.webp"
+                                    alt="Hospital HVAC Contractors Hyderabad by Roydon MEP">
+                                <img src="img/bg/mgps_service.webp"
+                                    alt="Medical Gas Pipeline Installation by Hospital MEP Contractors">
+                                <img src="img/bg/electrical_service.webp"
+                                    alt="Hospital Electrical Engineering Services and Turnkey Solutions">
+                                <img src="img/bg/turnkey_service.webp"
+                                    alt="Turnkey MEP Solutions for Healthcare and Commercial Buildings">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-md-12 col-sm-12">
+                        <div class="about-content pl-10 s-about-content wow fadeInLeft animated" data-delay=".4s">
+                            <div class="section-title">
+                                <div class="sub-title">
+                                    <i class="fa-light fa-bolt"></i> About Us <i class="fa-light fa-bolt"></i>
+                                </div>
+                                <h2 class="">
+                                    Trusted <span>Healthcare MEP</span> <span>Execution</span> Specialists
+                                </h2>
+
+                            </div>
+                            <p>We are a team of MEP experts dedicated to providing high-quality execution for hospitals,
+                                ensuring NABH compliance and zero defect handovers.</p>
+                            <div class="about-count">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="about-outer">
+                                            <div class="icon">
+                                                <i class="fa-light fa-fan" style="font-size: 45px; color: #0E9B9B;"></i>
+                                            </div>
+                                            <div class="text">
+                                                <h3>Hospital HVAC</h3>
+                                                <p>Specialized OT, ICU, and clean room air conditioning installations.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="about-outer">
+                                            <div class="icon">
+                                                <i class="fa-light fa-lungs"
+                                                    style="font-size: 45px; color: #0E9B9B;"></i>
+                                            </div>
+                                            <div class="text">
+                                                <h3>MGPS Solutions</h3>
+                                                <p>Reliable Medical Gas Pipeline Systems and manifold room setups.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-30">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <a href="about.html" class="btn ss-btn smoth-scroll mr-15">Read More <i
+                                                class="fa-light fa-bolt"></i></a>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="h-phone">
+                                            <div class="icon"><i class="fa-light fa-phone-volume"
+                                                    style="font-size: 40px; color: #0E9B9B;"></i></div>
+                                            <div class="text">
+                                                Call
+                                                <span><a href="tel:+917330756745"
+                                                        style="color: inherit;">+91-7330756745</a></span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </section> -->
+        <!-- about-area-end -->
+
         <!-- services-area -->
         <section class="services-area p-relative fix">
             <div class="container-box pt-50 pb-50" style="background-color: #004250;">
-                <div class="animations-01"><img src="img/bg/an-img-02.webp"
+                <div class="animations-01"><img src="{{ asset('assets/img/bg/an-img-02.webp') }}"
                         alt="Roydon MEP - Turnkey MEP Contractors in Hyderabad"></div>
                 <div class="container">
                     <div class="row justify-content-center mb-55">
@@ -247,7 +345,7 @@
                             <div class="services-box wow fadeInUp animated" data-animation="fadeInUp" data-delay=".4s">
                                 <div class="services-content">
                                     <div class="img-custom-anim-left wow fadeInLeft services-icon">
-                                        <img src="img/bg/hvac_service.webp"
+                                        <img src="{{ asset('assets/img/bg/hvac_service.webp') }}"
                                             alt="Hospital HVAC Contractors Hyderabad by Roydon MEP">
                                     </div>
                                     <div class="row">
@@ -258,14 +356,14 @@
                                                             style="font-size: 45px; color: #0E9B9B;"></i></div>
                                                 </div>
                                                 <div class="heading">
-                                                    <h3><a href="hospital-hvac-systems.html">Hospital HVAC Systems</a>
+                                                    <h3><a href="{{ route('services.hvac') }}">Hospital HVAC Systems</a>
                                                     </h3>
                                                 </div>
                                             </div>
                                             <p>OT laminar airflow, ICU pressure cascades, HEPA H14 filtration, AHU
                                                 installation to ASHRAE 170 & NABH.</p>
                                             <div class="sbtn mt-20">
-                                                <a href="hospital-hvac-systems.html" class="chevron-button">Read More <i
+                                                <a href="{{ route('services.hvac') }}" class="chevron-button">Read More <i
                                                         class="fa-light fa-bolt"></i></a>
                                             </div>
                                         </div>
@@ -278,7 +376,7 @@
                             <div class="services-box wow fadeInUp animated" data-animation="fadeInUp" data-delay=".4s">
                                 <div class="services-content">
                                     <div class="img-custom-anim-left wow fadeInLeft services-icon">
-                                        <img src="img/bg/mgps_service.webp"
+                                        <img src="{{ asset('assets/img/bg/mgps_service.webp') }}"
                                             alt="Medical Gas Pipeline Installation by Hospital MEP Contractors">
                                     </div>
                                     <div class="row">
@@ -289,14 +387,14 @@
                                                             style="font-size: 45px; color: #0E9B9B;"></i></div>
                                                 </div>
                                                 <div class="heading">
-                                                    <h3><a href="medical-gas-pipeline.html">Medical Gas Pipeline
+                                                    <h3><a href="{{ route('services.medical-gas') }}">Medical Gas Pipeline
                                                             (MGPS)</a></h3>
                                                 </div>
                                             </div>
                                             <p>Complete MGPS — O₂, vacuum, N₂O, medical air. Tested, validated, HTM
                                                 02-01 & NFPA 99 compliant.</p>
                                             <div class="sbtn mt-20">
-                                                <a href="medical-gas-pipeline.html" class="chevron-button">Read More <i
+                                                <a href="{{ route('services.medical-gas') }}" class="chevron-button">Read More <i
                                                         class="fa-light fa-bolt"></i></a>
                                             </div>
                                         </div>
@@ -309,7 +407,7 @@
                             <div class="services-box wow fadeInUp animated" data-animation="fadeInUp" data-delay=".4s">
                                 <div class="services-content">
                                     <div class="img-custom-anim-left wow fadeInLeft services-icon">
-                                        <img src="img/bg/electrical_service.webp"
+                                        <img src="{{ asset('assets/img/bg/electrical_service.webp') }}"
                                             alt="Hospital Electrical Engineering Services and Turnkey Solutions">
                                     </div>
                                     <div class="row">
@@ -320,14 +418,14 @@
                                                             style="font-size: 45px; color: #0E9B9B;"></i></div>
                                                 </div>
                                                 <div class="heading">
-                                                    <h3><a href="hospital-electrical-systems.html">Hospital Electrical
+                                                    <h3><a href="{{ route('services.electrical') }}">Hospital Electrical
                                                             Systems</a></h3>
                                                 </div>
                                             </div>
                                             <p>HT/LT distribution, UPS, DG, isolation transformers for OT/ICU, nurse
                                                 call and ELV systems.</p>
                                             <div class="sbtn mt-20">
-                                                <a href="hospital-electrical-systems.html" class="chevron-button">Read
+                                                <a href="{{ route('services.electrical') }}" class="chevron-button">Read
                                                     More <i class="fa-light fa-bolt"></i></a>
                                             </div>
                                         </div>
@@ -340,7 +438,7 @@
                             <div class="services-box wow fadeInUp animated" data-animation="fadeInUp" data-delay=".4s">
                                 <div class="services-content">
                                     <div class="img-custom-anim-left wow fadeInLeft services-icon">
-                                        <img src="img/bg/plumbing_service.webp"
+                                        <img src="{{ asset('assets/img/bg/plumbing_service.webp') }}"
                                             alt="Hospital Plumbing Contractors for Healthcare Infrastructure">
                                     </div>
                                     <div class="row">
@@ -351,14 +449,14 @@
                                                             style="font-size: 45px; color: #0E9B9B;"></i></div>
                                                 </div>
                                                 <div class="heading">
-                                                    <h3><a href="plumbing-and-sanitation.html">Plumbing & Sanitation</a>
+                                                    <h3><a href="{{ route('services.plumbing') }}">Plumbing & Sanitation</a>
                                                     </h3>
                                                 </div>
                                             </div>
                                             <p>Medical-grade plumbing, hot/cold water, WTP, STP, ETP, Legionella control
                                                 and CSSD supply.</p>
                                             <div class="sbtn mt-20">
-                                                <a href="plumbing-and-sanitation.html" class="chevron-button">Read More
+                                                <a href="{{ route('services.plumbing') }}" class="chevron-button">Read More
                                                     <i class="fa-light fa-bolt"></i></a>
                                             </div>
                                         </div>
@@ -371,7 +469,7 @@
                             <div class="services-box wow fadeInUp animated" data-animation="fadeInUp" data-delay=".4s">
                                 <div class="services-content">
                                     <div class="img-custom-anim-left wow fadeInLeft services-icon">
-                                        <img src="img/bg/fire_service.webp"
+                                        <img src="{{ asset('assets/img/bg/fire_service.webp') }}"
                                             alt="Hospital Fire Fighting Contractors and Fire Safety Systems">
                                     </div>
                                     <div class="row">
@@ -382,14 +480,14 @@
                                                             style="font-size: 45px; color: #0E9B9B;"></i></div>
                                                 </div>
                                                 <div class="heading">
-                                                    <h3><a href="fire-fighting-and-life-safety.html">Fire Fighting &
+                                                    <h3><a href="{{ route('services.fire-fighting') }}">Fire Fighting &
                                                             Life Safety</a></h3>
                                                 </div>
                                             </div>
                                             <p>Sprinkler, hydrant, alarm, FM200 suppression, smoke management. NBC Part
                                                 4 & NFPA compliant.</p>
                                             <div class="sbtn mt-20">
-                                                <a href="fire-fighting-and-life-safety.html" class="chevron-button">Read
+                                                <a href="{{ route('services.fire-fighting') }}" class="chevron-button">Read
                                                     More <i class="fa-light fa-bolt"></i></a>
                                             </div>
                                         </div>
@@ -402,7 +500,7 @@
                             <div class="services-box wow fadeInUp animated" data-animation="fadeInUp" data-delay=".4s">
                                 <div class="services-content">
                                     <div class="img-custom-anim-left wow fadeInLeft services-icon">
-                                        <img src="img/bg/turnkey_service.webp"
+                                        <img src="{{ asset('assets/img/bg/turnkey_service.webp') }}"
                                             alt="Turnkey MEP Solutions for Healthcare and Commercial Buildings">
                                     </div>
                                     <div class="row">
@@ -413,14 +511,14 @@
                                                             style="font-size: 45px; color: #0E9B9B;"></i></div>
                                                 </div>
                                                 <div class="heading">
-                                                    <h3><a href="turnkey-hospital-mep.html">Turnkey Hospital MEP</a>
+                                                    <h3><a href="{{ route('services.turnkey') }}">Turnkey Hospital MEP</a>
                                                     </h3>
                                                 </div>
                                             </div>
                                             <p>Single-point MEP contracting — design to handover. No sub-bids.
                                                 NABH-ready. 24/7 warranty.</p>
                                             <div class="sbtn mt-20">
-                                                <a href="turnkey-hospital-mep.html" class="chevron-button">Read More <i
+                                                <a href="{{ route('services.turnkey') }}" class="chevron-button">Read More <i
                                                         class="fa-light fa-bolt"></i></a>
                                             </div>
                                         </div>
@@ -478,47 +576,47 @@
                                     <i class="fa-light fa-heart-pulse icon-color-3"></i>
                                     <h4>Cath Lab</h4>
                                 </div>
-                                <p>Cleanroom HVAC, radiation-shielded electrical, dedicated MGPS feeds.</p>
+                                <p>Radiation-shielded penetrations, isolated power, precision cooling.</p>
                             </div>
                         </div>
                         <!-- Item 4 -->
                         <div class="col-lg-3 col-md-6 col-sm-6 mb-30">
                             <div class="spec-item wow fadeInUp" data-delay=".5s">
                                 <div class="spec-card-header">
-                                    <i class="fa-light fa-sparkles icon-color-4"></i>
+                                    <i class="fa-light fa-broom icon-color-4"></i>
                                     <h4>Clean Rooms</h4>
                                 </div>
-                                <p>ISO Class 5-8, pressure cascade control, particle counts validated to ISO 14644.</p>
+                                <p>ISO Class 5–8 validated ACH, pressure differentials, HEPA H14.</p>
                             </div>
                         </div>
                         <!-- Item 5 -->
                         <div class="col-lg-3 col-md-6 col-sm-6 mb-30">
                             <div class="spec-item wow fadeInUp" data-delay=".6s">
                                 <div class="spec-card-header">
-                                    <i class="fa-light fa-vials icon-color-5"></i>
-                                    <h4>CSSD & Sterile</h4>
+                                    <i class="fa-light fa-telescope icon-color-5"></i>
+                                    <h4>Diagnostic Centres</h4>
                                 </div>
-                                <p>Steam/RO supply, exhaust, dirty-clean workflow HVAC separation.</p>
+                                <p>MRI/CT cooling, quench pipe, EMF shielding, UPS conditioning.</p>
                             </div>
                         </div>
                         <!-- Item 6 -->
                         <div class="col-lg-3 col-md-6 col-sm-6 mb-30">
                             <div class="spec-item wow fadeInUp" data-delay=".7s">
                                 <div class="spec-card-header">
-                                    <i class="fa-light fa-x-ray icon-color-6"></i>
-                                    <h4>Diagnostics</h4>
+                                    <i class="fa-light fa-vial icon-color-6"></i>
+                                    <h4>CSSD</h4>
                                 </div>
-                                <p>CT/MRI power, chillers, radiation shielding support, humidity control.</p>
+                                <p>Steam supply, 93°C HWS, validated HVAC, sterile drainage.</p>
                             </div>
                         </div>
                         <!-- Item 7 -->
                         <div class="col-lg-3 col-md-6 col-sm-6 mb-30">
                             <div class="spec-item wow fadeInUp" data-delay=".8s">
                                 <div class="spec-card-header">
-                                    <i class="fa-light fa-cubes icon-color-7"></i>
+                                    <i class="fa-light fa-industry icon-color-7"></i>
                                     <h4>Modular OT</h4>
                                 </div>
-                                <p>Hermetic doors, stainless/HPL wall panels, integrated pendant boom feeds.</p>
+                                <p>Prefab OT MEP, factory-coordinated, NABH-ready in 8–12 weeks.</p>
                             </div>
                         </div>
                         <!-- Item 8 -->
@@ -526,9 +624,9 @@
                             <div class="spec-item wow fadeInUp" data-delay=".9s">
                                 <div class="spec-card-header">
                                     <i class="fa-light fa-shield-check icon-color-8"></i>
-                                    <h4>NABH Compliance</h4>
+                                    <h4>NABH Projects</h4>
                                 </div>
-                                <p>All systems built, documented, and tested to meet NABH audit requirements.</p>
+                                <p>Entry & Full Accreditation, pre-assessment audit support.</p>
                             </div>
                         </div>
                     </div>
@@ -538,18 +636,29 @@
         <!-- hospital-specialisations-area-end -->
 
         <!-- why-hoose-us-area -->
-        <section class="services-02 pt-120 pb-90 p-relative fix">
+        <section class="pt-120 pb-90 p-relative">
             <div class="container">
-                <div class="row align-items-center">
+                <div class="row">
                     <div class="col-lg-6">
-                        <div class="section-title mb-50 wow fadeInDown animated" data-animation="fadeInDown"
-                            data-delay=".4s">
-                            <div class="sub-title"> <i class="fa-light fa-bolt"></i> WHY CHOOSE ROYDON <i
-                                    class="fa-light fa-bolt"></i></div>
-                            <h2 class="">Engineering <span>Excellence,</span> Built for Healthcare</h2>
-                            <p class="mt-20">Healthcare MEP demands precision, velocity, and strict compliance. Here is
-                                why India's leading hospital developers partner with Roydon MEP Contracting.</p>
-                            <div class="row mt-30">
+                        <div class="section-title mb-30 wow fadeInDown animated" data-delay=".4s">
+                            <div class="sub-title">
+                                <i class="fa-light fa-bolt"></i> Why Choose Us <i class="fa-light fa-bolt"></i>
+                            </div>
+                            <h2 class="">
+                                Why <span>Roydon MEP</span> Contracting
+                            </h2>
+                        </div>
+                        <div class="why-choose-text">
+                            <div class="img-custom-anim-left wow fadeInLeft img mb-30">
+                                <img src="{{ asset('assets/img/bg/electrical_service.webp') }}"
+                                    alt="Hospital Electrical Engineering Services and Turnkey Solutions"
+                                    style="border-radius: 15px; width: 100%; max-height: 400px; object-fit: cover; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <p>We design and execute to NABH and international standards from day one, ensuring
+                                        your healthcare facility is fully compliant and safe.</p>
+                                </div>
                                 <div class="col-lg-4"> <a href="contact.html" class="btn">Contact Us <i
                                             class="fa-light fa-bolt"></i></a></div>
                             </div>
@@ -637,6 +746,50 @@
         </section>
         <!-- why-hoose-us-area-end -->
 
+        <!-- brand-area -->
+        <!-- <section class="brand-area p-relative fix">
+            <div class="container pt-60 pb-120" style="border-top:1px solid #0000004d;">
+                <div class="row brand-active">
+                    <div class="col-xl-2">
+                        <div class="single-brand img-custom-anim-left wow fadeInLeft" data-delay=".1s">
+                            <img src="img/brand/client-01.png" alt="Roydon MEP Client - Trusted Hospital Building Services Contractors">
+                        </div>
+                    </div>
+                    <div class="col-xl-2">
+                        <div class="single-brand img-custom-anim-left wow fadeInLeft" data-delay=".1s">
+                            <img src="img/brand/client-02.png" alt="Roydon MEP Client - Trusted Hospital Building Services Contractors">
+                        </div>
+                    </div>
+                    <div class="col-xl-2">
+                        <div class="single-brand img-custom-anim-left wow fadeInLeft" data-delay=".1s">
+                            <img src="img/brand/client-03.png" alt="Roydon MEP Client - Trusted Hospital Building Services Contractors">
+                        </div>
+                    </div>
+                    <div class="col-xl-2">
+                        <div class="single-brand img-custom-anim-left wow fadeInLeft" data-delay=".1s">
+                            <img src="img/brand/client-04.png" alt="Roydon MEP Client - Trusted Hospital Building Services Contractors">
+                        </div>
+                    </div>
+                    <div class="col-xl-2">
+                        <div class="single-brand img-custom-anim-left wow fadeInLeft" data-delay=".1s">
+                            <img src="img/brand/client-05.png" alt="Roydon MEP Client - Trusted Hospital Building Services Contractors">
+                        </div>
+                    </div>
+                    <div class="col-xl-2">
+                        <div class="single-brand img-custom-anim-left wow fadeInLeft" data-delay=".1s">
+                            <img src="img/brand/client-03.png" alt="Roydon MEP Client - Trusted Hospital Building Services Contractors">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section> -->
+        <!-- brand-area-end -->
+
+
+
+
+
         <!-- projects-area -->
         <section class="projects-area pt-90 pb-90 p-relative fix" style="background-color: #f7f6fb;">
             <div class="container">
@@ -652,7 +805,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="project-card text-center mb-30"
                             style="padding: 15px; background: #fff; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin: 0 10px; transition: transform 0.3s ease;">
-                            <img src="img/projects/neelima_hospital.webp" alt="Neelima Hospital"
+                            <img src="{{ asset('assets/img/projects/neelima_hospital.webp') }}" alt="Neelima Hospital"
                                 style="width: 100%; height: 220px; object-fit: cover; border-radius: 10px; margin-bottom: 15px;">
                             <h3 style="font-size: 18px; font-weight: 600; color: #004250; margin-bottom: 0;">Neelima
                                 Hospital</h3>
@@ -661,7 +814,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="project-card text-center mb-30"
                             style="padding: 15px; background: #fff; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin: 0 10px; transition: transform 0.3s ease;">
-                            <img src="img/projects/landmark_hospital.webp" alt="Landmark Hospital"
+                            <img src="{{ asset('assets/img/projects/landmark_hospital.webp') }}" alt="Landmark Hospital"
                                 style="width: 100%; height: 220px; object-fit: cover; border-radius: 10px; margin-bottom: 15px;">
                             <h3 style="font-size: 18px; font-weight: 600; color: #004250; margin-bottom: 0;">Landmark
                                 Hospital</h3>
@@ -670,7 +823,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="project-card text-center mb-30"
                             style="padding: 15px; background: #fff; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin: 0 10px; transition: transform 0.3s ease;">
-                            <img src="img/projects/trust_hospital.webp" alt="Trust Hospital"
+                            <img src="{{ asset('assets/img/projects/trust_hospital.webp') }}" alt="Trust Hospital"
                                 style="width: 100%; height: 220px; object-fit: cover; border-radius: 10px; margin-bottom: 15px;">
                             <h3 style="font-size: 18px; font-weight: 600; color: #004250; margin-bottom: 0;">Trust
                                 Hospital</h3>
@@ -679,7 +832,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="project-card text-center mb-30"
                             style="padding: 15px; background: #fff; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin: 0 10px; transition: transform 0.3s ease;">
-                            <img src="img/projects/hope_hospital.webp" alt="Hope Hospital"
+                            <img src="{{ asset('assets/img/projects/hope_hospital.webp') }}" alt="Hope Hospital"
                                 style="width: 100%; height: 220px; object-fit: cover; border-radius: 10px; margin-bottom: 15px;">
                             <h3 style="font-size: 18px; font-weight: 600; color: #004250; margin-bottom: 0;">Hope
                                 Hospital</h3>
@@ -688,7 +841,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="project-card text-center mb-30"
                             style="padding: 15px; background: #fff; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin: 0 10px; transition: transform 0.3s ease;">
-                            <img src="img/projects/corporate_office.webp" alt="Corporate Office"
+                            <img src="{{ asset('assets/img/projects/corporate_office.webp') }}" alt="Corporate Office"
                                 style="width: 100%; height: 220px; object-fit: cover; border-radius: 10px; margin-bottom: 15px;">
                             <h3 style="font-size: 18px; font-weight: 600; color: #004250; margin-bottom: 0;">Corporate
                                 Office</h3>
@@ -697,7 +850,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="project-card text-center mb-30"
                             style="padding: 15px; background: #fff; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin: 0 10px; transition: transform 0.3s ease;">
-                            <img src="img/projects/n_square_building.webp" alt="N Square Building"
+                            <img src="{{ asset('assets/img/projects/n_square_building.webp') }}" alt="N Square Building"
                                 style="width: 100%; height: 220px; object-fit: cover; border-radius: 10px; margin-bottom: 15px;">
                             <h3 style="font-size: 18px; font-weight: 600; color: #004250; margin-bottom: 0;">N Square
                                 Building</h3>
@@ -706,7 +859,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="project-card text-center mb-30"
                             style="padding: 15px; background: #fff; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin: 0 10px; transition: transform 0.3s ease;">
-                            <img src="img/projects/hotel_project.webp" alt="Hotel Project"
+                            <img src="{{ asset('assets/img/projects/hotel_project.webp') }}" alt="Hotel Project"
                                 style="width: 100%; height: 220px; object-fit: cover; border-radius: 10px; margin-bottom: 15px;">
                             <h3 style="font-size: 18px; font-weight: 600; color: #004250; margin-bottom: 0;">Hotel
                                 Project</h3>
@@ -897,10 +1050,12 @@
         </section>
         <!-- faq-area -->
 
+
+
         <!-- contact-area -->
         <section class="contact-bg p-relative">
             <div class="container-box pt-120 pb-120"
-                style="background-image: url(img/bg/contact-bg.webp); background-repeat: no-repeat; background-size: cover;">
+                style="background-image: url({{ asset('assets/img/bg/contact-bg.webp') }}); background-repeat: no-repeat; background-size: cover;">
                 <div class="container booking-area">
                     <div class="row justify-content-center align-items-center">
                         <div class="col-lg-6 col-md-12">

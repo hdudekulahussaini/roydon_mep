@@ -6,7 +6,7 @@
         <main>
         <!-- breadcrumb-area -->
         <section class="pl-50 pr-50 ">
-            <div class="breadcrumb-area d-flex justify-content-center align-items-center" style="background-image: linear-gradient(rgba(15, 32, 68, 0.7), rgba(15, 32, 68, 0.7)), url(img/bg/plumbing_service.webp); background-size: cover; background-position: center; border-radius: 15px; margin-top: 20px;">
+            <div class="breadcrumb-area d-flex justify-content-center align-items-center" style="background-image: linear-gradient(rgba(15, 32, 68, 0.7), rgba(15, 32, 68, 0.7)), url({{ asset('assets/img/bg/plumbing_service.webp') }}); background-size: cover; background-position: center; border-radius: 15px; margin-top: 20px;">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-xl-12 col-lg-12">
@@ -16,8 +16,8 @@
                                     <div class="breadcrumb-wrap">
                                         <nav aria-label="breadcrumb">
                                             <ol class="breadcrumb justify-content-center">
-                                                <li class="breadcrumb-item"><a href="index.html" style="color: #E0F4F4; font-weight: 500;">Home</a></li>
-                                                <li class="breadcrumb-item"><a href="services.html" style="color: #E0F4F4; font-weight: 500;">Services</a></li>
+                                                <li class="breadcrumb-item"><a href="{{ route('home') }}" style="color: #E0F4F4; font-weight: 500;">Home</a></li>
+                                                <li class="breadcrumb-item"><a href="#" style="color: #E0F4F4; font-weight: 500;">Services</a></li>
                                                 <li class="breadcrumb-item active" aria-current="page" style="color: #0E9B9B; font-weight: 700;">Plumbing & Sanitation</li>
                                             </ol>
                                         </nav>
@@ -44,13 +44,13 @@
                                     <h2 class="widget-title" style="color: #0F2044; border-bottom: 2px solid #0E9B9B; padding-bottom: 15px; margin-bottom: 20px; font-size: 24px;"> Our Services </h2>
                                     <!-- Services Category -->
                                     <ul class="services-categories" style="list-style: none; padding: 0; margin: 0;">
-                                        <li style="margin-bottom: 12px;"><a href="hospital-hvac-systems.html" style="color: #4B5F70; font-weight: 500; display: block; padding: 10px 15px; transition: all 0.3s;">Hospital HVAC Systems </a></li>
-                                        <li style="margin-bottom: 12px;"><a href="medical-gas-pipeline.html" style="color: #4B5F70; font-weight: 500; display: block; padding: 10px 15px; transition: all 0.3s;">Medical Gas Pipeline (MGPS) </a></li>
-                                        <li style="margin-bottom: 12px;"><a href="hospital-electrical-systems.html" style="color: #4B5F70; font-weight: 500; display: block; padding: 10px 15px; transition: all 0.3s;">Hospital Electrical Systems </a></li>
-                                        <li class="active" style="margin-bottom: 12px;"><a href="plumbing-and-sanitation.html" style="color: #0E9B9B; font-weight: 700; display: block; padding: 10px 15px; background: #fff; border-radius: 6px; border-left: 4px solid #0E9B9B; box-shadow: 0 2px 10px rgba(0,0,0,0.03);">Plumbing & Sanitation </a></li>
-                                        <li style="margin-bottom: 12px;"><a href="fire-fighting-and-life-safety.html" style="color: #4B5F70; font-weight: 500; display: block; padding: 10px 15px; transition: all 0.3s;">Fire Fighting & Life Safety </a></li>
-                                        <li style="margin-bottom: 12px;"><a href="turnkey-hospital-mep.html" style="color: #4B5F70; font-weight: 500; display: block; padding: 10px 15px; transition: all 0.3s;">Turnkey Hospital MEP </a></li>
-                                        <li style="margin-bottom: 12px;"><a href="civil-works.html" style="color: #4B5F70; font-weight: 500; display: block; padding: 10px 15px; transition: all 0.3s;">Civil Works </a></li>
+                                        <li style="margin-bottom: 12px;"><a href="{{ route('services.hvac') }}" style="color: #4B5F70; font-weight: 500; display: block; padding: 10px 15px; transition: all 0.3s;">Hospital HVAC Systems </a></li>
+                                        <li style="margin-bottom: 12px;"><a href="{{ route('services.medical-gas') }}" style="color: #4B5F70; font-weight: 500; display: block; padding: 10px 15px; transition: all 0.3s;">Medical Gas Pipeline (MGPS) </a></li>
+                                        <li style="margin-bottom: 12px;"><a href="{{ route('services.electrical') }}" style="color: #4B5F70; font-weight: 500; display: block; padding: 10px 15px; transition: all 0.3s;">Hospital Electrical Systems </a></li>
+                                        <li class="active" style="margin-bottom: 12px;"><a href="{{ route('services.plumbing') }}" style="color: #0E9B9B; font-weight: 700; display: block; padding: 10px 15px; background: #fff; border-radius: 6px; border-left: 4px solid #0E9B9B; box-shadow: 0 2px 10px rgba(0,0,0,0.03);">Plumbing & Sanitation </a></li>
+                                        <li style="margin-bottom: 12px;"><a href="{{ route('services.fire-fighting') }}" style="color: #4B5F70; font-weight: 500; display: block; padding: 10px 15px; transition: all 0.3s;">Fire Fighting & Life Safety </a></li>
+                                        <li style="margin-bottom: 12px;"><a href="{{ route('services.turnkey') }}" style="color: #4B5F70; font-weight: 500; display: block; padding: 10px 15px; transition: all 0.3s;">Turnkey Hospital MEP </a></li>
+                                        <li style="margin-bottom: 12px;"><a href="{{ route('services.civil-works') }}" style="color: #4B5F70; font-weight: 500; display: block; padding: 10px 15px; transition: all 0.3s;">Civil Works </a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -80,12 +80,12 @@
                                     <div class="row">
                                         <div class="image-column col-xl-6 col-lg-12 col-md-12 mb-30">
                                             <figure class="image img-custom-anim-left wow fadeInLeft" data-delay=".1s" style="border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.08); margin: 0;">
-                                                <img src="img/bg/plumbing_service.webp" alt="Hospital Plumbing Contractors for Healthcare Infrastructure" style="width: 100%; height: 280px; object-fit: cover; transition: transform 0.5s;">
+                                                <img src="{{ asset('assets/img/bg/plumbing_service.webp') }}" alt="Hospital Plumbing Contractors for Healthcare Infrastructure" style="width: 100%; height: 280px; object-fit: cover; transition: transform 0.5s;">
                                             </figure>
                                         </div>
                                         <div class="text-column col-xl-6 col-lg-12 col-md-12 mb-30">
                                             <figure class="image img-custom-anim-right wow fadeInRight" data-delay=".2s" style="border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.08); margin: 0;">
-                                                <img src="img/specialisation/cssd_hero.webp" alt="Trust Multispeciality Hospitals - MEP Engineering Company" style="width: 100%; height: 280px; object-fit: cover; transition: transform 0.5s;">
+                                                <img src="{{ asset('assets/img/specialisation/cssd_hero.webp') }}" alt="Trust Multispeciality Hospitals - MEP Engineering Company" style="width: 100%; height: 280px; object-fit: cover; transition: transform 0.5s;">
                                             </figure>
                                         </div>
                                     </div>

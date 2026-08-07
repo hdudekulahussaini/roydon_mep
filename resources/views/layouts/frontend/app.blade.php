@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Roydon MEP Contracting | Top Hospital MEP Contractors & Turnkey MEP Solutions</title>
-    <meta name="description" content="Roydon MEP Contracting is a leading MEP engineering company offering turnkey hospital MEP solutions, including HVAC, electrical, plumbing, and fire fighting across South India.">
-    <meta name="keywords" content="Roydon MEP Contracting, MEP Turnkey Contractors, Hospital MEP Contractors, Turnkey MEP Solutions, EPC Contractors South India, Hospital HVAC Contractors">
+    <title>@yield('title', 'Roydon MEP Contracting | Top Hospital MEP Contractors & Turnkey MEP Solutions')</title>
+    <meta name="description" content="@yield('meta_description', 'Roydon MEP Contracting is a leading MEP engineering company offering turnkey hospital MEP solutions, including HVAC, electrical, plumbing, and fire fighting across South India.')">
+    <meta name="keywords" content="@yield('meta_keywords', 'Roydon MEP Contracting, MEP Turnkey Contractors, Hospital MEP Contractors, Turnkey MEP Solutions, EPC Contractors South India, Hospital HVAC Contractors')">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/favicon.ico') }}">
 
@@ -31,7 +31,7 @@
 <body>
     <!-- Preloader -->
     <div id="preloader" class="loader-wrapper">
-        <div id="loading" class="loader"> </div>
+        <div id="loading" class="loader"></div>
     </div>
     <!-- Preloader end -->
 

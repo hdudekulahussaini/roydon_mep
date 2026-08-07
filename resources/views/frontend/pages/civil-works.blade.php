@@ -71,7 +71,7 @@
                             
                             <!-- Featured Image -->
                             <div class="service-details-img mb-40" style="border-radius: 12px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.08);">
-                                <img src="{{ asset('assets/img/bg/civil_service.webp') }}" alt="Hospital HVAC Systems Engineering" style="width: 100%; height: auto; display: block;">
+                                <img src="{{ asset('assets/img/bg/civil_service.webp') }}" alt="Civil Works Engineering" style="width: 100%; height: auto; display: block;">
                             </div>
 
                             <!-- Main Title & Intro -->
@@ -134,7 +134,7 @@
                             <div style="background: #F6FAFA; padding: 35px; border-radius: 12px; border: 1px solid #E0F4F4; margin-bottom: 40px;">
                                 <h3 style="font-size: 22px; font-weight: 700; color: #0F2044; margin-bottom: 15px;">Compliance & Technical Standards</h3>
                                 <p style="color: #4B5F70; line-height: 1.7; margin-bottom: 20px; font-size: 15px;">
-                                    All HVAC designs, duct fabrication, piping, and commissioning protocols strictly conform to global healthcare engineering guidelines:
+                                    All civil engineering, structural designs, and finishing protocols strictly conform to global healthcare engineering guidelines:
                                 </p>
                                 <div class="row">
                                     <div class="col-md-6">
