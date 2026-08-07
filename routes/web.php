@@ -1,7 +1,27 @@
 <?php
 
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\Admin\Auth\LoginController;
+use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
+
+
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', function () {
+        return auth()->check()
+            ? redirect()->route('admin.dashboard')
+            : redirect()->route('admin.login');
+    });
+
+    Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
+
+    Route::middleware('auth')->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+    });
+});
 
 Route::controller(FrontendController::class)->group(function () {
     Route::get('/', 'index')->name('home');
@@ -34,4 +54,11 @@ Route::controller(FrontendController::class)->group(function () {
         Route::get('/modular-ot', 'specialisationModularOt')->name('modular-ot');
         Route::get('/nabh-compliance', 'specialisationNabh')->name('nabh');
     });
+});
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+
+
 });
