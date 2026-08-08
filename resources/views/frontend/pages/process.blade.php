@@ -1,94 +1,442 @@
 @extends('layouts.frontend.app')
 
+@push('styles')
+<style>
+    .main-menu ul li a {
+        font-size: 17px !important;
+    }
+</style>
+
+<style>
+    .process-hero {
+        position: relative;
+        padding: 160px 0 100px;
+        background: linear-gradient(135deg, #082020 0%, #0F2044 100%);
+        color: #fff;
+        text-align: center;
+    }
+
+    .process-hero-title {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 20px;
+        color: #fff;
+    }
+
+    .process-hero-subtitle {
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.8);
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+
+    .timeline-section {
+        padding: 100px 0;
+        background: #F6FAFA;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .timeline-container {
+        position: relative;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .timeline-container::after {
+        content: '';
+        position: absolute;
+        width: 4px;
+        background-color: #0E9B9B;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        margin-left: -2px;
+        border-radius: 4px;
+    }
+
+    .timeline-item {
+        padding: 10px 40px;
+        position: relative;
+        background-color: inherit;
+        width: 50%;
+        margin-bottom: 60px;
+    }
+
+    .timeline-item.left {
+        left: 0;
+    }
+
+    .timeline-item.right {
+        left: 50%;
+    }
+
+    .timeline-item::after {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        right: -10px;
+        background-color: #fff;
+        border: 4px solid #0E9B9B;
+        top: 30px;
+        border-radius: 50%;
+        z-index: 1;
+    }
+
+    .timeline-item.right::after {
+        left: -10px;
+    }
+
+    .timeline-content {
+        padding: 40px;
+        background-color: white;
+        position: relative;
+        border-radius: 12px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
+        border-top: 5px solid #0E9B9B;
+        transition: transform 0.3s ease;
+    }
+
+    .timeline-content:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 50px rgba(14, 155, 155, 0.1);
+    }
+
+    .tl-num {
+        position: absolute;
+        top: -20px;
+        right: 30px;
+        font-size: 4rem;
+        font-weight: 900;
+        color: rgba(14, 155, 155, 0.1);
+        line-height: 1;
+    }
+
+    .timeline-item.right .tl-num {
+        right: auto;
+        left: 30px;
+    }
+
+    .tl-icon {
+        font-size: 2.5rem;
+        color: #0E9B9B;
+        margin-bottom: 20px;
+    }
+
+    .tl-title {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: #0F2044;
+        margin-bottom: 15px;
+        line-height: 1.4;
+    }
+
+    .tl-desc {
+        font-size: 1.05rem;
+        color: #4B5F70;
+        line-height: 1.6;
+        margin-bottom: 25px;
+    }
+
+    .tl-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .tl-list li {
+        position: relative;
+        padding-left: 25px;
+        margin-bottom: 12px;
+        font-size: 0.95rem;
+        color: #0F2044;
+        font-weight: 500;
+    }
+
+    .tl-list li::before {
+        content: '\f00c';
+        font-family: "Font Awesome 6 Pro", "Font Awesome 5 Pro", "FontAwesome";
+        font-weight: 900;
+        position: absolute;
+        left: 0;
+        top: 2px;
+        color: #0E9B9B;
+    }
+
+    @media screen and (max-width: 767px) {
+        .timeline-container::after {
+            left: 31px;
+        }
+
+        .timeline-item {
+            width: 100%;
+            padding-left: 70px;
+            padding-right: 25px;
+        }
+
+        .timeline-item.right {
+            left: 0%;
+        }
+
+        .timeline-item.left::after,
+        .timeline-item.right::after {
+            left: 21px;
+        }
+
+        .tl-num {
+            right: 20px !important;
+            left: auto !important;
+        }
+    }
+</style>
+
+
+<style>
+    .work-section {
+        padding: 100px 0;
+        background: #fff;
+        text-align: center;
+    }
+
+    .work-section-title {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #0F2044;
+        margin-bottom: 10px;
+    }
+
+    .work-section-subtitle {
+        font-size: 1.1rem;
+        color: #0E9B9B;
+        margin-bottom: 50px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .work-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+    .work-item {
+        position: relative;
+        border-radius: 12px;
+        overflow: hidden;
+        cursor: pointer;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .work-item img {
+        width: 100%;
+        height: 350px;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .work-item:hover img {
+        transform: scale(1.1);
+    }
+
+    .work-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(to top, rgba(15, 32, 68, 0.9), transparent);
+        padding: 30px 20px 20px;
+        text-align: left;
+        transition: background 0.4s ease;
+    }
+
+    .work-item:hover .work-overlay {
+        background: linear-gradient(to top, rgba(14, 155, 155, 0.95), rgba(15, 32, 68, 0.4));
+    }
+
+    .work-title {
+        color: #fff;
+        font-size: 1.4rem;
+        font-weight: 800;
+        margin-bottom: 5px;
+        transform: translateY(10px);
+        transition: transform 0.4s ease;
+    }
+
+    .work-item:hover .work-title {
+        transform: translateY(0);
+    }
+
+    .work-subtitle {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: all 0.4s ease;
+    }
+
+    .work-item:hover .work-subtitle {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    @media (max-width: 991px) {
+        .work-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 767px) {
+        .work-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+@endpush
 
 @section('content')
-    <!-- main-area -->
-    <main>
-        <!-- breadcrumb-area -->
-        <section class="pl-50 pr-50">
-            <div class="breadcrumb-area d-flex justify-content-center align-items-center" style="background-image: linear-gradient(rgba(15, 32, 68, 0.7), rgba(15, 32, 68, 0.7)), url({{ asset('assets/img/bg/turnkey_service.webp') }}); background-size: cover; background-position: center; border-radius: 15px; margin-top: 20px;">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-xl-12 col-lg-12">
-                            <div class="breadcrumb-wrap text-center">
-                                <div class="breadcrumb-title">
-                                    <h2 style="color: #ffffff; font-size: 48px; font-weight: 700; text-transform: capitalize; margin-bottom: 15px;">Execution Process</h2>
-                                    <div class="breadcrumb-wrap">
-                                        <nav aria-label="breadcrumb">
-                                            <ol class="breadcrumb justify-content-center">
-                                                <li class="breadcrumb-item"><a href="{{ route('home') }}" style="color: #E0F4F4; font-weight: 500;">Home</a></li>
-                                                <li class="breadcrumb-item active" aria-current="page" style="color: #0E9B9B; font-weight: 700;">Process</li>
-                                            </ol>
-                                        </nav>
-                                    </div>
-                                </div>
-                            </div>
+<!-- main-area -->
+<main>
+    <!-- Hero Section -->
+    <section class="process-hero">
+        <div class="container">
+            <h1 class="process-hero-title">The Roydon MEP Process</h1>
+            <p class="process-hero-subtitle">From brief to clinical handover — one team, five stages. The engineers who design the systems are on site when they are commissioned.</p>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-section">
+        <div class="container">
+
+            <div class="timeline-container">
+
+                @forelse ($processes as $process)
+
+                @php
+                $index = $loop->iteration;
+                $side = $loop->even ? 'right' : 'left';
+                $animation = $loop->even ? 'fadeInRight' : 'fadeInLeft';
+
+                $features = is_array($process->features)
+                ? $process->features
+                : json_decode($process->features, true);
+                @endphp
+
+                <div class="timeline-item {{ $side }} wow {{ $animation }}"
+                    data-wow-delay="0.2s">
+
+                    <div class="timeline-content">
+
+                        {{-- Stage Number --}}
+                        <div class="tl-num">
+                            {{ str_pad($index, 2, '0', STR_PAD_LEFT) }}
                         </div>
+
+                        {{-- Icon --}}
+                        <div class="tl-icon">
+                            <i class="{{ $process->icon }}"></i>
+                        </div>
+
+                        {{-- Title --}}
+                        <h3 class="tl-title">
+                            {{ $process->small_title }}:
+                            {{ $process->title }}
+                        </h3>
+
+                        {{-- Description --}}
+                        <p class="tl-desc">
+                            {{ $process->description }}
+                        </p>
+
+                        {{-- Features --}}
+                        @if (!empty($features))
+
+                        <ul class="tl-list">
+
+                            @foreach ($features as $feature)
+
+                            <li>
+                                {{ $feature }}
+                            </li>
+
+                            @endforeach
+
+                        </ul>
+
+                        @endif
+
                     </div>
+
                 </div>
+
+                @empty
+
+                <div class="text-center py-5">
+
+                    <p class="text-muted mb-0">
+                        No process stages available.
+                    </p>
+
+                </div>
+
+                @endforelse
+
             </div>
-        </section>
-        <!-- breadcrumb-area-end -->
 
-        <section class="pt-100 pb-100">
-            <div class="container">
-                <div class="row justify-content-center text-center mb-50">
-                    <div class="col-lg-8">
-                        <h2 style="font-size: 36px; font-weight: 800; color: #0F2044; margin-bottom: 15px;">6-Stage Engineering Methodology</h2>
-                        <p style="font-size: 16px; color: #4B5F70;">A structured, data-driven approach ensuring zero defect handovers and full NABH audit compliance.</p>
+        </div>
+    </section>
+
+    <!-- Our Work Section -->
+    <section class="work-section">
+        <div class="container-fluid px-lg-5">
+            <h2 class="work-section-title">Our Work, On Site</h2>
+            <div class="work-section-subtitle">What our process looks like</div>
+
+            <div class="work-grid">
+
+                @forelse ($works as $work)
+
+                <div
+                    class="work-item wow fadeInUp"
+                    data-wow-delay="{{ number_format($loop->iteration * 0.1, 1) }}s">
+
+                    <img
+                        src="{{ asset('storage/' . $work->image) }}"
+                        alt="{{ $work->title }}">
+
+                    <div class="work-overlay">
+
+                        <div class="work-subtitle">
+                            {{ $work->subtitle }}
+                        </div>
+
+                        <div class="work-title">
+                            {{ $work->title }}
+                        </div>
+
                     </div>
+
                 </div>
 
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 mb-30">
-                        <div style="background: #ffffff; padding: 35px 25px; border-radius: 12px; border: 1px solid #E0F4F4; box-shadow: 0 5px 20px rgba(0,0,0,0.03); height: 100%;">
-                            <span style="font-size: 14px; font-weight: 800; color: #0E9B9B; text-transform: uppercase; letter-spacing: 1px;">Stage 01</span>
-                            <h3 style="font-size: 20px; font-weight: 700; color: #0F2044; margin: 10px 0 15px;">Detailed Design & Heat Load Calculations</h3>
-                            <p style="color: #4B5F70; font-size: 14px; line-height: 1.7; margin: 0;">Evaluating CFM requirements, air exchange rates per hour (ACPH), room pressure cascades, and power distribution grids.</p>
-                        </div>
-                    </div>
+                @empty
 
-                    <div class="col-lg-4 col-md-6 mb-30">
-                        <div style="background: #ffffff; padding: 35px 25px; border-radius: 12px; border: 1px solid #E0F4F4; box-shadow: 0 5px 20px rgba(0,0,0,0.03); height: 100%;">
-                            <span style="font-size: 14px; font-weight: 800; color: #0E9B9B; text-transform: uppercase; letter-spacing: 1px;">Stage 02</span>
-                            <h3 style="font-size: 20px; font-weight: 700; color: #0F2044; margin: 10px 0 15px;">3D BIM Clash Detection</h3>
-                            <p style="color: #4B5F70; font-size: 14px; line-height: 1.7; margin: 0;">Building 100% digital twins of HVAC ductwork, MGPS copper lines, electrical cable trays, and plumbing lines to eliminate site conflicts.</p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 mb-30">
-                        <div style="background: #ffffff; padding: 35px 25px; border-radius: 12px; border: 1px solid #E0F4F4; box-shadow: 0 5px 20px rgba(0,0,0,0.03); height: 100%;">
-                            <span style="font-size: 14px; font-weight: 800; color: #0E9B9B; text-transform: uppercase; letter-spacing: 1px;">Stage 03</span>
-                            <h3 style="font-size: 20px; font-weight: 700; color: #0F2044; margin: 10px 0 15px;">Quality Material Procurement</h3>
-                            <p style="color: #4B5F70; font-size: 14px; line-height: 1.7; margin: 0;">Procuring certified medical-grade equipment (AHUs, chillers, degreased copper, HEPA filters, isolation transformers) directly from tier-1 OEMs.</p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 mb-30">
-                        <div style="background: #ffffff; padding: 35px 25px; border-radius: 12px; border: 1px solid #E0F4F4; box-shadow: 0 5px 20px rgba(0,0,0,0.03); height: 100%;">
-                            <span style="font-size: 14px; font-weight: 800; color: #0E9B9B; text-transform: uppercase; letter-spacing: 1px;">Stage 04</span>
-                            <h3 style="font-size: 20px; font-weight: 700; color: #0F2044; margin: 10px 0 15px;">Precision On-Site Execution</h3>
-                            <p style="color: #4B5F70; font-size: 14px; line-height: 1.7; margin: 0;">Supervised installation led by project managers adhering strictly to IS codes, NFPA guidelines, and cleanroom protocols.</p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 mb-30">
-                        <div style="background: #ffffff; padding: 35px 25px; border-radius: 12px; border: 1px solid #E0F4F4; box-shadow: 0 5px 20px rgba(0,0,0,0.03); height: 100%;">
-                            <span style="font-size: 14px; font-weight: 800; color: #0E9B9B; text-transform: uppercase; letter-spacing: 1px;">Stage 05</span>
-                            <h3 style="font-size: 20px; font-weight: 700; color: #0F2044; margin: 10px 0 15px;">Testing, Balancing & DOP Validation</h3>
-                            <p style="color: #4B5F70; font-size: 14px; line-height: 1.7; margin: 0;">Conducting air balancing, pressure decay tests, DOP HEPA filter integrity tests, and gas purity checks.</p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 mb-30">
-                        <div style="background: #ffffff; padding: 35px 25px; border-radius: 12px; border: 1px solid #E0F4F4; box-shadow: 0 5px 20px rgba(0,0,0,0.03); height: 100%;">
-                            <span style="font-size: 14px; font-weight: 800; color: #0E9B9B; text-transform: uppercase; letter-spacing: 1px;">Stage 06</span>
-                            <h3 style="font-size: 20px; font-weight: 700; color: #0F2044; margin: 10px 0 15px;">Audit Sign-off & Handover</h3>
-                            <p style="color: #4B5F70; font-size: 14px; line-height: 1.7; margin: 0;">Handing over comprehensive documentation, as-built CAD files, O&M manuals, and clearing NABH accreditation seamlessly.</p>
-                        </div>
-                    </div>
+                <div class="text-center w-100 py-5">
+                    <p class="text-muted mb-0">
+                        No works available.
+                    </p>
                 </div>
+
+                @endforelse
+
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+
+</main>
 @endsection
