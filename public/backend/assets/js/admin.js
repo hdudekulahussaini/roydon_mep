@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+    /*
+     * Sidebar Dropdowns
+     */
     const dropdownToggles = document.querySelectorAll(
         '.sidebar-dropdown-toggle'
     );
@@ -39,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
             /*
-             * Remove open state from arrows
+             * Remove open state from arrows/buttons
              */
             document
                 .querySelectorAll('.sidebar-dropdown-toggle')
@@ -67,9 +70,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     /*
-     * Automatically open About Section
-     * when Story / Values / Metrics page
-     * is currently active.
+     * Automatically open the dropdown
+     * when one of its child pages is active.
+     *
+     * This works for:
+     *
+     * About Section
+     * - Story Section
+     * - Company Values
+     * - Metrics
+     *
+     * Offices
+     * - Office Locations
+     * - Pan-India Coverage
      */
     document
         .querySelectorAll('.sidebar-dropdown')
@@ -79,6 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 dropdown.querySelector(
                     '.sidebar-sub-link.active'
                 );
+
 
             if (activeSubLink) {
 
@@ -93,13 +107,23 @@ document.addEventListener('DOMContentLoaded', function () {
                     );
 
 
+                /*
+                 * Open dropdown
+                 */
                 if (menu) {
+
                     menu.classList.add('open');
+
                 }
 
 
+                /*
+                 * Rotate / activate toggle
+                 */
                 if (toggle) {
+
                     toggle.classList.add('open');
+
                 }
 
             }

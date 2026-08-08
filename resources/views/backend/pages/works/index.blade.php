@@ -1,7 +1,7 @@
 @extends('layouts.backend.app')
 
-@section('title', 'Company Values')
-@section('page-title', 'Company Values')
+@section('title', 'Works')
+@section('page-title', 'Works')
 
 @section('content')
 
@@ -12,20 +12,24 @@
         <div class="d-flex justify-content-between align-items-center">
 
             <div>
+
                 <h5 class="mb-1">
-                    Company Values Management
+                    Works Management
                 </h5>
 
                 <p class="text-muted small mb-0">
-                    Manage the values displayed on the About page.
+                    Manage the work items displayed on the homepage.
                 </p>
+
             </div>
 
             <a
-                href="{{ route('admin.company-values.create') }}"
+                href="{{ route('admin.works.create') }}"
                 class="btn btn-dark">
+
                 <i class="fa-solid fa-plus me-1"></i>
-                Add Company Value
+                Add Work
+
             </a>
 
         </div>
@@ -39,57 +43,71 @@
             <table class="table table-hover align-middle mb-0">
 
                 <thead class="table-light">
-
                     <tr>
-                        <th class="ps-4">ID</th>
+                        <th class="ps-4">Order</th>
+                        <th>Image</th>
+                        <th> Subtitle</th>
                         <th>Title</th>
-                        <th>Description</th>
                         <th>Status</th>
                         <th class="text-end pe-4">Actions</th>
                     </tr>
-
                 </thead>
-
                 <tbody>
 
-                    @forelse($companyValues as $value)
+                    @forelse($works as $work)
 
                     <tr>
-
                         <td class="ps-4">
-                            {{ $value->id }}
+
+                            <span class="badge bg-light text-dark">
+                                {{ $work->sort_order }}
+                            </span>
+
                         </td>
 
                         <td>
+
+                            <img
+                                src="{{ asset(
+                                        'storage/' . $work->image
+                                    ) }}"
+                                alt="{{ $work->title }}"
+                                class="rounded border"
+                                style="
+                                        width: 100px;
+                                        height: 65px;
+                                        object-fit: cover;
+                                    ">
+
+                        </td>
+
+                        <td>
+
+                            <span class="text-muted">
+                                {{ $work->subtitle }}
+                            </span>
+
+                        </td>
+
+                        <td>
+
                             <strong>
-                                {{ $value->title }}
+                                {{ $work->title }}
                             </strong>
-                        </td>
 
-                        <td
-                            style="
-                                    max-width: 500px;
-                                    white-space: normal;
-                                ">
-                            {{ Str::limit(
-                                    $value->description,
-                                    120
-                                ) }}
                         </td>
 
                         <td>
 
-                            @if($value->status)
+                            @if($work->status)
 
                             <span class="badge bg-success">
-                                <i class="fa-solid fa-check me-1"></i>
                                 Active
                             </span>
 
                             @else
 
                             <span class="badge bg-secondary">
-                                <i class="fa-solid fa-xmark me-1"></i>
                                 Inactive
                             </span>
 
@@ -103,32 +121,38 @@
 
                                 <a
                                     href="{{ route(
-                                            'admin.company-values.edit',
-                                            $value
+                                            'admin.works.edit',
+                                            $work
                                         ) }}"
                                     class="btn btn-sm btn-outline-primary"
                                     title="Edit">
+
                                     <i class="fa-solid fa-pen"></i>
+
                                 </a>
+
 
                                 <form
                                     action="{{ route(
-                                            'admin.company-values.destroy',
-                                            $value
+                                            'admin.works.destroy',
+                                            $work
                                         ) }}"
                                     method="POST"
                                     onsubmit="return confirm(
-                                            'Are you sure you want to delete this company value?'
+                                            'Are you sure you want to delete this work?'
                                         )">
 
                                     @csrf
+
                                     @method('DELETE')
 
                                     <button
                                         type="submit"
                                         class="btn btn-sm btn-outline-danger"
                                         title="Delete">
+
                                         <i class="fa-solid fa-trash"></i>
+
                                     </button>
 
                                 </form>
@@ -144,14 +168,14 @@
                     <tr>
 
                         <td
-                            colspan="5"
+                            colspan="6"
                             class="text-center py-5">
 
                             <i
-                                class="fa-solid fa-star fs-2 text-muted"></i>
+                                class="fa-solid fa-images fs-2 text-muted"></i>
 
                             <p class="mt-2 mb-0 text-muted">
-                                No company values found.
+                                No works found.
                             </p>
 
                         </td>
@@ -169,11 +193,11 @@
     </div>
 
 
-    @if($companyValues->hasPages())
+    @if($works->hasPages())
 
     <div class="card-footer bg-white">
 
-        {{ $companyValues->links(
+        {{ $works->links(
                 'pagination::bootstrap-5'
             ) }}
 

@@ -11,7 +11,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\StorySectionController;
 use App\Http\Controllers\Backend\CompanyValueController;
 use App\Http\Controllers\Backend\MetricController;
-
+use App\Http\Controllers\Backend\OfficeLocationController;
+use App\Http\Controllers\Backend\CoverageController;
+use App\Http\Controllers\Backend\ProjectProcessController;
+use App\Http\Controllers\Backend\WorkController;
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', function () {
@@ -30,9 +33,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('civil-services', CivilServiceController::class)->except('show');
         Route::resource('hospital-specialisations', HospitalSpecialisationController::class)->except('show');
         Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-        Route::resource('story-sections',StorySectionController::class)->except(['show']);
-        Route::resource('company-values',CompanyValueController::class)->except(['show']);
-        Route::resource('metrics',MetricController::class)->except(['show']);
+        Route::resource('story-sections', StorySectionController::class)->except(['show']);
+        Route::resource('company-values', CompanyValueController::class)->except(['show']);
+        Route::resource('metrics', MetricController::class)->except(['show']);
+        Route::resource('office-locations', OfficeLocationController::class)->except(['show']);
+        Route::resource('coverages',CoverageController::class)->except(['show']);
+        Route::resource('project-processes',ProjectProcessController::class)->except(['show']);
+        Route::resource('works',WorkController::class)->except(['show']);
     });
 });
 
@@ -72,5 +79,4 @@ Route::controller(FrontendController::class)->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
-
 });

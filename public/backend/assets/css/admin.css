@@ -767,3 +767,54 @@ body {
 .sidebar-sub-link + .sidebar-sub-link {
     margin-top: 2px;
 }
+.sidebar-dropdown {
+    width: 100%;
+}
+
+.sidebar-dropdown-toggle {
+    width: 100%;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    text-align: left;
+}
+
+.sidebar-dropdown-arrow {
+    margin-left: auto;
+    font-size: 12px;
+    transition: transform 0.3s ease;
+}
+
+.sidebar-dropdown-arrow.rotate {
+    transform: rotate(180deg);
+}
+
+.sidebar-dropdown-menu {
+    display: none;
+    padding-left: 20px;
+}
+
+.sidebar-dropdown-menu.show {
+    display: block;
+}
+
+.sidebar-sub-link {
+    padding-left: 20px !important;
+    font-size: 14px;
+}
+.sidebar-dropdown-menu {
+    display: none;
+}
+
+.sidebar-dropdown-menu.open {
+    display: block;
+}
+
+.sidebar-dropdown-arrow {
+    margin-left: auto;
+    transition: transform 0.3s ease;
+}
+
+.sidebar-dropdown-toggle.open .sidebar-dropdown-arrow {
+    transform: rotate(180deg);
+}

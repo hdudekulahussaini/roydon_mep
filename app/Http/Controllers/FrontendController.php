@@ -10,6 +10,10 @@ use Illuminate\Contracts\View\View;
 use App\Models\StorySection;
 use App\Models\CompanyValue;
 use App\Models\Metric;
+use App\Models\OfficeLocation;
+use App\Models\Coverage;
+use App\Models\ProjectProcess;
+use App\Models\Work;
 
 class FrontendController extends Controller
 {
@@ -40,11 +44,11 @@ class FrontendController extends Controller
             ->latest()
             ->first();
         $companyValues = CompanyValue::where('status', true)
-        ->latest()
-        ->get();
+            ->latest()
+            ->get();
         $metrics = Metric::where('status', true)
-        ->latest()
-        ->get();
+            ->latest()
+            ->get();
         return view('frontend.pages.about', compact('storySection', 'companyValues', 'metrics'));
     }
 
@@ -65,12 +69,30 @@ class FrontendController extends Controller
 
     public function process(): View
     {
-        return view('frontend.pages.process');
+        $processes = ProjectProcess::orderBy('sort_order')
+            ->orderBy('id')
+            ->get();
+        $works = Work::where('status', true)
+            ->orderBy('sort_order')
+            ->orderBy('id')
+            ->get();
+        return view('frontend.pages.process', compact('processes', 'works'));
     }
 
     public function offices(): View
     {
-        return view('frontend.pages.offices');
+        $officeLocations = OfficeLocation::where('status', true)
+            ->orderBy('sort_order')
+            ->latest('id')
+            ->get();
+        $coverages = Coverage::where('status', true)
+            ->orderBy('sort_order')
+            ->latest('id')
+            ->get();
+        return view(
+            'frontend.pages.offices',
+            compact('officeLocations', 'coverages')
+        );
     }
 
     // Services

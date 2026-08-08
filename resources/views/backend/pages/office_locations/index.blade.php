@@ -1,13 +1,12 @@
 @extends('layouts.backend.app')
 
-@section('title', 'Metrics')
-@section('page-title', 'Metrics')
+@section('title', 'Office Locations')
+@section('page-title', 'Office Locations')
 
 @section('content')
 
 <div class="card border-0 shadow-sm">
 
-    {{-- Header --}}
     <div class="card-header bg-white py-3">
 
         <div class="d-flex justify-content-between align-items-center">
@@ -15,22 +14,21 @@
             <div>
 
                 <h5 class="mb-1">
-                    Metrics Management
+                    Office Locations Management
                 </h5>
 
                 <p class="text-muted small mb-0">
-                    Manage the metrics displayed on the About page.
+                    Manage company offices, branches and regional locations.
                 </p>
 
             </div>
 
-
             <a
-                href="{{ route('admin.metrics.create') }}"
+                href="{{ route('admin.office-locations.create') }}"
                 class="btn btn-dark">
 
                 <i class="fa-solid fa-plus me-1"></i>
-                Add Metric
+                Add Office
 
             </a>
 
@@ -38,7 +36,6 @@
 
     </div>
 
-    {{-- Table --}}
     <div class="card-body p-0">
 
         <div class="table-responsive">
@@ -50,15 +47,19 @@
                     <tr>
 
                         <th class="ps-4">
-                            ID
+                            Order
                         </th>
 
                         <th>
-                            Number
+                            Location
                         </th>
 
                         <th>
-                            Label
+                            Type
+                        </th>
+
+                        <th>
+                            Contact
                         </th>
 
                         <th>
@@ -76,30 +77,79 @@
 
                 <tbody>
 
-                    @forelse($metrics as $metric)
+                    @forelse($officeLocations as $office)
 
                     <tr>
 
-                        {{-- ID --}}
+                        {{-- Order --}}
                         <td class="ps-4">
-                            {{ $metric->id }}
-                        </td>
 
-
-                        {{-- Number --}}
-                        <td>
-
-                            <strong class="fs-5">
-                                {{ $metric->number }}
-                            </strong>
+                            <span class="badge bg-light text-dark">
+                                {{ $office->sort_order }}
+                            </span>
 
                         </td>
 
 
-                        {{-- Label --}}
+                        {{-- Location --}}
                         <td>
 
-                            {{ $metric->label }}
+                            <div class="d-flex align-items-center gap-2">
+
+                                <span class="fs-4">
+                                    {{ $office->flag }}
+                                </span>
+
+                                <div>
+
+                                    <strong>
+                                        {{ $office->city }}
+                                    </strong>
+
+                                    <small class="text-muted d-block">
+                                        {{ Str::limit(
+                                                $office->address,
+                                                60
+                                            ) }}
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+
+                        {{-- Type --}}
+                        <td>
+
+                            <span>
+                                {{ $office->type }}
+                            </span>
+
+                        </td>
+
+
+                        {{-- Contact --}}
+                        <td>
+
+                            @if($office->email)
+
+                            <small class="d-block">
+                                <i class="fa-solid fa-envelope me-1"></i>
+                                {{ $office->email }}
+                            </small>
+
+                            @endif
+
+                            @if($office->phone)
+
+                            <small class="d-block mt-1">
+                                <i class="fa-solid fa-phone me-1"></i>
+                                {{ $office->phone }}
+                            </small>
+
+                            @endif
 
                         </td>
 
@@ -107,22 +157,18 @@
                         {{-- Status --}}
                         <td>
 
-                            @if($metric->status)
+                            @if($office->status)
 
                             <span class="badge bg-success">
-
                                 <i class="fa-solid fa-check me-1"></i>
                                 Active
-
                             </span>
 
                             @else
 
                             <span class="badge bg-secondary">
-
                                 <i class="fa-solid fa-xmark me-1"></i>
                                 Inactive
-
                             </span>
 
                             @endif
@@ -135,11 +181,10 @@
 
                             <div class="d-inline-flex gap-2">
 
-                                {{-- Edit --}}
                                 <a
                                     href="{{ route(
-                                            'admin.metrics.edit',
-                                            $metric
+                                            'admin.office-locations.edit',
+                                            $office
                                         ) }}"
                                     class="btn btn-sm btn-outline-primary"
                                     title="Edit">
@@ -149,15 +194,14 @@
                                 </a>
 
 
-                                {{-- Delete --}}
                                 <form
                                     action="{{ route(
-                                            'admin.metrics.destroy',
-                                            $metric
+                                            'admin.office-locations.destroy',
+                                            $office
                                         ) }}"
                                     method="POST"
                                     onsubmit="return confirm(
-                                            'Are you sure you want to delete this metric?'
+                                            'Are you sure you want to delete this office location?'
                                         )">
 
                                     @csrf
@@ -186,24 +230,24 @@
                     <tr>
 
                         <td
-                            colspan="5"
+                            colspan="6"
                             class="text-center py-5">
 
                             <i
-                                class="fa-solid fa-chart-column fs-2 text-muted"></i>
+                                class="fa-solid fa-location-dot fs-2 text-muted"></i>
 
                             <p class="mt-2 mb-0 text-muted">
-                                No metrics found.
+                                No office locations found.
                             </p>
 
                             <a
                                 href="{{ route(
-                                        'admin.metrics.create'
+                                        'admin.office-locations.create'
                                     ) }}"
                                 class="btn btn-sm btn-dark mt-3">
 
                                 <i class="fa-solid fa-plus me-1"></i>
-                                Add Metric
+                                Add Office
 
                             </a>
 
@@ -222,12 +266,11 @@
     </div>
 
 
-    {{-- Pagination --}}
-    @if($metrics->hasPages())
+    @if($officeLocations->hasPages())
 
     <div class="card-footer bg-white">
 
-        {{ $metrics->links(
+        {{ $officeLocations->links(
                 'pagination::bootstrap-5'
             ) }}
 

@@ -1,7 +1,7 @@
 @extends('layouts.backend.app')
 
-@section('title', 'Company Values')
-@section('page-title', 'Company Values')
+@section('title', 'Project Process')
+@section('page-title', 'Project Process')
 
 @section('content')
 
@@ -12,20 +12,24 @@
         <div class="d-flex justify-content-between align-items-center">
 
             <div>
+
                 <h5 class="mb-1">
-                    Company Values Management
+                    Project Process Management
                 </h5>
 
                 <p class="text-muted small mb-0">
-                    Manage the values displayed on the About page.
+                    Manage process sections displayed on the website.
                 </p>
+
             </div>
 
             <a
-                href="{{ route('admin.company-values.create') }}"
+                href="{{ route('admin.project-processes.create') }}"
                 class="btn btn-dark">
+
                 <i class="fa-solid fa-plus me-1"></i>
-                Add Company Value
+                Add Process
+
             </a>
 
         </div>
@@ -41,61 +45,103 @@
                 <thead class="table-light">
 
                     <tr>
-                        <th class="ps-4">ID</th>
+                        <th class="ps-4">Order</th>
+                        <th>Icon</th>
                         <th>Title</th>
-                        <th>Description</th>
-                        <th>Status</th>
+                        <th>Small Title</th>
+                        <th>Features</th>
                         <th class="text-end pe-4">Actions</th>
                     </tr>
 
                 </thead>
-
                 <tbody>
 
-                    @forelse($companyValues as $value)
+                    @forelse($processes as $process)
 
                     <tr>
 
                         <td class="ps-4">
-                            {{ $value->id }}
+
+                            <span class="badge bg-light text-dark">
+                                {{ $process->sort_order }}
+                            </span>
+
                         </td>
 
+
                         <td>
+
+                            <div class="fs-5 text-secondary">
+
+                                <i class="{{ $process->icon }}"></i>
+
+                            </div>
+
+                            <small
+                                class="text-muted"
+                                style="font-size: 11px;">
+
+                                <code>
+                                    {{ $process->icon }}
+                                </code>
+
+                            </small>
+
+                        </td>
+
+
+                        <td>
+
                             <strong>
-                                {{ $value->title }}
+                                {{ $process->title }}
                             </strong>
+
+                            <div
+                                class="text-muted small mt-1"
+                                style="max-width: 350px;">
+
+                                {{ Str::limit(
+                                        $process->description,
+                                        100
+                                    ) }}
+
+                            </div>
+
                         </td>
 
-                        <td
-                            style="
-                                    max-width: 500px;
-                                    white-space: normal;
-                                ">
-                            {{ Str::limit(
-                                    $value->description,
-                                    120
-                                ) }}
-                        </td>
 
                         <td>
 
-                            @if($value->status)
+                            @if($process->small_title)
 
-                            <span class="badge bg-success">
-                                <i class="fa-solid fa-check me-1"></i>
-                                Active
+                            <span class="badge bg-light text-dark">
+
+                                {{ $process->small_title }}
+
                             </span>
 
                             @else
 
-                            <span class="badge bg-secondary">
-                                <i class="fa-solid fa-xmark me-1"></i>
-                                Inactive
+                            <span class="text-muted">
+                                —
                             </span>
 
                             @endif
 
                         </td>
+
+
+                        <td>
+
+                            <span class="badge bg-light text-dark">
+
+                                {{ count($process->features ?? []) }}
+                                Features
+
+                            </span>
+
+                        </td>
+
 
                         <td class="text-end pe-4">
 
@@ -103,32 +149,38 @@
 
                                 <a
                                     href="{{ route(
-                                            'admin.company-values.edit',
-                                            $value
+                                            'admin.project-processes.edit',
+                                            $process
                                         ) }}"
                                     class="btn btn-sm btn-outline-primary"
                                     title="Edit">
+
                                     <i class="fa-solid fa-pen"></i>
+
                                 </a>
+
 
                                 <form
                                     action="{{ route(
-                                            'admin.company-values.destroy',
-                                            $value
+                                            'admin.project-processes.destroy',
+                                            $process
                                         ) }}"
                                     method="POST"
                                     onsubmit="return confirm(
-                                            'Are you sure you want to delete this company value?'
+                                            'Are you sure you want to delete this process?'
                                         )">
 
                                     @csrf
+
                                     @method('DELETE')
 
                                     <button
                                         type="submit"
                                         class="btn btn-sm btn-outline-danger"
                                         title="Delete">
+
                                         <i class="fa-solid fa-trash"></i>
+
                                     </button>
 
                                 </form>
@@ -144,14 +196,14 @@
                     <tr>
 
                         <td
-                            colspan="5"
+                            colspan="6"
                             class="text-center py-5">
 
                             <i
-                                class="fa-solid fa-star fs-2 text-muted"></i>
+                                class="fa-solid fa-list-check fs-2 text-muted"></i>
 
                             <p class="mt-2 mb-0 text-muted">
-                                No company values found.
+                                No project processes found.
                             </p>
 
                         </td>
@@ -169,11 +221,11 @@
     </div>
 
 
-    @if($companyValues->hasPages())
+    @if($processes->hasPages())
 
     <div class="card-footer bg-white">
 
-        {{ $companyValues->links(
+        {{ $processes->links(
                 'pagination::bootstrap-5'
             ) }}
 

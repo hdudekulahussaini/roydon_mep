@@ -150,6 +150,130 @@
             </div>
 
         </div>
+        <div class="sidebar-dropdown">
+
+            <button
+                type="button"
+                class="sidebar-link sidebar-dropdown-toggle">
+
+                <span class="sidebar-icon">
+                    <i class="fa-solid fa-building"></i>
+                </span>
+
+                <span>Offices</span>
+
+                <i class="fa-solid fa-chevron-down sidebar-dropdown-arrow"></i>
+
+            </button>
+
+
+            <div class="sidebar-dropdown-menu">
+
+                <a
+                    href="{{ route('admin.office-locations.index') }}"
+                    class="sidebar-link sidebar-sub-link
+            {{ request()->routeIs('admin.office-locations.*') ? 'active' : '' }}">
+
+                    <span class="sidebar-icon">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </span>
+
+                    <span>Office Locations</span>
+
+                </a>
+
+
+                <a
+                    href="{{ route('admin.coverages.index') }}"
+                    class="sidebar-link sidebar-sub-link
+            {{ request()->routeIs('admin.coverages.*') ? 'active' : '' }}">
+
+                    <span class="sidebar-icon">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                    </span>
+
+                    <span>Pan-India Coverage</span>
+
+                </a>
+
+            </div>
+
+        </div>
+        {{-- Process Section Dropdown --}}
+
+        <div class="sidebar-dropdown">
+
+            {{-- Dropdown Header --}}
+            <button
+                type="button"
+                class="sidebar-link sidebar-dropdown-toggle
+        {{ request()->routeIs('admin.project-processes.*') ||
+           request()->routeIs('admin.works.*')
+            ? 'active open'
+            : '' }}">
+
+                <span class="sidebar-icon">
+                    <i class="fa-solid fa-list-check"></i>
+                </span>
+
+                <span>
+                    Process Section
+                </span>
+
+                <i class="fa-solid fa-chevron-down sidebar-dropdown-arrow"></i>
+
+            </button>
+
+
+            {{-- Dropdown Menu --}}
+            <div
+                class="sidebar-dropdown-menu
+        {{ request()->routeIs('admin.project-processes.*') ||
+           request()->routeIs('admin.works.*')
+            ? 'open'
+            : '' }}">
+
+
+                {{-- Project Process --}}
+                <a
+                    href="{{ route('admin.project-processes.index') }}"
+                    class="sidebar-link sidebar-sub-link
+            {{ request()->routeIs('admin.project-processes.*')
+                ? 'active'
+                : '' }}">
+
+                    <span class="sidebar-icon">
+                        <i class="fa-solid fa-timeline"></i>
+                    </span>
+
+                    <span>
+                        Project Process
+                    </span>
+
+                </a>
+
+
+                {{-- Works --}}
+                <a
+                    href="{{ route('admin.works.index') }}"
+                    class="sidebar-link sidebar-sub-link
+            {{ request()->routeIs('admin.works.*')
+                ? 'active'
+                : '' }}">
+
+                    <span class="sidebar-icon">
+                        <i class="fa-solid fa-images"></i>
+                    </span>
+
+                    <span>
+                        Works
+                    </span>
+
+                </a>
+
+            </div>
+
+        </div>
     </nav>
 
     <div class="sidebar-footer">
