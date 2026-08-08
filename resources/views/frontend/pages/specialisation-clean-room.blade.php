@@ -1,6 +1,6 @@
 @extends('layouts.frontend.app')
 
-@section('title', $specialisation->title . ' | Roydon MEP Contracting')
+@section('title', $specialisation->title)
 @section('meta_description', Str::limit($specialisation->description, 160))
 
 @push('styles')
@@ -142,17 +142,19 @@
     <main>
         <!-- Hero Section -->
         @php
-            $bgImage = $specialisation->banner_image ? (str_starts_with($specialisation->banner_image, 'assets') ? asset($specialisation->banner_image) : Storage::url($specialisation->banner_image)) : asset('assets/img/specialisation/ot_mep_hero.webp');
-            $contentImage = $specialisation->image ? (str_starts_with($specialisation->image, 'assets') ? asset($specialisation->image) : Storage::url($specialisation->image)) : asset('assets/img/specialisation/ot_mep_hero.webp');
+            $bgImage = $specialisation->banner_image ? Storage::url($specialisation->banner_image) : '';
+            $contentImage = $specialisation->image ? Storage::url($specialisation->image) : '';
         @endphp
-        <section class="spec-hero" style="background-image: url('{{ $bgImage }}');">
+        <section class="spec-hero" @if($bgImage) style="background-image: url('{{ $bgImage }}');" @endif>
             <div class="container">
                 <div class="row">
                     <div class="col-lg-10">
                         @if(!empty($specialisation->banner_tags))
                         <div class="spec-hero-subtitle">
                             @foreach($specialisation->banner_tags as $tag)
-                                {{ $tag }}{{ !$loop->last ? ' · ' : '' }}
+                                @if(!empty($tag))
+                                    {{ $tag }}{{ !$loop->last ? ' · ' : '' }}
+                                @endif
                             @endforeach
                         </div>
                         @endif
@@ -168,8 +170,12 @@
                 <div class="row">
                     <!-- Left Content -->
                     <div class="col-lg-8 pr-lg-5 mb-50">
+                        @if($contentImage)
                         <img src="{{ $contentImage }}" alt="{{ $specialisation->title }}" class="img-fluid rounded mb-4 shadow" style="width: 100%; height: 350px; object-fit: cover;">
+                        @endif
+                        @if($specialisation->description)
                         <p class="spec-desc">{{ $specialisation->description }}</p>
+                        @endif
                         
                         @if(!empty($specialisation->features_heading))
                         <div class="spec-grid">
@@ -177,7 +183,9 @@
                                 @if(!empty($heading))
                                 <div class="spec-item">
                                     <div class="lb">{{ $heading }}</div>
-                                    <div class="vl">{{ $specialisation->features_description[$index] ?? '' }}</div>
+                                    @if(isset($specialisation->features_description[$index]) && !empty($specialisation->features_description[$index]))
+                                    <div class="vl">{{ $specialisation->features_description[$index] }}</div>
+                                    @endif
                                 </div>
                                 @endif
                             @endforeach
@@ -196,25 +204,30 @@
                         
                         @if(!empty($specialisation->seo_text))
                         <div class="spec-seo">
-                            SEO: {{ $specialisation->seo_text }}
+                            {{ $specialisation->seo_text }}
                         </div>
                         @endif
                     </div>
                     
                     <!-- Right Sidebar -->
+                    @if($specialisation->cta_title || $specialisation->cta_description || $specialisation->cta_button_url)
                     <div class="col-lg-4">
                         <div class="sidebar-cta">
+                            @if($specialisation->cta_title)
                             <h3>{{ $specialisation->cta_title }}</h3>
+                            @endif
+                            @if($specialisation->cta_description)
                             <p>{{ $specialisation->cta_description }}</p>
+                            @endif
+                            @if($specialisation->cta_button_url)
                             @php
-                                $routeName = 'contact';
-                                if($specialisation->cta_button_url && Route::has($specialisation->cta_button_url)) {
-                                    $routeName = $specialisation->cta_button_url;
-                                }
+                                $btnUrl = Route::has($specialisation->cta_button_url) ? route($specialisation->cta_button_url) : url($specialisation->cta_button_url);
                             @endphp
-                            <a href="{{ route($routeName) }}" class="btn-w">Discuss Your Project</a>
+                            <a href="{{ $btnUrl }}" class="btn-w">Discuss Your Project</a>
+                            @endif
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
         </section>
