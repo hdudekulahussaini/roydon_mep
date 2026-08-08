@@ -68,212 +68,51 @@
         {{-- About Section Dropdown --}}
         <div class="sidebar-dropdown">
 
-            {{-- About Section Button --}}
-            <a href="javascript:void(0)"
-                class="sidebar-link sidebar-dropdown-toggle
-       {{ request()->routeIs(
-            'admin.story-sections.*',
-            'admin.company-values.*',
-            'admin.metrics.*'
-       ) ? 'active' : '' }}">
+        <a href="{{ route('admin.projects.index') }}"
+            class="sidebar-link
+          {{ request()->routeIs('admin.projects.*') ? 'active' : '' }}">
+            <span class="sidebar-icon">
+                <i class="fa-solid fa-diagram-project"></i>
+            </span>
+            <span>Recent Projects</span>
+        </a>
 
-                <span class="sidebar-icon">
-                    <i class="fa-solid fa-circle-info"></i>
-                </span>
+        <a href="{{ route('admin.why-choose-us.index') }}"
+            class="sidebar-link
+          {{ request()->routeIs('admin.why-choose-us.*') || request()->routeIs('admin.why-choose-us-items.*') ? 'active' : '' }}">
+            <span class="sidebar-icon">
+                <i class="fa-solid fa-list-check"></i>
+            </span>
+            <span>Why Choose Us</span>
+        </a>
 
-                <span class="sidebar-link-text">
-                    About Section
-                </span>
+        <a href="{{ route('admin.faqs.index') }}"
+            class="sidebar-link
+          {{ request()->routeIs('admin.faqs.*') ? 'active' : '' }}">
+            <span class="sidebar-icon">
+                <i class="fa-solid fa-circle-question"></i>
+            </span>
+            <span>FAQs</span>
+        </a>
 
-                <span class="sidebar-dropdown-arrow">
-                    <i class="fa-solid fa-chevron-down"></i>
-                </span>
+        <a href="{{ route('admin.compliance-standards.index') }}"
+            class="sidebar-link
+          {{ request()->routeIs('admin.compliance-standards.*') ? 'active' : '' }}">
+            <span class="sidebar-icon">
+                <i class="fa-solid fa-clipboard-check"></i>
+            </span>
+            <span>Compliance Standards</span>
+        </a>
 
-            </a>
+        <a href="{{ route('admin.standards-page.index') }}"
+            class="sidebar-link
+          {{ request()->routeIs('admin.standards-page.*') || request()->routeIs('admin.standards-baseline-items.*') ? 'active' : '' }}">
+            <span class="sidebar-icon">
+                <i class="fa-solid fa-gears"></i>
+            </span>
+            <span>Standards Page Settings</span>
+        </a>
 
-
-            {{-- Dropdown Menu --}}
-            <div class="sidebar-dropdown-menu
-        {{ request()->routeIs(
-            'admin.story-sections.*',
-            'admin.company-values.*',
-            'admin.metrics.*'
-        ) ? 'open' : '' }}">
-
-                {{-- Story Section --}}
-                <a href="{{ route('admin.story-sections.index') }}"
-                    class="sidebar-link sidebar-sub-link
-           {{ request()->routeIs('admin.story-sections.*') ? 'active' : '' }}">
-
-                    <span class="sidebar-icon">
-                        <i class="fa-solid fa-book-open"></i>
-                    </span>
-
-                    <span>
-                        Story Section
-                    </span>
-
-                </a>
-
-
-                {{-- Company Values --}}
-                <a href="{{ route('admin.company-values.index') }}"
-                    class="sidebar-link sidebar-sub-link
-           {{ request()->routeIs('admin.company-values.*') ? 'active' : '' }}">
-
-                    <span class="sidebar-icon">
-                        <i class="fa-solid fa-star"></i>
-                    </span>
-
-                    <span>
-                        Company Values
-                    </span>
-
-                </a>
-
-
-                {{-- Metrics --}}
-                <a href="{{ route('admin.metrics.index') }}"
-                    class="sidebar-link sidebar-sub-link
-           {{ request()->routeIs('admin.metrics.*') ? 'active' : '' }}">
-
-                    <span class="sidebar-icon">
-                        <i class="fa-solid fa-chart-column"></i>
-                    </span>
-
-                    <span>
-                        Metrics
-                    </span>
-
-                </a>
-
-            </div>
-
-        </div>
-        <div class="sidebar-dropdown">
-
-            <button
-                type="button"
-                class="sidebar-link sidebar-dropdown-toggle">
-
-                <span class="sidebar-icon">
-                    <i class="fa-solid fa-building"></i>
-                </span>
-
-                <span>Offices</span>
-
-                <i class="fa-solid fa-chevron-down sidebar-dropdown-arrow"></i>
-
-            </button>
-
-
-            <div class="sidebar-dropdown-menu">
-
-                <a
-                    href="{{ route('admin.office-locations.index') }}"
-                    class="sidebar-link sidebar-sub-link
-            {{ request()->routeIs('admin.office-locations.*') ? 'active' : '' }}">
-
-                    <span class="sidebar-icon">
-                        <i class="fa-solid fa-location-dot"></i>
-                    </span>
-
-                    <span>Office Locations</span>
-
-                </a>
-
-
-                <a
-                    href="{{ route('admin.coverages.index') }}"
-                    class="sidebar-link sidebar-sub-link
-            {{ request()->routeIs('admin.coverages.*') ? 'active' : '' }}">
-
-                    <span class="sidebar-icon">
-                        <i class="fa-solid fa-map-location-dot"></i>
-                    </span>
-
-                    <span>Pan-India Coverage</span>
-
-                </a>
-
-            </div>
-
-        </div>
-        {{-- Process Section Dropdown --}}
-
-        <div class="sidebar-dropdown">
-
-            {{-- Dropdown Header --}}
-            <button
-                type="button"
-                class="sidebar-link sidebar-dropdown-toggle
-        {{ request()->routeIs('admin.project-processes.*') ||
-           request()->routeIs('admin.works.*')
-            ? 'active open'
-            : '' }}">
-
-                <span class="sidebar-icon">
-                    <i class="fa-solid fa-list-check"></i>
-                </span>
-
-                <span>
-                    Process Section
-                </span>
-
-                <i class="fa-solid fa-chevron-down sidebar-dropdown-arrow"></i>
-
-            </button>
-
-
-            {{-- Dropdown Menu --}}
-            <div
-                class="sidebar-dropdown-menu
-        {{ request()->routeIs('admin.project-processes.*') ||
-           request()->routeIs('admin.works.*')
-            ? 'open'
-            : '' }}">
-
-
-                {{-- Project Process --}}
-                <a
-                    href="{{ route('admin.project-processes.index') }}"
-                    class="sidebar-link sidebar-sub-link
-            {{ request()->routeIs('admin.project-processes.*')
-                ? 'active'
-                : '' }}">
-
-                    <span class="sidebar-icon">
-                        <i class="fa-solid fa-timeline"></i>
-                    </span>
-
-                    <span>
-                        Project Process
-                    </span>
-
-                </a>
-
-
-                {{-- Works --}}
-                <a
-                    href="{{ route('admin.works.index') }}"
-                    class="sidebar-link sidebar-sub-link
-            {{ request()->routeIs('admin.works.*')
-                ? 'active'
-                : '' }}">
-
-                    <span class="sidebar-icon">
-                        <i class="fa-solid fa-images"></i>
-                    </span>
-
-                    <span>
-                        Works
-                    </span>
-
-                </a>
-
-            </div>
-
-        </div>
     </nav>
 
     <div class="sidebar-footer">

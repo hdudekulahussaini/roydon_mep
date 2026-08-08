@@ -6,6 +6,13 @@ use App\Models\HomeBanner;
 use App\Models\PremiumStat;
 use App\Models\CivilService;
 use App\Models\HospitalSpecialisation;
+use App\Models\WhyChooseUs;
+use App\Models\WhyChooseUsItem;
+use App\Models\Project;
+use App\Models\Faq;
+use App\Models\ComplianceStandard;
+use App\Models\StandardsPageSetting;
+use App\Models\StandardsBaselineItem;
 use Illuminate\Contracts\View\View;
 use App\Models\StorySection;
 use App\Models\CompanyValue;
@@ -19,23 +26,15 @@ class FrontendController extends Controller
 {
     public function index(): View
     {
-        $banner = \Illuminate\Support\Facades\Schema::hasTable('home_banners')
-            ? HomeBanner::latest()->first()
-            : null;
-
-        $stats = \Illuminate\Support\Facades\Schema::hasTable('premium_stats')
-            ? PremiumStat::all()
-            : collect();
-
-        $civilServices = \Illuminate\Support\Facades\Schema::hasTable('civil_services')
-            ? CivilService::all()
-            : collect();
-
-        $specialisations = \Illuminate\Support\Facades\Schema::hasTable('hospital_specialisations')
-            ? HospitalSpecialisation::all()
-            : collect();
-
-        return view('frontend.pages.index', compact('banner', 'stats', 'civilServices', 'specialisations'));
+        $banner = HomeBanner::latest()->first();
+        $stats = PremiumStat::all();
+        $civilServices = CivilService::all();
+        $specialisations = HospitalSpecialisation::all();
+        $whyChooseUs = WhyChooseUs::first();
+        $whyChooseUsItems = WhyChooseUsItem::all();
+        $projects = Project::latest()->get();
+        $faqs = Faq::all();
+        return view('frontend.pages.index', compact('banner', 'stats', 'civilServices', 'specialisations', 'whyChooseUs', 'whyChooseUsItems', 'projects', 'faqs'));
     }
 
     public function about(): View
@@ -59,12 +58,16 @@ class FrontendController extends Controller
 
     public function projects(): View
     {
-        return view('frontend.pages.projects');
+        $projects = Project::latest()->get();
+        return view('frontend.pages.projects', compact('projects'));
     }
 
     public function standards(): View
     {
-        return view('frontend.pages.standards');
+        $settings = StandardsPageSetting::first();
+        $baselineItems = StandardsBaselineItem::all();
+        $standards = ComplianceStandard::all();
+        return view('frontend.pages.standards', compact('settings', 'baselineItems', 'standards'));
     }
 
     public function process(): View

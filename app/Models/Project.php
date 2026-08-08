@@ -5,13 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PremiumStat extends Model
+class Project extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'count',
         'title',
-        'description',
+        'image',
+        'type',
+        'tags',
+        'beds',
+        'scale',
+        'scope',
+        'location',
+        'programme',
+        'result',
     ];
 }

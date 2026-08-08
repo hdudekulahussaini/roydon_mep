@@ -5,13 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PremiumStat extends Model
+class WhyChooseUs extends Model
 {
     use HasFactory;
 
+    protected $table = 'why_choose_us';
+
     protected $fillable = [
-        'count',
+        'sub_title',
         'title',
         'description',
+        'image',
     ];
 }
