@@ -66,6 +66,33 @@
             <span>Specialisations</span>
         </a>
 
+        <a href="{{ route('admin.projects.index') }}"
+            class="sidebar-link
+          {{ request()->routeIs('admin.projects.*') ? 'active' : '' }}">
+            <span class="sidebar-icon">
+                <i class="fa-solid fa-diagram-project"></i>
+            </span>
+            <span>Recent Projects</span>
+        </a>
+
+        <a href="{{ route('admin.why-choose-us.index') }}"
+            class="sidebar-link
+          {{ request()->routeIs('admin.why-choose-us.*') || request()->routeIs('admin.why-choose-us-items.*') ? 'active' : '' }}">
+            <span class="sidebar-icon">
+                <i class="fa-solid fa-list-check"></i>
+            </span>
+            <span>Why Choose Us</span>
+        </a>
+
+        <a href="{{ route('admin.faqs.index') }}"
+            class="sidebar-link
+          {{ request()->routeIs('admin.faqs.*') ? 'active' : '' }}">
+            <span class="sidebar-icon">
+                <i class="fa-solid fa-circle-question"></i>
+            </span>
+            <span>FAQs</span>
+        </a>
+
     </nav>
 
     <div class="sidebar-footer">

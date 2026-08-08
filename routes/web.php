@@ -7,6 +7,9 @@ use App\Http\Controllers\backend\HomeBannerController;
 use App\Http\Controllers\backend\PremiumStatController;
 use App\Http\Controllers\backend\CivilServiceController;
 use App\Http\Controllers\backend\HospitalSpecialisationController;
+use App\Http\Controllers\backend\WhyChooseUsController;
+use App\Http\Controllers\backend\ProjectController;
+use App\Http\Controllers\backend\FaqController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -27,6 +30,19 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('premium-stats', PremiumStatController::class)->except('show');
         Route::resource('civil-services', CivilServiceController::class)->except('show');
         Route::resource('hospital-specialisations', HospitalSpecialisationController::class)->except('show');
+        Route::resource('projects', ProjectController::class)->except('show');
+        Route::resource('faqs', FaqController::class)->except('show');
+        
+        Route::get('why-choose-us', [WhyChooseUsController::class, 'index'])->name('why-choose-us.index');
+        Route::get('why-choose-us/edit', [WhyChooseUsController::class, 'editSection'])->name('why-choose-us.edit-section');
+        Route::put('why-choose-us/update', [WhyChooseUsController::class, 'updateSection'])->name('why-choose-us.update-section');
+        
+        Route::get('why-choose-us-items/create', [WhyChooseUsController::class, 'createItem'])->name('why-choose-us-items.create');
+        Route::post('why-choose-us-items', [WhyChooseUsController::class, 'storeItem'])->name('why-choose-us-items.store');
+        Route::get('why-choose-us-items/{item}/edit', [WhyChooseUsController::class, 'editItem'])->name('why-choose-us-items.edit');
+        Route::put('why-choose-us-items/{item}', [WhyChooseUsController::class, 'updateItem'])->name('why-choose-us-items.update');
+        Route::delete('why-choose-us-items/{item}', [WhyChooseUsController::class, 'destroyItem'])->name('why-choose-us-items.destroy');
+
         Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
     });
 });

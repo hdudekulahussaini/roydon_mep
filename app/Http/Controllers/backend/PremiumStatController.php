@@ -42,8 +42,6 @@ class PremiumStatController extends Controller
             $this->validationRules()
         );
 
-        $validated['icon'] = 'fa-light fa-circle-check';
-
         PremiumStat::create($validated);
 
         return redirect()
@@ -72,8 +70,6 @@ class PremiumStatController extends Controller
         $validated = $request->validate(
             $this->validationRules()
         );
-
-        $validated['icon'] = 'fa-light fa-circle-check';
 
         $premiumStat->update($validated);
 
