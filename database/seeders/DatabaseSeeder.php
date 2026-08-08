@@ -142,5 +142,51 @@ class DatabaseSeeder extends Seeder
                 'icon' => 'fa-light fa-shield-check',
             ]);
         }
+        if (\App\Models\CompanyValue::count() === 0) {
+
+            \App\Models\CompanyValue::create([
+                'title' => 'Clinical Precision',
+                'description' => 'Systems designed for infection control, patient safety and NABH/NABL compliance.',
+                'status' => true,
+            ]);
+
+            \App\Models\CompanyValue::create([
+                'title' => 'Execution Velocity',
+                'description' => 'Rigorous planning and coordinated execution help deliver projects ahead of schedule.',
+                'status' => true,
+            ]);
+
+            \App\Models\CompanyValue::create([
+                'title' => 'Single-Point Accountability',
+                'description' => 'HVAC, MGPS, electrical and fire-fighting systems managed under one roof.',
+                'status' => true,
+            ]);
+        }
+        if (\App\Models\Metric::count() === 0) {
+
+            \App\Models\Metric::create([
+                'number' => '900+',
+                'label' => 'Hospital Beds Delivered',
+                'status' => true,
+            ]);
+
+            \App\Models\Metric::create([
+                'number' => '800k',
+                'label' => 'Sq.Ft Executed',
+                'status' => true,
+            ]);
+
+            \App\Models\Metric::create([
+                'number' => '70',
+                'label' => 'Days to Handover',
+                'status' => true,
+            ]);
+
+            \App\Models\Metric::create([
+                'number' => '0',
+                'label' => 'Defects at Commissioning',
+                'status' => true,
+            ]);
+        }
     }
 }

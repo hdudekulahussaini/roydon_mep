@@ -65,7 +65,91 @@
             </span>
             <span>Specialisations</span>
         </a>
+        {{-- About Section Dropdown --}}
+        <div class="sidebar-dropdown">
 
+            {{-- About Section Button --}}
+            <a href="javascript:void(0)"
+                class="sidebar-link sidebar-dropdown-toggle
+       {{ request()->routeIs(
+            'admin.story-sections.*',
+            'admin.company-values.*',
+            'admin.metrics.*'
+       ) ? 'active' : '' }}">
+
+                <span class="sidebar-icon">
+                    <i class="fa-solid fa-circle-info"></i>
+                </span>
+
+                <span class="sidebar-link-text">
+                    About Section
+                </span>
+
+                <span class="sidebar-dropdown-arrow">
+                    <i class="fa-solid fa-chevron-down"></i>
+                </span>
+
+            </a>
+
+
+            {{-- Dropdown Menu --}}
+            <div class="sidebar-dropdown-menu
+        {{ request()->routeIs(
+            'admin.story-sections.*',
+            'admin.company-values.*',
+            'admin.metrics.*'
+        ) ? 'open' : '' }}">
+
+                {{-- Story Section --}}
+                <a href="{{ route('admin.story-sections.index') }}"
+                    class="sidebar-link sidebar-sub-link
+           {{ request()->routeIs('admin.story-sections.*') ? 'active' : '' }}">
+
+                    <span class="sidebar-icon">
+                        <i class="fa-solid fa-book-open"></i>
+                    </span>
+
+                    <span>
+                        Story Section
+                    </span>
+
+                </a>
+
+
+                {{-- Company Values --}}
+                <a href="{{ route('admin.company-values.index') }}"
+                    class="sidebar-link sidebar-sub-link
+           {{ request()->routeIs('admin.company-values.*') ? 'active' : '' }}">
+
+                    <span class="sidebar-icon">
+                        <i class="fa-solid fa-star"></i>
+                    </span>
+
+                    <span>
+                        Company Values
+                    </span>
+
+                </a>
+
+
+                {{-- Metrics --}}
+                <a href="{{ route('admin.metrics.index') }}"
+                    class="sidebar-link sidebar-sub-link
+           {{ request()->routeIs('admin.metrics.*') ? 'active' : '' }}">
+
+                    <span class="sidebar-icon">
+                        <i class="fa-solid fa-chart-column"></i>
+                    </span>
+
+                    <span>
+                        Metrics
+                    </span>
+
+                </a>
+
+            </div>
+
+        </div>
     </nav>
 
     <div class="sidebar-footer">

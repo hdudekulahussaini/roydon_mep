@@ -7,6 +7,9 @@ use App\Models\PremiumStat;
 use App\Models\CivilService;
 use App\Models\HospitalSpecialisation;
 use Illuminate\Contracts\View\View;
+use App\Models\StorySection;
+use App\Models\CompanyValue;
+use App\Models\Metric;
 
 class FrontendController extends Controller
 {
@@ -33,7 +36,16 @@ class FrontendController extends Controller
 
     public function about(): View
     {
-        return view('frontend.pages.about');
+        $storySection = StorySection::where('status', true)
+            ->latest()
+            ->first();
+        $companyValues = CompanyValue::where('status', true)
+        ->latest()
+        ->get();
+        $metrics = Metric::where('status', true)
+        ->latest()
+        ->get();
+        return view('frontend.pages.about', compact('storySection', 'companyValues', 'metrics'));
     }
 
     public function contact(): View

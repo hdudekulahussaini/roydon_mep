@@ -686,3 +686,84 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+/* =========================================
+   ABOUT SECTION DROPDOWN
+========================================= */
+
+.sidebar-dropdown {
+    width: 100%;
+}
+
+
+/* Main dropdown button */
+
+.sidebar-dropdown-toggle {
+    position: relative;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+
+/* Arrow */
+
+.sidebar-dropdown-arrow {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 12px;
+
+    transition: transform 0.25s ease;
+}
+
+
+/* Rotate arrow when open */
+
+.sidebar-dropdown-toggle.open .sidebar-dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+
+/* Dropdown menu */
+
+.sidebar-dropdown-menu {
+    display: none;
+    width: 100%;
+}
+
+
+/* Open dropdown */
+
+.sidebar-dropdown-menu.open {
+    display: block;
+}
+
+
+/* Sub links */
+
+.sidebar-sub-link {
+    padding-left: 45px !important;
+}
+
+
+/* Sub-link icon */
+
+.sidebar-sub-link .sidebar-icon {
+    min-width: 25px;
+}
+
+
+/* Active sub link */
+
+.sidebar-sub-link.active {
+    font-weight: 600;
+}
+
+
+/* Small spacing between dropdown items */
+
+.sidebar-sub-link + .sidebar-sub-link {
+    margin-top: 2px;
+}
