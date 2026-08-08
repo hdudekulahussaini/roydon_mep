@@ -12,5 +12,13 @@ class Project extends Model
     protected $fillable = [
         'title',
         'image',
+        'type',
+        'tags',
+        'beds',
+        'scale',
+        'scope',
+        'location',
+        'programme',
+        'result',
     ];
 }

@@ -42,6 +42,8 @@
                             <th class="ps-4">ID</th>
                             <th>Image</th>
                             <th>Title</th>
+                            <th>Type</th>
+                            <th>Location</th>
                             <th class="text-end pe-4">Actions</th>
                         </tr>
 
@@ -69,6 +71,14 @@
 
                                 <td>
                                     <strong>{{ $project->title }}</strong>
+                                </td>
+
+                                <td>
+                                    <span class="badge bg-light text-dark border">{{ $project->type }}</span>
+                                </td>
+
+                                <td>
+                                    {{ $project->location }}
                                 </td>
 
                                 <td class="text-end pe-4">

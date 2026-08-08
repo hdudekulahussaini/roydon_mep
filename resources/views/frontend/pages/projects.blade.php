@@ -32,348 +32,73 @@
         <!-- breadcrumb-area-end -->
         
         <!-- projects-area -->
-        <section class="projects-area p-relative fix pt-120 pb-120">
-            <div class="container">
-                <div class="row">
+        @if ($projects && $projects->isNotEmpty())
+            <section class="projects-area p-relative fix pt-120 pb-120">
+                <div class="container">
+                    <div class="row">
+                        @foreach ($projects as $index => $project)
+                            <div class="col-lg-6 col-md-12 mb-40">
+                                <div class="custom-project-card wow fadeInUp" data-delay=".{{ ($index % 2) + 1 }}s">
+                                    <div class="custom-project-img-wrapper">
+                                        <span class="project-meta-type">{{ $project->type }}</span>
+                                        <img src="{{ str_contains($project->image, 'assets/') ? asset($project->image) : asset('storage/' . $project->image) }}" alt="{{ $project->title }} - Roydon MEP" class="custom-project-img">
+                                    </div>
+                                    <div class="custom-project-content">
+                                        <h3 class="project-title">{{ $project->title }}</h3>
 
-                    <!-- Project 1 -->
-                    <div class="col-lg-6 col-md-12 mb-40">
-                        <div class="custom-project-card wow fadeInUp" data-delay=".1s">
-                            <div class="custom-project-img-wrapper">
-                                <span class="project-meta-type">Multispeciality</span>
-                                <img src="{{ asset('assets/img/projects/neelima_hospital.webp') }}" alt="Neelima Hospitals - Healthcare Project Execution by Roydon MEP" class="custom-project-img">
-                            </div>
-                            <div class="custom-project-content">
-                                <h3 class="project-title">Neelima Hospitals, Hyderabad</h3>
+                                        @if ($project->tags)
+                                            <div class="project-services-tags">
+                                                @foreach (explode(',', $project->tags) as $tag)
+                                                    <span class="service-pill">{{ trim($tag) }}</span>
+                                                @endforeach
+                                            </div>
+                                        @endif
 
-                                <div class="project-services-tags">
-                                    <span class="service-pill">HVAC</span>
-                                    <span class="service-pill">MGPS</span>
-                                    <span class="service-pill">Electrical</span>
-                                    <span class="service-pill">Fire</span>
-                                    <span class="service-pill">Plumbing</span>
+                                        <div class="project-details-grid">
+                                            @if ($project->beds)
+                                                <div class="detail-item"><i class="fa-light fa-bed"></i>
+                                                    <div><strong>Beds</strong> {{ $project->beds }}</div>
+                                                </div>
+                                            @endif
+                                            @if ($project->scale)
+                                                <div class="detail-item"><i class="fa-light fa-ruler-combined"></i>
+                                                    <div><strong>Scale</strong> {{ $project->scale }}</div>
+                                                </div>
+                                            @endif
+                                            @if ($project->scope)
+                                                <div class="detail-item"><i class="fa-light fa-clipboard-list"></i>
+                                                    <div><strong>Scope</strong> {{ $project->scope }}</div>
+                                                </div>
+                                            @endif
+                                            @if ($project->location)
+                                                <div class="detail-item"><i class="fa-light fa-map-marker-alt"></i>
+                                                    <div><strong>Location</strong> {{ $project->location }}</div>
+                                                </div>
+                                            @endif
+                                            @if ($project->programme)
+                                                <div class="detail-item"><i class="fa-light fa-clock"></i>
+                                                    <div><strong>Programme</strong> {{ $project->programme }}</div>
+                                                </div>
+                                            @endif
+                                            @if ($project->result)
+                                                <div class="detail-item"><i class="fa-light fa-check-circle"></i>
+                                                    <div><strong>Result</strong> {{ $project->result }}</div>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
                                 </div>
-
-                                <div class="project-details-grid">
-                                    <div class="detail-item"><i class="fa-light fa-bed"></i>
-                                        <div><strong>Beds</strong> 900</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-ruler-combined"></i>
-                                        <div><strong>Scale</strong> 500,000 sq ft</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-clipboard-list"></i>
-                                        <div><strong>Scope</strong> Full MEP — No sub-bids</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-map-marker-alt"></i>
-                                        <div><strong>Location</strong> Hyderabad, Telangana</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-clock"></i>
-                                        <div><strong>Programme</strong> 70 Days</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-check-circle"></i>
-                                        <div><strong>Result</strong> Zero defect handover</div>
-                                    </div>
-                                </div>
                             </div>
-                        </div>
+                        @endforeach
                     </div>
-
-                    <!-- Project 2 -->
-                    <div class="col-lg-6 col-md-12 mb-40">
-                        <div class="custom-project-card wow fadeInUp" data-delay=".2s">
-                            <div class="custom-project-img-wrapper">
-                                <span class="project-meta-type">Multispeciality</span>
-                                <img src="{{ asset('assets/img/projects/trust_hospital.webp') }}" alt="Trust Multispeciality Hospitals - MEP Engineering Company" class="custom-project-img">
-                            </div>
-                            <div class="custom-project-content">
-                                <h3 class="project-title">Trust Multispeciality Hospitals, Kakinada</h3>
-
-                                <div class="project-services-tags">
-                                    <span class="service-pill">HVAC</span>
-                                    <span class="service-pill">MGPS</span>
-                                    <span class="service-pill">Electrical</span>
-                                    <span class="service-pill">Fire</span>
-                                    <span class="service-pill">Plumbing</span>
-                                </div>
-
-                                <div class="project-details-grid">
-                                    <div class="detail-item"><i class="fa-light fa-bed"></i>
-                                        <div><strong>Beds</strong> 250</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-ruler-combined"></i>
-                                        <div><strong>Scale</strong> 220,000 sq ft</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-clipboard-list"></i>
-                                        <div><strong>Scope</strong> Full MEP — No sub-bids</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-map-marker-alt"></i>
-                                        <div><strong>Location</strong> Kakinada, Andhra Pradesh</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-clock"></i>
-                                        <div><strong>Programme</strong> 4 Months</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-check-circle"></i>
-                                        <div><strong>Result</strong> Zero defect handover</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 3 -->
-                    <div class="col-lg-6 col-md-12 mb-40">
-                        <div class="custom-project-card wow fadeInUp" data-delay=".1s">
-                            <div class="custom-project-img-wrapper">
-                                <span class="project-meta-type">Multispeciality</span>
-                                <img src="{{ asset('assets/img/projects/landmark_hospital.webp') }}" alt="Landmark Hospital - EPC Contractors South India" class="custom-project-img">
-                            </div>
-                            <div class="custom-project-content">
-                                <h3 class="project-title">Landmark Multi-Speciality Hospital, Hyderabad</h3>
-
-                                <div class="project-services-tags">
-                                    <span class="service-pill">HVAC</span>
-                                    <span class="service-pill">MGPS</span>
-                                    <span class="service-pill">Electrical</span>
-                                    <span class="service-pill">Fire</span>
-                                    <span class="service-pill">Plumbing</span>
-                                </div>
-
-                                <div class="project-details-grid">
-                                    <div class="detail-item"><i class="fa-light fa-bed"></i>
-                                        <div><strong>Beds</strong> 200</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-ruler-combined"></i>
-                                        <div><strong>Scale</strong> 170,000 sq ft</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-clipboard-list"></i>
-                                        <div><strong>Scope</strong> Full MEP — No sub-bids</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-map-marker-alt"></i>
-                                        <div><strong>Location</strong> Hyderabad, Telangana</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-clock"></i>
-                                        <div><strong>Programme</strong> 5 Months</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-check-circle"></i>
-                                        <div><strong>Result</strong> Zero defect handover</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 4 -->
-                    <div class="col-lg-6 col-md-12 mb-40">
-                        <div class="custom-project-card wow fadeInUp" data-delay=".2s">
-                            <div class="custom-project-img-wrapper">
-                                <span class="project-meta-type">Multispeciality</span>
-                                <img src="{{ asset('assets/img/projects/hope_hospital.webp') }}" alt="Hope Hospital - Turnkey Hospital MEP Contractors" class="custom-project-img">
-                            </div>
-                            <div class="custom-project-content">
-                                <h3 class="project-title">Hope Hospital, Bengaluru</h3>
-
-                                <div class="project-services-tags">
-                                    <span class="service-pill">HVAC</span>
-                                    <span class="service-pill">MGPS</span>
-                                    <span class="service-pill">Electrical</span>
-                                    <span class="service-pill">Fire</span>
-                                    <span class="service-pill">Plumbing</span>
-                                </div>
-
-                                <div class="project-details-grid">
-                                    <div class="detail-item"><i class="fa-light fa-bed"></i>
-                                        <div><strong>Beds</strong> 60</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-ruler-combined"></i>
-                                        <div><strong>Scale</strong> 70,000 sq ft</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-clipboard-list"></i>
-                                        <div><strong>Scope</strong> Full MEP — No sub-bids</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-map-marker-alt"></i>
-                                        <div><strong>Location</strong> Bengaluru, Karnataka</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-clock"></i>
-                                        <div><strong>Programme</strong> 5 Months</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-check-circle"></i>
-                                        <div><strong>Result</strong> Zero defect handover</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 5 -->
-                    <div class="col-lg-6 col-md-12 mb-40">
-                        <div class="custom-project-card wow fadeInUp" data-delay=".1s">
-                            <div class="custom-project-img-wrapper">
-                                <span class="project-meta-type">Commercial</span>
-                                <img src="{{ asset('assets/img/projects/corporate_office.webp') }}" alt="Roydon MEP - Turnkey MEP Contractors in Hyderabad" class="custom-project-img">
-                            </div>
-                            <div class="custom-project-content">
-                                <h3 class="project-title">Corporate Office, Hyderabad</h3>
-
-                                <div class="project-services-tags">
-                                    <span class="service-pill">HVAC</span>
-                                    <span class="service-pill">MGPS</span>
-                                    <span class="service-pill">Electrical</span>
-                                    <span class="service-pill">Fire</span>
-                                    <span class="service-pill">Plumbing</span>
-                                </div>
-
-                                <div class="project-details-grid">
-                                    <div class="detail-item"><i class="fa-light fa-bed"></i>
-                                        <div><strong>Beds</strong> N/A</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-ruler-combined"></i>
-                                        <div><strong>Scale</strong> 100,000 sq ft</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-clipboard-list"></i>
-                                        <div><strong>Scope</strong> Electrical & HVAC</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-map-marker-alt"></i>
-                                        <div><strong>Location</strong> Hyderabad, Telangana</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-clock"></i>
-                                        <div><strong>Programme</strong> 6 Months</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-check-circle"></i>
-                                        <div><strong>Result</strong> Zero defect handover</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 6 -->
-                    <div class="col-lg-6 col-md-12 mb-40">
-                        <div class="custom-project-card wow fadeInUp" data-delay=".2s">
-                            <div class="custom-project-img-wrapper">
-                                <span class="project-meta-type">Hospitality</span>
-                                <img src="{{ asset('assets/img/projects/hotel_project.webp') }}" alt="Roydon MEP - Turnkey MEP Contractors in Hyderabad" class="custom-project-img">
-                            </div>
-                            <div class="custom-project-content">
-                                <h3 class="project-title">Hotel Project, Bengaluru</h3>
-
-                                <div class="project-services-tags">
-                                    <span class="service-pill">HVAC</span>
-                                    <span class="service-pill">MGPS</span>
-                                    <span class="service-pill">Electrical</span>
-                                    <span class="service-pill">Fire</span>
-                                    <span class="service-pill">Plumbing</span>
-                                </div>
-
-                                <div class="project-details-grid">
-                                    <div class="detail-item"><i class="fa-light fa-bed"></i>
-                                        <div><strong>Beds</strong> N/A</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-ruler-combined"></i>
-                                        <div><strong>Scale</strong> 150,000 sq ft</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-clipboard-list"></i>
-                                        <div><strong>Scope</strong> Full MEP</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-map-marker-alt"></i>
-                                        <div><strong>Location</strong> Bengaluru, Karnataka</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-clock"></i>
-                                        <div><strong>Programme</strong> 8 Months</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-check-circle"></i>
-                                        <div><strong>Result</strong> Zero defect handover</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 7 -->
-                    <div class="col-lg-6 col-md-12 mb-40">
-                        <div class="custom-project-card wow fadeInUp" data-delay=".1s">
-                            <div class="custom-project-img-wrapper">
-                                <span class="project-meta-type">Commercial</span>
-                                <img src="{{ asset('assets/img/projects/n_square_building.webp') }}" alt="Roydon MEP - Turnkey MEP Contractors in Hyderabad" class="custom-project-img">
-                            </div>
-                            <div class="custom-project-content">
-                                <h3 class="project-title">N Square Building, Hyderabad</h3>
-
-                                <div class="project-services-tags">
-                                    <span class="service-pill">HVAC</span>
-                                    <span class="service-pill">MGPS</span>
-                                    <span class="service-pill">Electrical</span>
-                                    <span class="service-pill">Fire</span>
-                                    <span class="service-pill">Plumbing</span>
-                                </div>
-
-                                <div class="project-details-grid">
-                                    <div class="detail-item"><i class="fa-light fa-bed"></i>
-                                        <div><strong>Beds</strong> N/A</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-ruler-combined"></i>
-                                        <div><strong>Scale</strong> 120,000 sq ft</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-clipboard-list"></i>
-                                        <div><strong>Scope</strong> Plumbing & Fire</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-map-marker-alt"></i>
-                                        <div><strong>Location</strong> Hyderabad, Telangana</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-clock"></i>
-                                        <div><strong>Programme</strong> 5 Months</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-check-circle"></i>
-                                        <div><strong>Result</strong> Zero defect handover</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 8 -->
-                    <div class="col-lg-6 col-md-12 mb-40">
-                        <div class="custom-project-card wow fadeInUp" data-delay=".2s">
-                            <div class="custom-project-img-wrapper">
-                                <span class="project-meta-type">Life Safety</span>
-                                <img src="{{ asset('assets/img/projects/fire_fighting_system.webp') }}" alt="Roydon MEP - Turnkey MEP Contractors in Hyderabad" class="custom-project-img">
-                            </div>
-                            <div class="custom-project-content">
-                                <h3 class="project-title">Fire Fighting System, Pan-India</h3>
-
-                                <div class="project-services-tags">
-                                    <span class="service-pill">HVAC</span>
-                                    <span class="service-pill">MGPS</span>
-                                    <span class="service-pill">Electrical</span>
-                                    <span class="service-pill">Fire</span>
-                                    <span class="service-pill">Plumbing</span>
-                                </div>
-
-                                <div class="project-details-grid">
-                                    <div class="detail-item"><i class="fa-light fa-bed"></i>
-                                        <div><strong>Beds</strong> N/A</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-ruler-combined"></i>
-                                        <div><strong>Scale</strong> Various</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-clipboard-list"></i>
-                                        <div><strong>Scope</strong> Fire Fighting</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-map-marker-alt"></i>
-                                        <div><strong>Location</strong> Pan-India</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-clock"></i>
-                                        <div><strong>Programme</strong> Ongoing</div>
-                                    </div>
-                                    <div class="detail-item"><i class="fa-light fa-check-circle"></i>
-                                        <div><strong>Result</strong> Compliance certified</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
-            </div>
-        </section>
+            </section>
+        @else
+            <section class="projects-area p-relative fix pt-120 pb-120">
+                <div class="container text-center py-5">
+                    <h3 class="text-muted">No projects found.</h3>
+                </div>
+            </section>
+        @endif
         <!-- projects-area-end -->
 @endsection

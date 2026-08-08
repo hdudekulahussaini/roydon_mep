@@ -93,6 +93,24 @@
             <span>FAQs</span>
         </a>
 
+        <a href="{{ route('admin.compliance-standards.index') }}"
+            class="sidebar-link
+          {{ request()->routeIs('admin.compliance-standards.*') ? 'active' : '' }}">
+            <span class="sidebar-icon">
+                <i class="fa-solid fa-clipboard-check"></i>
+            </span>
+            <span>Compliance Standards</span>
+        </a>
+
+        <a href="{{ route('admin.standards-page.index') }}"
+            class="sidebar-link
+          {{ request()->routeIs('admin.standards-page.*') || request()->routeIs('admin.standards-baseline-items.*') ? 'active' : '' }}">
+            <span class="sidebar-icon">
+                <i class="fa-solid fa-gears"></i>
+            </span>
+            <span>Standards Page Settings</span>
+        </a>
+
     </nav>
 
     <div class="sidebar-footer">

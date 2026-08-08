@@ -130,6 +130,46 @@ class ProjectController extends Controller
                 'mimes:jpeg,png,jpg,webp',
                 'max:2048',
             ],
+            'type' => [
+                'required',
+                'string',
+                'max:255',
+            ],
+            'tags' => [
+                'nullable',
+                'string',
+                'max:255',
+            ],
+            'beds' => [
+                'nullable',
+                'string',
+                'max:255',
+            ],
+            'scale' => [
+                'nullable',
+                'string',
+                'max:255',
+            ],
+            'scope' => [
+                'nullable',
+                'string',
+                'max:255',
+            ],
+            'location' => [
+                'nullable',
+                'string',
+                'max:255',
+            ],
+            'programme' => [
+                'nullable',
+                'string',
+                'max:255',
+            ],
+            'result' => [
+                'nullable',
+                'string',
+                'max:255',
+            ],
         ];
     }
 }

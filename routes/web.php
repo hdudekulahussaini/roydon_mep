@@ -32,6 +32,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('hospital-specialisations', HospitalSpecialisationController::class)->except('show');
         Route::resource('projects', ProjectController::class)->except('show');
         Route::resource('faqs', FaqController::class)->except('show');
+        Route::resource('compliance-standards', ComplianceStandardController::class)->except('show');
         
         Route::get('why-choose-us', [WhyChooseUsController::class, 'index'])->name('why-choose-us.index');
         Route::get('why-choose-us/edit', [WhyChooseUsController::class, 'editSection'])->name('why-choose-us.edit-section');
@@ -42,6 +43,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('why-choose-us-items/{item}/edit', [WhyChooseUsController::class, 'editItem'])->name('why-choose-us-items.edit');
         Route::put('why-choose-us-items/{item}', [WhyChooseUsController::class, 'updateItem'])->name('why-choose-us-items.update');
         Route::delete('why-choose-us-items/{item}', [WhyChooseUsController::class, 'destroyItem'])->name('why-choose-us-items.destroy');
+
+        Route::get('standards-page', [StandardsPageController::class, 'index'])->name('standards-page.index');
+        Route::get('standards-page/edit', [StandardsPageController::class, 'editSettings'])->name('standards-page.edit-settings');
+        Route::put('standards-page/update', [StandardsPageController::class, 'updateSettings'])->name('standards-page.update-settings');
+
+        Route::get('standards-baseline-items/create', [StandardsPageController::class, 'createBaseline'])->name('standards-baseline-items.create');
+        Route::post('standards-baseline-items', [StandardsPageController::class, 'storeBaseline'])->name('standards-baseline-items.store');
+        Route::get('standards-baseline-items/{standardsBaselineItem}/edit', [StandardsPageController::class, 'editBaseline'])->name('standards-baseline-items.edit');
+        Route::put('standards-baseline-items/{standardsBaselineItem}', [StandardsPageController::class, 'updateBaseline'])->name('standards-baseline-items.update');
+        Route::delete('standards-baseline-items/{standardsBaselineItem}', [StandardsPageController::class, 'destroyBaseline'])->name('standards-baseline-items.destroy');
 
         Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
     });

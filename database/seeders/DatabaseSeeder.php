@@ -8,6 +8,9 @@ use App\Models\WhyChooseUs;
 use App\Models\WhyChooseUsItem;
 use App\Models\Project;
 use App\Models\Faq;
+use App\Models\ComplianceStandard;
+use App\Models\StandardsPageSetting;
+use App\Models\StandardsBaselineItem;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -111,32 +114,100 @@ class DatabaseSeeder extends Seeder
 
         if (Project::count() === 0) {
             Project::create([
-                'title' => 'Neelima Hospital',
+                'title' => 'Neelima Hospitals, Hyderabad',
                 'image' => 'assets/img/projects/neelima_hospital.webp',
+                'type' => 'Multispeciality',
+                'tags' => 'HVAC, MGPS, Electrical, Fire, Plumbing',
+                'beds' => '900',
+                'scale' => '500,000 sq ft',
+                'scope' => 'Full MEP — No sub-bids',
+                'location' => 'Hyderabad, Telangana',
+                'programme' => '70 Days',
+                'result' => 'Zero defect handover',
             ]);
             Project::create([
-                'title' => 'Landmark Hospital',
-                'image' => 'assets/img/projects/landmark_hospital.webp',
-            ]);
-            Project::create([
-                'title' => 'Trust Hospital',
+                'title' => 'Trust Multispeciality Hospitals, Kakinada',
                 'image' => 'assets/img/projects/trust_hospital.webp',
+                'type' => 'Multispeciality',
+                'tags' => 'HVAC, MGPS, Electrical, Fire, Plumbing',
+                'beds' => '250',
+                'scale' => '220,000 sq ft',
+                'scope' => 'Full MEP — No sub-bids',
+                'location' => 'Kakinada, Andhra Pradesh',
+                'programme' => '4 Months',
+                'result' => 'Zero defect handover',
             ]);
             Project::create([
-                'title' => 'Hope Hospital',
+                'title' => 'Landmark Multi-Speciality Hospital, Hyderabad',
+                'image' => 'assets/img/projects/landmark_hospital.webp',
+                'type' => 'Multispeciality',
+                'tags' => 'HVAC, MGPS, Electrical, Fire, Plumbing',
+                'beds' => '200',
+                'scale' => '170,000 sq ft',
+                'scope' => 'Full MEP — No sub-bids',
+                'location' => 'Hyderabad, Telangana',
+                'programme' => '5 Months',
+                'result' => 'Zero defect handover',
+            ]);
+            Project::create([
+                'title' => 'Hope Hospital, Bengaluru',
                 'image' => 'assets/img/projects/hope_hospital.webp',
+                'type' => 'Multispeciality',
+                'tags' => 'HVAC, MGPS, Electrical, Fire, Plumbing',
+                'beds' => '60',
+                'scale' => '70,000 sq ft',
+                'scope' => 'Full MEP — No sub-bids',
+                'location' => 'Bengaluru, Karnataka',
+                'programme' => '5 Months',
+                'result' => 'Zero defect handover',
             ]);
             Project::create([
-                'title' => 'Corporate Office',
+                'title' => 'Corporate Office, Hyderabad',
                 'image' => 'assets/img/projects/corporate_office.webp',
+                'type' => 'Commercial',
+                'tags' => 'HVAC, MGPS, Electrical, Fire, Plumbing',
+                'beds' => 'N/A',
+                'scale' => '100,000 sq ft',
+                'scope' => 'Electrical & HVAC',
+                'location' => 'Hyderabad, Telangana',
+                'programme' => '6 Months',
+                'result' => 'Zero defect handover',
             ]);
             Project::create([
-                'title' => 'N Square Building',
-                'image' => 'assets/img/projects/n_square_building.webp',
-            ]);
-            Project::create([
-                'title' => 'Hotel Project',
+                'title' => 'Hotel Project, Bengaluru',
                 'image' => 'assets/img/projects/hotel_project.webp',
+                'type' => 'Hospitality',
+                'tags' => 'HVAC, MGPS, Electrical, Fire, Plumbing',
+                'beds' => 'N/A',
+                'scale' => '150,000 sq ft',
+                'scope' => 'Full MEP',
+                'location' => 'Bengaluru, Karnataka',
+                'programme' => '8 Months',
+                'result' => 'Zero defect handover',
+            ]);
+            Project::create([
+                'title' => 'N Square Building, Hyderabad',
+                'image' => 'assets/img/projects/n_square_building.webp',
+                'type' => 'Commercial',
+                'tags' => 'HVAC, MGPS, Electrical, Fire, Plumbing',
+                'beds' => 'N/A',
+                'scale' => '120,000 sq ft',
+                'scope' => 'Plumbing & Fire',
+                'location' => 'Hyderabad, Telangana',
+                'programme' => '5 Months',
+                'result' => 'Zero defect handover',
+            ]);
+            Project::create([
+                'title' => 'Fire Fighting System, Pan-India',
+                'image' => 'assets/img/projects/fire_fighting_system.webp',
+                'type' => 'Life Safety',
+                'tags' => 'HVAC, MGPS, Electrical, Fire, Plumbing',
+                'beds' => 'N/A',
+                'scale' => 'Various',
+                'scope' => 'Fire Fighting',
+                'location' => 'Pan-India',
+                'programme' => 'Ongoing',
+                'result' => 'Compliance certified',
             ]);
         }
 
@@ -180,6 +251,141 @@ class DatabaseSeeder extends Seeder
             Faq::create([
                 'question' => 'How do you ensure compliance with medical gas and OT/ICU HVAC standards?',
                 'answer' => 'These are core specializations, not general capabilities we\'ve added on — our teams are built around NABH/NFPA/ASHRAE 170/HTM 02-01 compliance from design through commissioning.',
+            ]);
+        }
+
+        if (ComplianceStandard::count() === 0) {
+            // Category: Healthcare
+            ComplianceStandard::create([
+                'category' => 'healthcare',
+                'icon' => 'fa-light fa-shield-check',
+                'abbr' => 'NABH',
+                'title' => 'National Accreditation Board for Hospitals & Healthcare Providers',
+                'description' => 'All MEP systems designed to support NABH Entry Level and Full Accreditation — environment of care, infection control, patient safety, facility management. Documentation in NABH-ready format from handover.',
+                'applied_to' => 'All hospital projects',
+            ]);
+            ComplianceStandard::create([
+                'category' => 'healthcare',
+                'icon' => 'fa-light fa-flask',
+                'abbr' => 'NABL',
+                'title' => 'National Accreditation Board for Testing & Calibration Laboratories',
+                'description' => 'MEP for NABL-accredited labs — temperature-controlled storage, validated HVAC, electrical conditioning and clean water supply to ISO 15189 facility requirements.',
+                'applied_to' => 'Laboratories, diagnostic centres',
+            ]);
+            ComplianceStandard::create([
+                'category' => 'healthcare',
+                'icon' => 'fa-light fa-fan',
+                'abbr' => 'ASHRAE 170',
+                'title' => 'Ventilation of Health Care Facilities',
+                'description' => 'Primary standard for healthcare HVAC — ACH rates, pressure relationships, temperature, humidity and filtration for every clinical area from OT to ward. Applied to all our HVAC designs as standard.',
+                'applied_to' => 'All HVAC systems',
+            ]);
+
+            // Category: Fire & Safety
+            ComplianceStandard::create([
+                'category' => 'fire-safety',
+                'icon' => 'fa-light fa-notes-medical',
+                'abbr' => 'NFPA 99',
+                'title' => 'Health Care Facilities Code',
+                'description' => 'Comprehensive standard for health care facility systems — medical gas, electrical, HVAC and fire protection. Referenced for all MGPS and electrical system design, installation and testing.',
+                'applied_to' => 'MGPS, electrical, HVAC',
+            ]);
+            ComplianceStandard::create([
+                'category' => 'fire-safety',
+                'icon' => 'fa-light fa-shower',
+                'abbr' => 'NFPA 13',
+                'title' => 'Standard for Installation of Sprinkler Systems',
+                'description' => 'Automatic sprinkler system design for hospitals — OH2 hazard classification, 5 mm/min density, 216 m² design area, hydraulic calculation methodology.',
+                'applied_to' => 'Sprinkler systems',
+            ]);
+            ComplianceStandard::create([
+                'category' => 'fire-safety',
+                'icon' => 'fa-light fa-person-running-fast',
+                'abbr' => 'NFPA 101',
+                'title' => 'Life Safety Code',
+                'description' => 'Egress design, occupancy loads, travel distances, refuge area sizing, compartmentation for hospital occupancies including the specific healthcare occupancy chapter.',
+                'applied_to' => 'Fire egress, life safety',
+            ]);
+            ComplianceStandard::create([
+                'category' => 'fire-safety',
+                'icon' => 'fa-light fa-building-shield',
+                'abbr' => 'NBC 2016',
+                'title' => 'National Building Code of India',
+                'description' => 'Parts 4 (Fire), 8 (MEP) and 9 (Plumbing) of NBC 2016 — the baseline for all Indian hospital MEP works. Fire protection, ventilation, electrical and sanitation requirements.',
+                'applied_to' => 'All disciplines',
+            ]);
+            ComplianceStandard::create([
+                'category' => 'fire-safety',
+                'icon' => 'fa-light fa-bell-on',
+                'abbr' => 'IS 2189',
+                'title' => 'Fire Detection & Alarm Systems',
+                'description' => 'Indian standard for fire detection and alarm systems — addressable systems, detector spacing, zone layouts, alarm verification and panel specifications for hospital occupancies.',
+                'applied_to' => 'Fire alarm systems',
+            ]);
+            ComplianceStandard::create([
+                'category' => 'fire-safety',
+                'icon' => 'fa-light fa-fire-extinguisher',
+                'abbr' => 'IS 3844',
+                'title' => 'Internal Fire Hydrant Systems',
+                'description' => 'Wet riser, landing valve, hose reel and hydrant system design — flow rates, pipe sizing, pump capacity and testing for healthcare occupancies.',
+                'applied_to' => 'Fire hydrant systems',
+            ]);
+
+            // Category: Medical Gas & Electrical
+            ComplianceStandard::create([
+                'category' => 'gas-electrical',
+                'icon' => 'fa-light fa-lungs',
+                'abbr' => 'HTM 02-01',
+                'title' => 'Medical Gas Pipeline Systems',
+                'description' => 'UK Health Technical Memorandum — the most comprehensive MGPS design, installation and testing standard. Used as the benchmark for all our MGPS installations globally.',
+                'applied_to' => 'All MGPS installations',
+            ]);
+            ComplianceStandard::create([
+                'category' => 'gas-electrical',
+                'icon' => 'fa-light fa-plug',
+                'abbr' => 'IS 732 / IEC 60364-7-710',
+                'title' => 'Electrical Installation in Medical Locations',
+                'description' => 'Isolated power systems (IT), equipotential bonding in OTs and ICUs, insulation monitoring, special socket requirements for OTs and cardiac care areas.',
+                'applied_to' => 'OT, Cath Lab, ICU power',
+            ]);
+            ComplianceStandard::create([
+                'category' => 'gas-electrical',
+                'icon' => 'fa-light fa-bolt',
+                'abbr' => 'IS 3043 / SMACNA / CEA',
+                'title' => 'Earthing, Ductwork & HT Standards',
+                'description' => 'IS 3043 for TN-S earthing and lightning protection. SMACNA for GI ductwork construction. CEA regulations for HT electrical installations above 1 kV.',
+                'applied_to' => 'Earthing, HVAC, HT electrical',
+            ]);
+        }
+
+        if (StandardsPageSetting::count() === 0) {
+            StandardsPageSetting::create([
+                'hero_title' => 'Certifications, Standards<br><em>& Compliance</em>',
+                'hero_subtitle' => 'We engineer to the standards that govern hospital operation in India and internationally — not as a checkbox, but as a baseline for every design decision.',
+                'banner_image' => 'assets/img/standards.webp',
+            ]);
+        }
+
+        if (StandardsBaselineItem::count() === 0) {
+            StandardsBaselineItem::create([
+                'icon' => '🛡️',
+                'title' => 'NABH Ready',
+                'description' => 'All documentation in NABH-ready format from handover',
+            ]);
+            StandardsBaselineItem::create([
+                'icon' => '🔥',
+                'title' => 'Fire NOC Support',
+                'description' => 'As-built drawings and inspection support for fire authority',
+            ]);
+            StandardsBaselineItem::create([
+                'icon' => '⚡',
+                'title' => 'Electrical Safety',
+                'description' => 'CEA-compliant HT/LT installations with full test reports',
+            ]);
+            StandardsBaselineItem::create([
+                'icon' => '🌡️',
+                'title' => 'HVAC Commissioning',
+                'description' => 'Air balance reports, particle counts, pressure certificates',
             ]);
         }
     }

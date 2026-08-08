@@ -10,6 +10,9 @@ use App\Models\WhyChooseUs;
 use App\Models\WhyChooseUsItem;
 use App\Models\Project;
 use App\Models\Faq;
+use App\Models\ComplianceStandard;
+use App\Models\StandardsPageSetting;
+use App\Models\StandardsBaselineItem;
 use Illuminate\Contracts\View\View;
 
 class FrontendController extends Controller
@@ -39,12 +42,16 @@ class FrontendController extends Controller
 
     public function projects(): View
     {
-        return view('frontend.pages.projects');
+        $projects = Project::latest()->get();
+        return view('frontend.pages.projects', compact('projects'));
     }
 
     public function standards(): View
     {
-        return view('frontend.pages.standards');
+        $settings = StandardsPageSetting::first();
+        $baselineItems = StandardsBaselineItem::all();
+        $standards = ComplianceStandard::all();
+        return view('frontend.pages.standards', compact('settings', 'baselineItems', 'standards'));
     }
 
     public function process(): View
