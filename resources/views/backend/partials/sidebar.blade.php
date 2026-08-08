@@ -65,6 +65,8 @@
             </span>
             <span>Specialisations</span>
         </a>
+        {{-- About Section Dropdown --}}
+        <div class="sidebar-dropdown">
 
         <a href="{{ route('admin.projects.index') }}"
             class="sidebar-link
