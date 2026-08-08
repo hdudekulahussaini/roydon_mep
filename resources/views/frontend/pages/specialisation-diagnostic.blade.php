@@ -1,7 +1,7 @@
 @extends('layouts.frontend.app')
 
-@section('title', 'Diagnostic Centre MEP | Roydon MEP Contracting')
-@section('meta_description', 'Diagnostic Centre MEP — MRI RF shielding, CT heat rejection chillers, X-ray lead shielding, PET-CT HVAC, UPS power quality.')
+@section('title', $specialisation->title)
+@section('meta_description', Str::limit($specialisation->description, 160))
 
 @push('styles')
 <style>
@@ -93,6 +93,14 @@
     border-radius: 50px;
     font-weight: 700;
 }
+.spec-seo {
+    padding: 20px;
+    background: #EDF3F3;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #7A909F;
+    font-style: italic;
+}
 .sidebar-cta {
     background: #0F2044;
     padding: 40px;
@@ -133,12 +141,24 @@
 @section('content')
     <main>
         <!-- Hero Section -->
-        <section class="spec-hero" style="background-image: url('{{ asset('assets/img/specialisation/diagnostic_hero.webp') }}');">
+        @php
+            $bgImage = $specialisation->banner_image ? Storage::url($specialisation->banner_image) : '';
+            $contentImage = $specialisation->image ? Storage::url($specialisation->image) : '';
+        @endphp
+        <section class="spec-hero" @if($bgImage) style="background-image: url('{{ $bgImage }}');" @endif>
             <div class="container">
                 <div class="row">
                     <div class="col-lg-10">
-                        <div class="spec-hero-subtitle">MRI RF Cage · Lead Shielding · Chilled Water</div>
-                        <h1 class="spec-hero-title">Diagnostic Centre MEP</h1>
+                        @if(!empty($specialisation->banner_tags))
+                        <div class="spec-hero-subtitle">
+                            @foreach($specialisation->banner_tags as $tag)
+                                @if(!empty($tag))
+                                    {{ $tag }}{{ !$loop->last ? ' · ' : '' }}
+                                @endif
+                            @endforeach
+                        </div>
+                        @endif
+                        <h1 class="spec-hero-title">{{ $specialisation->title }}</h1>
                     </div>
                 </div>
             </div>
@@ -150,44 +170,64 @@
                 <div class="row">
                     <!-- Left Content -->
                     <div class="col-lg-8 pr-lg-5 mb-50">
-                        <img src="{{ asset('assets/img/specialisation/diagnostic_hero.webp') }}" alt="Diagnostic Centre MEP Execution" class="img-fluid rounded mb-4 shadow" style="width: 100%; height: 350px; object-fit: cover;">
-                        <p class="spec-desc">Diagnostic Centre MEP — MRI RF shield penetrations & helium quench pipe exhaust, CT scanner precision cooling chillers, X-ray/Mammography lead lining coordination, PET-CT hot lab ventilation, high-KVA power stabilization.</p>
+                        @if($contentImage)
+                        <img src="{{ $contentImage }}" alt="{{ $specialisation->title }}" class="img-fluid rounded mb-4 shadow" style="width: 100%; height: 350px; object-fit: cover;">
+                        @endif
+                        @if($specialisation->description)
+                        <p class="spec-desc">{{ $specialisation->description }}</p>
+                        @endif
                         
+                        @if(!empty($specialisation->features_heading))
                         <div class="spec-grid">
-                            <div class="spec-item">
-                                <div class="lb">MRI MEP</div>
-                                <div class="vl">RF enclosure penetration filters & quench pipe safety relief duct</div>
-                            </div>
-                            <div class="spec-item">
-                                <div class="lb">CT & X-Ray</div>
-                                <div class="vl">Precision water chillers & lead-lined electrical outlet backings</div>
-                            </div>
-                            <div class="spec-item">
-                                <div class="lb">PET-CT</div>
-                                <div class="vl">Radioisotope hot lab negative pressure exhaust to AERB norms</div>
-                            </div>
-                            <div class="spec-item">
-                                <div class="lb">Power Quality</div>
-                                <div class="vl">Harmonic filters & dedicated isolation transformers for imaging</div>
-                            </div>
+                            @foreach($specialisation->features_heading as $index => $heading)
+                                @if(!empty($heading))
+                                <div class="spec-item">
+                                    <div class="lb">{{ $heading }}</div>
+                                    @if(isset($specialisation->features_description[$index]) && !empty($specialisation->features_description[$index]))
+                                    <div class="vl">{{ $specialisation->features_description[$index] }}</div>
+                                    @endif
+                                </div>
+                                @endif
+                            @endforeach
                         </div>
+                        @endif
                         
+                        @if(!empty($specialisation->tags))
                         <div class="spec-tags">
-                            <span class="spec-tag">Diagnostic MEP</span>
-                            <span class="spec-tag">MRI RF Cage</span>
-                            <span class="spec-tag">CT Chiller</span>
-                            <span class="spec-tag">AERB Norms</span>
+                            @foreach($specialisation->tags as $tag)
+                                @if(!empty($tag))
+                                <span class="spec-tag">{{ $tag }}</span>
+                                @endif
+                            @endforeach
                         </div>
+                        @endif
+                        
+                        @if(!empty($specialisation->seo_text))
+                        <div class="spec-seo">
+                            {{ $specialisation->seo_text }}
+                        </div>
+                        @endif
                     </div>
                     
                     <!-- Right Sidebar -->
+                    @if($specialisation->cta_title || $specialisation->cta_description || $specialisation->cta_button_url)
                     <div class="col-lg-4">
                         <div class="sidebar-cta">
-                            <h3>Need specialist MEP for your hospital area?</h3>
-                            <p>Tell us the clinical area and we'll outline our approach and timeline.</p>
-                            <a href="{{ route('contact') }}" class="btn-w">Discuss Your Project</a>
+                            @if($specialisation->cta_title)
+                            <h3>{{ $specialisation->cta_title }}</h3>
+                            @endif
+                            @if($specialisation->cta_description)
+                            <p>{{ $specialisation->cta_description }}</p>
+                            @endif
+                            @if($specialisation->cta_button_url)
+                            @php
+                                $btnUrl = Route::has($specialisation->cta_button_url) ? route($specialisation->cta_button_url) : url($specialisation->cta_button_url);
+                            @endphp
+                            <a href="{{ $btnUrl }}" class="btn-w">Discuss Your Project</a>
+                            @endif
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
         </section>

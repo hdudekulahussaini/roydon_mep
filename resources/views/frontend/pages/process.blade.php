@@ -384,6 +384,59 @@
                     </p>
 
                 </div>
+            </div>
+    
+            <div class="timeline-item right wow fadeInRight" data-wow-delay="0.2s">
+                <div class="timeline-content">
+                    <div class="tl-num">02</div>
+                    <div class="tl-icon"><i class="fa-light fa-ruler-combined"></i></div>
+                    <h3 class="tl-title">Stage Two: Engineering Design & Coordination</h3>
+                    <p class="tl-desc">Detailed design — load calculations, equipment schedules, duct and pipe sizing, SLDs, medical gas layout. Reviewed with facilities and infection-control teams. 3D service coordination avoids clashes before fabrication.</p>
+                    <ul class="tl-list">
+                        <li>HVAC load calculations and equipment schedules</li><li>MGPS pipeline design, sizing, pressure drops</li><li>Electrical SLD, panel schedules, cable sizing</li><li>Plumbing and fire protection design</li><li>3D coordination — clash avoidance before fabrication</li><li>Design review with facilities and IPC teams</li>
+                    </ul>
+                </div>
+            </div>
+    
+            <div class="timeline-item left wow fadeInLeft" data-wow-delay="0.2s">
+                <div class="timeline-content">
+                    <div class="tl-num">03</div>
+                    <div class="tl-icon"><i class="fa-light fa-person-construction"></i></div>
+                    <h3 class="tl-title">Stage Three: Site Execution & Installation</h3>
+                    <p class="tl-desc">Fabrication and installation under our own engineers — no sub-bids. Coordinated with structural and civil programme. Daily site reports and ITPs track quality at every stage.</p>
+                    <ul class="tl-list">
+                        <li>Ductwork fabrication and installation</li><li>Medical gas pipeline installation and purging</li><li>HT/LT electrical installation</li><li>Plumbing and fire protection installation</li><li>Daily site reports and progress tracking</li><li>ITP compliance at every stage</li>
+                    </ul>
+                </div>
+            </div>
+    
+            <div class="timeline-item right wow fadeInRight" data-wow-delay="0.2s">
+                <div class="timeline-content">
+                    <div class="tl-num">04</div>
+                    <div class="tl-icon"><i class="fa-light fa-shield-check"></i></div>
+                    <h3 class="tl-title">Stage Four: Commissioning & Clinical Validation</h3>
+                    <p class="tl-desc">Every system proved against clinical criteria before handover. Air balancing, pressure differentials, MGPS purity testing, electrical and fire system functional testing. All recorded in the commissioning pack.</p>
+                    <ul class="tl-list">
+                        <li>HVAC air balancing — volume and pressure</li><li>OT pressure cascade and particle count</li><li>MGPS pressure, flow and purity testing</li><li>Electrical insulation, earth continuity</li><li>Fire system functional testing</li><li>Complete commissioning pack — NABH-ready</li>
+                    </ul>
+                </div>
+            </div>
+    
+            <div class="timeline-item left wow fadeInLeft" data-wow-delay="0.2s">
+                <div class="timeline-content">
+                    <div class="tl-num">05</div>
+                    <div class="tl-icon"><i class="fa-light fa-file-certificate"></i></div>
+                    <h3 class="tl-title">Stage Five: Handover & 24/7 Warranty</h3>
+                    <p class="tl-desc">Clinical handover with complete O&M manuals, as-built drawings, equipment registers and NABH documentation. Post-handover 24/7 warranty — our engineers, our number. No escalations, no delays.</p>
+                    <ul class="tl-list">
+                        <li>O&M manuals — all disciplines</li><li>As-built drawings — coordinated MEP</li><li>Equipment warranty register</li><li>NABH submission documentation pack</li><li>Staff training on MEP systems</li><li>24/7 warranty — direct to our engineers</li>
+                    </ul>
+                </div>
+            </div>
+    
+                </div>
+            </div>
+        </section>
 
                 @endforelse
 

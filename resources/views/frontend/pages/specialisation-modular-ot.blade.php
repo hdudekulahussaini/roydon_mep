@@ -1,7 +1,7 @@
 @extends('layouts.frontend.app')
 
-@section('title', 'Modular & Prefabricated OT MEP | Roydon MEP Contracting')
-@section('meta_description', 'Modular & Prefabricated OT MEP engineering — wall/ceiling panel integration, flush pendant drops, Hermetic doors, laminar flow plenums.')
+@section('title', $specialisation->title)
+@section('meta_description', Str::limit($specialisation->description, 160))
 
 @push('styles')
 <style>
@@ -93,6 +93,14 @@
     border-radius: 50px;
     font-weight: 700;
 }
+.spec-seo {
+    padding: 20px;
+    background: #EDF3F3;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #7A909F;
+    font-style: italic;
+}
 .sidebar-cta {
     background: #0F2044;
     padding: 40px;
@@ -133,12 +141,24 @@
 @section('content')
     <main>
         <!-- Hero Section -->
-        <section class="spec-hero" style="background-image: url('{{ asset('assets/img/specialisation/modular_ot_hero.webp') }}');">
+        @php
+            $bgImage = $specialisation->banner_image ? Storage::url($specialisation->banner_image) : '';
+            $contentImage = $specialisation->image ? Storage::url($specialisation->image) : '';
+        @endphp
+        <section class="spec-hero" @if($bgImage) style="background-image: url('{{ $bgImage }}');" @endif>
             <div class="container">
                 <div class="row">
                     <div class="col-lg-10">
-                        <div class="spec-hero-subtitle">Prefab Panels · Flush Services · Modular Design</div>
-                        <h1 class="spec-hero-title">Modular & Prefabricated OT</h1>
+                        @if(!empty($specialisation->banner_tags))
+                        <div class="spec-hero-subtitle">
+                            @foreach($specialisation->banner_tags as $tag)
+                                @if(!empty($tag))
+                                    {{ $tag }}{{ !$loop->last ? ' · ' : '' }}
+                                @endif
+                            @endforeach
+                        </div>
+                        @endif
+                        <h1 class="spec-hero-title">{{ $specialisation->title }}</h1>
                     </div>
                 </div>
             </div>
@@ -150,44 +170,64 @@
                 <div class="row">
                     <!-- Left Content -->
                     <div class="col-lg-8 pr-lg-5 mb-50">
-                        <img src="{{ asset('assets/img/specialisation/modular_ot_hero.webp') }}" alt="Modular OT MEP Works" class="img-fluid rounded mb-4 shadow" style="width: 100%; height: 350px; object-fit: cover;">
-                        <p class="spec-desc">Modular & Prefabricated OT MEP — pre-engineered wall panel integrations, stainless steel / HPL cladding, hermetically sealing sliding doors, ceiling pendant support structures, touch-screen surgeon control panels.</p>
+                        @if($contentImage)
+                        <img src="{{ $contentImage }}" alt="{{ $specialisation->title }}" class="img-fluid rounded mb-4 shadow" style="width: 100%; height: 350px; object-fit: cover;">
+                        @endif
+                        @if($specialisation->description)
+                        <p class="spec-desc">{{ $specialisation->description }}</p>
+                        @endif
                         
+                        @if(!empty($specialisation->features_heading))
                         <div class="spec-grid">
-                            <div class="spec-item">
-                                <div class="lb">Cladding</div>
-                                <div class="vl">Antibacterial SS/HPL wall panels with flush MEP cutouts</div>
-                            </div>
-                            <div class="spec-item">
-                                <div class="lb">Control Panel</div>
-                                <div class="vl">Integrated surgeon control panel for gas, HVAC & lighting</div>
-                            </div>
-                            <div class="spec-item">
-                                <div class="lb">Pendants</div>
-                                <div class="vl">Ceiling structural grid for heavy surgical & anesthesia pendants</div>
-                            </div>
-                            <div class="spec-item">
-                                <div class="lb">Doors</div>
-                                <div class="vl">Hermetically sealing automated sliding doors with air locks</div>
-                            </div>
+                            @foreach($specialisation->features_heading as $index => $heading)
+                                @if(!empty($heading))
+                                <div class="spec-item">
+                                    <div class="lb">{{ $heading }}</div>
+                                    @if(isset($specialisation->features_description[$index]) && !empty($specialisation->features_description[$index]))
+                                    <div class="vl">{{ $specialisation->features_description[$index] }}</div>
+                                    @endif
+                                </div>
+                                @endif
+                            @endforeach
                         </div>
+                        @endif
                         
+                        @if(!empty($specialisation->tags))
                         <div class="spec-tags">
-                            <span class="spec-tag">Modular OT</span>
-                            <span class="spec-tag">HPL Wall Panels</span>
-                            <span class="spec-tag">Surgeon Control Panel</span>
-                            <span class="spec-tag">Hermetic Doors</span>
+                            @foreach($specialisation->tags as $tag)
+                                @if(!empty($tag))
+                                <span class="spec-tag">{{ $tag }}</span>
+                                @endif
+                            @endforeach
                         </div>
+                        @endif
+                        
+                        @if(!empty($specialisation->seo_text))
+                        <div class="spec-seo">
+                            {{ $specialisation->seo_text }}
+                        </div>
+                        @endif
                     </div>
                     
                     <!-- Right Sidebar -->
+                    @if($specialisation->cta_title || $specialisation->cta_description || $specialisation->cta_button_url)
                     <div class="col-lg-4">
                         <div class="sidebar-cta">
-                            <h3>Need specialist MEP for your hospital area?</h3>
-                            <p>Tell us the clinical area and we'll outline our approach and timeline.</p>
-                            <a href="{{ route('contact') }}" class="btn-w">Discuss Your Project</a>
+                            @if($specialisation->cta_title)
+                            <h3>{{ $specialisation->cta_title }}</h3>
+                            @endif
+                            @if($specialisation->cta_description)
+                            <p>{{ $specialisation->cta_description }}</p>
+                            @endif
+                            @if($specialisation->cta_button_url)
+                            @php
+                                $btnUrl = Route::has($specialisation->cta_button_url) ? route($specialisation->cta_button_url) : url($specialisation->cta_button_url);
+                            @endphp
+                            <a href="{{ $btnUrl }}" class="btn-w">Discuss Your Project</a>
+                            @endif
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
         </section>

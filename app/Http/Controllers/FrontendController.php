@@ -101,77 +101,92 @@ class FrontendController extends Controller
     // Services
     public function hospitalHvacSystems(): View
     {
-        return view('frontend.pages.hospital-hvac-systems');
+        $service = \App\Models\ServiceSubcategory::where('slug', 'hospital-hvac-systems')->firstOrFail();
+        return view('frontend.pages.hospital-hvac-systems', compact('service'));
     }
 
     public function medicalGasPipeline(): View
     {
-        return view('frontend.pages.medical-gas-pipeline');
+        $service = \App\Models\ServiceSubcategory::where('slug', 'medical-gas-pipeline-mgps')->firstOrFail();
+        return view('frontend.pages.medical-gas-pipeline', compact('service'));
     }
 
     public function hospitalElectricalSystems(): View
     {
-        return view('frontend.pages.hospital-electrical-systems');
+        $service = \App\Models\ServiceSubcategory::where('slug', 'hospital-electrical-systems')->firstOrFail();
+        return view('frontend.pages.hospital-electrical-systems', compact('service'));
     }
 
     public function plumbingAndSanitation(): View
     {
-        return view('frontend.pages.plumbing-and-sanitation');
+        $service = \App\Models\ServiceSubcategory::where('slug', 'plumbing-sanitation')->firstOrFail();
+        return view('frontend.pages.plumbing-and-sanitation', compact('service'));
     }
 
     public function fireFightingAndLifeSafety(): View
     {
-        return view('frontend.pages.fire-fighting-and-life-safety');
+        $service = \App\Models\ServiceSubcategory::where('slug', 'fire-fighting-life-safety')->firstOrFail();
+        return view('frontend.pages.fire-fighting-and-life-safety', compact('service'));
     }
 
     public function turnkeyHospitalMep(): View
     {
-        return view('frontend.pages.turnkey-hospital-mep');
+        $service = \App\Models\ServiceSubcategory::where('slug', 'turnkey-hospital-mep')->firstOrFail();
+        return view('frontend.pages.turnkey-hospital-mep', compact('service'));
     }
 
     public function civilWorks(): View
     {
-        return view('frontend.pages.civil-works');
+        $service = \App\Models\ServiceSubcategory::where('slug', 'civil-works')->firstOrFail();
+        return view('frontend.pages.civil-works', compact('service'));
     }
 
     // Specialisations
     public function specialisationOtMep(): View
     {
-        return view('frontend.pages.specialisation-ot-mep');
+        $specialisation = \App\Models\SpecialisationSubcategory::where('slug', 'operation-theatre-ot-mep')->firstOrFail();
+        return view('frontend.pages.specialisation-ot-mep', compact('specialisation'));
     }
 
     public function specialisationIcuMep(): View
     {
-        return view('frontend.pages.specialisation-icu-mep');
+        $specialisation = \App\Models\SpecialisationSubcategory::where('slug', 'icu-nicu-ccu-mep')->firstOrFail();
+        return view('frontend.pages.specialisation-icu-mep', compact('specialisation'));
     }
 
     public function specialisationCathLab(): View
     {
-        return view('frontend.pages.specialisation-cath-lab');
+        $specialisation = \App\Models\SpecialisationSubcategory::where('slug', 'cath-lab-mep-works')->firstOrFail();
+        return view('frontend.pages.specialisation-cath-lab', compact('specialisation'));
     }
 
     public function specialisationCleanRoom(): View
     {
-        return view('frontend.pages.specialisation-clean-room');
+        $specialisation = \App\Models\SpecialisationSubcategory::where('slug', 'clean-room-mep')->firstOrFail();
+        return view('frontend.pages.specialisation-clean-room', compact('specialisation'));
     }
 
     public function specialisationDiagnostic(): View
     {
-        return view('frontend.pages.specialisation-diagnostic');
+        $specialisation = \App\Models\SpecialisationSubcategory::where('slug', 'diagnostic-centre-mep')->firstOrFail();
+        return view('frontend.pages.specialisation-diagnostic', compact('specialisation'));
     }
 
     public function specialisationCssd(): View
     {
-        return view('frontend.pages.specialisation-cssd');
+        $specialisation = \App\Models\SpecialisationSubcategory::where('slug', 'cssd-sterile-services')->firstOrFail();
+        return view('frontend.pages.specialisation-cssd', compact('specialisation'));
     }
 
     public function specialisationModularOt(): View
     {
-        return view('frontend.pages.specialisation-modular-ot');
+        $specialisation = \App\Models\SpecialisationSubcategory::where('slug', 'modular-prefabricated-ot')->firstOrFail();
+        return view('frontend.pages.specialisation-modular-ot', compact('specialisation'));
     }
 
     public function specialisationNabh(): View
     {
-        return view('frontend.pages.specialisation-nabh');
+        $specialisation = \App\Models\SpecialisationSubcategory::where('slug', 'nabh-compliance-mep')->firstOrFail();
+        return view('frontend.pages.specialisation-nabh', compact('specialisation'));
     }
 }

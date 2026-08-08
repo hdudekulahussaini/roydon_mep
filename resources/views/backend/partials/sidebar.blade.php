@@ -95,7 +95,34 @@
             <span>FAQs</span>
         </a>
 
-        <a href="{{ route('admin.compliance-standards.index') }}"
+        <a href="{{ route('admin.categories.index') }}"
+            class="sidebar-link
+          {{ request()->routeIs('admin.categories.*') ? 'active' : '' }}">
+            <span class="sidebar-icon">
+                <i class="fa-solid fa-layer-group"></i>
+            </span>
+            <span>Categories</span>
+        </a>
+
+        <a href="{{ route('admin.service-subcategories.index') }}"
+            class="sidebar-link
+          {{ request()->routeIs('admin.service-subcategories.*') ? 'active' : '' }}">
+            <span class="sidebar-icon">
+                <i class="fa-solid fa-tags"></i>
+            </span>
+            <span>Service Subcategories</span>
+        </a>
+
+        <a href="{{ route('admin.specialisation-subcategories.index') }}"
+            class="sidebar-link
+          {{ request()->routeIs('admin.specialisation-subcategories.*') ? 'active' : '' }}">
+            <span class="sidebar-icon">
+                <i class="fa-solid fa-house-medical-circle-check"></i>
+            </span>
+            <span>Specialisation Subcat.</span>
+        </a>
+
+        {{-- <a href="{{ route('admin.compliance-standards.index') }}"
             class="sidebar-link
           {{ request()->routeIs('admin.compliance-standards.*') ? 'active' : '' }}">
             <span class="sidebar-icon">
@@ -111,7 +138,7 @@
                 <i class="fa-solid fa-gears"></i>
             </span>
             <span>Standards Page Settings</span>
-        </a>
+        </a> --}}
 
     </nav>
 
