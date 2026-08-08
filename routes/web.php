@@ -1,18 +1,19 @@
 <?php
 
-use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\backend\HomeBannerController;
-use App\Http\Controllers\backend\PremiumStatController;
+use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\backend\CivilServiceController;
-use App\Http\Controllers\backend\HospitalSpecialisationController;
-use App\Http\Controllers\backend\WhyChooseUsController;
-use App\Http\Controllers\backend\ProjectController;
 use App\Http\Controllers\backend\FaqController;
+use App\Http\Controllers\backend\HomeBannerController;
+use App\Http\Controllers\backend\HospitalSpecialisationController;
+use App\Http\Controllers\backend\PremiumStatController;
+use App\Http\Controllers\backend\ProjectController;
+use App\Http\Controllers\backend\ServiceSubcategoryController;
+use App\Http\Controllers\backend\SpecialisationSubcategoryController;
+use App\Http\Controllers\backend\WhyChooseUsController;
+use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
-
-
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', function () {
@@ -32,27 +33,30 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('hospital-specialisations', HospitalSpecialisationController::class)->except('show');
         Route::resource('projects', ProjectController::class)->except('show');
         Route::resource('faqs', FaqController::class)->except('show');
-        Route::resource('compliance-standards', ComplianceStandardController::class)->except('show');
-        
+        Route::resource('categories', CategoryController::class)->except('show');
+        Route::resource('service-subcategories', ServiceSubcategoryController::class)->except('show');
+        Route::resource('specialisation-subcategories', SpecialisationSubcategoryController::class)->except('show');
+        // Route::resource('compliance-standards', ComplianceStandardController::class)->except('show');
+
         Route::get('why-choose-us', [WhyChooseUsController::class, 'index'])->name('why-choose-us.index');
         Route::get('why-choose-us/edit', [WhyChooseUsController::class, 'editSection'])->name('why-choose-us.edit-section');
         Route::put('why-choose-us/update', [WhyChooseUsController::class, 'updateSection'])->name('why-choose-us.update-section');
-        
+
         Route::get('why-choose-us-items/create', [WhyChooseUsController::class, 'createItem'])->name('why-choose-us-items.create');
         Route::post('why-choose-us-items', [WhyChooseUsController::class, 'storeItem'])->name('why-choose-us-items.store');
         Route::get('why-choose-us-items/{item}/edit', [WhyChooseUsController::class, 'editItem'])->name('why-choose-us-items.edit');
         Route::put('why-choose-us-items/{item}', [WhyChooseUsController::class, 'updateItem'])->name('why-choose-us-items.update');
         Route::delete('why-choose-us-items/{item}', [WhyChooseUsController::class, 'destroyItem'])->name('why-choose-us-items.destroy');
 
-        Route::get('standards-page', [StandardsPageController::class, 'index'])->name('standards-page.index');
-        Route::get('standards-page/edit', [StandardsPageController::class, 'editSettings'])->name('standards-page.edit-settings');
-        Route::put('standards-page/update', [StandardsPageController::class, 'updateSettings'])->name('standards-page.update-settings');
+        // Route::get('standards-page', [StandardsPageController::class, 'index'])->name('standards-page.index');
+        // Route::get('standards-page/edit', [StandardsPageController::class, 'editSettings'])->name('standards-page.edit-settings');
+        // Route::put('standards-page/update', [StandardsPageController::class, 'updateSettings'])->name('standards-page.update-settings');
 
-        Route::get('standards-baseline-items/create', [StandardsPageController::class, 'createBaseline'])->name('standards-baseline-items.create');
-        Route::post('standards-baseline-items', [StandardsPageController::class, 'storeBaseline'])->name('standards-baseline-items.store');
-        Route::get('standards-baseline-items/{standardsBaselineItem}/edit', [StandardsPageController::class, 'editBaseline'])->name('standards-baseline-items.edit');
-        Route::put('standards-baseline-items/{standardsBaselineItem}', [StandardsPageController::class, 'updateBaseline'])->name('standards-baseline-items.update');
-        Route::delete('standards-baseline-items/{standardsBaselineItem}', [StandardsPageController::class, 'destroyBaseline'])->name('standards-baseline-items.destroy');
+        // Route::get('standards-baseline-items/create', [StandardsPageController::class, 'createBaseline'])->name('standards-baseline-items.create');
+        // Route::post('standards-baseline-items', [StandardsPageController::class, 'storeBaseline'])->name('standards-baseline-items.store');
+        // Route::get('standards-baseline-items/{standardsBaselineItem}/edit', [StandardsPageController::class, 'editBaseline'])->name('standards-baseline-items.edit');
+        // Route::put('standards-baseline-items/{standardsBaselineItem}', [StandardsPageController::class, 'updateBaseline'])->name('standards-baseline-items.update');
+        // Route::delete('standards-baseline-items/{standardsBaselineItem}', [StandardsPageController::class, 'destroyBaseline'])->name('standards-baseline-items.destroy');
 
         Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
     });
@@ -91,9 +95,7 @@ Route::controller(FrontendController::class)->group(function () {
     });
 });
 
-
 Route::middleware('auth')->group(function () {
     Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
-
 
 });

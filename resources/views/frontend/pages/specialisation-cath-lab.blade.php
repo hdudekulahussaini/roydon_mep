@@ -1,18 +1,162 @@
 @extends('layouts.frontend.app')
 
-@section('title', 'Cath Lab MEP Works | Roydon MEP Contracting')
-@section('meta_description', 'Cath Lab MEP — radiation-shielded service penetrations, dedicated UPS, isolated IT system, precision chilled water cooling for imaging, medical gas, radiation-safe cable routing.')
-@section('meta_keywords', 'Cath Lab MEP, Radiation Shielding MEP, Hospital Cath Lab Contractors, Precision Cooling Cath Lab, Isolated Power Cath Lab')
+@section('title', $specialisation->title . ' | Roydon MEP Contracting')
+@section('meta_description', Str::limit($specialisation->description, 160))
+
+@push('styles')
+<style>
+.spec-hero {
+    position: relative;
+    padding: 180px 0 100px;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    margin-bottom: 60px;
+}
+.spec-hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(to right, rgba(15, 32, 68, 0.95), rgba(14, 155, 155, 0.7));
+}
+.spec-hero .container {
+    position: relative;
+    z-index: 2;
+}
+.spec-hero-subtitle {
+    font-size: 1.1rem;
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    display: inline-block;
+    background: rgba(255,255,255,0.1);
+    padding: 5px 15px;
+    border-radius: 50px;
+}
+.spec-hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 25px;
+    color: #fff;
+}
+.spec-content-area {
+    padding-bottom: 90px;
+}
+.spec-desc {
+    font-size: 1.2rem;
+    color: #4B5F70;
+    line-height: 1.8;
+    margin-bottom: 40px;
+}
+.spec-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+}
+.spec-item {
+    background: #F6FAFA;
+    border-left: 4px solid #0E9B9B;
+    padding: 20px 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    transition: transform 0.3s ease;
+}
+.spec-item:hover {
+    transform: translateY(-5px);
+}
+.spec-item .lb {
+    font-weight: 800;
+    color: #0F2044;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+.spec-item .vl {
+    color: #4B5F70;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+.spec-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+.spec-tag {
+    font-size: 0.9rem;
+    color: #0E9B9B;
+    background: #E0F4F4;
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-weight: 700;
+}
+.spec-seo {
+    padding: 20px;
+    background: #EDF3F3;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #7A909F;
+    font-style: italic;
+}
+.sidebar-cta {
+    background: #0F2044;
+    padding: 40px;
+    border-radius: 12px;
+    color: #fff;
+    text-align: center;
+    position: sticky;
+    top: 100px;
+}
+.sidebar-cta h3 {
+    color: #fff;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+.sidebar-cta p {
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 30px;
+}
+.sidebar-cta .btn-w {
+    background: #0E9B9B;
+    color: #fff;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-weight: 700;
+    display: inline-block;
+    transition: background 0.3s;
+}
+.sidebar-cta .btn-w:hover {
+    background: #0C8888;
+}
+@media (max-width: 767px) {
+    .spec-grid { grid-template-columns: 1fr; }
+    .spec-hero-title { font-size: 2.2rem; }
+}
+</style>
+@endpush
 
 @section('content')
     <main>
         <!-- Hero Section -->
-        <section class="spec-hero" style="background-image: url('{{ asset('assets/img/specialisation/cath_lab_hero.webp') }}');">
+        @php
+            $bgImage = $specialisation->banner_image ? (str_starts_with($specialisation->banner_image, 'assets') ? asset($specialisation->banner_image) : Storage::url($specialisation->banner_image)) : asset('assets/img/specialisation/ot_mep_hero.webp');
+            $contentImage = $specialisation->image ? (str_starts_with($specialisation->image, 'assets') ? asset($specialisation->image) : Storage::url($specialisation->image)) : asset('assets/img/specialisation/ot_mep_hero.webp');
+        @endphp
+        <section class="spec-hero" style="background-image: url('{{ $bgImage }}');">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-10">
-                        <div class="spec-hero-subtitle">Radiation-Shielded · Isolated Power</div>
-                        <h1 class="spec-hero-title">Cath Lab MEP Works</h1>
+                        @if(!empty($specialisation->banner_tags))
+                        <div class="spec-hero-subtitle">
+                            @foreach($specialisation->banner_tags as $tag)
+                                {{ $tag }}{{ !$loop->last ? ' · ' : '' }}
+                            @endforeach
+                        </div>
+                        @endif
+                        <h1 class="spec-hero-title">{{ $specialisation->title }}</h1>
                     </div>
                 </div>
             </div>
@@ -24,46 +168,51 @@
                 <div class="row">
                     <!-- Left Content -->
                     <div class="col-lg-8 pr-lg-5 mb-50">
-                        <img src="{{ asset('assets/img/specialisation/cath_lab_hero.webp') }}" alt="Cath Lab MEP Works" class="img-fluid rounded mb-4 shadow" style="width: 100%; height: 350px; object-fit: cover;">
-                        <p class="spec-desc">Cath lab MEP — radiation-shielded service penetrations, dedicated UPS, isolated IT system, precision chilled water cooling for imaging, medical gas, radiation-safe cable routing through shielded walls.</p>
+                        <img src="{{ $contentImage }}" alt="{{ $specialisation->title }}" class="img-fluid rounded mb-4 shadow" style="width: 100%; height: 350px; object-fit: cover;">
+                        <p class="spec-desc">{{ $specialisation->description }}</p>
                         
+                        @if(!empty($specialisation->features_heading))
                         <div class="spec-grid">
-                            <div class="spec-item">
-                                <div class="lb">Shielding</div>
-                                <div class="vl">Radiation-shielded MEP penetrations coordinated with physicist</div>
-                            </div>
-                            <div class="spec-item">
-                                <div class="lb">Power</div>
-                                <div class="vl">Isolated IT system, UPS, dedicated circuits for imaging</div>
-                            </div>
-                            <div class="spec-item">
-                                <div class="lb">Cooling</div>
-                                <div class="vl">Precision chilled water for C-arm and imaging heat rejection</div>
-                            </div>
-                            <div class="spec-item">
-                                <div class="lb">MGPS</div>
-                                <div class="vl">O₂, vacuum and medical air at procedural position</div>
-                            </div>
+                            @foreach($specialisation->features_heading as $index => $heading)
+                                @if(!empty($heading))
+                                <div class="spec-item">
+                                    <div class="lb">{{ $heading }}</div>
+                                    <div class="vl">{{ $specialisation->features_description[$index] ?? '' }}</div>
+                                </div>
+                                @endif
+                            @endforeach
                         </div>
+                        @endif
                         
+                        @if(!empty($specialisation->tags))
                         <div class="spec-tags">
-                            <span class="spec-tag">Cath Lab MEP</span>
-                            <span class="spec-tag">Radiation Shield</span>
-                            <span class="spec-tag">Isolated Power</span>
-                            <span class="spec-tag">Precision Cooling</span>
+                            @foreach($specialisation->tags as $tag)
+                                @if(!empty($tag))
+                                <span class="spec-tag">{{ $tag }}</span>
+                                @endif
+                            @endforeach
                         </div>
+                        @endif
                         
+                        @if(!empty($specialisation->seo_text))
                         <div class="spec-seo">
-                            SEO: cath lab MEP works · cath lab HVAC contractor · cath lab electrical systems
+                            SEO: {{ $specialisation->seo_text }}
                         </div>
+                        @endif
                     </div>
                     
                     <!-- Right Sidebar -->
                     <div class="col-lg-4">
                         <div class="sidebar-cta">
-                            <h3>Need specialist MEP for your hospital area?</h3>
-                            <p>Tell us the clinical area and we'll outline our approach and timeline.</p>
-                            <a href="{{ route('contact') }}" class="btn-w">Discuss Your Project</a>
+                            <h3>{{ $specialisation->cta_title }}</h3>
+                            <p>{{ $specialisation->cta_description }}</p>
+                            @php
+                                $routeName = 'contact';
+                                if($specialisation->cta_button_url && Route::has($specialisation->cta_button_url)) {
+                                    $routeName = $specialisation->cta_button_url;
+                                }
+                            @endphp
+                            <a href="{{ route($routeName) }}" class="btn-w">Discuss Your Project</a>
                         </div>
                     </div>
                 </div>

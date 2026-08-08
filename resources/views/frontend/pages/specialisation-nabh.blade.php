@@ -1,7 +1,7 @@
 @extends('layouts.frontend.app')
 
-@section('title', 'NABH Compliance MEP | Roydon MEP Contracting')
-@section('meta_description', 'NABH Compliance MEP engineering — air changes, pressure cascades, fire safety, water quality validation, HTM 02-01 MGPS compliance.')
+@section('title', $specialisation->title . ' | Roydon MEP Contracting')
+@section('meta_description', Str::limit($specialisation->description, 160))
 
 @push('styles')
 <style>
@@ -93,6 +93,14 @@
     border-radius: 50px;
     font-weight: 700;
 }
+.spec-seo {
+    padding: 20px;
+    background: #EDF3F3;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #7A909F;
+    font-style: italic;
+}
 .sidebar-cta {
     background: #0F2044;
     padding: 40px;
@@ -133,12 +141,22 @@
 @section('content')
     <main>
         <!-- Hero Section -->
-        <section class="spec-hero" style="background-image: url('{{ asset('assets/img/specialisation/nabh_compliance_hero.webp') }}');">
+        @php
+            $bgImage = $specialisation->banner_image ? (str_starts_with($specialisation->banner_image, 'assets') ? asset($specialisation->banner_image) : Storage::url($specialisation->banner_image)) : asset('assets/img/specialisation/ot_mep_hero.webp');
+            $contentImage = $specialisation->image ? (str_starts_with($specialisation->image, 'assets') ? asset($specialisation->image) : Storage::url($specialisation->image)) : asset('assets/img/specialisation/ot_mep_hero.webp');
+        @endphp
+        <section class="spec-hero" style="background-image: url('{{ $bgImage }}');">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-10">
-                        <div class="spec-hero-subtitle">Audit Ready · 100% NABH · Validation Docs</div>
-                        <h1 class="spec-hero-title">NABH Compliance MEP</h1>
+                        @if(!empty($specialisation->banner_tags))
+                        <div class="spec-hero-subtitle">
+                            @foreach($specialisation->banner_tags as $tag)
+                                {{ $tag }}{{ !$loop->last ? ' · ' : '' }}
+                            @endforeach
+                        </div>
+                        @endif
+                        <h1 class="spec-hero-title">{{ $specialisation->title }}</h1>
                     </div>
                 </div>
             </div>
@@ -150,42 +168,51 @@
                 <div class="row">
                     <!-- Left Content -->
                     <div class="col-lg-8 pr-lg-5 mb-50">
-                        <img src="{{ asset('assets/img/specialisation/nabh_compliance_hero.webp') }}" alt="NABH Compliance MEP Engineering" class="img-fluid rounded mb-4 shadow" style="width: 100%; height: 350px; object-fit: cover;">
-                        <p class="spec-desc">NABH Compliance MEP — Turnkey engineering designed to pass NABH and NABL audits on the first attempt. Full documentation, air balance certificates, lux level mapping, pressure differential logs, MGPS purity tests.</p>
+                        <img src="{{ $contentImage }}" alt="{{ $specialisation->title }}" class="img-fluid rounded mb-4 shadow" style="width: 100%; height: 350px; object-fit: cover;">
+                        <p class="spec-desc">{{ $specialisation->description }}</p>
                         
+                        @if(!empty($specialisation->features_heading))
                         <div class="spec-grid">
-                            <div class="spec-item">
-                                <div class="lb">Air Quality</div>
-                                <div class="vl">ACH, positive pressure & HEPA H14 validation per NABH guidelines</div>
-                            </div>
-                            <div class="spec-item">
-                                <div class="lb">MGPS Purity</div>
-                                <div class="vl">HTM 02-01 gas purity, dewpoint & pressure stability certification</div>
-                            </div>
-                            <div class="spec-item">
-                                <div class="lb">Fire Safety</div>
-                                <div class="vl">NBC Part 4 life safety, smoke dampers & fire NOC support</div>
-                            </div>
-                            <div class="spec-item">
-                                <div class="lb">Documentation</div>
-                                <div class="vl">Complete commissioning dossier & AS-BUILT BIM drawings for audit</div>
-                            </div>
+                            @foreach($specialisation->features_heading as $index => $heading)
+                                @if(!empty($heading))
+                                <div class="spec-item">
+                                    <div class="lb">{{ $heading }}</div>
+                                    <div class="vl">{{ $specialisation->features_description[$index] ?? '' }}</div>
+                                </div>
+                                @endif
+                            @endforeach
                         </div>
+                        @endif
                         
+                        @if(!empty($specialisation->tags))
                         <div class="spec-tags">
-                            <span class="spec-tag">NABH MEP</span>
-                            <span class="spec-tag">Audit Ready</span>
-                            <span class="spec-tag">Air Balance Certs</span>
-                            <span class="spec-tag">Fire NOC Support</span>
+                            @foreach($specialisation->tags as $tag)
+                                @if(!empty($tag))
+                                <span class="spec-tag">{{ $tag }}</span>
+                                @endif
+                            @endforeach
                         </div>
+                        @endif
+                        
+                        @if(!empty($specialisation->seo_text))
+                        <div class="spec-seo">
+                            SEO: {{ $specialisation->seo_text }}
+                        </div>
+                        @endif
                     </div>
                     
                     <!-- Right Sidebar -->
                     <div class="col-lg-4">
                         <div class="sidebar-cta">
-                            <h3>Need specialist MEP for your hospital area?</h3>
-                            <p>Tell us the clinical area and we'll outline our approach and timeline.</p>
-                            <a href="{{ route('contact') }}" class="btn-w">Discuss Your Project</a>
+                            <h3>{{ $specialisation->cta_title }}</h3>
+                            <p>{{ $specialisation->cta_description }}</p>
+                            @php
+                                $routeName = 'contact';
+                                if($specialisation->cta_button_url && Route::has($specialisation->cta_button_url)) {
+                                    $routeName = $specialisation->cta_button_url;
+                                }
+                            @endphp
+                            <a href="{{ route($routeName) }}" class="btn-w">Discuss Your Project</a>
                         </div>
                     </div>
                 </div>
