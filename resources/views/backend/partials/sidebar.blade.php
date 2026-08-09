@@ -65,8 +65,34 @@
             </span>
             <span>Specialisations</span>
         </a>
-        {{-- About Section Dropdown --}}
-        <div class="sidebar-dropdown">
+
+        <div class="sidebar-section-title">
+            ABOUT US
+        </div>
+        <a href="{{ route('admin.story-sections.index') }}"
+            class="sidebar-link
+          {{ request()->routeIs('admin.story-sections.*') ? 'active' : '' }}">
+            <span class="sidebar-icon">
+                <i class="fa-solid fa-book-open"></i>
+            </span>
+            <span>Story Sections</span>
+        </a>
+        <a href="{{ route('admin.company-values.index') }}"
+            class="sidebar-link
+          {{ request()->routeIs('admin.company-values.*') ? 'active' : '' }}">
+            <span class="sidebar-icon">
+                <i class="fa-solid fa-handshake"></i>
+            </span>
+            <span>Company Values</span>
+        </a>
+        <a href="{{ route('admin.metrics.index') }}"
+            class="sidebar-link
+          {{ request()->routeIs('admin.metrics.*') ? 'active' : '' }}">
+            <span class="sidebar-icon">
+                <i class="fa-solid fa-chart-bar"></i>
+            </span>
+            <span>Metrics</span>
+        </a>
 
         <a href="{{ route('admin.projects.index') }}"
             class="sidebar-link
@@ -122,23 +148,56 @@
             <span>Specialisation Subcat.</span>
         </a>
 
-        {{-- <a href="{{ route('admin.compliance-standards.index') }}"
+        <a href="{{ route('admin.standards-page.index') }}"
             class="sidebar-link
-          {{ request()->routeIs('admin.compliance-standards.*') ? 'active' : '' }}">
+          {{ request()->routeIs('admin.standards-page.*') || request()->routeIs('admin.standards-baseline-items.*') || request()->routeIs('admin.compliance-standards.*') ? 'active' : '' }}">
             <span class="sidebar-icon">
                 <i class="fa-solid fa-clipboard-check"></i>
             </span>
-            <span>Compliance Standards</span>
+            <span>Standards & Compliance</span>
         </a>
 
-        <a href="{{ route('admin.standards-page.index') }}"
+
+
+        <div class="sidebar-section-title">
+            PROCESS & STEPS
+        </div>
+        <a href="{{ route('admin.project-processes.index') }}"
             class="sidebar-link
-          {{ request()->routeIs('admin.standards-page.*') || request()->routeIs('admin.standards-baseline-items.*') ? 'active' : '' }}">
+          {{ request()->routeIs('admin.project-processes.*') ? 'active' : '' }}">
             <span class="sidebar-icon">
-                <i class="fa-solid fa-gears"></i>
+                <i class="fa-solid fa-arrows-spin"></i>
             </span>
-            <span>Standards Page Settings</span>
-        </a> --}}
+            <span>Project Processes</span>
+        </a>
+        <a href="{{ route('admin.works.index') }}"
+            class="sidebar-link
+          {{ request()->routeIs('admin.works.*') ? 'active' : '' }}">
+            <span class="sidebar-icon">
+                <i class="fa-solid fa-briefcase"></i>
+            </span>
+            <span>Works / Steps</span>
+        </a>
+
+        <div class="sidebar-section-title">
+            OFFICES & COVERAGE
+        </div>
+        <a href="{{ route('admin.office-locations.index') }}"
+            class="sidebar-link
+          {{ request()->routeIs('admin.office-locations.*') ? 'active' : '' }}">
+            <span class="sidebar-icon">
+                <i class="fa-solid fa-map-location-dot"></i>
+            </span>
+            <span>Office Locations</span>
+        </a>
+        <a href="{{ route('admin.coverages.index') }}"
+            class="sidebar-link
+          {{ request()->routeIs('admin.coverages.*') ? 'active' : '' }}">
+            <span class="sidebar-icon">
+                <i class="fa-solid fa-globe"></i>
+            </span>
+            <span>Coverages</span>
+        </a>
 
     </nav>
 

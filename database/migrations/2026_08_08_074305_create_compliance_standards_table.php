@@ -13,8 +13,12 @@ return new class extends Migration
     {
         Schema::create('compliance_standards', function (Blueprint $table) {
             $table->id();
+            $table->string('category')->nullable();
+            $table->string('icon')->nullable();
+            $table->string('abbr')->nullable();
             $table->string('title')->nullable();
             $table->text('description')->nullable();
+            $table->string('applied_to')->nullable();
             $table->timestamps();
         });
     }

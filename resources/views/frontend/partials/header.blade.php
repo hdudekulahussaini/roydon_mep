@@ -24,26 +24,17 @@
                                         <li class="has-sub">
                                             <a href="#">Services</a>
                                             <ul>
-                                                <li><a href="{{ route('services.hvac') }}">Hospital HVAC Systems</a></li>
-                                                <li><a href="{{ route('services.medical-gas') }}">Medical Gas Pipeline (MGPS)</a></li>
-                                                <li><a href="{{ route('services.electrical') }}">Hospital Electrical Systems</a></li>
-                                                <li><a href="{{ route('services.plumbing') }}">Plumbing & Sanitation</a></li>
-                                                <li><a href="{{ route('services.fire-fighting') }}">Fire Fighting & Life Safety</a></li>
-                                                <li><a href="{{ route('services.turnkey') }}">Turnkey Hospital MEP</a></li>
-                                                <li><a href="{{ route('services.civil-works') }}">Civil Works</a></li>
+                                                @foreach($headerServices as $serv)
+                                                    <li><a href="{{ route('services.show', $serv->slug) }}">{{ $serv->title }}</a></li>
+                                                @endforeach
                                             </ul>
                                         </li>
                                         <li class="has-sub">
                                             <a href="#">Specialisations</a>
                                             <ul>
-                                                <li><a href="{{ route('specialisations.ot-mep') }}">Operation Theatre (OT) MEP</a></li>
-                                                <li><a href="{{ route('specialisations.icu-mep') }}">ICU, NICU & CCU MEP</a></li>
-                                                <li><a href="{{ route('specialisations.cath-lab') }}">Cath Lab MEP</a></li>
-                                                <li><a href="{{ route('specialisations.clean-room') }}">Clean Room MEP</a></li>
-                                                <li><a href="{{ route('specialisations.diagnostic') }}">Diagnostic Centre MEP</a></li>
-                                                <li><a href="{{ route('specialisations.cssd') }}">CSSD & Sterile Services</a></li>
-                                                <li><a href="{{ route('specialisations.modular-ot') }}">Modular & Prefabricated OT</a></li>
-                                                <li><a href="{{ route('specialisations.nabh') }}">NABH Compliance</a></li>
+                                                @foreach($headerSpecialisations as $spec)
+                                                    <li><a href="{{ route('specialisations.show', $spec->slug) }}">{{ $spec->title }}</a></li>
+                                                @endforeach
                                             </ul>
                                         </li>
                                         <li><a href="{{ route('projects') }}">Projects</a></li>

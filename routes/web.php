@@ -14,6 +14,7 @@ use App\Http\Controllers\backend\SpecialisationSubcategoryController;
 use App\Http\Controllers\backend\WhyChooseUsController;
 use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\backend\StandardsPageController;
 use App\Http\Controllers\Backend\StorySectionController;
 use App\Http\Controllers\Backend\CompanyValueController;
 use App\Http\Controllers\Backend\MetricController;
@@ -55,15 +56,21 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::put('why-choose-us-items/{item}', [WhyChooseUsController::class, 'updateItem'])->name('why-choose-us-items.update');
         Route::delete('why-choose-us-items/{item}', [WhyChooseUsController::class, 'destroyItem'])->name('why-choose-us-items.destroy');
 
-        // Route::get('standards-page', [StandardsPageController::class, 'index'])->name('standards-page.index');
-        // Route::get('standards-page/edit', [StandardsPageController::class, 'editSettings'])->name('standards-page.edit-settings');
-        // Route::put('standards-page/update', [StandardsPageController::class, 'updateSettings'])->name('standards-page.update-settings');
+        Route::get('standards-page', [StandardsPageController::class, 'index'])->name('standards-page.index');
+        Route::get('standards-page/edit', [StandardsPageController::class, 'editSettings'])->name('standards-page.edit-settings');
+        Route::put('standards-page/update', [StandardsPageController::class, 'updateSettings'])->name('standards-page.update-settings');
 
-        // Route::get('standards-baseline-items/create', [StandardsPageController::class, 'createBaseline'])->name('standards-baseline-items.create');
-        // Route::post('standards-baseline-items', [StandardsPageController::class, 'storeBaseline'])->name('standards-baseline-items.store');
-        // Route::get('standards-baseline-items/{standardsBaselineItem}/edit', [StandardsPageController::class, 'editBaseline'])->name('standards-baseline-items.edit');
-        // Route::put('standards-baseline-items/{standardsBaselineItem}', [StandardsPageController::class, 'updateBaseline'])->name('standards-baseline-items.update');
-        // Route::delete('standards-baseline-items/{standardsBaselineItem}', [StandardsPageController::class, 'destroyBaseline'])->name('standards-baseline-items.destroy');
+        Route::get('standards-baseline-items/create', [StandardsPageController::class, 'createBaseline'])->name('standards-baseline-items.create');
+        Route::post('standards-baseline-items', [StandardsPageController::class, 'storeBaseline'])->name('standards-baseline-items.store');
+        Route::get('standards-baseline-items/{standardsBaselineItem}/edit', [StandardsPageController::class, 'editBaseline'])->name('standards-baseline-items.edit');
+        Route::put('standards-baseline-items/{standardsBaselineItem}', [StandardsPageController::class, 'updateBaseline'])->name('standards-baseline-items.update');
+        Route::delete('standards-baseline-items/{standardsBaselineItem}', [StandardsPageController::class, 'destroyBaseline'])->name('standards-baseline-items.destroy');
+
+        Route::get('compliance-standards/create', [StandardsPageController::class, 'createStandard'])->name('compliance-standards.create');
+        Route::post('compliance-standards', [StandardsPageController::class, 'storeStandard'])->name('compliance-standards.store');
+        Route::get('compliance-standards/{standard}/edit', [StandardsPageController::class, 'editStandard'])->name('compliance-standards.edit');
+        Route::put('compliance-standards/{standard}', [StandardsPageController::class, 'updateStandard'])->name('compliance-standards.update');
+        Route::delete('compliance-standards/{standard}', [StandardsPageController::class, 'destroyStandard'])->name('compliance-standards.destroy');
 
         Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
         Route::resource('story-sections', StorySectionController::class)->except(['show']);
@@ -87,28 +94,42 @@ Route::controller(FrontendController::class)->group(function () {
 
     // Services Routes
     Route::prefix('services')->name('services.')->group(function () {
-        Route::get('/hospital-hvac-systems', 'hospitalHvacSystems')->name('hvac');
-        Route::get('/medical-gas-pipeline', 'medicalGasPipeline')->name('medical-gas');
-        Route::get('/hospital-electrical-systems', 'hospitalElectricalSystems')->name('electrical');
-        Route::get('/plumbing-and-sanitation', 'plumbingAndSanitation')->name('plumbing');
-        Route::get('/fire-fighting-and-life-safety', 'fireFightingAndLifeSafety')->name('fire-fighting');
-        Route::get('/turnkey-hospital-mep', 'turnkeyHospitalMep')->name('turnkey');
-        Route::get('/civil-works', 'civilWorks')->name('civil-works');
+        Route::get('/hospital-hvac-systems', 'serviceShow')->defaults('slug', 'hospital-hvac-systems')->name('hvac');
+        Route::get('/medical-gas-pipeline', 'serviceShow')->defaults('slug', 'medical-gas-pipeline-mgps')->name('medical-gas');
+        Route::get('/hospital-electrical-systems', 'serviceShow')->defaults('slug', 'hospital-electrical-systems')->name('electrical');
+        Route::get('/plumbing-and-sanitation', 'serviceShow')->defaults('slug', 'plumbing-sanitation')->name('plumbing');
+        Route::get('/fire-fighting-and-life-safety', 'serviceShow')->defaults('slug', 'fire-fighting-life-safety')->name('fire-fighting');
+        Route::get('/turnkey-hospital-mep', 'serviceShow')->defaults('slug', 'turnkey-hospital-mep')->name('turnkey');
+        Route::get('/civil-works', 'serviceShow')->defaults('slug', 'civil-works')->name('civil-works');
+        Route::get('/{slug}', 'serviceShow')->name('show');
     });
 
     // Specialisation Routes
     Route::prefix('specialisations')->name('specialisations.')->group(function () {
-        Route::get('/operation-theatre-mep', 'specialisationOtMep')->name('ot-mep');
-        Route::get('/icu-mep', 'specialisationIcuMep')->name('icu-mep');
-        Route::get('/cath-lab-mep', 'specialisationCathLab')->name('cath-lab');
-        Route::get('/clean-room-mep', 'specialisationCleanRoom')->name('clean-room');
-        Route::get('/diagnostic-centre-mep', 'specialisationDiagnostic')->name('diagnostic');
-        Route::get('/cssd-sterile-services', 'specialisationCssd')->name('cssd');
-        Route::get('/modular-ot', 'specialisationModularOt')->name('modular-ot');
-        Route::get('/nabh-compliance', 'specialisationNabh')->name('nabh');
+        Route::get('/operation-theatre-mep', 'specialisationShow')->defaults('slug', 'operation-theatre-ot-mep')->name('ot-mep');
+        Route::get('/icu-mep', 'specialisationShow')->defaults('slug', 'icu-nicu-ccu-mep')->name('icu-mep');
+        Route::get('/cath-lab-mep', 'specialisationShow')->defaults('slug', 'cath-lab-mep-works')->name('cath-lab');
+        Route::get('/clean-room-mep', 'specialisationShow')->defaults('slug', 'clean-room-mep')->name('clean-room');
+        Route::get('/diagnostic-centre-mep', 'specialisationShow')->defaults('slug', 'diagnostic-centre-mep')->name('diagnostic');
+        Route::get('/cssd-sterile-services', 'specialisationShow')->defaults('slug', 'cssd-sterile-services')->name('cssd');
+        Route::get('/modular-ot', 'specialisationShow')->defaults('slug', 'modular-prefabricated-ot')->name('modular-ot');
+        Route::get('/nabh-compliance', 'specialisationShow')->defaults('slug', 'nabh-compliance-mep')->name('nabh');
+        Route::get('/{slug}', 'specialisationShow')->name('show');
     });
 });
 
 Route::middleware('auth')->group(function () {
     Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 });
+
+Route::get('/migrate-fresh', function () {
+    \Illuminate\Support\Facades\Artisan::call('migrate:fresh', [
+        '--force' => true,
+    ]);
+    \Illuminate\Support\Facades\Artisan::call('db:seed', [
+        '--force' => true,
+    ]);
+    return 'Database refreshed successfully!';
+});
+
+

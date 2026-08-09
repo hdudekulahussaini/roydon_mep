@@ -1,16 +1,14 @@
 @extends('layouts.frontend.app')
 
-
 @section('content')
     <!-- main-area -->
     <main>
         <!-- breadcrumb-area -->
         <section class="pl-50 pr-50 ">
-            @if($service->banner_image)
-            <div class="breadcrumb-area d-flex justify-content-center align-items-center" style="background-image: linear-gradient(rgba(15, 32, 68, 0.7), rgba(15, 32, 68, 0.7)), url({{ Storage::url($service->banner_image) }}); background-size: cover; background-position: center; border-radius: 15px; margin-top: 20px;">
-            @else
-            <div class="breadcrumb-area d-flex justify-content-center align-items-center" style="background-image: linear-gradient(rgba(15, 32, 68, 0.7), rgba(15, 32, 68, 0.7)); background-size: cover; background-position: center; border-radius: 15px; margin-top: 20px;">
-            @endif
+            @php
+                $bgImage = $service->banner_image ? ((str_starts_with($service->banner_image, 'assets/') || str_starts_with($service->banner_image, 'frontend/')) ? asset($service->banner_image) : Storage::url($service->banner_image)) : '';
+            @endphp
+            <div class="breadcrumb-area d-flex justify-content-center align-items-center" @if($bgImage) style="background-image: linear-gradient(rgba(15, 32, 68, 0.7), rgba(15, 32, 68, 0.7)), url({{ $bgImage }}); background-size: cover; background-position: center; border-radius: 15px; margin-top: 20px;" @else style="background-image: linear-gradient(rgba(15, 32, 68, 0.7), rgba(15, 32, 68, 0.7)); background-size: cover; background-position: center; border-radius: 15px; margin-top: 20px;" @endif>
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-xl-12 col-lg-12">
@@ -34,7 +32,7 @@
             </div>
         </section>
         <!-- breadcrumb-area-end -->
-        
+
         <!-- service-details-area -->
         <div class="about-area5 about-p p-relative">
             <div class="container pt-100 pb-90">
@@ -48,13 +46,16 @@
                                     <h2 class="widget-title" style="color: #0F2044; border-bottom: 2px solid #0E9B9B; padding-bottom: 15px; margin-bottom: 20px; font-size: 24px;"> Our Services </h2>
                                     <!-- Services Category -->
                                     <ul class="services-categories" style="list-style: none; padding: 0; margin: 0;">
-                                        <li style="margin-bottom: 12px;"><a href="{{ route('services.hvac') }}" style="color: #4B5F70; font-weight: 500; display: block; padding: 10px 15px; transition: all 0.3s;">Hospital HVAC Systems </a></li>
-                                        <li style="margin-bottom: 12px;"><a href="{{ route('services.medical-gas') }}" style="color: #4B5F70; font-weight: 500; display: block; padding: 10px 15px; transition: all 0.3s;">Medical Gas Pipeline (MGPS) </a></li>
-                                        <li class="active" style="margin-bottom: 12px;"><a href="{{ route('services.electrical') }}" style="color: #0E9B9B; font-weight: 700; display: block; padding: 10px 15px; background: #fff; border-radius: 6px; border-left: 4px solid #0E9B9B; box-shadow: 0 2px 10px rgba(0,0,0,0.03);">Hospital Electrical Systems </a></li>
-                                        <li style="margin-bottom: 12px;"><a href="{{ route('services.plumbing') }}" style="color: #4B5F70; font-weight: 500; display: block; padding: 10px 15px; transition: all 0.3s;">Plumbing & Sanitation </a></li>
-                                        <li style="margin-bottom: 12px;"><a href="{{ route('services.fire-fighting') }}" style="color: #4B5F70; font-weight: 500; display: block; padding: 10px 15px; transition: all 0.3s;">Fire Fighting & Life Safety </a></li>
-                                        <li style="margin-bottom: 12px;"><a href="{{ route('services.turnkey') }}" style="color: #4B5F70; font-weight: 500; display: block; padding: 10px 15px; transition: all 0.3s;">Turnkey Hospital MEP </a></li>
-                                        <li style="margin-bottom: 12px;"><a href="{{ route('services.civil-works') }}" style="color: #4B5F70; font-weight: 500; display: block; padding: 10px 15px; transition: all 0.3s;">Civil Works </a></li>
+                                        @foreach($headerServices as $serv)
+                                            @php
+                                                $isActive = ($serv->id === $service->id);
+                                            @endphp
+                                            @if($isActive)
+                                                <li class="active" style="margin-bottom: 12px;"><a href="{{ route('services.show', $serv->slug) }}" style="color: #0E9B9B; font-weight: 700; display: block; padding: 10px 15px; background: #fff; border-radius: 6px; border-left: 4px solid #0E9B9B; box-shadow: 0 2px 10px rgba(0,0,0,0.03);">{{ $serv->title }}</a></li>
+                                            @else
+                                                <li style="margin-bottom: 12px;"><a href="{{ route('services.show', $serv->slug) }}" style="color: #4B5F70; font-weight: 500; display: block; padding: 10px 15px; transition: all 0.3s;">{{ $serv->title }}</a></li>
+                                            @endif
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
@@ -63,7 +64,7 @@
                                 <div style="font-size: 40px; margin-bottom: 15px; color: rgba(255,255,255,0.8);"><i class="fa-light fa-headset"></i></div>
                                 <h3 class="h3-title" style="color: #fff; font-size: 24px; margin-bottom: 15px; font-weight: 700;">{!! $service->cta_title !!}</h3>
                                 <p style="color: #E0F4F4; margin-bottom: 25px; font-size: 15px; line-height: 1.6;">{{ $service->cta_description }}</p>
-                                <a href="tel:+917330756745" title="Call now" style="display: inline-block; background: #fff; color: #0E9B9B; padding: 12px 25px; border-radius: 50px; font-weight: 700; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.1);"> +91-7330756745</a>
+                                <a href="tel:{{ str_replace(' ', '', $service->cta_phone ?? '+917330756745') }}" title="Call now" style="display: inline-block; background: #fff; color: #0E9B9B; padding: 12px 25px; border-radius: 50px; font-weight: 700; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">{{ $service->cta_phone ?? '+91-7330756745' }}</a>
                             </div>
                         </aside>
                     </div>
@@ -83,15 +84,21 @@
                                 <!-- Two Column -->
                                 <div class="two-column" style="margin-bottom: 45px;">
                                     <div class="row">
+                                        @php
+                                            $img1 = (str_starts_with($service->images[0], 'assets/') || str_starts_with($service->images[0], 'frontend/')) ? asset($service->images[0]) : Storage::url($service->images[0]);
+                                        @endphp
                                         <div class="image-column col-xl-6 col-lg-12 col-md-12 mb-30">
                                             <figure class="image img-custom-anim-left wow fadeInLeft" data-delay=".1s" style="border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.08); margin: 0;">
-                                                <img src="{{ Storage::url($service->images[0]) }}" alt="{{ $service->title }}" style="width: 100%; height: 280px; object-fit: cover; transition: transform 0.5s;">
+                                                <img src="{{ $img1 }}" alt="{{ $service->title }}" style="width: 100%; height: 280px; object-fit: cover; transition: transform 0.5s;">
                                             </figure>
                                         </div>
                                         @if(isset($service->images[1]))
+                                        @php
+                                            $img2 = (str_starts_with($service->images[1], 'assets/') || str_starts_with($service->images[1], 'frontend/')) ? asset($service->images[1]) : Storage::url($service->images[1]);
+                                        @endphp
                                         <div class="text-column col-xl-6 col-lg-12 col-md-12 mb-30">
                                             <figure class="image img-custom-anim-right wow fadeInRight" data-delay=".2s" style="border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.08); margin: 0;">
-                                                <img src="{{ Storage::url($service->images[1]) }}" alt="{{ $service->title }}" style="width: 100%; height: 280px; object-fit: cover; transition: transform 0.5s;">
+                                                <img src="{{ $img2 }}" alt="{{ $service->title }}" style="width: 100%; height: 280px; object-fit: cover; transition: transform 0.5s;">
                                             </figure>
                                         </div>
                                         @endif
@@ -101,7 +108,7 @@
 
                                 <h3 style="color: #0F2044; font-size: 28px; font-weight: 700; margin-bottom: 25px;">Key Offerings in {{ $service->title }}</h3>
                                 <p style="color: #4B5F70; font-size: 16px; line-height: 1.8; margin-bottom: 30px;">
-                                    Our hospital electrical engineering capabilities provide reliable, safe, and continuous power distribution across all clinical wards.
+                                    Our healthcare execution capabilities are vast and uncompromising. We handle complex planning, installations, and validation to guarantee full operational success.
                                 </p>
                                 
                                 <div class="row mb-40">
@@ -109,9 +116,9 @@
                                         @foreach($service->offerings_title as $index => $offeringTitle)
                                             <div class="col-lg-6 col-md-6">
                                                 <div style="background: #fff; border: 1px solid #D5E5E5; padding: 25px; border-radius: 10px; margin-bottom: 20px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.03); height: 100%;">
-                                                    <div style="width: 50px; height: 50px; background: #E0F4F4; color: #0E9B9B; font-size: 24px; display: flex; align-items: center; justify-content: center; border-radius: 8px; margin-bottom: 15px;"><i class="{{ $service->offerings_icon[$index] }}"></i></div>
+                                                    <div style="width: 50px; height: 50px; background: #E0F4F4; color: #0E9B9B; font-size: 24px; display: flex; align-items: center; justify-content: center; border-radius: 8px; margin-bottom: 15px;"><i class="{{ $service->offerings_icon[$index] ?? 'fa-light fa-circle-check' }}"></i></div>
                                                     <h4 style="color: #0F2044; font-size: 18px; font-weight: 700; margin-bottom: 10px;">{{ $offeringTitle }}</h4>
-                                                    <p style="color: #4B5F70; font-size: 14px; line-height: 1.7; margin: 0;">{{ $service->offerings_description[$index] }}</p>
+                                                    <p style="color: #4B5F70; font-size: 14px; line-height: 1.7; margin: 0;">{{ $service->offerings_description[$index] ?? '' }}</p>
                                                 </div>
                                             </div>
                                         @endforeach
