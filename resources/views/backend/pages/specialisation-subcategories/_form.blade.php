@@ -57,7 +57,7 @@
     </div>
 
     <div class="col-md-6">
-        <label class="form-label fw-semibold">Banner Tags (e.g. MODULAR OT)</label>
+        <label class="form-label fw-semibold">Banner Tags (e.g. MODULAR OT) <span class="text-danger">*</span></label>
         <div id="banner-tags-container">
             @php
                 $bannerTags = old('banner_tags', isset($specialisationSubcategory) ? $specialisationSubcategory->banner_tags : []);
@@ -65,7 +65,7 @@
             @endphp
             @foreach($bannerTags as $index => $bTag)
             <div class="input-group mb-2 banner-tag-row">
-                <input type="text" name="banner_tags[]" value="{{ $bTag }}" class="form-control" placeholder="Tag Name">
+                <input type="text" name="banner_tags[]" value="{{ $bTag }}" class="form-control" placeholder="Tag Name" required>
                 <button class="btn btn-outline-danger remove-banner-tag-btn" type="button"><i class="fa-solid fa-times"></i></button>
             </div>
             @endforeach
@@ -94,18 +94,18 @@
     </div>
 
     <div class="col-md-4">
-        <label for="cta_title" class="form-label fw-semibold">CTA Title</label>
-        <input type="text" id="cta_title" name="cta_title" value="{{ old('cta_title', $specialisationSubcategory?->cta_title ?? '') }}" class="form-control">
+        <label for="cta_title" class="form-label fw-semibold">CTA Title <span class="text-danger">*</span></label>
+        <input type="text" id="cta_title" name="cta_title" value="{{ old('cta_title', $specialisationSubcategory?->cta_title ?? '') }}" class="form-control" required>
     </div>
 
     <div class="col-md-8">
-        <label for="cta_description" class="form-label fw-semibold">CTA Description</label>
-        <input type="text" id="cta_description" name="cta_description" value="{{ old('cta_description', $specialisationSubcategory?->cta_description ?? '') }}" class="form-control">
+        <label for="cta_description" class="form-label fw-semibold">CTA Description <span class="text-danger">*</span></label>
+        <input type="text" id="cta_description" name="cta_description" value="{{ old('cta_description', $specialisationSubcategory?->cta_description ?? '') }}" class="form-control" required>
     </div>
 
     <div class="col-12">
-        <label for="cta_button_url" class="form-label fw-semibold">CTA Button URL</label>
-        <input type="text" id="cta_button_url" name="cta_button_url" value="{{ old('cta_button_url', $specialisationSubcategory?->cta_button_url ?? '') }}" class="form-control" placeholder="e.g. /contact-us">
+        <label for="cta_button_url" class="form-label fw-semibold">CTA Button URL <span class="text-danger">*</span></label>
+        <input type="text" id="cta_button_url" name="cta_button_url" value="{{ old('cta_button_url', $specialisationSubcategory?->cta_button_url ?? '') }}" class="form-control" placeholder="e.g. /contact-us" required>
     </div>
 
     <hr class="my-4">
@@ -137,12 +137,12 @@
                     
                     <div class="row g-3">
                         <div class="col-md-4">
-                            <label class="form-label small fw-semibold">Heading</label>
-                            <input type="text" name="features_heading[]" value="{{ $fHeading }}" class="form-control form-control-sm" placeholder="e.g. HVAC">
+                            <label class="form-label small fw-semibold">Heading <span class="text-danger">*</span></label>
+                            <input type="text" name="features_heading[]" value="{{ $fHeading }}" class="form-control form-control-sm" placeholder="e.g. HVAC" required>
                         </div>
                         <div class="col-md-8">
-                            <label class="form-label small fw-semibold">Description</label>
-                            <input type="text" name="features_description[]" value="{{ $featuresDesc[$index] ?? '' }}" class="form-control form-control-sm" placeholder="Laminar airflow, +2.5 Pa...">
+                            <label class="form-label small fw-semibold">Description <span class="text-danger">*</span></label>
+                            <input type="text" name="features_description[]" value="{{ $featuresDesc[$index] ?? '' }}" class="form-control form-control-sm" placeholder="Laminar airflow, +2.5 Pa..." required>
                         </div>
                     </div>
                 </div>
@@ -162,7 +162,7 @@
             @endphp
             @foreach($bottomTags as $index => $tag)
             <div class="input-group mb-2 tag-row">
-                <input type="text" name="tags[]" value="{{ $tag }}" class="form-control" placeholder="e.g. Laminar Airflow">
+                <input type="text" name="tags[]" value="{{ $tag }}" class="form-control" placeholder="e.g. Laminar Airflow" required>
                 <button class="btn btn-outline-danger remove-tag-btn" type="button"><i class="fa-solid fa-times"></i></button>
             </div>
             @endforeach
@@ -175,8 +175,8 @@
     {{-- SEO Section --}}
     <h5 class="mb-3">SEO Text</h5>
     <div class="col-12">
-        <label for="seo_text" class="form-label fw-semibold">Footer SEO Text</label>
-        <textarea id="seo_text" name="seo_text" rows="2" class="form-control" placeholder="SEO: OT MEP contractor...">{{ old('seo_text', $specialisationSubcategory?->seo_text ?? '') }}</textarea>
+        <label for="seo_text" class="form-label fw-semibold">Footer SEO Text <span class="text-danger">*</span></label>
+        <textarea id="seo_text" name="seo_text" rows="2" class="form-control" placeholder="SEO: OT MEP contractor..." required>{{ old('seo_text', $specialisationSubcategory?->seo_text ?? '') }}</textarea>
     </div>
 
 </div>

@@ -11,13 +11,13 @@
                                 alt="Roydon MEP Contracting - Hospital MEP Contractors South India"
                                 style="max-height: 85px; margin-left: -10px;">
                         </div>
-                        <p class="pr-90">End-to-end hospital MEP contracting. OT HVAC, MGPS, Electrical, Plumbing,
-                            Fire Fighting. NABH compliant. Hyderabad.</p>
+                        <p class="pr-90">{{ $footerData?->description }}</p>
                         <div class="footer-social mt-30">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-                            <a href="#"><i class="fab fa-behance"></i></a>
+                            @if($footerData && is_array($footerData->social_links))
+                                @foreach($footerData->social_links as $link)
+                                    <a href="{{ $link['url'] ?? '#' }}"><i class="{{ $link['icon'] ?? 'fas fa-link' }}"></i></a>
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -62,16 +62,16 @@
                             <ul>
                                 <li>
                                     <i class="icon fal fa-phone"></i>
-                                    <span><a href="tel:+917330756745">+91-7330756745</a></span>
+                                    <span><a href="tel:{{ optional($contactSetting)->phone }}">{{ optional($contactSetting)->phone }}</a></span>
                                 </li>
                                 <li><i class="icon fal fa-envelope"></i>
                                     <span>
-                                        <a href="mailto:info@roydonmep.com">info@roydonmep.com</a>
+                                        <a href="mailto:{{ optional($contactSetting)->email }}">{{ optional($contactSetting)->email }}</a>
                                     </span>
                                 </li>
                                 <li>
                                     <i class="icon fal fa-map-marker-check"></i>
-                                    <span>N Square, Hitec City, Plot 34B,<br> Hyderabad, Telangana, 500081</span>
+                                    <span>{{ optional($contactSetting)->address }}</span>
                                 </li>
                             </ul>
                         </div>
