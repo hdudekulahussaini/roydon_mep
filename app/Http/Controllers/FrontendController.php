@@ -2,25 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\HomeBanner;
-use App\Models\PremiumStat;
+use App\Models\Baseline;
 use App\Models\CivilService;
-use App\Models\HospitalSpecialisation;
-use App\Models\WhyChooseUs;
-use App\Models\WhyChooseUsItem;
-use App\Models\Project;
-use App\Models\Faq;
-use Illuminate\Contracts\View\View;
-use App\Models\StorySection;
 use App\Models\CompanyValue;
+use App\Models\ContactSetting;
+use App\Models\Coverage;
+use App\Models\Faq;
+use App\Models\HomeBanner;
+use App\Models\HospitalSpecialisation;
 use App\Models\Metric;
 use App\Models\OfficeLocation;
-use App\Models\Coverage;
+use App\Models\PremiumStat;
+use App\Models\Project;
 use App\Models\ProjectProcess;
-use App\Models\Work;
-use App\Models\StandardSection;
+use App\Models\ServiceSubcategory;
+use App\Models\SpecialisationSubcategory;
 use App\Models\StandardBanner;
-use App\Models\Baseline;
+use App\Models\StandardSection;
+use App\Models\StorySection;
+use App\Models\WhyChooseUs;
+use App\Models\WhyChooseUsItem;
+use App\Models\Work;
+use Illuminate\Contracts\View\View;
 
 class FrontendController extends Controller
 {
@@ -34,6 +37,7 @@ class FrontendController extends Controller
         $whyChooseUsItems = WhyChooseUsItem::all();
         $projects = Project::latest()->get();
         $faqs = Faq::all();
+
         return view('frontend.pages.index', compact('banner', 'stats', 'civilServices', 'specialisations', 'whyChooseUs', 'whyChooseUsItems', 'projects', 'faqs'));
     }
 
@@ -48,12 +52,13 @@ class FrontendController extends Controller
         $metrics = Metric::where('status', true)
             ->latest()
             ->get();
+
         return view('frontend.pages.about', compact('storySection', 'companyValues', 'metrics'));
     }
 
     public function contact(): View
     {
-        $contactSetting = \App\Models\ContactSetting::first();
+        $contactSetting = ContactSetting::first();
 
         return view('frontend.pages.contact', compact('contactSetting'));
     }
@@ -61,6 +66,7 @@ class FrontendController extends Controller
     public function projects(): View
     {
         $projects = Project::latest()->get();
+
         return view('frontend.pages.projects', compact('projects'));
     }
 
@@ -72,7 +78,7 @@ class FrontendController extends Controller
                     ->where('status', true)
                     ->orderBy('sort_order')
                     ->orderBy('id');
-            }
+            },
         ])
             ->where('status', true)
             ->orderBy('sort_order')
@@ -82,10 +88,10 @@ class FrontendController extends Controller
         $banner = StandardBanner::where('status', true)
             ->orderBy('sort_order')
             ->first();
-        
+
         $baselines = Baseline::where('status', true)
-        ->orderBy('sort_order')
-        ->get();
+            ->orderBy('sort_order')
+            ->get();
 
         return view(
             'frontend.pages.standards',
@@ -102,6 +108,7 @@ class FrontendController extends Controller
             ->orderBy('sort_order')
             ->orderBy('id')
             ->get();
+
         return view('frontend.pages.process', compact('processes', 'works'));
     }
 
@@ -115,6 +122,7 @@ class FrontendController extends Controller
             ->orderBy('sort_order')
             ->latest('id')
             ->get();
+
         return view(
             'frontend.pages.offices',
             compact('officeLocations', 'coverages')
@@ -124,14 +132,16 @@ class FrontendController extends Controller
     // Services
     public function serviceShow(string $slug): View
     {
-        $service = \App\Models\ServiceSubcategory::where('slug', $slug)->firstOrFail();
+        $service = ServiceSubcategory::where('slug', $slug)->firstOrFail();
+
         return view('frontend.pages.service', compact('service'));
     }
 
     // Specialisations
     public function specialisationShow(string $slug): View
     {
-        $specialisation = \App\Models\SpecialisationSubcategory::where('slug', $slug)->firstOrFail();
+        $specialisation = SpecialisationSubcategory::where('slug', $slug)->firstOrFail();
+
         return view('frontend.pages.specialisation', compact('specialisation'));
     }
 }

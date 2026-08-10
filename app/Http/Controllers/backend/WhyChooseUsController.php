@@ -28,7 +28,8 @@ class WhyChooseUsController extends Controller
      */
     public function editSection(): View
     {
-        $section = WhyChooseUs::first() ?? new WhyChooseUs();
+        $section = WhyChooseUs::first() ?? new WhyChooseUs;
+
         return view('backend.pages.why-choose-us.edit_section', compact('section'));
     }
 
@@ -48,8 +49,8 @@ class WhyChooseUsController extends Controller
                 $isUpdate ? 'nullable' : 'required',
                 'image',
                 'mimes:jpg,jpeg,png,webp',
-                'max:4096'
-            ]
+                'max:4096',
+            ],
         ]);
 
         if ($request->hasFile('image')) {
@@ -89,7 +90,7 @@ class WhyChooseUsController extends Controller
     {
         $validated = $request->validate([
             'title' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string']
+            'description' => ['required', 'string'],
         ]);
 
         WhyChooseUsItem::create($validated);
@@ -105,6 +106,7 @@ class WhyChooseUsController extends Controller
     public function editItem($id): View
     {
         $item = WhyChooseUsItem::findOrFail($id);
+
         return view('backend.pages.why-choose-us.edit_item', compact('item'));
     }
 
@@ -117,7 +119,7 @@ class WhyChooseUsController extends Controller
 
         $validated = $request->validate([
             'title' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string']
+            'description' => ['required', 'string'],
         ]);
 
         $item->update($validated);

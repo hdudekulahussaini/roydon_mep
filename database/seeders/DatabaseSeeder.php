@@ -2,12 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Models\ContactSetting;
+use App\Models\Faq;
 use App\Models\HospitalSpecialisation;
+use App\Models\Project;
+use App\Models\User;
 use App\Models\WhyChooseUs;
 use App\Models\WhyChooseUsItem;
-use App\Models\Project;
-use App\Models\Faq;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -22,7 +23,7 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        if (!User::where('email', 'admin@roydonmep.com')->exists()) {
+        if (! User::where('email', 'admin@roydonmep.com')->exists()) {
             User::factory()->create([
                 'name' => 'Admin User',
                 'email' => 'admin@roydonmep.com',
@@ -251,10 +252,9 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        
         // Ensure a default contact settings row exists
-        if (!\App\Models\ContactSetting::count()) {
-            \App\Models\ContactSetting::create([
+        if (! ContactSetting::count()) {
+            ContactSetting::create([
                 'phone' => '+91-73307 56745',
                 'email' => 'info@roydonmep.com',
                 'address' => 'N Square, Hitec City, Plot 34B, Hyderabad – 500081',

@@ -2,32 +2,32 @@
 
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Backend\BannerController;
+use App\Http\Controllers\backend\BaselineController;
 use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\backend\CivilServiceController;
+use App\Http\Controllers\Backend\CompanyValueController;
+use App\Http\Controllers\backend\ContactSettingController;
+use App\Http\Controllers\Backend\CoverageController;
 use App\Http\Controllers\backend\FaqController;
 use App\Http\Controllers\backend\HomeBannerController;
 use App\Http\Controllers\backend\HospitalSpecialisationController;
-use App\Http\Controllers\backend\PremiumStatController;
-use App\Http\Controllers\backend\ProjectController;
-use App\Http\Controllers\backend\ServiceSubcategoryController;
-use App\Http\Controllers\backend\SpecialisationSubcategoryController;
-use App\Http\Controllers\backend\WhyChooseUsController;
-use App\Http\Controllers\FrontendController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\backend\StandardsPageController;
-use App\Http\Controllers\Backend\StorySectionController;
-use App\Http\Controllers\Backend\CompanyValueController;
 use App\Http\Controllers\Backend\MetricController;
 use App\Http\Controllers\Backend\OfficeLocationController;
-use App\Http\Controllers\Backend\CoverageController;
+use App\Http\Controllers\backend\PremiumStatController;
+use App\Http\Controllers\backend\ProjectController;
 use App\Http\Controllers\Backend\ProjectProcessController;
-use App\Http\Controllers\Backend\WorkController;
-use App\Http\Controllers\EnquiryController;
-use App\Http\Controllers\backend\ContactSettingController;
+use App\Http\Controllers\backend\ServiceSubcategoryController;
+use App\Http\Controllers\backend\SpecialisationSubcategoryController;
+use App\Http\Controllers\backend\StandardBannerController;
 use App\Http\Controllers\backend\StandardController;
 use App\Http\Controllers\backend\StandardSectionController;
-use App\Http\Controllers\backend\StandardBannerController;
-use App\Http\Controllers\backend\BaselineController;
+use App\Http\Controllers\Backend\StorySectionController;
+use App\Http\Controllers\backend\WhyChooseUsController;
+use App\Http\Controllers\Backend\WorkController;
+use App\Http\Controllers\EnquiryController;
+use App\Http\Controllers\FrontendController;
+use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', function () {
@@ -54,6 +54,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('standards', StandardController::class)->except(['show']);
         Route::resource('standard-banners', StandardBannerController::class)->except(['show']);
         Route::resource('baselines', BaselineController::class)->except(['show']);
+        Route::resource('banners', BannerController::class)->except('show');
         // Route::resource('compliance-standards', ComplianceStandardController::class)->except('show');
 
         Route::get('why-choose-us', [WhyChooseUsController::class, 'index'])->name('why-choose-us.index');
@@ -65,22 +66,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('why-choose-us-items/{item}/edit', [WhyChooseUsController::class, 'editItem'])->name('why-choose-us-items.edit');
         Route::put('why-choose-us-items/{item}', [WhyChooseUsController::class, 'updateItem'])->name('why-choose-us-items.update');
         Route::delete('why-choose-us-items/{item}', [WhyChooseUsController::class, 'destroyItem'])->name('why-choose-us-items.destroy');
-
-        Route::get('standards-page', [StandardsPageController::class, 'index'])->name('standards-page.index');
-        Route::get('standards-page/edit', [StandardsPageController::class, 'editSettings'])->name('standards-page.edit-settings');
-        Route::put('standards-page/update', [StandardsPageController::class, 'updateSettings'])->name('standards-page.update-settings');
-
-        Route::get('standards-baseline-items/create', [StandardsPageController::class, 'createBaseline'])->name('standards-baseline-items.create');
-        Route::post('standards-baseline-items', [StandardsPageController::class, 'storeBaseline'])->name('standards-baseline-items.store');
-        Route::get('standards-baseline-items/{standardsBaselineItem}/edit', [StandardsPageController::class, 'editBaseline'])->name('standards-baseline-items.edit');
-        Route::put('standards-baseline-items/{standardsBaselineItem}', [StandardsPageController::class, 'updateBaseline'])->name('standards-baseline-items.update');
-        Route::delete('standards-baseline-items/{standardsBaselineItem}', [StandardsPageController::class, 'destroyBaseline'])->name('standards-baseline-items.destroy');
-
-        Route::get('compliance-standards/create', [StandardsPageController::class, 'createStandard'])->name('compliance-standards.create');
-        Route::post('compliance-standards', [StandardsPageController::class, 'storeStandard'])->name('compliance-standards.store');
-        Route::get('compliance-standards/{standard}/edit', [StandardsPageController::class, 'editStandard'])->name('compliance-standards.edit');
-        Route::put('compliance-standards/{standard}', [StandardsPageController::class, 'updateStandard'])->name('compliance-standards.update');
-        Route::delete('compliance-standards/{standard}', [StandardsPageController::class, 'destroyStandard'])->name('compliance-standards.destroy');
 
         Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
         Route::resource('story-sections', StorySectionController::class)->except(['show']);

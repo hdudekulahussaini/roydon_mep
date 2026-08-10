@@ -26,9 +26,15 @@ class ServiceSubcategoryController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): View
+    public function create(): View|RedirectResponse
     {
         $categories = Category::where('is_active', true)->get();
+
+        if ($categories->isEmpty()) {
+            return redirect()
+                ->route('admin.categories.create')
+                ->with('warning', 'You must create at least one Category before adding a Service Subcategory.');
+        }
 
         return view('backend.pages.service-subcategories.create', compact('categories'));
     }
@@ -186,11 +192,9 @@ class ServiceSubcategoryController extends Controller
 
             'images' => ['nullable', 'array'],
             'images.*' => ['image', 'mimes:jpg,jpeg,png,webp', 'max:4096'],
-            
+
             'banner_image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:4096'],
 
-            'cta_title' => ['nullable', 'string', 'max:255'],
-            'cta_description' => ['nullable', 'string'],
             'cta_phone' => ['nullable', 'string', 'max:50'],
 
             'offerings_title' => ['nullable', 'array'],

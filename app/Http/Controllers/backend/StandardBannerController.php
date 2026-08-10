@@ -24,7 +24,6 @@ class StandardBannerController extends Controller
         );
     }
 
-
     /**
      * Show create form.
      */
@@ -34,7 +33,6 @@ class StandardBannerController extends Controller
             'backend.pages.standard_banners.create'
         );
     }
-
 
     /**
      * Store banner.
@@ -67,7 +65,6 @@ class StandardBannerController extends Controller
             ],
         ]);
 
-
         if ($request->hasFile('image')) {
 
             $validated['image'] =
@@ -78,13 +75,10 @@ class StandardBannerController extends Controller
                     );
         }
 
-
         $validated['status'] =
             $request->boolean('status');
 
-
         StandardBanner::create($validated);
-
 
         return redirect()
             ->route('admin.standard-banners.index')
@@ -93,7 +87,6 @@ class StandardBannerController extends Controller
                 'Standards banner created successfully.'
             );
     }
-
 
     /**
      * Show edit form.
@@ -105,7 +98,6 @@ class StandardBannerController extends Controller
             compact('standardBanner')
         );
     }
-
 
     /**
      * Update banner.
@@ -140,7 +132,6 @@ class StandardBannerController extends Controller
             ],
         ]);
 
-
         if ($request->hasFile('image')) {
 
             if (
@@ -153,7 +144,6 @@ class StandardBannerController extends Controller
                     ->delete($standardBanner->image);
             }
 
-
             $validated['image'] =
                 $request->file('image')
                     ->store(
@@ -162,13 +152,10 @@ class StandardBannerController extends Controller
                     );
         }
 
-
         $validated['status'] =
             $request->boolean('status');
 
-
         $standardBanner->update($validated);
-
 
         return redirect()
             ->route('admin.standard-banners.index')
@@ -177,7 +164,6 @@ class StandardBannerController extends Controller
                 'Standards banner updated successfully.'
             );
     }
-
 
     /**
      * Delete banner.
@@ -194,9 +180,7 @@ class StandardBannerController extends Controller
                 ->delete($standardBanner->image);
         }
 
-
         $standardBanner->delete();
-
 
         return redirect()
             ->route('admin.standard-banners.index')

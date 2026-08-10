@@ -15,6 +15,7 @@ class ServiceSubcategorySeeder extends Seeder
 
         if (! $servicesCategory) {
             $this->command->warn('Category "Services" not found. Please run CategorySeeder first.');
+
             return;
         }
 
@@ -146,13 +147,13 @@ class ServiceSubcategorySeeder extends Seeder
                     'Healthcare Civil & Structural Execution',
                     'Architectural Finishing & Specialized Wall Systems',
                     'False Ceiling & Ceiling Service Grids',
-                    'Waterproofing & Environmental Protection'
+                    'Waterproofing & Environmental Protection',
                 ],
                 'offerings_description' => [
                     'Full-scale RCC frame construction, heavy machinery foundations (Chillers, DG sets, Transformers), lead-lined radiation shielding walls for X-Ray/CT/MRI suites, and specialized vibration-isolated floor slabs for high-precision Cath Labs and Modular Operation Theatres.',
                     'Installation of antibacterial, seamless Coved Vinyl flooring, epoxy floorings for sterile zones, HPL / Stainless Steel wall paneling for Cleanrooms & OTs, acoustic drywall partitioning, and fire-rated glass partitions meeting NBC standards.',
                     'Heavy-duty metal ceiling suspensions capable of supporting ceiling-mounted OT pendants, surgical lights, laminar flow hoods, heavy ducting runs, and integrated cleanroom modular ceiling grids.',
-                    'Advanced multi-layer waterproofing membranes for basements, plant rooms, AHU rooms, wet areas, and podium decks, ensuring zero water ingress near critical medical equipment and electrical infrastructure.'
+                    'Advanced multi-layer waterproofing membranes for basements, plant rooms, AHU rooms, wet areas, and podium decks, ensuring zero water ingress near critical medical equipment and electrical infrastructure.',
                 ],
                 'offerings_icon' => ['fa-solid fa-layer-group', 'fa-solid fa-wind', 'fa-solid fa-temperature-arrow-down', 'fa-solid fa-shield-virus'],
                 'offerings_sort_order' => [1, 2, 3, 4],
@@ -169,7 +170,7 @@ class ServiceSubcategorySeeder extends Seeder
                 $service
             );
         }
-        
+
         $this->command->info('Seeded 7 specific services with their real extracted data.');
     }
 }

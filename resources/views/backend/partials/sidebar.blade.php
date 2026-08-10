@@ -34,16 +34,19 @@
             class="sidebar-link
           {{ request()->routeIs('admin.home-banners.*') ? 'active' : '' }}">
             <span class="sidebar-icon">
-                <i class="fa-regular fa-image"></i>
+                <i class="fa-solid fa-image"></i>
             </span>
             <span>Home Banner</span>
         </a>
 
-        <a href="{{ route('admin.premium-stats.index') }}"
+        <a href="{{ route('admin.banners.index') }}"
             class="sidebar-link
-          {{ request()->routeIs('admin.premium-stats.*') ? 'active' : '' }}">
+          {{ request()->routeIs('admin.banners.*') ? 'active' : '' }}">
             <span class="sidebar-icon">
-                <i class="fa-solid fa-chart-simple"></i>
+                <i class="fa-regular fa-images"></i>
+            </span>
+            <span>Page Banners</span>
+        </a>
             </span>
             <span>Premium Stats</span>
         </a>
@@ -94,6 +97,12 @@
             <span>FAQs</span>
         </a>
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 0a5e3ae9d01261c7f3f52acc9906042454bd19ea
         <div class="sidebar-section-title">
             ABOUT
         </div>
@@ -187,6 +196,15 @@
         <div class="sidebar-section-title">
             OTHER
         </div>
+
+        <a href="{{ route('admin.footers.index') }}"
+            class="sidebar-link
+          {{ request()->routeIs('admin.footers.*') ? 'active' : '' }}">
+            <span class="sidebar-icon">
+                <i class="fa-solid fa-shoe-prints"></i>
+            </span>
+            <span>Footer Settings</span>
+        </a>
 
         <a href="{{ route('admin.categories.index') }}"
             class="sidebar-link

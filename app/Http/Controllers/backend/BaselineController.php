@@ -22,7 +22,6 @@ class BaselineController extends Controller
         );
     }
 
-
     /**
      * Show create form.
      */
@@ -32,7 +31,6 @@ class BaselineController extends Controller
             'backend.pages.baselines.create'
         );
     }
-
 
     /**
      * Store new baseline.
@@ -65,13 +63,10 @@ class BaselineController extends Controller
 
         ]);
 
-
         $validated['status'] =
             $request->boolean('status');
 
-
         Baseline::create($validated);
-
 
         return redirect()
             ->route('admin.baselines.index')
@@ -80,7 +75,6 @@ class BaselineController extends Controller
                 'Compliance baseline created successfully.'
             );
     }
-
 
     /**
      * Show edit form.
@@ -92,7 +86,6 @@ class BaselineController extends Controller
             compact('baseline')
         );
     }
-
 
     /**
      * Update baseline.
@@ -127,13 +120,10 @@ class BaselineController extends Controller
 
         ]);
 
-
         $validated['status'] =
             $request->boolean('status');
 
-
         $baseline->update($validated);
-
 
         return redirect()
             ->route('admin.baselines.index')
@@ -143,14 +133,12 @@ class BaselineController extends Controller
             );
     }
 
-
     /**
      * Delete baseline.
      */
     public function destroy(Baseline $baseline)
     {
         $baseline->delete();
-
 
         return redirect()
             ->route('admin.baselines.index')

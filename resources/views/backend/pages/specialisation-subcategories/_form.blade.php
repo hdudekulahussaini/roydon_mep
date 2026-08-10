@@ -1,17 +1,13 @@
 <div class="row g-4">
 
-    {{-- Category & Status --}}
+    {{-- Category is derived automatically --}}
     <div class="col-md-6">
-        <label for="category_id" class="form-label fw-semibold">Parent Category</label>
-        <select name="category_id" id="category_id" class="form-select @error('category_id') is-invalid @enderror">
-            <option value="">Select Category (Optional)</option>
-            @foreach($categories as $cat)
-                <option value="{{ $cat->id }}" {{ old('category_id', $specialisationSubcategory?->category_id ?? '') == $cat->id ? 'selected' : '' }}>
-                    {{ $cat->name }}
-                </option>
-            @endforeach
-        </select>
-        @error('category_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
+        <label class="form-label fw-semibold">Category</label>
+        <input type="text" class="form-control bg-light @error('category_id') is-invalid @enderror" value="{{ $specialisationSubcategory?->category?->name ?? \App\Models\Category::where('slug', 'specialisations')->first()?->name ?? '' }}" readonly>
+        <input type="hidden" name="category_id" id="category_id" value="{{ old('category_id', $specialisationSubcategory?->category_id ?? \App\Models\Category::where('slug', 'specialisations')->first()?->id ?? '') }}">
+        @error('category_id')
+            <div class="invalid-feedback">You need to create a "Specialisations" category first before you can save.</div>
+        @enderror
     </div>
 
     <div class="col-md-6 d-flex align-items-end">
