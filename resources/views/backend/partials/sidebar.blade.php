@@ -97,12 +97,6 @@
             <span>FAQs</span>
         </a>
 
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> 0a5e3ae9d01261c7f3f52acc9906042454bd19ea
         <div class="sidebar-section-title">
             ABOUT
         </div>
