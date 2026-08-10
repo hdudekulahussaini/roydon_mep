@@ -206,22 +206,17 @@
 @section('content')
     <!-- main-area -->
     <main>
-        <!-- Hero Section -->
         <section class="std-hero">
             <div class="container">
-                <h1 class="std-hero-title">{!! $settings?->hero_title ?? 'Certifications, Standards<br><em>& Compliance</em>' !!}</h1>
-                <p class="std-hero-subtitle">{{ $settings?->hero_subtitle ?? 'We engineer to the standards that govern hospital operation in India and internationally — not as a checkbox, but as a baseline for every design decision.' }}</p>
+                <h1 class="std-hero-title">Certifications, Standards<br><em>&amp; Compliance</em></h1>
+                <p class="std-hero-subtitle">We engineer to the standards that govern hospital operation in India and internationally — not as a checkbox, but as a baseline for every design decision.</p>
             </div>
         </section>
 
         <!-- Image Banner Section -->
         <section class="std-banner-section">
             <div class="container">
-                @if ($settings?->banner_image)
-                    <img src="{{ str_contains($settings->banner_image, 'assets/') ? asset($settings->banner_image) : asset('storage/' . $settings->banner_image) }}" alt="Roydon MEP - Turnkey MEP Contractors in Hyderabad" class="std-banner-img">
-                @else
-                    <img src="{{ asset('assets/img/standards.webp') }}" alt="Roydon MEP - Turnkey MEP Contractors in Hyderabad" class="std-banner-img">
-                @endif
+                <img src="{{ asset('assets/img/standards.webp') }}" alt="Roydon MEP - Turnkey MEP Contractors in Hyderabad" class="std-banner-img">
             </div>
         </section>
 
@@ -341,36 +336,26 @@
             <div class="container">
                 <h2 class="baseline-title">Why Compliance Is Our Baseline</h2>
                 <div class="baseline-grid">
-                    @if ($baselineItems && $baselineItems->isNotEmpty())
-                        @foreach ($baselineItems as $item)
-                            <div class="baseline-item">
-                                <div class="icon">{{ $item->icon }}</div>
-                                <h4>{{ $item->title }}</h4>
-                                <p>{{ $item->description }}</p>
-                            </div>
-                        @endforeach
-                    @else
-                        <div class="baseline-item">
-                            <div class="icon">🛡️</div>
-                            <h4>NABH Ready</h4>
-                            <p>All documentation in NABH-ready format from handover</p>
-                        </div>
-                        <div class="baseline-item">
-                            <div class="icon">🔥</div>
-                            <h4>Fire NOC Support</h4>
-                            <p>As-built drawings and inspection support for fire authority</p>
-                        </div>
-                        <div class="baseline-item">
-                            <div class="icon">⚡</div>
-                            <h4>Electrical Safety</h4>
-                            <p>CEA-compliant HT/LT installations with full test reports</p>
-                        </div>
-                        <div class="baseline-item">
-                            <div class="icon">🌡️</div>
-                            <h4>HVAC Commissioning</h4>
-                            <p>Air balance reports, particle counts, pressure certificates</p>
-                        </div>
-                    @endif
+                    <div class="baseline-item">
+                        <div class="icon">🛡️</div>
+                        <h4>NABH Ready</h4>
+                        <p>All documentation in NABH-ready format from handover</p>
+                    </div>
+                    <div class="baseline-item">
+                        <div class="icon">🔥</div>
+                        <h4>Fire NOC Support</h4>
+                        <p>As-built drawings and inspection support for fire authority</p>
+                    </div>
+                    <div class="baseline-item">
+                        <div class="icon">⚡</div>
+                        <h4>Electrical Safety</h4>
+                        <p>CEA-compliant HT/LT installations with full test reports</p>
+                    </div>
+                    <div class="baseline-item">
+                        <div class="icon">🌡️</div>
+                        <h4>HVAC Commissioning</h4>
+                        <p>Air balance reports, particle counts, pressure certificates</p>
+                    </div>
                 </div>
             </div>
         </section>

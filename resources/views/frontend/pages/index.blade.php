@@ -1037,7 +1037,7 @@
         <!-- faq-area-end -->
 
         <!-- contact-area -->
-        <section class="contact-bg p-relative">
+        <section class="contact-bg p-relative" id="contact">
             <div class="container-box pt-120 pb-120"
                 style="background-image: url({{ asset('assets/img/bg/contact-bg.webp') }}); background-repeat: no-repeat; background-size: cover;">
                 <div class="container booking-area">
@@ -1048,7 +1048,30 @@
                             <!-- booking-area -->
                             <div class="p-relative">
                                 <div class="container">
-                                    <form action="#" class="contact-form pl-50">
+
+                                    {{-- Success / Error Flash --}}
+                                    @if (session('success'))
+                                        <div class="alert alert-success alert-dismissible fade show mb-3" role="alert">
+                                            <i class="fa-solid fa-circle-check me-2"></i>
+                                            {{ session('success') }}
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                        </div>
+                                    @endif
+                                    @if ($errors->any())
+                                        <div class="alert alert-danger alert-dismissible fade show mb-3" role="alert">
+                                            <i class="fa-solid fa-circle-exclamation me-2"></i>
+                                            Please fix the errors below.
+                                            <ul class="mb-0 mt-1 ps-3">
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                        </div>
+                                    @endif
+
+                                    <form action="{{ route('enquiries.store') }}" method="POST" class="contact-form pl-50">
+                                        @csrf
                                         <div class="row align-items-center">
                                             <div class="col-lg-12">
                                                 <div class="section-title mb-50">
@@ -1062,61 +1085,62 @@
                                             </div>
                                             <div class="col-lg-6 col-md-6">
                                                 <div class="contact-field p-relative c-name mb-30">
-                                                    <input type="text" id="qname" name="qname" placeholder="Your Name *"
-                                                        required="">
+                                                    <input type="text" id="qname" name="name"
+                                                        placeholder="Your Name *"
+                                                        value="{{ old('name') }}"
+                                                        required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6">
                                                 <div class="contact-field p-relative c-name mb-30">
-                                                    <input type="text" id="qorg" name="qorg"
-                                                        placeholder="Hospital / Organisation *" required="">
+                                                    <input type="text" id="qorg" name="organisation"
+                                                        placeholder="Hospital / Organisation"
+                                                        value="{{ old('organisation') }}">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6">
                                                 <div class="contact-field p-relative c-name mb-30">
-                                                    <input type="email" id="qemail" name="qemail"
-                                                        placeholder="Email Address *" required="">
+                                                    <input type="email" id="qemail" name="email"
+                                                        placeholder="Email Address *"
+                                                        value="{{ old('email') }}"
+                                                        required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6">
                                                 <div class="contact-field p-relative c-name mb-30">
-                                                    <input type="tel" id="qphone" name="qphone"
-                                                        placeholder="Phone / WhatsApp *" required="">
+                                                    <input type="tel" id="qphone" name="phone"
+                                                        placeholder="Phone / WhatsApp"
+                                                        value="{{ old('phone') }}">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6">
                                                 <div class="contact-field p-relative c-name mb-30">
-                                                    <input type="text" id="qcity" name="qcity"
-                                                        placeholder="Project City *" required="">
+                                                    <input type="text" id="qcity" name="city"
+                                                        placeholder="Project City"
+                                                        value="{{ old('city') }}">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6">
                                                 <div class="contact-field p-relative c-name mb-30">
-                                                    <input type="text" id="qbeds" name="qbeds"
-                                                        placeholder="Bed Count (approx)">
+                                                    <input type="text" id="qbeds" name="bed_count"
+                                                        placeholder="Bed Count (approx)"
+                                                        value="{{ old('bed_count') }}">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-12">
                                                 <div class="contact-field p-relative c-name mb-30">
                                                     <div class="select">
-                                                        <select name="qscope" id="qscope">
+                                                        <select name="project_type" id="qscope">
                                                             <option value="">Project Type</option>
-                                                            <option value="New Hospital — Full MEP">New Hospital — Full
-                                                                MEP</option>
-                                                            <option value="Hospital Retrofit / Upgrade">Hospital
-                                                                Retrofit / Upgrade</option>
-                                                            <option value="OT / ICU / Clean Room MEP">OT / ICU / Clean
-                                                                Room MEP</option>
-                                                            <option value="Medical Gas Pipeline (MGPS) Only">Medical Gas
-                                                                Pipeline (MGPS) Only</option>
-                                                            <option value="HVAC Systems Only">HVAC Systems Only</option>
-                                                            <option value="Electrical Systems Only">Electrical Systems
-                                                                Only</option>
-                                                            <option value="Plumbing & Fire Fighting Only">Plumbing &
-                                                                Fire Fighting Only</option>
-                                                            <option value="NABH Compliance Project">NABH Compliance
-                                                                Project</option>
-                                                            <option value="Other">Other</option>
+                                                            <option value="New Hospital — Full MEP" {{ old('project_type') == 'New Hospital — Full MEP' ? 'selected' : '' }}>New Hospital — Full MEP</option>
+                                                            <option value="Hospital Retrofit / Upgrade" {{ old('project_type') == 'Hospital Retrofit / Upgrade' ? 'selected' : '' }}>Hospital Retrofit / Upgrade</option>
+                                                            <option value="OT / ICU / Clean Room MEP" {{ old('project_type') == 'OT / ICU / Clean Room MEP' ? 'selected' : '' }}>OT / ICU / Clean Room MEP</option>
+                                                            <option value="Medical Gas Pipeline (MGPS) Only" {{ old('project_type') == 'Medical Gas Pipeline (MGPS) Only' ? 'selected' : '' }}>Medical Gas Pipeline (MGPS) Only</option>
+                                                            <option value="HVAC Systems Only" {{ old('project_type') == 'HVAC Systems Only' ? 'selected' : '' }}>HVAC Systems Only</option>
+                                                            <option value="Electrical Systems Only" {{ old('project_type') == 'Electrical Systems Only' ? 'selected' : '' }}>Electrical Systems Only</option>
+                                                            <option value="Plumbing &amp; Fire Fighting Only" {{ old('project_type') == 'Plumbing & Fire Fighting Only' ? 'selected' : '' }}>Plumbing &amp; Fire Fighting Only</option>
+                                                            <option value="NABH Compliance Project" {{ old('project_type') == 'NABH Compliance Project' ? 'selected' : '' }}>NABH Compliance Project</option>
+                                                            <option value="Other" {{ old('project_type') == 'Other' ? 'selected' : '' }}>Other</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -1124,13 +1148,13 @@
                                             <div class="col-lg-6 col-md-12">
                                                 <div class="contact-field p-relative c-name mb-30">
                                                     <div class="select">
-                                                        <select name="qtl" id="qtl">
+                                                        <select name="expected_programme" id="qtl">
                                                             <option value="">Expected Programme</option>
-                                                            <option value="Urgent">Urgent — Under 3 months</option>
-                                                            <option value="3–6 months">3–6 months</option>
-                                                            <option value="6–12 months">6–12 months</option>
-                                                            <option value="12–24 months">12–24 months</option>
-                                                            <option value="Planning stage">Planning stage — TBC</option>
+                                                            <option value="Urgent" {{ old('expected_programme') == 'Urgent' ? 'selected' : '' }}>Urgent — Under 3 months</option>
+                                                            <option value="3–6 months" {{ old('expected_programme') == '3–6 months' ? 'selected' : '' }}>3–6 months</option>
+                                                            <option value="6–12 months" {{ old('expected_programme') == '6–12 months' ? 'selected' : '' }}>6–12 months</option>
+                                                            <option value="12–24 months" {{ old('expected_programme') == '12–24 months' ? 'selected' : '' }}>12–24 months</option>
+                                                            <option value="Planning stage" {{ old('expected_programme') == 'Planning stage' ? 'selected' : '' }}>Planning stage — TBC</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -1138,14 +1162,14 @@
                                             <div class="col-lg-12 col-md-12">
                                                 <div class="contact-field p-relative c-name mb-30">
                                                     <div class="select-2">
-                                                        <textarea name="qdet" id="qdet" cols="30" rows="10"
-                                                            placeholder="Project Details & Requirements"></textarea>
+                                                        <textarea name="details" id="qdet" cols="30" rows="10"
+                                                            placeholder="Project Details &amp; Requirements">{{ old('details') }}</textarea>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="slider-btn">
-                                                    <button class="btn ss-btn" data-animation="fadeInRight"
+                                                    <button type="submit" class="btn ss-btn" data-animation="fadeInRight"
                                                         data-delay=".8s"> Submit Enquiry <i
                                                             class="fa-light fa-bolt"></i></button>
                                                 </div>

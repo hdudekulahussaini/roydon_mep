@@ -26,7 +26,14 @@ class EnquiryController extends Controller
     public function store(EnquiryRequest $request): RedirectResponse
     {
         Enquiry::create($request->validated());
-        return redirect()->route('contact')->with('success', 'Thank you — your enquiry has been received.');
+
+        // Redirect back to the page the form was on (home or contact), with anchor
+        $from = url()->previous();
+        if (str_contains($from, route('home'))) {
+            return redirect()->to(route('home') . '#contact')->with('success', 'Thank you — your enquiry has been received. We will get back to you shortly.');
+        }
+
+        return redirect()->route('contact')->with('success', 'Thank you — your enquiry has been received. We will get back to you shortly.');
     }
 
     public function show(Enquiry $enquiry): View

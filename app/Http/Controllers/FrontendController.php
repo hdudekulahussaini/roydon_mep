@@ -10,9 +10,6 @@ use App\Models\WhyChooseUs;
 use App\Models\WhyChooseUsItem;
 use App\Models\Project;
 use App\Models\Faq;
-use App\Models\ComplianceStandard;
-use App\Models\StandardsPageSetting;
-use App\Models\StandardsBaselineItem;
 use Illuminate\Contracts\View\View;
 use App\Models\StorySection;
 use App\Models\CompanyValue;
@@ -66,10 +63,7 @@ class FrontendController extends Controller
 
     public function standards(): View
     {
-        $settings = StandardsPageSetting::first();
-        $baselineItems = StandardsBaselineItem::all();
-        $standards = ComplianceStandard::all();
-        return view('frontend.pages.standards', compact('settings', 'baselineItems', 'standards'));
+        return view('frontend.pages.standards');
     }
 
     public function process(): View
