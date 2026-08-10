@@ -53,7 +53,9 @@ class FrontendController extends Controller
 
     public function contact(): View
     {
-        return view('frontend.pages.contact');
+        $contactSetting = \App\Models\ContactSetting::first();
+
+        return view('frontend.pages.contact', compact('contactSetting'));
     }
 
     public function projects(): View

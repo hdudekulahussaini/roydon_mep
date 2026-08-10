@@ -22,6 +22,8 @@ use App\Http\Controllers\Backend\OfficeLocationController;
 use App\Http\Controllers\Backend\CoverageController;
 use App\Http\Controllers\Backend\ProjectProcessController;
 use App\Http\Controllers\Backend\WorkController;
+use App\Http\Controllers\EnquiryController;
+use App\Http\Controllers\backend\ContactSettingController;
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', function () {
@@ -80,6 +82,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('coverages',CoverageController::class)->except(['show']);
         Route::resource('project-processes',ProjectProcessController::class)->except(['show']);
         Route::resource('works',WorkController::class)->except(['show']);
+        Route::resource('enquiries', EnquiryController::class)->except(['create','store']);
+        Route::resource('contact-settings', ContactSettingController::class)->only(['index','edit','update']);
     });
 });
 
@@ -118,18 +122,9 @@ Route::controller(FrontendController::class)->group(function () {
     });
 });
 
+// Public endpoint for contact form submissions
+Route::post('/enquiries', [EnquiryController::class, 'store'])->name('enquiries.store');
+
 Route::middleware('auth')->group(function () {
     Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 });
-
-Route::get('/migrate-fresh', function () {
-    \Illuminate\Support\Facades\Artisan::call('migrate:fresh', [
-        '--force' => true,
-    ]);
-    \Illuminate\Support\Facades\Artisan::call('db:seed', [
-        '--force' => true,
-    ]);
-    return 'Database refreshed successfully!';
-});
-
-

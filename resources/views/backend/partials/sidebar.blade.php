@@ -66,8 +66,84 @@
             <span>Specialisations</span>
         </a>
 
+        <a href="{{ route('admin.civil-services.index') }}"
+            class="sidebar-link
+          {{ request()->routeIs('admin.civil-services.*') ? 'active' : '' }}">
+            <span class="sidebar-icon">
+                <i class="fa-solid fa-helmet-safety"></i>
+            </span>
+            <span>Civil Services</span>
+        </a>
+
+        <a href="{{ route('admin.hospital-specialisations.index') }}"
+            class="sidebar-link
+          {{ request()->routeIs('admin.hospital-specialisations.*') ? 'active' : '' }}">
+            <span class="sidebar-icon">
+                <i class="fa-solid fa-house-medical-flag"></i>
+            </span>
+            <span>Specialisations</span>
+        </a>
+
+        <a href="{{ route('admin.projects.index') }}"
+            class="sidebar-link
+          {{ request()->routeIs('admin.projects.*') ? 'active' : '' }}">
+            <span class="sidebar-icon">
+                <i class="fa-solid fa-diagram-project"></i>
+            </span>
+            <span>Projects</span>
+        </a>
+
+        <a href="{{ route('admin.standards-page.index') }}"
+            class="sidebar-link
+          {{ request()->routeIs('admin.standards-page.*') || request()->routeIs('admin.standards-baseline-items.*') || request()->routeIs('admin.compliance-standards.*') ? 'active' : '' }}">
+            <span class="sidebar-icon">
+                <i class="fa-solid fa-clipboard-check"></i>
+            </span>
+            <span>Standards & Compliance</span>
+        </a>
+
         <div class="sidebar-section-title">
-            ABOUT US
+            PROCESS & STEPS
+        </div>
+        <a href="{{ route('admin.project-processes.index') }}"
+            class="sidebar-link
+          {{ request()->routeIs('admin.project-processes.*') ? 'active' : '' }}">
+            <span class="sidebar-icon">
+                <i class="fa-solid fa-arrows-spin"></i>
+            </span>
+            <span>Project Processes</span>
+        </a>
+        <a href="{{ route('admin.works.index') }}"
+            class="sidebar-link
+          {{ request()->routeIs('admin.works.*') ? 'active' : '' }}">
+            <span class="sidebar-icon">
+                <i class="fa-solid fa-briefcase"></i>
+            </span>
+            <span>Works / Steps</span>
+        </a>
+
+        <div class="sidebar-section-title">
+            OFFICES
+        </div>
+        <a href="{{ route('admin.office-locations.index') }}"
+            class="sidebar-link
+          {{ request()->routeIs('admin.office-locations.*') ? 'active' : '' }}">
+            <span class="sidebar-icon">
+                <i class="fa-solid fa-map-location-dot"></i>
+            </span>
+            <span>Office Locations</span>
+        </a>
+        <a href="{{ route('admin.coverages.index') }}"
+            class="sidebar-link
+          {{ request()->routeIs('admin.coverages.*') ? 'active' : '' }}">
+            <span class="sidebar-icon">
+                <i class="fa-solid fa-globe"></i>
+            </span>
+            <span>Coverages</span>
+        </a>
+
+        <div class="sidebar-section-title">
+            ABOUT
         </div>
         <a href="{{ route('admin.story-sections.index') }}"
             class="sidebar-link
@@ -94,15 +170,29 @@
             <span>Metrics</span>
         </a>
 
-        <a href="{{ route('admin.projects.index') }}"
+        <div class="sidebar-section-title">
+            CONTACT
+        </div>
+        <a href="{{ route('admin.contact-settings.index') }}"
             class="sidebar-link
-          {{ request()->routeIs('admin.projects.*') ? 'active' : '' }}">
+          {{ request()->routeIs('admin.contact-settings.*') ? 'active' : '' }}">
             <span class="sidebar-icon">
-                <i class="fa-solid fa-diagram-project"></i>
+                <i class="fa-solid fa-address-book"></i>
             </span>
-            <span>Recent Projects</span>
+            <span>Contact Settings</span>
+        </a>
+        <a href="{{ route('admin.enquiries.index') }}"
+            class="sidebar-link
+          {{ request()->routeIs('admin.enquiries.*') ? 'active' : '' }}">
+            <span class="sidebar-icon">
+                <i class="fa-solid fa-inbox"></i>
+            </span>
+            <span>Enquiries</span>
         </a>
 
+        <div class="sidebar-section-title">
+            OTHER
+        </div>
         <a href="{{ route('admin.why-choose-us.index') }}"
             class="sidebar-link
           {{ request()->routeIs('admin.why-choose-us.*') || request()->routeIs('admin.why-choose-us-items.*') ? 'active' : '' }}">
@@ -111,7 +201,6 @@
             </span>
             <span>Why Choose Us</span>
         </a>
-
         <a href="{{ route('admin.faqs.index') }}"
             class="sidebar-link
           {{ request()->routeIs('admin.faqs.*') ? 'active' : '' }}">
@@ -120,7 +209,6 @@
             </span>
             <span>FAQs</span>
         </a>
-
         <a href="{{ route('admin.categories.index') }}"
             class="sidebar-link
           {{ request()->routeIs('admin.categories.*') ? 'active' : '' }}">
@@ -129,7 +217,6 @@
             </span>
             <span>Categories</span>
         </a>
-
         <a href="{{ route('admin.service-subcategories.index') }}"
             class="sidebar-link
           {{ request()->routeIs('admin.service-subcategories.*') ? 'active' : '' }}">
@@ -138,7 +225,6 @@
             </span>
             <span>Service Subcategories</span>
         </a>
-
         <a href="{{ route('admin.specialisation-subcategories.index') }}"
             class="sidebar-link
           {{ request()->routeIs('admin.specialisation-subcategories.*') ? 'active' : '' }}">
@@ -146,57 +232,6 @@
                 <i class="fa-solid fa-house-medical-circle-check"></i>
             </span>
             <span>Specialisation Subcat.</span>
-        </a>
-
-        <a href="{{ route('admin.standards-page.index') }}"
-            class="sidebar-link
-          {{ request()->routeIs('admin.standards-page.*') || request()->routeIs('admin.standards-baseline-items.*') || request()->routeIs('admin.compliance-standards.*') ? 'active' : '' }}">
-            <span class="sidebar-icon">
-                <i class="fa-solid fa-clipboard-check"></i>
-            </span>
-            <span>Standards & Compliance</span>
-        </a>
-
-
-
-        <div class="sidebar-section-title">
-            PROCESS & STEPS
-        </div>
-        <a href="{{ route('admin.project-processes.index') }}"
-            class="sidebar-link
-          {{ request()->routeIs('admin.project-processes.*') ? 'active' : '' }}">
-            <span class="sidebar-icon">
-                <i class="fa-solid fa-arrows-spin"></i>
-            </span>
-            <span>Project Processes</span>
-        </a>
-        <a href="{{ route('admin.works.index') }}"
-            class="sidebar-link
-          {{ request()->routeIs('admin.works.*') ? 'active' : '' }}">
-            <span class="sidebar-icon">
-                <i class="fa-solid fa-briefcase"></i>
-            </span>
-            <span>Works / Steps</span>
-        </a>
-
-        <div class="sidebar-section-title">
-            OFFICES & COVERAGE
-        </div>
-        <a href="{{ route('admin.office-locations.index') }}"
-            class="sidebar-link
-          {{ request()->routeIs('admin.office-locations.*') ? 'active' : '' }}">
-            <span class="sidebar-icon">
-                <i class="fa-solid fa-map-location-dot"></i>
-            </span>
-            <span>Office Locations</span>
-        </a>
-        <a href="{{ route('admin.coverages.index') }}"
-            class="sidebar-link
-          {{ request()->routeIs('admin.coverages.*') ? 'active' : '' }}">
-            <span class="sidebar-icon">
-                <i class="fa-solid fa-globe"></i>
-            </span>
-            <span>Coverages</span>
         </a>
 
     </nav>

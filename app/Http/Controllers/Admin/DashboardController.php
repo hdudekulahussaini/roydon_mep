@@ -4,25 +4,26 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
+use App\Models\Project;
+use App\Models\CivilService;
+use App\Models\Enquiry;
+use App\Models\OfficeLocation;
 
 class DashboardController extends Controller
 {
     public function index(): View
     {
         $stats = [
-            'projects' => 0,
-            'services' => 0,
-            'enquiries' => 0,
-            'new_enquiries' => 0,
-            'completed_projects' => 0,
-            'locations' => 0,
+            'projects' => Project::count(),
+            'services' => CivilService::count(),
+            'enquiries' => Enquiry::count(),
+            'new_enquiries' => Enquiry::where('created_at', '>=', now()->subDays(7))->count(),
+            'completed_projects' => Project::where('result', 'completed')->count(),
+            'locations' => OfficeLocation::count(),
         ];
 
-        $recentEnquiries = collect();
+        $recentEnquiries = Enquiry::latest()->limit(5)->get();
 
-        return view('backend.pages.dashboard', compact(
-            'stats',
-            'recentEnquiries'
-        ));
+        return view('backend.pages.dashboard', compact('stats', 'recentEnquiries'));
     }
 }

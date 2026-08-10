@@ -388,5 +388,22 @@ class DatabaseSeeder extends Seeder
                 'description' => 'Air balance reports, particle counts, pressure certificates',
             ]);
         }
+
+        // Ensure a default contact settings row exists
+        if (!\App\Models\ContactSetting::count()) {
+            \App\Models\ContactSetting::create([
+                'phone' => '+91-73307 56745',
+                'email' => 'info@roydonmep.com',
+                'address' => 'N Square, Hitec City, Plot 34B, Hyderabad – 500081',
+                'response_time' => 'Within 1 Business Day',
+                'process' => "We review your project requirements carefully\nWe contact you within one business day\nWe arrange a site visit or video call\nWe provide a detailed technical proposal and commercial offer",
+                'metrics' => [
+                    ['label' => 'Hospital Projects', 'value' => '8+'],
+                    ['label' => 'Missed Handovers', 'value' => '0'],
+                    ['label' => 'Warranty Response', 'value' => '24/7'],
+                    ['label' => 'Zero Defect Rate', 'value' => '100%'],
+                ],
+            ]);
+        }
     }
 }
