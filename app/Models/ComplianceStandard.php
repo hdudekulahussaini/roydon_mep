@@ -12,6 +12,6 @@ class ComplianceStandard extends Model
         'abbr',
         'title',
         'description',
-        'applied_to'
+        'applied_to',
     ];
 }

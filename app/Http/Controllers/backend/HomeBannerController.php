@@ -62,7 +62,7 @@ class HomeBannerController extends Controller
         foreach (['iso_9001', 'iso_14001', 'iso_45001'] as $prefix) {
             $part1 = $request->input("{$prefix}_title_part1");
             $part2 = $request->input("{$prefix}_title_part2");
-            $validated["{$prefix}_title"] = trim($part1) . '|' . trim($part2);
+            $validated["{$prefix}_title"] = trim($part1).'|'.trim($part2);
             unset($validated["{$prefix}_title_part1"], $validated["{$prefix}_title_part2"]);
         }
 
@@ -108,7 +108,7 @@ class HomeBannerController extends Controller
         foreach (['iso_9001', 'iso_14001', 'iso_45001'] as $prefix) {
             $part1 = $request->input("{$prefix}_title_part1");
             $part2 = $request->input("{$prefix}_title_part2");
-            $validated["{$prefix}_title"] = trim($part1) . '|' . trim($part2);
+            $validated["{$prefix}_title"] = trim($part1).'|'.trim($part2);
             unset($validated["{$prefix}_title_part1"], $validated["{$prefix}_title_part2"]);
         }
 

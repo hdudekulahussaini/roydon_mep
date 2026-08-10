@@ -23,7 +23,6 @@ class ProjectProcessController extends Controller
         );
     }
 
-
     /**
      * Show create form.
      */
@@ -33,7 +32,6 @@ class ProjectProcessController extends Controller
             'backend.pages.project_processes.create'
         );
     }
-
 
     /**
      * Store new project process.
@@ -103,7 +101,6 @@ class ProjectProcessController extends Controller
             );
     }
 
-
     /**
      * Show edit form.
      */
@@ -114,7 +111,6 @@ class ProjectProcessController extends Controller
             compact('projectProcess')
         );
     }
-
 
     /**
      * Update project process.
@@ -185,7 +181,6 @@ class ProjectProcessController extends Controller
                 'Project process updated successfully.'
             );
     }
-
 
     /**
      * Delete project process.
