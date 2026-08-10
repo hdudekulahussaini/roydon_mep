@@ -26,15 +26,9 @@ class ServiceSubcategoryController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): View|RedirectResponse
+    public function create(): View
     {
         $categories = Category::where('is_active', true)->get();
-
-        if ($categories->isEmpty()) {
-            return redirect()
-                ->route('admin.categories.create')
-                ->with('warning', 'You must create at least one Category before adding a Service Subcategory.');
-        }
 
         return view('backend.pages.service-subcategories.create', compact('categories'));
     }

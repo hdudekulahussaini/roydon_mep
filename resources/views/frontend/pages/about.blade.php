@@ -220,11 +220,10 @@
 <section class="about-hero">
     <div class="container">
         <h1 class="about-hero-title">
-            About <em>Roydon MEP</em> – Top Hospitality &amp; Healthcare Contractors
+            {!! $banner?->heading !!}
         </h1>
         <p class="about-hero-subtitle">
-            Engineering the infrastructure of modern healthcare and luxury hospitality.
-            We deliver high-velocity MEP solutions for hospitals, five-star hotels and luxury resorts.
+            {!! nl2br(e($banner?->description)) !!}
         </p>
     </div>
 </section>

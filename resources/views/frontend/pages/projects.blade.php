@@ -7,13 +7,13 @@
     <main>
         <!-- breadcrumb-area -->
         <section class="pl-50 pr-50 ">
-            <div class="breadcrumb-area d-flex justify-content-center align-items-center" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url({{ asset('assets/img/slider/hospital_mep_hero.webp') }}); background-size: cover; background-position: center;">
+            <div class="breadcrumb-area d-flex justify-content-center align-items-center" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('{{ $banner?->image_path ? Storage::url($banner->image_path) : '' }}'); background-size: cover; background-position: center;">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-xl-12 col-lg-12">
                             <div class="breadcrumb-wrap text-center">
                                 <div class="breadcrumb-title">
-                                    <h2>Our Projects</h2>
+                                    <h2>{!! $banner?->heading !!}</h2>
                                     <div class="breadcrumb-wrap">
                                         <nav aria-label="breadcrumb">
                                             <ol class="breadcrumb">

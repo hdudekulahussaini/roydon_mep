@@ -1,7 +1,7 @@
 <div class="row g-4">
     <div class="col-12">
-        <label for="description" class="form-label fw-semibold">Common Description <span class="text-danger">*</span></label>
-        <textarea id="description" name="description" rows="4" class="form-control @error('description') is-invalid @enderror" required>{{ old('description', $footer?->description ?? '') }}</textarea>
+        <label for="description" class="form-label fw-semibold">Common Description</label>
+        <textarea id="description" name="description" rows="4" class="form-control @error('description') is-invalid @enderror">{{ old('description', $footer?->description ?? '') }}</textarea>
         @error('description') <div class="invalid-feedback">{{ $message }}</div> @enderror
     </div>
 </div>

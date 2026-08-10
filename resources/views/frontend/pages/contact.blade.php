@@ -254,9 +254,8 @@
                 <div class="breadcrumb-nav">
                     <a href="{{ route('home') }}">Home</a> / Get a Quote
                 </div>
-                <h1 class="contact-hero-title">Get a Quote for Your<br>Hospital MEP Project</h1>
-                <p class="contact-hero-subtitle">Fill in the form and we will respond within one business day with a
-                    preliminary approach, indicative programme and commercial framework.</p>
+                <h1 class="contact-hero-title">{!! $banner?->heading !!}</h1>
+                <p class="contact-hero-subtitle">{!! nl2br(e($banner?->description)) !!}</p>
             </div>
         </section>
 

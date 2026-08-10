@@ -31,13 +31,13 @@
     </div>
 
     <div class="col-12">
-        <label for="heading" class="form-label fw-semibold">Main Heading</label>
-        <input type="text" id="heading" name="heading" value="{{ old('heading', $serviceSubcategory?->heading) }}" class="form-control @error('heading') is-invalid @enderror">
+        <label for="heading" class="form-label fw-semibold">Main Heading <span class="text-danger">*</span></label>
+        <input type="text" id="heading" name="heading" value="{{ old('heading', $serviceSubcategory?->heading) }}" class="form-control @error('heading') is-invalid @enderror" required>
     </div>
 
     <div class="col-12">
-        <label for="description" class="form-label fw-semibold">Description</label>
-        <textarea id="description" name="description" rows="4" class="form-control @error('description') is-invalid @enderror">{{ old('description', $serviceSubcategory?->description) }}</textarea>
+        <label for="description" class="form-label fw-semibold">Description <span class="text-danger">*</span></label>
+        <textarea id="description" name="description" rows="4" class="form-control @error('description') is-invalid @enderror" required>{{ old('description', $serviceSubcategory?->description) }}</textarea>
     </div>
 
     {{-- Banner Image --}}
@@ -83,8 +83,8 @@
         <h5 class="mb-3">Sidebar CTA Settings</h5>
         <div class="row">
             <div class="col-md-6">
-                <label for="cta_phone" class="form-label fw-semibold">CTA Phone Number</label>
-                <input type="text" id="cta_phone" name="cta_phone" value="{{ old('cta_phone', $serviceSubcategory?->cta_phone) }}" class="form-control">
+                <label for="cta_phone" class="form-label fw-semibold">CTA Phone Number <span class="text-danger">*</span></label>
+                <input type="text" id="cta_phone" name="cta_phone" value="{{ old('cta_phone', $serviceSubcategory?->cta_phone) }}" class="form-control" required>
             </div>
         </div>
     </div>
@@ -96,12 +96,12 @@
         <h5 class="mb-3">Compliance &amp; Certified Section</h5>
         <div class="row">
             <div class="col-12 mb-3">
-                <label for="compliance_title" class="form-label fw-semibold">Compliance Title</label>
-                <input type="text" id="compliance_title" name="compliance_title" value="{{ old('compliance_title', $serviceSubcategory?->compliance_title) }}" class="form-control">
+                <label for="compliance_title" class="form-label fw-semibold">Compliance Title <span class="text-danger">*</span></label>
+                <input type="text" id="compliance_title" name="compliance_title" value="{{ old('compliance_title', $serviceSubcategory?->compliance_title) }}" class="form-control" required>
             </div>
             <div class="col-12">
-                <label for="compliance_description" class="form-label fw-semibold">Compliance Description</label>
-                <textarea id="compliance_description" name="compliance_description" rows="2" class="form-control">{{ old('compliance_description', $serviceSubcategory?->compliance_description) }}</textarea>
+                <label for="compliance_description" class="form-label fw-semibold">Compliance Description <span class="text-danger">*</span></label>
+                <textarea id="compliance_description" name="compliance_description" rows="2" class="form-control" required>{{ old('compliance_description', $serviceSubcategory?->compliance_description) }}</textarea>
             </div>
         </div>
     </div>
@@ -136,20 +136,20 @@
                     
                     <div class="row g-3">
                         <div class="col-md-5">
-                            <label class="form-label small fw-semibold">Offering Title</label>
-                            <input type="text" name="offerings_title[]" value="{{ $title }}" class="form-control form-control-sm">
+                            <label class="form-label small fw-semibold">Offering Title <span class="text-danger">*</span></label>
+                            <input type="text" name="offerings_title[]" value="{{ $title }}" class="form-control form-control-sm" required>
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label small fw-semibold">Icon (FontAwesome Class)</label>
-                            <input type="text" name="offerings_icon[]" value="{{ $offeringsIcon[$index] ?? '' }}" class="form-control form-control-sm" placeholder="fa-solid fa-gear">
+                            <label class="form-label small fw-semibold">Icon (FontAwesome Class) <span class="text-danger">*</span></label>
+                            <input type="text" name="offerings_icon[]" value="{{ $offeringsIcon[$index] ?? '' }}" class="form-control form-control-sm" placeholder="fa-solid fa-gear" required>
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label small fw-semibold">Sort Order</label>
-                            <input type="number" name="offerings_sort_order[]" value="{{ $offeringsSort[$index] ?? ($index + 1) }}" class="form-control form-control-sm">
+                            <label class="form-label small fw-semibold">Sort Order <span class="text-danger">*</span></label>
+                            <input type="number" name="offerings_sort_order[]" value="{{ $offeringsSort[$index] ?? ($index + 1) }}" class="form-control form-control-sm" required>
                         </div>
                         <div class="col-12">
-                            <label class="form-label small fw-semibold">Description</label>
-                            <textarea name="offerings_description[]" rows="2" class="form-control form-control-sm">{{ $offeringsDesc[$index] ?? '' }}</textarea>
+                            <label class="form-label small fw-semibold">Description <span class="text-danger">*</span></label>
+                            <textarea name="offerings_description[]" rows="2" class="form-control form-control-sm" required>{{ $offeringsDesc[$index] ?? '' }}</textarea>
                         </div>
                     </div>
                 </div>

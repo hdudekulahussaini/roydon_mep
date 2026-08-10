@@ -40,6 +40,7 @@ class FrontendController extends Controller
 
     public function about(): View
     {
+        $banner = \App\Models\Banner::where('page_name', 'about')->first();
         $storySection = StorySection::where('status', true)
             ->latest()
             ->first();
@@ -50,30 +51,34 @@ class FrontendController extends Controller
             ->latest()
             ->get();
 
-        return view('frontend.pages.about', compact('storySection', 'companyValues', 'metrics'));
+        return view('frontend.pages.about', compact('banner', 'storySection', 'companyValues', 'metrics'));
     }
 
     public function contact(): View
     {
+        $banner = \App\Models\Banner::where('page_name', 'get_a_quote')->first();
         $contactSetting = ContactSetting::first();
 
-        return view('frontend.pages.contact', compact('contactSetting'));
+        return view('frontend.pages.contact', compact('banner', 'contactSetting'));
     }
 
     public function projects(): View
     {
+        $banner = \App\Models\Banner::where('page_name', 'projects')->first();
         $projects = Project::latest()->get();
 
-        return view('frontend.pages.projects', compact('projects'));
+        return view('frontend.pages.projects', compact('banner', 'projects'));
     }
 
     public function standards(): View
     {
-        return view('frontend.pages.standards');
+        $banner = \App\Models\Banner::where('page_name', 'standards')->first();
+        return view('frontend.pages.standards', compact('banner'));
     }
 
     public function process(): View
     {
+        $banner = \App\Models\Banner::where('page_name', 'process')->first();
         $processes = ProjectProcess::orderBy('sort_order')
             ->orderBy('id')
             ->get();
@@ -82,11 +87,12 @@ class FrontendController extends Controller
             ->orderBy('id')
             ->get();
 
-        return view('frontend.pages.process', compact('processes', 'works'));
+        return view('frontend.pages.process', compact('banner', 'processes', 'works'));
     }
 
     public function offices(): View
     {
+        $banner = \App\Models\Banner::where('page_name', 'offices')->first();
         $officeLocations = OfficeLocation::where('status', true)
             ->orderBy('sort_order')
             ->latest('id')
@@ -96,10 +102,7 @@ class FrontendController extends Controller
             ->latest('id')
             ->get();
 
-        return view(
-            'frontend.pages.offices',
-            compact('officeLocations', 'coverages')
-        );
+        return view('frontend.pages.offices', compact('banner', 'officeLocations', 'coverages'));
     }
 
     // Services
