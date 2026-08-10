@@ -14,8 +14,6 @@ class ServiceSubcategory extends Model
         'heading',
         'description',
         'images',
-        'cta_title',
-        'cta_description',
         'cta_phone',
         'offerings_title',
         'offerings_description',

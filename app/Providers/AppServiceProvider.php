@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with('headerSpecialisations', \App\Models\SpecialisationSubcategory::where('status', true)->get());
         });
 
-        view()->composer(['frontend.partials.header', 'frontend.pages.service'], function ($view) {
+        view()->composer(['frontend.partials.header', 'frontend.partials.footer', 'frontend.pages.service'], function ($view) {
             $view->with('headerServices', \App\Models\ServiceSubcategory::where('status', true)->get());
         });
 
