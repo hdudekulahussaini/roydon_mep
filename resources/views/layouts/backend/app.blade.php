@@ -66,6 +66,17 @@
                     </div>
                 @endif
 
+                @if (session('warning'))
+                    <div class="alert alert-warning alert-dismissible fade show">
+                        <i class="fa-solid fa-triangle-exclamation me-2"></i>
+                        {{ session('warning') }}
+                        <a href="{{ route('admin.categories.create') }}" class="alert-link ms-2">
+                            Create a Category now &rarr;
+                        </a>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                @endif
+
                 @yield('content')
 
             </div>

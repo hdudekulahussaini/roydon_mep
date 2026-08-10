@@ -46,13 +46,9 @@
                         </div>
                         <div class="footer-link">
                             <ul>
-                                <li><a href="{{ route('services.turnkey') }}">Turnkey Hospital MEP</a></li>
-                                <li><a href="{{ route('services.hvac') }}">Hospital HVAC Systems</a></li>
-                                <li><a href="{{ route('services.medical-gas') }}">Medical Gas Pipeline (MGPS)</a></li>
-                                <li><a href="{{ route('services.electrical') }}">Hospital Electrical Systems</a></li>
-                                <li><a href="{{ route('services.plumbing') }}">Plumbing & Sanitation</a></li>
-                                <li><a href="{{ route('services.fire-fighting') }}">Fire Fighting & Life Safety</a></li>
-                                <li><a href="{{ route('services.civil-works') }}">Civil Works</a></li>
+                                @foreach($headerServices as $serv)
+                                    <li><a href="{{ route('services.show', $serv->slug) }}">{{ $serv->title }}</a></li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>

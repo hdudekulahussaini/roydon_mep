@@ -34,9 +34,18 @@
             class="sidebar-link
           {{ request()->routeIs('admin.home-banners.*') ? 'active' : '' }}">
             <span class="sidebar-icon">
-                <i class="fa-regular fa-image"></i>
+                <i class="fa-solid fa-image"></i>
             </span>
             <span>Home Banner</span>
+        </a>
+
+        <a href="{{ route('admin.banners.index') }}"
+            class="sidebar-link
+          {{ request()->routeIs('admin.banners.*') ? 'active' : '' }}">
+            <span class="sidebar-icon">
+                <i class="fa-regular fa-images"></i>
+            </span>
+            <span>Page Banners</span>
         </a>
 
         <a href="{{ route('admin.premium-stats.index') }}"

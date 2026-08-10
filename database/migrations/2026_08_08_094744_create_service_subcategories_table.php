@@ -19,8 +19,6 @@ return new class extends Migration
             $table->string('heading')->nullable();
             $table->text('description')->nullable();
             $table->json('images')->nullable();
-            $table->string('cta_title')->nullable();
-            $table->text('cta_description')->nullable();
             $table->string('cta_phone')->nullable();
             $table->json('offerings_title')->nullable();
             $table->json('offerings_description')->nullable();

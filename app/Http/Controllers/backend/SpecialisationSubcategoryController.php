@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\SpecialisationSubcategory;
 use App\Models\Category;
+use App\Models\SpecialisationSubcategory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Illuminate\View\View;
 
 class SpecialisationSubcategoryController extends Controller
 {
@@ -33,8 +33,8 @@ class SpecialisationSubcategoryController extends Controller
      */
     public function create(): View
     {
-        $categories = Category::all();
-        return view('backend.pages.specialisation-subcategories.create', compact('categories'));
+        // Category will be auto‑filled via hidden input (first active category)
+        return view('backend.pages.specialisation-subcategories.create');
     }
 
     /**
@@ -57,7 +57,7 @@ class SpecialisationSubcategoryController extends Controller
         if ($request->hasFile('image')) {
             $validated['image'] = $request->file('image')->store('specialisation-subcategories/images', 'public');
         }
-        
+
         $validated['status'] = $request->has('status');
 
         SpecialisationSubcategory::create($validated);
@@ -72,11 +72,8 @@ class SpecialisationSubcategoryController extends Controller
      */
     public function edit(SpecialisationSubcategory $specialisationSubcategory): View
     {
-        $categories = Category::all();
-        return view(
-            'backend.pages.specialisation-subcategories.edit',
-            compact('specialisationSubcategory', 'categories')
-        );
+        // Category will be auto‑filled via hidden input (first active category)
+        return view('backend.pages.specialisation-subcategories.edit', compact('specialisationSubcategory'));
     }
 
     /**
@@ -107,7 +104,7 @@ class SpecialisationSubcategoryController extends Controller
             }
             $validated['image'] = $request->file('image')->store('specialisation-subcategories/images', 'public');
         }
-        
+
         $validated['status'] = $request->has('status');
 
         $specialisationSubcategory->update($validated);
@@ -129,7 +126,7 @@ class SpecialisationSubcategoryController extends Controller
         if ($specialisationSubcategory->image) {
             Storage::disk('public')->delete($specialisationSubcategory->image);
         }
-        
+
         $specialisationSubcategory->delete();
 
         return redirect()
@@ -143,9 +140,9 @@ class SpecialisationSubcategoryController extends Controller
     private function validationRules(?int $id = null): array
     {
         return [
-            'category_id' => ['nullable', 'exists:categories,id'],
+            'category_id' => ['required', 'exists:categories,id'],
             'title' => ['required', 'string', 'max:255'],
-            'slug' => ['nullable', 'string', 'max:255', 'unique:specialisation_subcategories,slug,' . $id],
+            'slug' => ['nullable', 'string', 'max:255', 'unique:specialisation_subcategories,slug,'.$id],
             'banner_tags' => ['nullable', 'array'],
             'banner_tags.*' => ['string'],
             'banner_image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],

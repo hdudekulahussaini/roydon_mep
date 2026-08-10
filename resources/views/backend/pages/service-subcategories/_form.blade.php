@@ -1,17 +1,13 @@
   <div class="row g-4">
 
-    {{-- Category & Status --}}
+    {{-- Category is derived automatically --}}
     <div class="col-md-6">
-        <label for="category_id" class="form-label fw-semibold">Parent Category <span class="text-danger">*</span></label>
-        <select name="category_id" id="category_id" class="form-select @error('category_id') is-invalid @enderror" required>
-            <option value="">Select Category</option>
-            @foreach($categories as $cat)
-                <option value="{{ $cat->id }}" {{ old('category_id', $serviceSubcategory?->category_id) == $cat->id ? 'selected' : '' }}>
-                    {{ $cat->name }}
-                </option>
-            @endforeach
-        </select>
-        @error('category_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
+        <label class="form-label fw-semibold">Category</label>
+        <input type="text" class="form-control bg-light @error('category_id') is-invalid @enderror" value="{{ $serviceSubcategory?->category?->name ?? \App\Models\Category::where('slug', 'services')->first()?->name ?? '' }}" readonly>
+        <input type="hidden" name="category_id" id="category_id" value="{{ old('category_id', $serviceSubcategory?->category_id ?? \App\Models\Category::where('slug', 'services')->first()?->id ?? '') }}">
+        @error('category_id')
+            <div class="invalid-feedback">You need to create a "Services" category first before you can save.</div>
+        @enderror
     </div>
 
     <div class="col-md-6 d-flex align-items-end">
@@ -62,60 +58,55 @@
         @endif
     </div>
 
-    <div class="col-12">
-        <label for="images" class="form-label fw-semibold">Images (Multiple)</label>
-        <input type="file" id="images" name="images[]" class="form-control @error('images.*') is-invalid @enderror" multiple accept="image/*">
-        
-        <div id="image-preview-container" class="mt-2 d-flex gap-2 flex-wrap"></div>
-
+<div class="col-12">
+    {{-- Images Section --}}
+    <div class="mb-4">
+        <label class="form-label fw-semibold">Images</label>
         @if($serviceSubcategory?->images)
-            <div class="mt-2 d-flex gap-2 flex-wrap" id="existing-images-container">
+            <div class="mt-2 d-flex gap-2 flex-wrap">
                 @foreach($serviceSubcategory->images as $img)
                     <img src="{{ asset('storage/' . $img) }}" alt="image" width="100" class="img-thumbnail">
                 @endforeach
             </div>
-            <small class="text-muted" id="existing-images-help">Uploading new images will replace existing ones.</small>
+            <small class="text-muted">Uploading new images will replace existing ones.</small>
         @endif
+        <input type="file" name="images[]" id="images" class="form-control @error('images.*') is-invalid @enderror" multiple accept="image/*">
+        @error('images.*')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
     </div>
 
     <hr class="my-4">
 
-    {{-- Call to Action (CTA) --}}
-    <h5 class="mb-3">Sidebar CTA Settings</h5>
-    
-    <div class="col-md-6">
-        <label for="cta_title" class="form-label fw-semibold">CTA Title</label>
-        <input type="text" id="cta_title" name="cta_title" value="{{ old('cta_title', $serviceSubcategory?->cta_title) }}" class="form-control">
-    </div>
-
-    <div class="col-md-6">
-        <label for="cta_phone" class="form-label fw-semibold">CTA Phone Number</label>
-        <input type="text" id="cta_phone" name="cta_phone" value="{{ old('cta_phone', $serviceSubcategory?->cta_phone) }}" class="form-control">
-    </div>
-
-    <div class="col-12">
-        <label for="cta_description" class="form-label fw-semibold">CTA Description</label>
-        <textarea id="cta_description" name="cta_description" rows="2" class="form-control">{{ old('cta_description', $serviceSubcategory?->cta_description) }}</textarea>
+    {{-- CTA Section --}}
+    <div class="mb-4">
+        <h5 class="mb-3">Sidebar CTA Settings</h5>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="cta_phone" class="form-label fw-semibold">CTA Phone Number</label>
+                <input type="text" id="cta_phone" name="cta_phone" value="{{ old('cta_phone', $serviceSubcategory?->cta_phone) }}" class="form-control">
+            </div>
+        </div>
     </div>
 
     <hr class="my-4">
 
     {{-- Compliance Section --}}
-    <h5 class="mb-3">Compliance & Certified Section</h5>
-    
-    <div class="col-12">
-        <label for="compliance_title" class="form-label fw-semibold">Compliance Title</label>
-        <input type="text" id="compliance_title" name="compliance_title" value="{{ old('compliance_title', $serviceSubcategory?->compliance_title) }}" class="form-control">
-    </div>
-
-    <div class="col-12">
-        <label for="compliance_description" class="form-label fw-semibold">Compliance Description</label>
-        <textarea id="compliance_description" name="compliance_description" rows="2" class="form-control">{{ old('compliance_description', $serviceSubcategory?->compliance_description) }}</textarea>
+    <div class="mb-4">
+        <h5 class="mb-3">Compliance &amp; Certified Section</h5>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <label for="compliance_title" class="form-label fw-semibold">Compliance Title</label>
+                <input type="text" id="compliance_title" name="compliance_title" value="{{ old('compliance_title', $serviceSubcategory?->compliance_title) }}" class="form-control">
+            </div>
+            <div class="col-12">
+                <label for="compliance_description" class="form-label fw-semibold">Compliance Description</label>
+                <textarea id="compliance_description" name="compliance_description" rows="2" class="form-control">{{ old('compliance_description', $serviceSubcategory?->compliance_description) }}</textarea>
+            </div>
+        </div>
     </div>
 
     <hr class="my-4">
-
-    {{-- Dynamic Offerings Repeater --}}
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h5 class="mb-0">Key Offerings</h5>
         <button type="button" class="btn btn-sm btn-outline-dark" id="add-offering-btn">
