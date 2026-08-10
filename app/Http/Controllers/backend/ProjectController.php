@@ -51,9 +51,8 @@ class ProjectController extends Controller
 
         Project::create($validated);
 
-        return redirect()
-            ->route('admin.projects.index')
-            ->with('success', 'Project created successfully.');
+        flash()->success('Project created successfully.');
+        return redirect()->route('admin.projects.index');
     }
 
     /**
@@ -92,9 +91,8 @@ class ProjectController extends Controller
 
         $project->update($validated);
 
-        return redirect()
-            ->route('admin.projects.index')
-            ->with('success', 'Project updated successfully.');
+        flash()->success('Project updated successfully.');
+        return redirect()->route('admin.projects.index');
     }
 
     /**
@@ -108,9 +106,8 @@ class ProjectController extends Controller
 
         $project->delete();
 
-        return redirect()
-            ->route('admin.projects.index')
-            ->with('success', 'Project deleted successfully.');
+        flash()->success('Project deleted successfully.');
+        return redirect()->route('admin.projects.index');
     }
 
     /**

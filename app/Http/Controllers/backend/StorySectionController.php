@@ -63,9 +63,8 @@ class StorySectionController extends Controller
 
         StorySection::create($validated);
 
-        return redirect()
-            ->route('admin.story-sections.index')
-            ->with('success', 'Story section created successfully.');
+        flash()->success('Story section created successfully.');
+        return redirect()->route('admin.story-sections.index');
     }
 
     public function edit(StorySection $storySection)
@@ -122,9 +121,8 @@ class StorySectionController extends Controller
 
         $storySection->update($validated);
 
-        return redirect()
-            ->route('admin.story-sections.index')
-            ->with('success', 'Story section updated successfully.');
+        flash()->success('Story section updated successfully.');
+        return redirect()->route('admin.story-sections.index');
     }
 
     public function destroy(StorySection $storySection)
@@ -137,8 +135,7 @@ class StorySectionController extends Controller
 
         $storySection->delete();
 
-        return redirect()
-            ->route('admin.story-sections.index')
-            ->with('success', 'Story section deleted successfully.');
+        flash()->success('Story section deleted successfully.');
+        return redirect()->route('admin.story-sections.index');
     }
 }

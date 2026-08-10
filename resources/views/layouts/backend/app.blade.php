@@ -40,42 +40,7 @@
 
             <div class="admin-content">
 
-                @if (session('success'))
-                    <div class="alert alert-success alert-dismissible fade show">
-                        <i class="fa-solid fa-circle-check me-2"></i>
 
-                        {{ session('success') }}
-
-                        <button type="button"
-                            class="btn-close"
-                            data-bs-dismiss="alert">
-                        </button>
-                    </div>
-                @endif
-
-                @if (session('error'))
-                    <div class="alert alert-danger alert-dismissible fade show">
-                        <i class="fa-solid fa-circle-exclamation me-2"></i>
-
-                        {{ session('error') }}
-
-                        <button type="button"
-                            class="btn-close"
-                            data-bs-dismiss="alert">
-                        </button>
-                    </div>
-                @endif
-
-                @if (session('warning'))
-                    <div class="alert alert-warning alert-dismissible fade show">
-                        <i class="fa-solid fa-triangle-exclamation me-2"></i>
-                        {{ session('warning') }}
-                        <a href="{{ route('admin.categories.create') }}" class="alert-link ms-2">
-                            Create a Category now &rarr;
-                        </a>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                    </div>
-                @endif
 
                 @yield('content')
 

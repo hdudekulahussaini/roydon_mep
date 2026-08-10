@@ -28,7 +28,7 @@ class EnquiryController extends Controller
         $enquiry = Enquiry::create($request->validated());
 
         // Send admin notification
-        $adminEmail = \App\Models\ContactSetting::first()?->email ?? 'dharishbandi@gmail.com';
+        $adminEmail = 'dharishbandi@gmail.com';
         \Illuminate\Support\Facades\Mail::to($adminEmail)->send(new \App\Mail\EnquiryAdminNotification($enquiry));
 
         // Send user confirmation
@@ -38,7 +38,8 @@ class EnquiryController extends Controller
 
         // Redirect back to the page the form was on (home or contact), with anchor
         $url = strtok(url()->previous(), '#');
-        return redirect()->to($url . '#contact')->with('success', 'Thank you — your enquiry has been received. We will get back to you shortly.');
+        flash()->success('Thank you — your enquiry has been received. We will get back to you shortly.');
+        return redirect()->to($url . '#contact');
     }
 
     public function show(Enquiry $enquiry): View
@@ -55,13 +56,15 @@ class EnquiryController extends Controller
     {
         $enquiry->update($request->validated());
 
-        return redirect()->route('admin.enquiries.index')->with('success', 'Enquiry updated.');
+        flash()->success('Enquiry updated.');
+        return redirect()->route('admin.enquiries.index');
     }
 
     public function destroy(Enquiry $enquiry): RedirectResponse
     {
         $enquiry->delete();
 
-        return redirect()->route('admin.enquiries.index')->with('success', 'Enquiry removed.');
+        flash()->success('Enquiry removed.');
+        return redirect()->route('admin.enquiries.index');
     }
 }

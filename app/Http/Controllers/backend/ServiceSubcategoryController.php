@@ -65,9 +65,8 @@ class ServiceSubcategoryController extends Controller
 
         ServiceSubcategory::create($validated);
 
-        return redirect()
-            ->route('admin.service-subcategories.index')
-            ->with('success', 'Service Subcategory created successfully.');
+        flash()->success('Service Subcategory created successfully.');
+        return redirect()->route('admin.service-subcategories.index');
     }
 
     /**
@@ -128,9 +127,8 @@ class ServiceSubcategoryController extends Controller
 
         $serviceSubcategory->update($validated);
 
-        return redirect()
-            ->route('admin.service-subcategories.index')
-            ->with('success', 'Service Subcategory updated successfully.');
+        flash()->success('Service Subcategory updated successfully.');
+        return redirect()->route('admin.service-subcategories.index');
     }
 
     /**
@@ -150,9 +148,8 @@ class ServiceSubcategoryController extends Controller
 
         $serviceSubcategory->delete();
 
-        return redirect()
-            ->route('admin.service-subcategories.index')
-            ->with('success', 'Service Subcategory deleted successfully.');
+        flash()->success('Service Subcategory deleted successfully.');
+        return redirect()->route('admin.service-subcategories.index');
     }
 
     /**
