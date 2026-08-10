@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Baseline;
 use App\Models\CivilService;
 use App\Models\CompanyValue;
 use App\Models\ContactSetting;
@@ -16,6 +17,8 @@ use App\Models\Project;
 use App\Models\ProjectProcess;
 use App\Models\ServiceSubcategory;
 use App\Models\SpecialisationSubcategory;
+use App\Models\StandardBanner;
+use App\Models\StandardSection;
 use App\Models\StorySection;
 use App\Models\WhyChooseUs;
 use App\Models\WhyChooseUsItem;
@@ -72,8 +75,31 @@ class FrontendController extends Controller
 
     public function standards(): View
     {
-        $banner = \App\Models\Banner::where('page_name', 'standards')->first();
-        return view('frontend.pages.standards', compact('banner'));
+        $standardSections = StandardSection::with([
+            'standards' => function ($query) {
+                $query
+                    ->where('status', true)
+                    ->orderBy('sort_order')
+                    ->orderBy('id');
+            },
+        ])
+            ->where('status', true)
+            ->orderBy('sort_order')
+            ->orderBy('id')
+            ->get();
+
+        $banner = StandardBanner::where('status', true)
+            ->orderBy('sort_order')
+            ->first();
+
+        $baselines = Baseline::where('status', true)
+            ->orderBy('sort_order')
+            ->get();
+
+        return view(
+            'frontend.pages.standards',
+            compact('standardSections', 'banner', 'baselines')
+        );
     }
 
     public function process(): View

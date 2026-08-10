@@ -3,13 +3,13 @@
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Backend\BannerController;
+use App\Http\Controllers\backend\BaselineController;
 use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\backend\CivilServiceController;
 use App\Http\Controllers\Backend\CompanyValueController;
 use App\Http\Controllers\backend\ContactSettingController;
 use App\Http\Controllers\Backend\CoverageController;
 use App\Http\Controllers\backend\FaqController;
-use App\Http\Controllers\backend\FooterController;
 use App\Http\Controllers\backend\HomeBannerController;
 use App\Http\Controllers\backend\HospitalSpecialisationController;
 use App\Http\Controllers\Backend\MetricController;
@@ -19,6 +19,9 @@ use App\Http\Controllers\backend\ProjectController;
 use App\Http\Controllers\Backend\ProjectProcessController;
 use App\Http\Controllers\backend\ServiceSubcategoryController;
 use App\Http\Controllers\backend\SpecialisationSubcategoryController;
+use App\Http\Controllers\backend\StandardBannerController;
+use App\Http\Controllers\backend\StandardController;
+use App\Http\Controllers\backend\StandardSectionController;
 use App\Http\Controllers\Backend\StorySectionController;
 use App\Http\Controllers\backend\WhyChooseUsController;
 use App\Http\Controllers\Backend\WorkController;
@@ -47,6 +50,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('categories', CategoryController::class)->except('show');
         Route::resource('service-subcategories', ServiceSubcategoryController::class)->except('show');
         Route::resource('specialisation-subcategories', SpecialisationSubcategoryController::class)->except('show');
+        Route::resource('standard-sections', StandardSectionController::class)->except(['show']);
+        Route::resource('standards', StandardController::class)->except(['show']);
+        Route::resource('standard-banners', StandardBannerController::class)->except(['show']);
+        Route::resource('baselines', BaselineController::class)->except(['show']);
         Route::resource('banners', BannerController::class)->except('show');
         // Route::resource('compliance-standards', ComplianceStandardController::class)->except('show');
 
@@ -70,7 +77,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('works', WorkController::class)->except(['show']);
         Route::resource('enquiries', EnquiryController::class)->except(['create', 'store']);
         Route::resource('contact-settings', ContactSettingController::class)->only(['index', 'edit', 'update']);
-        Route::resource('footers', FooterController::class)->except(['show']);
     });
 });
 
