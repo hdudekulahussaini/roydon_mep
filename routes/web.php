@@ -24,6 +24,10 @@ use App\Http\Controllers\Backend\ProjectProcessController;
 use App\Http\Controllers\Backend\WorkController;
 use App\Http\Controllers\EnquiryController;
 use App\Http\Controllers\backend\ContactSettingController;
+use App\Http\Controllers\backend\StandardController;
+use App\Http\Controllers\backend\StandardSectionController;
+use App\Http\Controllers\backend\StandardBannerController;
+use App\Http\Controllers\backend\BaselineController;
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', function () {
@@ -46,6 +50,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('categories', CategoryController::class)->except('show');
         Route::resource('service-subcategories', ServiceSubcategoryController::class)->except('show');
         Route::resource('specialisation-subcategories', SpecialisationSubcategoryController::class)->except('show');
+        Route::resource('standard-sections', StandardSectionController::class)->except(['show']);
+        Route::resource('standards', StandardController::class)->except(['show']);
+        Route::resource('standard-banners', StandardBannerController::class)->except(['show']);
+        Route::resource('baselines', BaselineController::class)->except(['show']);
         // Route::resource('compliance-standards', ComplianceStandardController::class)->except('show');
 
         Route::get('why-choose-us', [WhyChooseUsController::class, 'index'])->name('why-choose-us.index');
@@ -79,11 +87,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('company-values', CompanyValueController::class)->except(['show']);
         Route::resource('metrics', MetricController::class)->except(['show']);
         Route::resource('office-locations', OfficeLocationController::class)->except(['show']);
-        Route::resource('coverages',CoverageController::class)->except(['show']);
-        Route::resource('project-processes',ProjectProcessController::class)->except(['show']);
-        Route::resource('works',WorkController::class)->except(['show']);
-        Route::resource('enquiries', EnquiryController::class)->except(['create','store']);
-        Route::resource('contact-settings', ContactSettingController::class)->only(['index','edit','update']);
+        Route::resource('coverages', CoverageController::class)->except(['show']);
+        Route::resource('project-processes', ProjectProcessController::class)->except(['show']);
+        Route::resource('works', WorkController::class)->except(['show']);
+        Route::resource('enquiries', EnquiryController::class)->except(['create', 'store']);
+        Route::resource('contact-settings', ContactSettingController::class)->only(['index', 'edit', 'update']);
     });
 });
 

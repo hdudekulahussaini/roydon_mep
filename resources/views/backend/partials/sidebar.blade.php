@@ -94,15 +94,6 @@
             <span>FAQs</span>
         </a>
 
-        <a href="{{ route('admin.standards-page.index') }}"
-            class="sidebar-link
-          {{ request()->routeIs('admin.standards-page.*') || request()->routeIs('admin.standards-baseline-items.*') || request()->routeIs('admin.compliance-standards.*') ? 'active' : '' }}">
-            <span class="sidebar-icon">
-                <i class="fa-solid fa-clipboard-check"></i>
-            </span>
-            <span>Standards & Compliance</span>
-        </a>
-
         <div class="sidebar-section-title">
             ABOUT
         </div>
@@ -171,7 +162,7 @@
             <span>Coverages</span>
         </a>
 
-        
+
 
         <div class="sidebar-section-title">
             CONTACT
@@ -220,6 +211,80 @@
                 <i class="fa-solid fa-house-medical-circle-check"></i>
             </span>
             <span>Specialisation Subcat.</span>
+        </a>
+
+        {{-- Standards --}}
+        <div class="sidebar-section-title">
+            STANDARDS_OVERVIEW
+        </div>
+        <a
+            href="{{ route('admin.standard-banners.index') }}"
+            class="sidebar-link
+    {{ request()->routeIs('admin.standard-banners.*') ? 'active' : '' }}">
+
+            <span class="sidebar-icon">
+
+                <i class="fa-solid fa-image"></i>
+
+            </span>
+
+            <span>
+                Standards Banner
+            </span>
+
+        </a>
+
+        <a
+            href="{{ route('admin.standard-sections.index') }}"
+            class="sidebar-link
+    {{ request()->routeIs('admin.standard-sections.*')
+        ? 'active'
+        : '' }}">
+
+            <span class="sidebar-icon">
+                <i class="fa-solid fa-layer-group"></i>
+            </span>
+
+            <span class="sidebar-text">
+                Standard Sections
+            </span>
+
+        </a>
+
+
+        <a
+            href="{{ route('admin.standards.index') }}"
+            class="sidebar-link
+    {{ request()->routeIs('admin.standards.*')
+        ? 'active'
+        : '' }}">
+
+            <span class="sidebar-icon">
+                <i class="fa-solid fa-list-check"></i>
+            </span>
+
+            <span class="sidebar-text">
+                Standards
+            </span>
+
+        </a>
+        {{-- Compliance Baseline --}}
+
+        <a
+            href="{{ route('admin.baselines.index') }}"
+            class="sidebar-link
+    {{ request()->routeIs('admin.baselines.*') ? 'active' : '' }}">
+
+            <span class="sidebar-icon">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+            </span>
+
+            <span>
+                Compliance Baseline
+            </span>
+
         </a>
 
     </nav>

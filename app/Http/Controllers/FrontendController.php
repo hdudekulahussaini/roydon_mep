@@ -10,9 +10,6 @@ use App\Models\WhyChooseUs;
 use App\Models\WhyChooseUsItem;
 use App\Models\Project;
 use App\Models\Faq;
-use App\Models\ComplianceStandard;
-use App\Models\StandardsPageSetting;
-use App\Models\StandardsBaselineItem;
 use Illuminate\Contracts\View\View;
 use App\Models\StorySection;
 use App\Models\CompanyValue;
@@ -21,6 +18,9 @@ use App\Models\OfficeLocation;
 use App\Models\Coverage;
 use App\Models\ProjectProcess;
 use App\Models\Work;
+use App\Models\StandardSection;
+use App\Models\StandardBanner;
+use App\Models\Baseline;
 
 class FrontendController extends Controller
 {
@@ -66,10 +66,31 @@ class FrontendController extends Controller
 
     public function standards(): View
     {
-        $settings = StandardsPageSetting::first();
-        $baselineItems = StandardsBaselineItem::all();
-        $standards = ComplianceStandard::all();
-        return view('frontend.pages.standards', compact('settings', 'baselineItems', 'standards'));
+        $standardSections = StandardSection::with([
+            'standards' => function ($query) {
+                $query
+                    ->where('status', true)
+                    ->orderBy('sort_order')
+                    ->orderBy('id');
+            }
+        ])
+            ->where('status', true)
+            ->orderBy('sort_order')
+            ->orderBy('id')
+            ->get();
+
+        $banner = StandardBanner::where('status', true)
+            ->orderBy('sort_order')
+            ->first();
+        
+        $baselines = Baseline::where('status', true)
+        ->orderBy('sort_order')
+        ->get();
+
+        return view(
+            'frontend.pages.standards',
+            compact('standardSections', 'banner', 'baselines')
+        );
     }
 
     public function process(): View
