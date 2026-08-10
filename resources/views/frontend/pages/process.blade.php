@@ -305,8 +305,8 @@
     <!-- Hero Section -->
     <section class="process-hero">
         <div class="container">
-            <h1 class="process-hero-title">The Roydon MEP Process</h1>
-            <p class="process-hero-subtitle">From brief to clinical handover — one team, five stages. The engineers who design the systems are on site when they are commissioned.</p>
+            <h1 class="process-hero-title">{!! $banner?->heading !!}</h1>
+            <p class="process-hero-subtitle">{!! nl2br(e($banner?->description)) !!}</p>
         </div>
     </section>
 

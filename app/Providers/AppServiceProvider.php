@@ -33,6 +33,11 @@ class AppServiceProvider extends ServiceProvider
             $view->with('headerServices', ServiceSubcategory::where('status', true)->get());
         });
 
+        view()->composer('frontend.partials.footer', function ($view) {
+            $view->with('footerData', \App\Models\Footer::first());
+            $view->with('contactSetting', \App\Models\ContactSetting::first());
+        });
+
         // Share admin dashboard stats with backend layouts
         view()->composer('layouts.backend.*', function ($view) {
             $view->with('stats', [

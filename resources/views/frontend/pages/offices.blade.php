@@ -209,8 +209,8 @@
     <!-- Hero Section -->
     <section class="office-hero">
         <div class="container">
-            <h1 class="office-hero-title">Hospital MEP Contractor<br>Hyderabad & Across India</h1>
-            <p class="office-hero-subtitle">Headquartered in Hyderabad with offices in Bengaluru, Dubai and Saudi — delivering hospital MEP execution across India and the Gulf. London and Munich upcoming.</p>
+            <h1 class="office-hero-title">{!! $banner?->heading !!}</h1>
+            <p class="office-hero-subtitle">{!! nl2br(e($banner?->description)) !!}</p>
         </div>
     </section>
 

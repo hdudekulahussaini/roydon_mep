@@ -208,8 +208,8 @@
     <main>
         <section class="std-hero">
             <div class="container">
-                <h1 class="std-hero-title">Certifications, Standards<br><em>&amp; Compliance</em></h1>
-                <p class="std-hero-subtitle">We engineer to the standards that govern hospital operation in India and internationally — not as a checkbox, but as a baseline for every design decision.</p>
+                <h1 class="std-hero-title">{!! $banner?->heading !!}</h1>
+                <p class="std-hero-subtitle">{!! nl2br(e($banner?->description)) !!}</p>
             </div>
         </section>
 
