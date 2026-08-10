@@ -66,23 +66,15 @@
             <span>Specialisations</span>
         </a>
 
-        <a href="{{ route('admin.civil-services.index') }}"
+        <a href="{{ route('admin.why-choose-us.index') }}"
             class="sidebar-link
-          {{ request()->routeIs('admin.civil-services.*') ? 'active' : '' }}">
+          {{ request()->routeIs('admin.why-choose-us.*') || request()->routeIs('admin.why-choose-us-items.*') ? 'active' : '' }}">
             <span class="sidebar-icon">
-                <i class="fa-solid fa-helmet-safety"></i>
+                <i class="fa-solid fa-list-check"></i>
             </span>
-            <span>Civil Services</span>
+            <span>Why Choose Us</span>
         </a>
 
-        <a href="{{ route('admin.hospital-specialisations.index') }}"
-            class="sidebar-link
-          {{ request()->routeIs('admin.hospital-specialisations.*') ? 'active' : '' }}">
-            <span class="sidebar-icon">
-                <i class="fa-solid fa-house-medical-flag"></i>
-            </span>
-            <span>Specialisations</span>
-        </a>
 
         <a href="{{ route('admin.projects.index') }}"
             class="sidebar-link
@@ -93,6 +85,15 @@
             <span>Projects</span>
         </a>
 
+        <a href="{{ route('admin.faqs.index') }}"
+            class="sidebar-link
+          {{ request()->routeIs('admin.faqs.*') ? 'active' : '' }}">
+            <span class="sidebar-icon">
+                <i class="fa-solid fa-circle-question"></i>
+            </span>
+            <span>FAQs</span>
+        </a>
+
         <a href="{{ route('admin.standards-page.index') }}"
             class="sidebar-link
           {{ request()->routeIs('admin.standards-page.*') || request()->routeIs('admin.standards-baseline-items.*') || request()->routeIs('admin.compliance-standards.*') ? 'active' : '' }}">
@@ -100,6 +101,34 @@
                 <i class="fa-solid fa-clipboard-check"></i>
             </span>
             <span>Standards & Compliance</span>
+        </a>
+
+        <div class="sidebar-section-title">
+            ABOUT
+        </div>
+        <a href="{{ route('admin.story-sections.index') }}"
+            class="sidebar-link
+          {{ request()->routeIs('admin.story-sections.*') ? 'active' : '' }}">
+            <span class="sidebar-icon">
+                <i class="fa-solid fa-book-open"></i>
+            </span>
+            <span>Story Sections</span>
+        </a>
+        <a href="{{ route('admin.company-values.index') }}"
+            class="sidebar-link
+          {{ request()->routeIs('admin.company-values.*') ? 'active' : '' }}">
+            <span class="sidebar-icon">
+                <i class="fa-solid fa-handshake"></i>
+            </span>
+            <span>Company Values</span>
+        </a>
+        <a href="{{ route('admin.metrics.index') }}"
+            class="sidebar-link
+          {{ request()->routeIs('admin.metrics.*') ? 'active' : '' }}">
+            <span class="sidebar-icon">
+                <i class="fa-solid fa-chart-bar"></i>
+            </span>
+            <span>Metrics</span>
         </a>
 
         <div class="sidebar-section-title">
@@ -142,33 +171,7 @@
             <span>Coverages</span>
         </a>
 
-        <div class="sidebar-section-title">
-            ABOUT
-        </div>
-        <a href="{{ route('admin.story-sections.index') }}"
-            class="sidebar-link
-          {{ request()->routeIs('admin.story-sections.*') ? 'active' : '' }}">
-            <span class="sidebar-icon">
-                <i class="fa-solid fa-book-open"></i>
-            </span>
-            <span>Story Sections</span>
-        </a>
-        <a href="{{ route('admin.company-values.index') }}"
-            class="sidebar-link
-          {{ request()->routeIs('admin.company-values.*') ? 'active' : '' }}">
-            <span class="sidebar-icon">
-                <i class="fa-solid fa-handshake"></i>
-            </span>
-            <span>Company Values</span>
-        </a>
-        <a href="{{ route('admin.metrics.index') }}"
-            class="sidebar-link
-          {{ request()->routeIs('admin.metrics.*') ? 'active' : '' }}">
-            <span class="sidebar-icon">
-                <i class="fa-solid fa-chart-bar"></i>
-            </span>
-            <span>Metrics</span>
-        </a>
+        
 
         <div class="sidebar-section-title">
             CONTACT
@@ -193,22 +196,7 @@
         <div class="sidebar-section-title">
             OTHER
         </div>
-        <a href="{{ route('admin.why-choose-us.index') }}"
-            class="sidebar-link
-          {{ request()->routeIs('admin.why-choose-us.*') || request()->routeIs('admin.why-choose-us-items.*') ? 'active' : '' }}">
-            <span class="sidebar-icon">
-                <i class="fa-solid fa-list-check"></i>
-            </span>
-            <span>Why Choose Us</span>
-        </a>
-        <a href="{{ route('admin.faqs.index') }}"
-            class="sidebar-link
-          {{ request()->routeIs('admin.faqs.*') ? 'active' : '' }}">
-            <span class="sidebar-icon">
-                <i class="fa-solid fa-circle-question"></i>
-            </span>
-            <span>FAQs</span>
-        </a>
+
         <a href="{{ route('admin.categories.index') }}"
             class="sidebar-link
           {{ request()->routeIs('admin.categories.*') ? 'active' : '' }}">

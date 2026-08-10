@@ -511,6 +511,8 @@
             </section>
         @endif
         <!-- hospital-specialisations-area-end -->
+
+
         <!-- why-hoose-us-area -->
         @if ($whyChooseUs)
             <section class="pt-120 pb-90 p-relative">
@@ -781,6 +783,7 @@
             </section>
         @endif
         <!-- projects-area-end -->
+
         <!-- faq-area start -->
         @if ($faqs && $faqs->isNotEmpty())
             @php
