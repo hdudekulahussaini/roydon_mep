@@ -9,6 +9,6 @@ class StandardsPageSetting extends Model
     protected $fillable = [
         'hero_title',
         'hero_subtitle',
-        'banner_image'
+        'banner_image',
     ];
 }

@@ -24,7 +24,6 @@ class WorkController extends Controller
         );
     }
 
-
     /**
      * Show create form.
      */
@@ -32,7 +31,6 @@ class WorkController extends Controller
     {
         return view('backend.pages.works.create');
     }
-
 
     /**
      * Store new work.
@@ -71,7 +69,6 @@ class WorkController extends Controller
             ],
         ]);
 
-
         if ($request->hasFile('image')) {
 
             $validated['image'] =
@@ -79,16 +76,13 @@ class WorkController extends Controller
                     ->store('works', 'public');
         }
 
-
         $validated['sort_order'] =
             $validated['sort_order'] ?? 0;
 
         $validated['status'] =
             $request->boolean('status');
 
-
         Work::create($validated);
-
 
         return redirect()
             ->route('admin.works.index')
@@ -97,7 +91,6 @@ class WorkController extends Controller
                 'Work created successfully.'
             );
     }
-
 
     /**
      * Show edit form.
@@ -109,7 +102,6 @@ class WorkController extends Controller
             compact('work')
         );
     }
-
 
     /**
      * Update work.
@@ -150,7 +142,6 @@ class WorkController extends Controller
             ],
         ]);
 
-
         if ($request->hasFile('image')) {
 
             if (
@@ -161,12 +152,10 @@ class WorkController extends Controller
                     ->delete($work->image);
             }
 
-
             $validated['image'] =
                 $request->file('image')
                     ->store('works', 'public');
         }
-
 
         $validated['sort_order'] =
             $validated['sort_order'] ?? 0;
@@ -174,9 +163,7 @@ class WorkController extends Controller
         $validated['status'] =
             $request->boolean('status');
 
-
         $work->update($validated);
-
 
         return redirect()
             ->route('admin.works.index')
@@ -185,7 +172,6 @@ class WorkController extends Controller
                 'Work updated successfully.'
             );
     }
-
 
     /**
      * Delete work.
@@ -200,9 +186,7 @@ class WorkController extends Controller
                 ->delete($work->image);
         }
 
-
         $work->delete();
-
 
         return redirect()
             ->route('admin.works.index')

@@ -4,14 +4,15 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\ContactSetting;
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class ContactSettingController extends Controller
 {
     public function index()
     {
         $setting = ContactSetting::first();
+
         return view('backend.pages.contact-settings.index', compact('setting'));
     }
 
@@ -32,7 +33,7 @@ class ContactSettingController extends Controller
         ]);
 
         $metrics = [];
-        if (!empty($data['metrics_json'])) {
+        if (! empty($data['metrics_json'])) {
             $decoded = json_decode($data['metrics_json'], true);
             if (is_array($decoded)) {
                 $metrics = $decoded;

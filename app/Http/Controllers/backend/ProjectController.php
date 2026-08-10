@@ -78,7 +78,7 @@ class ProjectController extends Controller
 
         if ($request->hasFile('image')) {
             // Delete old image if it exists in storage and is not a static asset
-            if ($project->image && !str_starts_with($project->image, 'assets/') && Storage::disk('public')->exists($project->image)) {
+            if ($project->image && ! str_starts_with($project->image, 'assets/') && Storage::disk('public')->exists($project->image)) {
                 Storage::disk('public')->delete($project->image);
             }
 
@@ -102,7 +102,7 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project): RedirectResponse
     {
-        if ($project->image && !str_starts_with($project->image, 'assets/') && Storage::disk('public')->exists($project->image)) {
+        if ($project->image && ! str_starts_with($project->image, 'assets/') && Storage::disk('public')->exists($project->image)) {
             Storage::disk('public')->delete($project->image);
         }
 

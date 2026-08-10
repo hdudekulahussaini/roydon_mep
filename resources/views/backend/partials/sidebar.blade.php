@@ -200,6 +200,15 @@
             OTHER
         </div>
 
+        <a href="{{ route('admin.footers.index') }}"
+            class="sidebar-link
+          {{ request()->routeIs('admin.footers.*') ? 'active' : '' }}">
+            <span class="sidebar-icon">
+                <i class="fa-solid fa-shoe-prints"></i>
+            </span>
+            <span>Footer Settings</span>
+        </a>
+
         <a href="{{ route('admin.categories.index') }}"
             class="sidebar-link
           {{ request()->routeIs('admin.categories.*') ? 'active' : '' }}">
