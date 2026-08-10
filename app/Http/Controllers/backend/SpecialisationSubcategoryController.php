@@ -62,9 +62,8 @@ class SpecialisationSubcategoryController extends Controller
 
         SpecialisationSubcategory::create($validated);
 
-        return redirect()
-            ->route('admin.specialisation-subcategories.index')
-            ->with('success', 'Specialisation subcategory created successfully.');
+        flash()->success('Specialisation subcategory created successfully.');
+        return redirect()->route('admin.specialisation-subcategories.index');
     }
 
     /**
@@ -109,9 +108,8 @@ class SpecialisationSubcategoryController extends Controller
 
         $specialisationSubcategory->update($validated);
 
-        return redirect()
-            ->route('admin.specialisation-subcategories.index')
-            ->with('success', 'Specialisation subcategory updated successfully.');
+        flash()->success('Specialisation subcategory updated successfully.');
+        return redirect()->route('admin.specialisation-subcategories.index');
     }
 
     /**
@@ -129,9 +127,8 @@ class SpecialisationSubcategoryController extends Controller
 
         $specialisationSubcategory->delete();
 
-        return redirect()
-            ->route('admin.specialisation-subcategories.index')
-            ->with('success', 'Specialisation subcategory deleted successfully.');
+        flash()->success('Specialisation subcategory deleted successfully.');
+        return redirect()->route('admin.specialisation-subcategories.index');
     }
 
     /**

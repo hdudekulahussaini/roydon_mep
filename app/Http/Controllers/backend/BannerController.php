@@ -43,7 +43,8 @@ class BannerController extends Controller
 
         Banner::create($validated);
 
-        return redirect()->route('admin.banners.index')->with('success', 'Banner created successfully.');
+        flash()->success('Banner created successfully.');
+        return redirect()->route('admin.banners.index');
     }
 
     /**
@@ -73,7 +74,8 @@ class BannerController extends Controller
 
         $banner->update($validated);
 
-        return redirect()->route('admin.banners.index')->with('success', 'Banner updated successfully.');
+        flash()->success('Banner updated successfully.');
+        return redirect()->route('admin.banners.index');
     }
 
     /**
@@ -87,7 +89,8 @@ class BannerController extends Controller
 
         $banner->delete();
 
-        return redirect()->route('admin.banners.index')->with('success', 'Banner deleted successfully.');
+        flash()->success('Banner deleted successfully.');
+        return redirect()->route('admin.banners.index');
     }
 
     /**

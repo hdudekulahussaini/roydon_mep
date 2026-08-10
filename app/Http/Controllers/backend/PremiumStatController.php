@@ -44,9 +44,8 @@ class PremiumStatController extends Controller
 
         PremiumStat::create($validated);
 
-        return redirect()
-            ->route('admin.premium-stats.index')
-            ->with('success', 'Premium stat created successfully.');
+        flash()->success('Premium stat created successfully.');
+        return redirect()->route('admin.premium-stats.index');
     }
 
     /**
@@ -73,9 +72,8 @@ class PremiumStatController extends Controller
 
         $premiumStat->update($validated);
 
-        return redirect()
-            ->route('admin.premium-stats.index')
-            ->with('success', 'Premium stat updated successfully.');
+        flash()->success('Premium stat updated successfully.');
+        return redirect()->route('admin.premium-stats.index');
     }
 
     /**
@@ -86,9 +84,8 @@ class PremiumStatController extends Controller
     ): RedirectResponse {
         $premiumStat->delete();
 
-        return redirect()
-            ->route('admin.premium-stats.index')
-            ->with('success', 'Premium stat deleted successfully.');
+        flash()->success('Premium stat deleted successfully.');
+        return redirect()->route('admin.premium-stats.index');
     }
 
     /**

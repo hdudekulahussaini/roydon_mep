@@ -44,9 +44,8 @@ class FaqController extends Controller
 
         Faq::create($validated);
 
-        return redirect()
-            ->route('admin.faqs.index')
-            ->with('success', 'FAQ created successfully.');
+        flash()->success('FAQ created successfully.');
+        return redirect()->route('admin.faqs.index');
     }
 
     /**
@@ -71,9 +70,8 @@ class FaqController extends Controller
 
         $faq->update($validated);
 
-        return redirect()
-            ->route('admin.faqs.index')
-            ->with('success', 'FAQ updated successfully.');
+        flash()->success('FAQ updated successfully.');
+        return redirect()->route('admin.faqs.index');
     }
 
     /**
@@ -83,9 +81,8 @@ class FaqController extends Controller
     {
         $faq->delete();
 
-        return redirect()
-            ->route('admin.faqs.index')
-            ->with('success', 'FAQ deleted successfully.');
+        flash()->success('FAQ deleted successfully.');
+        return redirect()->route('admin.faqs.index');
     }
 
     /**
