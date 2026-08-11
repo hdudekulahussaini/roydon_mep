@@ -76,11 +76,11 @@
                 </li>
 
                 <li>
-                    <a href="{{ url('/admin/profile') }}"
+                    <a href="{{ route('admin.profile.show') }}"
                         class="dropdown-item">
 
                         <i class="fa-regular fa-user"></i>
-                        My Profile
+                        Profile settings
                     </a>
                 </li>
 
