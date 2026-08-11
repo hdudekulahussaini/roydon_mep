@@ -47,9 +47,9 @@
                                 <td><code>{{ $spec->slug }}</code></td>
                                 <td>
                                     @if ($spec->status)
-                                        <span class="badge bg-success-subtle text-success border border-success-subtle">Active</span>
+                                        <span class="badge bg-success">Active</span>
                                     @else
-                                        <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle">Inactive</span>
+                                        <span class="badge bg-danger">Inactive</span>
                                     @endif
                                 </td>
                                 <td class="text-end pe-4">

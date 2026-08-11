@@ -21,13 +21,15 @@
                 </p>
             </div>
 
-            <a href="{{ route('admin.footers.create') }}"
-                class="btn btn-dark">
+            @if($footers->isEmpty())
+                <a href="{{ route('admin.footers.create') }}"
+                    class="btn btn-dark">
 
-                <i class="fa-solid fa-plus me-1"></i>
-                Add Footer
+                    <i class="fa-solid fa-plus me-1"></i>
+                    Add Footer
 
-            </a>
+                </a>
+            @endif
 
         </div>
 

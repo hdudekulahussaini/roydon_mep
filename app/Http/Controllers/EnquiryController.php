@@ -7,15 +7,30 @@ use App\Mail\EnquiryAdminNotification;
 use App\Mail\EnquiryUserConfirmation;
 use App\Models\Enquiry;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 
 class EnquiryController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
-        $enquiries = Enquiry::query()->latest('created_at')->paginate(20);
-        $selected = request()->query('selected');
+        $query = Enquiry::query()->latest('created_at');
+
+        if ($search = $request->input('search')) {
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%")
+                    ->orWhere('phone', 'like', "%{$search}%")
+                    ->orWhere('city', 'like', "%{$search}%")
+                    ->orWhere('details', 'like', "%{$search}%")
+                    ->orWhere('created_at', 'like', "%{$search}%")
+                    ->orWhereRaw("DATE_FORMAT(created_at, '%d %b %Y') LIKE ?", ["%{$search}%"]);
+            });
+        }
+
+        $enquiries = $query->paginate(20)->withQueryString();
+        $selected = $request->query('selected');
         $selectedEnquiry = $selected ? Enquiry::query()->find($selected) : ($enquiries->first() ?? null);
 
         return view('backend.pages.enquiries.index', compact('enquiries', 'selectedEnquiry'));
@@ -51,6 +66,20 @@ class EnquiryController extends Controller
         $enquiry->deleteOrFail();
 
         flash()->success('Enquiry removed.');
+
+        return redirect()->route('admin.enquiries.index');
+    }
+
+    public function bulkDestroy(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'ids' => 'required|array|min:1',
+            'ids.*' => 'integer|exists:enquiries,id',
+        ]);
+
+        $count = Enquiry::whereIn('id', $request->input('ids'))->delete();
+
+        flash()->success("{$count} enquir".($count === 1 ? 'y' : 'ies').' deleted.');
 
         return redirect()->route('admin.enquiries.index');
     }
