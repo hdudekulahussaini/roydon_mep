@@ -32,14 +32,14 @@ class FrontendController extends Controller
 
     public function index(): View
     {
-        $banner           = HomeBanner::latest()->first();
-        $stats            = PremiumStat::all();
-        $civilServices    = CivilService::all();
-        $specialisations  = HospitalSpecialisation::all();
-        $whyChooseUs      = WhyChooseUs::first();
+        $banner = HomeBanner::query()->latest('created_at')->first(['*']);
+        $stats = PremiumStat::all();
+        $civilServices = CivilService::all();
+        $specialisations = HospitalSpecialisation::all();
+        $whyChooseUs = WhyChooseUs::query()->first(['*']);
         $whyChooseUsItems = WhyChooseUsItem::all();
-        $projects         = Project::latest()->get();
-        $faqs             = Faq::all();
+        $projects = Project::query()->latest('created_at')->get(['*']);
+        $faqs = Faq::all();
 
         return view('frontend.pages.index', compact(
             'banner',
@@ -57,10 +57,10 @@ class FrontendController extends Controller
 
     public function about(): View
     {
-        $banner        = Banner::where('page_name', 'about')->first();
-        $storySection  = StorySection::where('status', true)->first();
-        $companyValues = CompanyValue::where('status', true)->get();
-        $metrics       = Metric::where('status', true)->get();
+        $banner = Banner::query()->where('page_name', '=', 'about')->first(['*']);
+        $storySection = StorySection::query()->where('status', '=', true)->first(['*']);
+        $companyValues = CompanyValue::query()->where('status', '=', true)->get(['*']);
+        $metrics = Metric::query()->where('status', '=', true)->get(['*']);
 
         return view('frontend.pages.about', compact(
             'banner',
@@ -74,8 +74,8 @@ class FrontendController extends Controller
 
     public function contact(): View
     {
-        $banner         = Banner::where('page_name', 'contact')->first();
-        $contactSetting = ContactSetting::first();
+        $banner = Banner::query()->where('page_name', '=', 'contact')->first(['*']);
+        $contactSetting = ContactSetting::query()->first(['*']);
 
         return view('frontend.pages.contact', compact(
             'banner',
@@ -87,8 +87,8 @@ class FrontendController extends Controller
 
     public function projects(): View
     {
-        $banner   = Banner::where('page_name', 'projects')->first();
-        $projects = Project::latest()->get();
+        $banner = Banner::query()->where('page_name', '=', 'projects')->first(['*']);
+        $projects = Project::query()->latest('created_at')->get(['*']);
 
         return view('frontend.pages.projects', compact(
             'banner',
@@ -100,16 +100,16 @@ class FrontendController extends Controller
 
     public function standards(): View
     {
-        $standardSections = StandardSection::where('status', true)
+        $standardSections = StandardSection::query()->where('status', '=', true)
             ->with(['standards' => function ($query) {
-                $query->where('status', true)->orderBy('sort_order')->orderBy('id');
+                $query->where('status', '=', true)->orderBy('sort_order', 'asc')->orderBy('id', 'asc');
             }])
-            ->orderBy('sort_order')
-            ->orderBy('id')
-            ->get();
+            ->orderBy('sort_order', 'asc')
+            ->orderBy('id', 'asc')
+            ->get(['*']);
 
-        $banner    = StandardBanner::where('status', true)->orderBy('sort_order')->first();
-        $baselines = Baseline::where('status', true)->orderBy('sort_order')->get();
+        $banner = StandardBanner::query()->where('status', '=', true)->orderBy('sort_order', 'asc')->first(['*']);
+        $baselines = Baseline::query()->where('status', '=', true)->orderBy('sort_order', 'asc')->get(['*']);
 
         return view('frontend.pages.standards', compact(
             'standardSections',
@@ -122,9 +122,9 @@ class FrontendController extends Controller
 
     public function process(): View
     {
-        $banner    = Banner::where('page_name', 'process')->first();
-        $processes = ProjectProcess::orderBy('sort_order')->orderBy('id')->get();
-        $works     = Work::where('status', true)->orderBy('sort_order')->orderBy('id')->get();
+        $banner = Banner::query()->where('page_name', '=', 'process')->first(['*']);
+        $processes = ProjectProcess::query()->orderBy('sort_order', 'asc')->orderBy('id', 'asc')->get(['*']);
+        $works = Work::query()->where('status', '=', true)->orderBy('sort_order', 'asc')->orderBy('id', 'asc')->get(['*']);
 
         return view('frontend.pages.process', compact(
             'banner',
@@ -137,9 +137,9 @@ class FrontendController extends Controller
 
     public function offices(): View
     {
-        $banner          = Banner::where('page_name', 'offices')->first();
-        $officeLocations = OfficeLocation::where('status', true)->orderBy('sort_order')->latest('id')->get();
-        $coverages       = Coverage::where('status', true)->orderBy('sort_order')->latest('id')->get();
+        $banner = Banner::query()->where('page_name', '=', 'offices')->first(['*']);
+        $officeLocations = OfficeLocation::query()->where('status', '=', true)->orderBy('sort_order', 'asc')->latest('id')->get(['*']);
+        $coverages = Coverage::query()->where('status', '=', true)->orderBy('sort_order', 'asc')->latest('id')->get(['*']);
 
         return view('frontend.pages.offices', compact(
             'banner',
@@ -152,7 +152,7 @@ class FrontendController extends Controller
 
     public function serviceShow(string $slug): View
     {
-        $service = ServiceSubcategory::where('slug', $slug)->firstOrFail();
+        $service = ServiceSubcategory::query()->where('slug', '=', $slug)->firstOrFail();
 
         return view('frontend.pages.service', compact('service'));
     }
@@ -161,7 +161,7 @@ class FrontendController extends Controller
 
     public function specialisationShow(string $slug): View
     {
-        $specialisation = SpecialisationSubcategory::where('slug', $slug)->firstOrFail();
+        $specialisation = SpecialisationSubcategory::query()->where('slug', '=', $slug)->firstOrFail();
 
         return view('frontend.pages.specialisation', compact('specialisation'));
     }

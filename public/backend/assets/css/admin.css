@@ -91,7 +91,22 @@ body {
 .sidebar-menu {
     flex: 1;
     padding: 0 13px;
-    overflow-y: auto;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: #82b440 transparent;
+}
+
+.sidebar-menu::-webkit-scrollbar {
+    width: 5px;
+}
+
+.sidebar-menu::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar-menu::-webkit-scrollbar-thumb {
+    background-color: #82b440;
+    border-radius: 9999px;
 }
 
 .sidebar-link {

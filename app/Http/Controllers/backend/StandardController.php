@@ -4,6 +4,7 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Standard;
+use App\Models\StandardSection;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -19,7 +20,9 @@ class StandardController extends Controller
 
     public function create(): View
     {
-        return view('backend.pages.standards.create');
+        $sections = StandardSection::orderBy('title')->get();
+
+        return view('backend.pages.standards.create', compact('sections'));
     }
 
     public function store(Request $request): RedirectResponse
@@ -44,7 +47,9 @@ class StandardController extends Controller
 
     public function edit(Standard $standard): View
     {
-        return view('backend.pages.standards.edit', compact('standard'));
+        $sections = StandardSection::orderBy('title')->get();
+
+        return view('backend.pages.standards.edit', compact('standard', 'sections'));
     }
 
     public function update(Request $request, Standard $standard): RedirectResponse
