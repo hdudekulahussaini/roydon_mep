@@ -13,13 +13,6 @@ return new class extends Migration
             $table->id();
 
             $table->string('image');
-
-            $table->string('alt_text')->nullable();
-
-            $table->integer('sort_order')->default(1);
-
-            $table->boolean('status')->default(true);
-
             $table->timestamps();
         });
     }

@@ -3,32 +3,19 @@
     {{-- Title --}}
     <div class="col-md-12">
 
-        <label
-            for="title"
-            class="form-label fw-semibold"
-        >
+        <label for="title" class="form-label fw-semibold">
             Title
             <span class="text-danger">*</span>
         </label>
 
-        <input
-            type="text"
-            name="title"
-            id="title"
-            value="{{ old(
-                'title',
-                $baseline?->title
-            ) }}"
-            class="form-control @error('title') is-invalid @enderror"
-            placeholder="NABH Ready"
-        >
+        <input type="text" name="title" id="title"
+            value="{{ old('title', $baseline?->title) }}"
+            class="form-control @error('title') is-invalid @enderror" placeholder="NABH Ready">
 
         @error('title')
-
             <div class="invalid-feedback">
                 {{ $message }}
             </div>
-
         @enderror
 
     </div>
@@ -37,31 +24,18 @@
     {{-- Description --}}
     <div class="col-12">
 
-        <label
-            for="description"
-            class="form-label fw-semibold"
-        >
+        <label for="description" class="form-label fw-semibold">
             Description
             <span class="text-danger">*</span>
         </label>
 
-        <textarea
-            name="description"
-            id="description"
-            rows="4"
-            class="form-control @error('description') is-invalid @enderror"
-            placeholder="Enter compliance information..."
-        >{{ old(
-            'description',
-            $baseline?->description
-        ) }}</textarea>
+        <textarea name="description" id="description" rows="4"
+            class="form-control @error('description') is-invalid @enderror" placeholder="Enter compliance information...">{{ old('description', $baseline?->description) }}</textarea>
 
         @error('description')
-
             <div class="invalid-feedback">
                 {{ $message }}
             </div>
-
         @enderror
 
     </div>
@@ -70,74 +44,49 @@
     {{-- Sort Order --}}
     <div class="col-md-6">
 
-        <label
-            for="sort_order"
-            class="form-label fw-semibold"
-        >
+        <label for="sort_order" class="form-label fw-semibold">
             Sort Order
             <span class="text-danger">*</span>
         </label>
 
-        <input
-            type="number"
-            name="sort_order"
-            id="sort_order"
-            min="1"
-            value="{{ old(
-                'sort_order',
-                $baseline?->sort_order ?? 1
-            ) }}"
-            class="form-control @error('sort_order') is-invalid @enderror"
-        >
+        <input type="number" name="sort_order" id="sort_order" min="1"
+            value="{{ old('sort_order', $baseline?->sort_order ?? 1) }}"
+            class="form-control @error('sort_order') is-invalid @enderror">
 
         @error('sort_order')
-
             <div class="invalid-feedback">
                 {{ $message }}
             </div>
-
         @enderror
 
     </div>
 
 
     {{-- Status --}}
-    <div class="col-md-6">
+    <div class="col-md-6 pt-4">
 
-        <label
-            for="status"
-            class="form-label fw-semibold"
-        >
-            Status
-        </label>
+        <div class="form-check form-switch">
 
-        <select
-            name="status"
-            id="status"
-            class="form-select"
-        >
+            <input type="hidden" name="status" value="0">
 
-            <option
-                value="1"
-                {{ old(
-                    'status',
-                    $baseline?->status ?? true
-                ) ? 'selected' : '' }}
-            >
-                Active
-            </option>
+            <input type="checkbox" name="status" value="1" id="status" class="form-check-input"
+                {{ old('status', $baseline?->status ?? true) ? 'checked' : '' }}>
 
-            <option
-                value="0"
-                {{ !old(
-                    'status',
-                    $baseline?->status ?? true
-                ) ? 'selected' : '' }}
-            >
-                Inactive
-            </option>
+            <label class="form-check-label fw-semibold" for="status">
+                Active Status
+            </label>
 
-        </select>
+        </div>
+
+        <small class="text-muted">
+            Enable this option to display the baseline on the website.
+        </small>
+
+        @error('status')
+            <div class="text-danger small mt-1">
+                {{ $message }}
+            </div>
+        @enderror
 
     </div>
 

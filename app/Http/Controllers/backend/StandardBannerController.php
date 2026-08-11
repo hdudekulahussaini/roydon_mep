@@ -5,6 +5,7 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use App\Models\StandardBanner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class StandardBannerController extends Controller
@@ -14,8 +15,8 @@ class StandardBannerController extends Controller
      */
     public function index()
     {
-        $banners = StandardBanner::orderBy('sort_order')
-            ->latest()
+        $banners = DB::table('standard_banners')
+            ->latest('created_at')
             ->paginate(10);
 
         return view(
@@ -46,39 +47,18 @@ class StandardBannerController extends Controller
                 'mimes:jpg,jpeg,png,webp',
                 'max:5120',
             ],
-
-            'alt_text' => [
-                'nullable',
-                'string',
-                'max:255',
-            ],
-
-            'sort_order' => [
-                'required',
-                'integer',
-                'min:1',
-            ],
-
-            'status' => [
-                'nullable',
-                'boolean',
-            ],
         ]);
 
         if ($request->hasFile('image')) {
-
-            $validated['image'] =
-                $request->file('image')
-                    ->store(
-                        'standards-banners',
-                        'public'
-                    );
+            $validated['image'] = $request->file('image')
+                ->store('standards-banners', 'public');
         }
 
-        $validated['status'] =
-            $request->boolean('status');
-
-        StandardBanner::create($validated);
+        DB::table('standard_banners')->insert([
+            'image' => $validated['image'],
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
 
         return redirect()
             ->route('admin.standard-banners.index')
@@ -113,49 +93,28 @@ class StandardBannerController extends Controller
                 'mimes:jpg,jpeg,png,webp',
                 'max:5120',
             ],
-
-            'alt_text' => [
-                'nullable',
-                'string',
-                'max:255',
-            ],
-
-            'sort_order' => [
-                'required',
-                'integer',
-                'min:1',
-            ],
-
-            'status' => [
-                'nullable',
-                'boolean',
-            ],
         ]);
+
+        $data = [
+            'updated_at' => now(),
+        ];
 
         if ($request->hasFile('image')) {
 
             if (
                 $standardBanner->image &&
-                Storage::disk('public')
-                    ->exists($standardBanner->image)
+                Storage::disk('public')->exists($standardBanner->image)
             ) {
-
-                Storage::disk('public')
-                    ->delete($standardBanner->image);
+                Storage::disk('public')->delete($standardBanner->image);
             }
 
-            $validated['image'] =
-                $request->file('image')
-                    ->store(
-                        'standards-banners',
-                        'public'
-                    );
+            $data['image'] = $request->file('image')
+                ->store('standards-banners', 'public');
         }
 
-        $validated['status'] =
-            $request->boolean('status');
-
-        $standardBanner->update($validated);
+        DB::table('standard_banners')
+            ->where('id', $standardBanner->id)
+            ->update($data);
 
         return redirect()
             ->route('admin.standard-banners.index')
@@ -172,15 +131,14 @@ class StandardBannerController extends Controller
     {
         if (
             $standardBanner->image &&
-            Storage::disk('public')
-                ->exists($standardBanner->image)
+            Storage::disk('public')->exists($standardBanner->image)
         ) {
-
-            Storage::disk('public')
-                ->delete($standardBanner->image);
+            Storage::disk('public')->delete($standardBanner->image);
         }
 
-        $standardBanner->delete();
+        DB::table('standard_banners')
+            ->where('id', $standardBanner->id)
+            ->delete();
 
         return redirect()
             ->route('admin.standard-banners.index')

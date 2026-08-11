@@ -12,6 +12,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         rel="stylesheet">
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        rel="stylesheet">
+
     <style>
         body {
             background: #f4f6f5;
@@ -96,6 +99,33 @@
             font-size: 11px;
             text-align: center;
         }
+
+        .pw-wrapper {
+            position: relative;
+        }
+
+        .pw-wrapper .form-control {
+            padding-right: 44px;
+        }
+
+        .pw-toggle {
+            position: absolute;
+            right: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #9aab9e;
+            cursor: pointer;
+            padding: 0;
+            font-size: 15px;
+            line-height: 1;
+            transition: color 0.2s;
+        }
+
+        .pw-toggle:hover {
+            color: #82b440;
+        }
     </style>
 </head>
 
@@ -164,16 +194,22 @@
                         Password
                     </label>
 
-                    <input type="password"
-                        id="password"
-                        name="password"
-                        class="form-control @error('password') is-invalid @enderror"
-                        placeholder="Enter password"
-                        autocomplete="current-password"
-                        required>
+                    <div class="pw-wrapper">
+                        <input type="password"
+                            id="password"
+                            name="password"
+                            class="form-control @error('password') is-invalid @enderror"
+                            placeholder="Enter password"
+                            autocomplete="current-password"
+                            required>
+
+                        <button type="button" class="pw-toggle" id="pwToggle" aria-label="Show/hide password">
+                            <i class="fa-regular fa-eye" id="pwIcon"></i>
+                        </button>
+                    </div>
 
                     @error('password')
-                        <div class="invalid-feedback">
+                        <div class="invalid-feedback" style="display:block;">
                             {{ $message }}
                         </div>
                     @enderror
@@ -212,6 +248,19 @@
 
     </main>
 
+    <script>
+        document.getElementById('pwToggle').addEventListener('click', function () {
+            var input = document.getElementById('password');
+            var icon  = document.getElementById('pwIcon');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        });
+    </script>
 </body>
 
 </html>
