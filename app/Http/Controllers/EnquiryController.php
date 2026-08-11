@@ -29,11 +29,13 @@ class EnquiryController extends Controller
 
         // Send admin notification
         $adminEmail = 'dharishbandi@gmail.com';
-        \Illuminate\Support\Facades\Mail::to($adminEmail)->send(new \App\Mail\EnquiryAdminNotification($enquiry));
+        \Illuminate\Support\Facades\Mail::to($adminEmail)
+            ->send(new \App\Mail\EnquiryAdminNotification($enquiry));
 
-        // Send user confirmation
+        // Send user confirmation email
         if ($enquiry->email) {
-            \Illuminate\Support\Facades\Mail::to($enquiry->email)->send(new \App\Mail\EnquiryUserConfirmation($enquiry));
+            \Illuminate\Support\Facades\Mail::to($enquiry->email)
+                ->send(new \App\Mail\EnquiryUserConfirmation($enquiry));
         }
 
         // Redirect back to the page the form was on (home or contact), with anchor

@@ -21,7 +21,7 @@ class EnquiryAdminNotification extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'New Project Enquiry from ' . $this->enquiry->name,
+            subject: 'New Project Enquiry Received',
         );
     }
 
