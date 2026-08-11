@@ -11,7 +11,6 @@ use App\Http\Controllers\backend\ContactSettingController;
 use App\Http\Controllers\backend\FooterController;
 use App\Http\Controllers\Backend\CoverageController;
 use App\Http\Controllers\backend\FaqController;
-use App\Http\Controllers\backend\FooterController;
 use App\Http\Controllers\backend\HomeBannerController;
 use App\Http\Controllers\backend\HospitalSpecialisationController;
 use App\Http\Controllers\Backend\MetricController;
@@ -26,6 +25,7 @@ use App\Http\Controllers\backend\StandardController;
 use App\Http\Controllers\backend\StandardSectionController;
 use App\Http\Controllers\Backend\StorySectionController;
 use App\Http\Controllers\backend\WhyChooseUsController;
+use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\WorkController;
 use App\Http\Controllers\EnquiryController;
 use App\Http\Controllers\FrontendController;
@@ -77,9 +77,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('coverages', CoverageController::class)->except(['show']);
         Route::resource('project-processes', ProjectProcessController::class)->except(['show']);
         Route::resource('works', WorkController::class)->except(['show']);
-        Route::resource('enquiries', EnquiryController::class)->except(['create', 'store']);
+        Route::resource('enquiries', EnquiryController::class)->only(['index', 'show', 'destroy']);
         Route::resource('contact-settings', ContactSettingController::class)->only(['index', 'edit', 'update']);
         Route::resource('footers', FooterController::class)->except(['show']);
+
+        // Profile & password
+        Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
+        Route::put('profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password');
     });
 });
 
