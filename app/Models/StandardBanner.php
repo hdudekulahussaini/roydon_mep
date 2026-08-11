@@ -11,9 +11,6 @@ class StandardBanner extends Model
 
     protected $fillable = [
         'image',
-        'alt_text',
-        'sort_order',
-        'status',
     ];
 
     protected $casts = [

@@ -48,60 +48,65 @@
     </div>
 
 
-    <div class="form-group">
+{{-- Status --}}
+<div class="col-md-6">
 
-        <label>
-            Status
+    <div class="form-check form-switch">
+
+        <input
+            type="hidden"
+            name="status"
+            value="0"
+        >
+
+        <input
+            type="checkbox"
+            name="status"
+            value="1"
+            id="status"
+            class="form-check-input"
+            {{ old('status', $standardSection->status ?? true) ? 'checked' : '' }}
+        >
+
+        <label
+            class="form-check-label fw-semibold"
+            for="status"
+        >
+            Active Status
         </label>
-
-        <div class="form-check mt-2">
-
-            <input
-                type="hidden"
-                name="status"
-                value="0"
-            >
-
-            <input
-                type="checkbox"
-                name="status"
-                value="1"
-                id="status"
-                class="form-check-input"
-                {{ old(
-                    'status',
-                    $standardSection->status ?? true
-                ) ? 'checked' : '' }}
-            >
-
-            <label
-                class="form-check-label"
-                for="status"
-            >
-                Active
-            </label>
-
-        </div>
 
     </div>
 
+    <small class="text-muted">
+        Enable this option to display the standard section on the website.
+    </small>
+
+    @error('status')
+        <div class="text-danger small mt-1">
+            {{ $message }}
+        </div>
+    @enderror
+
+</div>
 </div>
 
 
-<div class="form-actions">
+<div class="card-footer bg-white py-3 text-end">
 
-    <a
-        href="{{ route('admin.standard-sections.index') }}"
-        class="btn btn-secondary"
-    >
+    <a href="{{ route('admin.standard-sections.index') }}"
+        class="btn btn-light me-2">
+
         Cancel
+
     </a>
 
-    <button
-        type="submit"
-        class="btn btn-primary"
-    >
+    <button type="submit"
+        class="btn btn-dark">
+
+        <i class="fa-solid fa-save me-1"></i>
+
         {{ isset($standardSection) ? 'Update Section' : 'Create Section' }}
+
     </button>
 
 </div>

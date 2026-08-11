@@ -20,9 +20,6 @@ return new class extends Migration
             $table->string('banner_image')->nullable();
             $table->string('image')->nullable();
             $table->longText('description')->nullable();
-            $table->string('cta_title')->nullable();
-            $table->text('cta_description')->nullable();
-            $table->string('cta_button_url')->nullable();
             $table->json('features_heading')->nullable();
             $table->json('features_description')->nullable();
             $table->json('tags')->nullable();
