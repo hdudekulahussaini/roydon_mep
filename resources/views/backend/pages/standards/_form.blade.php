@@ -1,22 +1,10 @@
 @csrf
 
-<div class="form-group">
-
-    <label for="standard_section_id">
-        Section
-        <span class="text-danger">*</span>
-    </label>
-
-    <select
-        name="standard_section_id"
-        id="standard_section_id"
-        class="form-control @error('standard_section_id') is-invalid @enderror"
-        required>
-
-        <option value="">
-            Select Section
-        </option>
-
+<div class="row g-3">
+    <div class="col-md-6">
+        <label for="standard_section_id" class="form-label fw-semibold">Section <span class="text-danger">*</span></label>
+        <select name="standard_section_id" id="standard_section_id" class="form-control @error('standard_section_id') is-invalid @enderror" required>
+            <option value="">Select Section</option>
         @foreach($sections as $section)
 
         <option
