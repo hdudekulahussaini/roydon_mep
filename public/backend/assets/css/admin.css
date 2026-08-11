@@ -448,7 +448,7 @@ body {
     color: #2b9999;
 }
 
-.stat-content > span {
+.stat-content>span {
     color: var(--admin-muted);
     font-size: 11px;
 }
@@ -548,7 +548,7 @@ body {
     text-align: center;
 }
 
-.empty-table > i {
+.empty-table>i {
     color: var(--admin-green);
     font-size: 29px;
 }
@@ -612,7 +612,7 @@ body {
     font-size: 10px;
 }
 
-.quick-action > i {
+.quick-action>i {
     color: #afb8b3;
     font-size: 9px;
 }
@@ -764,9 +764,10 @@ body {
 
 /* Small spacing between dropdown items */
 
-.sidebar-sub-link + .sidebar-sub-link {
+.sidebar-sub-link+.sidebar-sub-link {
     margin-top: 2px;
 }
+
 .sidebar-dropdown {
     width: 100%;
 }
@@ -802,6 +803,7 @@ body {
     padding-left: 20px !important;
     font-size: 14px;
 }
+
 .sidebar-dropdown-menu {
     display: none;
 }

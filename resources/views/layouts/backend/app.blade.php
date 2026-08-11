@@ -52,7 +52,7 @@
                         </button>
                     </div>
                 @endif
-
+                
                 @if (session('error'))
                     <div class="alert alert-danger alert-dismissible fade show">
                         <i class="fa-solid fa-circle-exclamation me-2"></i>

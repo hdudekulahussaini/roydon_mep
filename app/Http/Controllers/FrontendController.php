@@ -18,11 +18,11 @@ use App\Models\ProjectProcess;
 use App\Models\ServiceSubcategory;
 use App\Models\SpecialisationSubcategory;
 use App\Models\StandardBanner;
-use App\Models\StandardSection;
 use App\Models\StorySection;
 use App\Models\WhyChooseUs;
 use App\Models\WhyChooseUsItem;
 use App\Models\Work;
+use App\Models\StandardSection;
 use Illuminate\Contracts\View\View;
 
 class FrontendController extends Controller
@@ -43,26 +43,18 @@ class FrontendController extends Controller
 
     public function about(): View
     {
-        $banner = \App\Models\Banner::where('page_name', 'about')->first();
-        $storySection = StorySection::where('status', true)
-            ->latest()
-            ->first();
-        $companyValues = CompanyValue::where('status', true)
-            ->latest()
-            ->get();
-        $metrics = Metric::where('status', true)
-            ->latest()
-            ->get();
+        $storySection = StorySection::where('status', true)->first();
+        $companyValues = CompanyValue::where('status', true)->orderBy('sort_order')->get();
+        $metrics = Metric::where('status', true)->orderBy('sort_order')->get();
 
-        return view('frontend.pages.about', compact('banner', 'storySection', 'companyValues', 'metrics'));
+        return view('frontend.pages.about', compact('storySection', 'companyValues', 'metrics'));
     }
 
     public function contact(): View
     {
-        $banner = \App\Models\Banner::where('page_name', 'get_a_quote')->first();
         $contactSetting = ContactSetting::first();
 
-        return view('frontend.pages.contact', compact('banner', 'contactSetting'));
+        return view('frontend.pages.contact', compact('contactSetting'));
     }
 
     public function projects(): View
@@ -75,15 +67,12 @@ class FrontendController extends Controller
 
     public function standards(): View
     {
-        $standardSections = StandardSection::with([
-            'standards' => function ($query) {
-                $query
-                    ->where('status', true)
+        $standardSections = StandardSection::where('status', true)
+            ->with(['standards' => function ($query) {
+                $query->where('status', true)
                     ->orderBy('sort_order')
                     ->orderBy('id');
-            },
-        ])
-            ->where('status', true)
+            }])
             ->orderBy('sort_order')
             ->orderBy('id')
             ->get();
@@ -96,10 +85,7 @@ class FrontendController extends Controller
             ->orderBy('sort_order')
             ->get();
 
-        return view(
-            'frontend.pages.standards',
-            compact('standardSections', 'banner', 'baselines')
-        );
+        return view('frontend.pages.standards', compact('standardSections', 'banner', 'baselines'));
     }
 
     public function process(): View

@@ -47,9 +47,6 @@
             </span>
             <span>Page Banners</span>
         </a>
-            </span>
-            <span>Premium Stats</span>
-        </a>
 
         <a href="{{ route('admin.civil-services.index') }}"
             class="sidebar-link
@@ -97,12 +94,6 @@
             <span>FAQs</span>
         </a>
 
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> 0a5e3ae9d01261c7f3f52acc9906042454bd19ea
         <div class="sidebar-section-title">
             ABOUT
         </div>
@@ -205,7 +196,6 @@
             </span>
             <span>Footer Settings</span>
         </a>
-
         <a href="{{ route('admin.categories.index') }}"
             class="sidebar-link
           {{ request()->routeIs('admin.categories.*') ? 'active' : '' }}">
@@ -235,8 +225,7 @@
         <div class="sidebar-section-title">
             STANDARDS_OVERVIEW
         </div>
-        <a
-            href="{{ route('admin.standard-banners.index') }}"
+        <a href="{{ route('admin.standard-banners.index') }}"
             class="sidebar-link
     {{ request()->routeIs('admin.standard-banners.*') ? 'active' : '' }}">
 
@@ -252,12 +241,9 @@
 
         </a>
 
-        <a
-            href="{{ route('admin.standard-sections.index') }}"
+        <a href="{{ route('admin.standard-sections.index') }}"
             class="sidebar-link
-    {{ request()->routeIs('admin.standard-sections.*')
-        ? 'active'
-        : '' }}">
+    {{ request()->routeIs('admin.standard-sections.*') ? 'active' : '' }}">
 
             <span class="sidebar-icon">
                 <i class="fa-solid fa-layer-group"></i>
@@ -270,12 +256,9 @@
         </a>
 
 
-        <a
-            href="{{ route('admin.standards.index') }}"
+        <a href="{{ route('admin.standards.index') }}"
             class="sidebar-link
-    {{ request()->routeIs('admin.standards.*')
-        ? 'active'
-        : '' }}">
+    {{ request()->routeIs('admin.standards.*') ? 'active' : '' }}">
 
             <span class="sidebar-icon">
                 <i class="fa-solid fa-list-check"></i>
@@ -288,8 +271,7 @@
         </a>
         {{-- Compliance Baseline --}}
 
-        <a
-            href="{{ route('admin.baselines.index') }}"
+        <a href="{{ route('admin.baselines.index') }}"
             class="sidebar-link
     {{ request()->routeIs('admin.baselines.*') ? 'active' : '' }}">
 
