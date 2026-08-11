@@ -6,6 +6,7 @@ use App\Models\Enquiry;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
@@ -22,6 +23,8 @@ class EnquiryUserConfirmation extends Mailable
     {
         return new Envelope(
             subject: 'Thank You for Contacting Roydon MEP',
+            from: new Address('no-reply@roydonmep.com', 'Roydon MEP'),
+            replyTo: [new Address(config('mail.from.address'), config('mail.from.name'))],
         );
     }
 
