@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EnquiryRequest;
+use App\Mail\EnquiryAdminNotification;
+use App\Mail\EnquiryUserConfirmation;
 use App\Models\Enquiry;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 
 class EnquiryController extends Controller
@@ -27,21 +30,24 @@ class EnquiryController extends Controller
     {
         $enquiry = Enquiry::create($request->validated());
 
-        // Send admin notification
         $adminEmail = 'dharishbandi@gmail.com';
-        \Illuminate\Support\Facades\Mail::to($adminEmail)
-            ->send(new \App\Mail\EnquiryAdminNotification($enquiry));
 
-        // Send user confirmation email
-        if ($enquiry->email) {
-            \Illuminate\Support\Facades\Mail::to($enquiry->email)
-                ->send(new \App\Mail\EnquiryUserConfirmation($enquiry));
+        // Send admin notification first.
+        Mail::to($adminEmail)
+            ->send(new EnquiryAdminNotification($enquiry));
+
+        // Send user confirmation only to the submitted user email.
+        // Avoid sending it to the admin address if the user accidentally entered it.
+        if ($enquiry->email && strcasecmp($enquiry->email, $adminEmail) !== 0) {
+            Mail::to($enquiry->email)
+                ->send(new EnquiryUserConfirmation($enquiry));
         }
 
         // Redirect back to the page the form was on (home or contact), with anchor
         $url = strtok(url()->previous(), '#');
         flash()->success('Thank you — your enquiry has been received. We will get back to you shortly.');
-        return redirect()->to($url . '#contact');
+
+        return redirect()->to($url.'#contact');
     }
 
     public function show(Enquiry $enquiry): View
@@ -59,6 +65,7 @@ class EnquiryController extends Controller
         $enquiry->update($request->validated());
 
         flash()->success('Enquiry updated.');
+
         return redirect()->route('admin.enquiries.index');
     }
 
@@ -67,6 +74,7 @@ class EnquiryController extends Controller
         $enquiry->delete();
 
         flash()->success('Enquiry removed.');
+
         return redirect()->route('admin.enquiries.index');
     }
 }
