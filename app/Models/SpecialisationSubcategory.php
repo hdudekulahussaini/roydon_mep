@@ -17,9 +17,6 @@ class SpecialisationSubcategory extends Model
         'banner_image',
         'image',
         'description',
-        'cta_title',
-        'cta_description',
-        'cta_button_url',
         'features_heading',
         'features_description',
         'tags',
@@ -27,16 +24,13 @@ class SpecialisationSubcategory extends Model
         'status',
     ];
 
-    protected function casts(): array
-    {
-        return [
-            'banner_tags' => 'array',
-            'features_heading' => 'array',
-            'features_description' => 'array',
-            'tags' => 'array',
-            'status' => 'boolean',
-        ];
-    }
+    protected $casts = [
+        'banner_tags' => 'array',
+        'features_heading' => 'array',
+        'features_description' => 'array',
+        'tags' => 'array',
+        'status' => 'boolean',
+    ];
 
     public function category()
     {
