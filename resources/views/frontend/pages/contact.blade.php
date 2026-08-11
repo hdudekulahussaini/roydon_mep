@@ -254,8 +254,8 @@
                 <div class="breadcrumb-nav">
                     <a href="{{ route('home') }}">Home</a> / Get a Quote
                 </div>
-                <h1 class="contact-hero-title">{!! $banner?->heading !!}</h1>
-                <p class="contact-hero-subtitle">{!! nl2br(e($banner?->description)) !!}</p>
+                <h1 class="contact-hero-title">{!! $banner?->heading ?? 'Get a Quote' !!}</h1>
+                <p class="contact-hero-subtitle">{!! $banner?->description ? nl2br(e($banner->description)) : 'Reach out to us for your MEP project requirements. Our experts are ready to help.' !!}</p>
             </div>
         </section>
 

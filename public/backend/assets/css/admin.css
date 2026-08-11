@@ -233,10 +233,46 @@ body {
 
 .sidebar-toggle {
     display: none;
-    border: 0;
-    background: transparent;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border: 1px solid var(--admin-border);
+    border-radius: 8px;
+    background: #ffffff;
     color: var(--admin-text);
-    font-size: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.sidebar-toggle:hover,
+.sidebar-toggle:active {
+    background: #f8fafc;
+    color: #004250;
+    border-color: #004250;
+}
+
+.sidebar-close-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    margin-left: auto;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.sidebar-close-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
 }
 
 .view-website-button {
@@ -651,14 +687,16 @@ body {
 }
 
 @media (max-width: 1024px) {
-
-    /* At tablet width, we should consider collapsing the sidebar off-canvas */
     .admin-sidebar {
+        z-index: 1050;
         transform: translateX(-100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: none;
     }
 
     .admin-sidebar.show {
         transform: translateX(0);
+        box-shadow: 4px 0 25px rgba(0, 0, 0, 0.3);
     }
 
     .admin-main {
@@ -666,36 +704,40 @@ body {
     }
 
     .sidebar-toggle {
-        display: block;
+        display: flex !important;
     }
 
     .sidebar-overlay.show {
         position: fixed;
         inset: 0;
-        z-index: 999;
+        z-index: 1040;
         display: block;
-        background: rgba(0, 0, 0, 0.5);
+        background: rgba(0, 0, 0, 0.55);
+        backdrop-filter: blur(2px);
     }
 }
 
 @media (max-width: 768px) {
     .admin-header {
-        padding: 12px 14px;
+        padding: 10px 14px;
         min-height: 60px;
-        flex-wrap: wrap;
+    }
+
+    .header-left {
+        gap: 10px;
     }
 
     .header-left h1 {
-        font-size: 18px;
+        font-size: 16px;
+        line-height: 1.2;
     }
 
     .header-left p {
         display: none;
-        /* Hide subtitle on small screens */
     }
 
     .admin-content {
-        padding: 16px 12px;
+        padding: 14px 10px;
     }
 
     .view-website-button span,
@@ -705,7 +747,7 @@ body {
     }
 
     .view-website-button {
-        padding: 7px 10px;
+        padding: 6px 10px;
     }
 
     .admin-profile {
@@ -715,20 +757,33 @@ body {
     .welcome-section {
         align-items: flex-start;
         flex-direction: column;
-        gap: 14px;
-        padding: 20px 18px;
+        gap: 12px;
+        padding: 18px 16px;
+        border-radius: 10px;
     }
 
     .welcome-section h2 {
-        font-size: 20px;
+        font-size: 18px;
+    }
+
+    .welcome-section p {
+        font-size: 12px;
     }
 
     .statistics-grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
     }
 
-    /* Tables on mobile */
+    .stat-card {
+        padding: 14px;
+        border-radius: 10px;
+    }
+
+    .stat-content h3 {
+        font-size: 20px;
+    }
+
     .table-responsive {
         border: 1px solid var(--admin-border);
         border-radius: 8px;
@@ -738,49 +793,46 @@ body {
 
     .admin-table td {
         white-space: nowrap;
-        /* Prevent columns from squishing too much */
     }
 
-    /* Ensure action buttons don't wrap in weird ways */
     .admin-table td.text-end {
         white-space: nowrap;
     }
 
-    /* Adjust cards for mobile */
     .card-body {
-        padding: 16px !important;
+        padding: 14px !important;
     }
 
     .card-header {
-        padding: 14px 16px !important;
+        padding: 12px 14px !important;
     }
 }
 
 @media (max-width: 480px) {
-
-    /* Tiny screens adjustments */
     .admin-header {
-        flex-direction: column;
-        gap: 10px;
-        align-items: flex-start;
-        padding-bottom: 15px;
+        padding: 8px 12px;
+        min-height: 56px;
     }
 
     .header-right {
-        width: 100%;
-        justify-content: space-between;
-    }
-
-    .header-left {
-        width: 100%;
+        gap: 8px;
     }
 
     .sidebar-brand {
-        padding: 15px 20px;
+        padding: 15px 18px;
     }
 
-    .welcome-section p {
-        font-size: 12px;
+    .statistics-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card-header .d-flex {
+        flex-direction: column;
+        align-items: stretch !important;
+    }
+
+    .card-header form .input-group {
+        max-width: 100% !important;
     }
 }
 

@@ -11,6 +11,10 @@
             <span>MEP ADMIN</span>
         </div>
 
+        <button type="button" class="sidebar-close-btn d-lg-none" id="sidebarClose" aria-label="Close Sidebar">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
     </div>
 
     <div class="sidebar-section-title">
