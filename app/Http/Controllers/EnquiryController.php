@@ -25,15 +25,21 @@ class EnquiryController extends Controller
 
     public function store(EnquiryRequest $request): RedirectResponse
     {
-        Enquiry::create($request->validated());
+        $enquiry = Enquiry::create($request->validated());
 
-        // Redirect back to the page the form was on (home or contact), with anchor
-        $from = url()->previous();
-        if (str_contains($from, route('home'))) {
-            return redirect()->to(route('home').'#contact')->with('success', 'Thank you — your enquiry has been received. We will get back to you shortly.');
+        // Send admin notification
+        $adminEmail = 'dharishbandi@gmail.com';
+        \Illuminate\Support\Facades\Mail::to($adminEmail)->send(new \App\Mail\EnquiryAdminNotification($enquiry));
+
+        // Send user confirmation
+        if ($enquiry->email) {
+            \Illuminate\Support\Facades\Mail::to($enquiry->email)->send(new \App\Mail\EnquiryUserConfirmation($enquiry));
         }
 
-        return redirect()->route('contact')->with('success', 'Thank you — your enquiry has been received. We will get back to you shortly.');
+        // Redirect back to the page the form was on (home or contact), with anchor
+        $url = strtok(url()->previous(), '#');
+        flash()->success('Thank you — your enquiry has been received. We will get back to you shortly.');
+        return redirect()->to($url . '#contact');
     }
 
     public function show(Enquiry $enquiry): View
@@ -50,13 +56,15 @@ class EnquiryController extends Controller
     {
         $enquiry->update($request->validated());
 
-        return redirect()->route('admin.enquiries.index')->with('success', 'Enquiry updated.');
+        flash()->success('Enquiry updated.');
+        return redirect()->route('admin.enquiries.index');
     }
 
     public function destroy(Enquiry $enquiry): RedirectResponse
     {
         $enquiry->delete();
 
-        return redirect()->route('admin.enquiries.index')->with('success', 'Enquiry removed.');
+        flash()->success('Enquiry removed.');
+        return redirect()->route('admin.enquiries.index');
     }
 }

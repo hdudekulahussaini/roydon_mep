@@ -25,7 +25,8 @@ class FooterController extends Controller
         $validated = $request->validate($this->validationRules());
         Footer::create($validated);
 
-        return redirect()->route('admin.footers.index')->with('success', 'Footer created successfully.');
+        flash()->success('Footer created successfully.');
+        return redirect()->route('admin.footers.index');
     }
 
     public function edit(Footer $footer)
@@ -38,14 +39,16 @@ class FooterController extends Controller
         $validated = $request->validate($this->validationRules());
         $footer->update($validated);
 
-        return redirect()->route('admin.footers.index')->with('success', 'Footer updated successfully.');
+        flash()->success('Footer updated successfully.');
+        return redirect()->route('admin.footers.index');
     }
 
     public function destroy(Footer $footer)
     {
         $footer->delete();
 
-        return redirect()->route('admin.footers.index')->with('success', 'Footer deleted successfully.');
+        flash()->success('Footer deleted successfully.');
+        return redirect()->route('admin.footers.index');
     }
 
     private function validationRules(): array

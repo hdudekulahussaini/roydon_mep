@@ -32,9 +32,8 @@ class HomeBannerController extends Controller
     public function create(): View|RedirectResponse
     {
         if (HomeBanner::exists()) {
-            return redirect()
-                ->route('admin.home-banners.index')
-                ->with('error', 'Only one home banner is allowed. Please edit the existing one.');
+            flash()->error('Only one home banner is allowed. Please edit the existing one.');
+        return redirect()->route('admin.home-banners.index');
         }
 
         return view('backend.pages.home-banners.create');
@@ -46,9 +45,8 @@ class HomeBannerController extends Controller
     public function store(Request $request): RedirectResponse
     {
         if (HomeBanner::exists()) {
-            return redirect()
-                ->route('admin.home-banners.index')
-                ->with('error', 'Only one home banner is allowed.');
+            flash()->error('Only one home banner is allowed.');
+        return redirect()->route('admin.home-banners.index');
         }
 
         $validated = $request->validate(
@@ -74,9 +72,8 @@ class HomeBannerController extends Controller
 
         HomeBanner::create($validated);
 
-        return redirect()
-            ->route('admin.home-banners.index')
-            ->with('success', 'Home banner created successfully.');
+        flash()->success('Home banner created successfully.');
+        return redirect()->route('admin.home-banners.index');
     }
 
     /**
@@ -127,9 +124,8 @@ class HomeBannerController extends Controller
 
         $homeBanner->update($validated);
 
-        return redirect()
-            ->route('admin.home-banners.index')
-            ->with('success', 'Home banner updated successfully.');
+        flash()->success('Home banner updated successfully.');
+        return redirect()->route('admin.home-banners.index');
     }
 
     /**
@@ -144,9 +140,8 @@ class HomeBannerController extends Controller
 
         $homeBanner->delete();
 
-        return redirect()
-            ->route('admin.home-banners.index')
-            ->with('success', 'Home banner deleted successfully.');
+        flash()->success('Home banner deleted successfully.');
+        return redirect()->route('admin.home-banners.index');
     }
 
     /**

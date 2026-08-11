@@ -11,6 +11,7 @@ use App\Http\Controllers\backend\ContactSettingController;
 use App\Http\Controllers\backend\FooterController;
 use App\Http\Controllers\Backend\CoverageController;
 use App\Http\Controllers\backend\FaqController;
+use App\Http\Controllers\backend\FooterController;
 use App\Http\Controllers\backend\HomeBannerController;
 use App\Http\Controllers\backend\HospitalSpecialisationController;
 use App\Http\Controllers\Backend\MetricController;
@@ -77,8 +78,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('project-processes', ProjectProcessController::class)->except(['show']);
         Route::resource('works', WorkController::class)->except(['show']);
         Route::resource('enquiries', EnquiryController::class)->except(['create', 'store']);
+        Route::resource('contact-settings', ContactSettingController::class)->only(['index', 'edit', 'update']);
         Route::resource('footers', FooterController::class)->except(['show']);
-        Route::resource('contact-settings', ContactSettingController::class);
     });
 });
 

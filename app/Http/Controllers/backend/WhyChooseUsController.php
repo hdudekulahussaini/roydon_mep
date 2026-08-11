@@ -70,9 +70,8 @@ class WhyChooseUsController extends Controller
             WhyChooseUs::create($validated);
         }
 
-        return redirect()
-            ->route('admin.why-choose-us.index')
-            ->with('success', 'Why Choose Us section updated successfully.');
+        flash()->success('Why Choose Us section updated successfully.');
+        return redirect()->route('admin.why-choose-us.index');
     }
 
     /**
@@ -95,9 +94,8 @@ class WhyChooseUsController extends Controller
 
         WhyChooseUsItem::create($validated);
 
-        return redirect()
-            ->route('admin.why-choose-us.index')
-            ->with('success', 'Timeline item added successfully.');
+        flash()->success('Timeline item added successfully.');
+        return redirect()->route('admin.why-choose-us.index');
     }
 
     /**
@@ -124,9 +122,8 @@ class WhyChooseUsController extends Controller
 
         $item->update($validated);
 
-        return redirect()
-            ->route('admin.why-choose-us.index')
-            ->with('success', 'Timeline item updated successfully.');
+        flash()->success('Timeline item updated successfully.');
+        return redirect()->route('admin.why-choose-us.index');
     }
 
     /**
@@ -137,8 +134,7 @@ class WhyChooseUsController extends Controller
         $item = WhyChooseUsItem::findOrFail($id);
         $item->delete();
 
-        return redirect()
-            ->route('admin.why-choose-us.index')
-            ->with('success', 'Timeline item deleted successfully.');
+        flash()->success('Timeline item deleted successfully.');
+        return redirect()->route('admin.why-choose-us.index');
     }
 }

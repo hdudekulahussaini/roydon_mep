@@ -49,6 +49,7 @@ class ContactSettingController extends Controller
             'metrics' => $metrics,
         ]);
 
-        return redirect()->route('admin.contact-settings.index')->with('success', 'Contact settings updated.');
+        flash()->success('Contact settings updated.');
+        return redirect()->route('admin.contact-settings.index');
     }
 }

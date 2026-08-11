@@ -44,9 +44,8 @@ class CivilServiceController extends Controller
 
         CivilService::create($validated);
 
-        return redirect()
-            ->route('admin.civil-services.index')
-            ->with('success', 'Civil service created successfully.');
+        flash()->success('Civil service created successfully.');
+        return redirect()->route('admin.civil-services.index');
     }
 
     /**
@@ -73,9 +72,8 @@ class CivilServiceController extends Controller
 
         $civilService->update($validated);
 
-        return redirect()
-            ->route('admin.civil-services.index')
-            ->with('success', 'Civil service updated successfully.');
+        flash()->success('Civil service updated successfully.');
+        return redirect()->route('admin.civil-services.index');
     }
 
     /**
@@ -86,9 +84,8 @@ class CivilServiceController extends Controller
     ): RedirectResponse {
         $civilService->delete();
 
-        return redirect()
-            ->route('admin.civil-services.index')
-            ->with('success', 'Civil service deleted successfully.');
+        flash()->success('Civil service deleted successfully.');
+        return redirect()->route('admin.civil-services.index');
     }
 
     /**

@@ -260,7 +260,7 @@
         </section>
 
         <!-- Main Contact Section -->
-        <section class="contact-main-section">
+        <section class="contact-main-section" id="contact">
             <div class="container">
                 <div class="row">
                     <!-- Left Column: Form -->
@@ -273,18 +273,7 @@
                             <form action="{{ route('enquiries.store') }}" method="POST">
                                 @csrf
 
-                                @if (session('success'))
-                                    <div class="alert alert-success">{{ session('success') }}</div>
-                                @endif
-                                @if ($errors->any())
-                                    <div class="alert alert-danger">
-                                        <ul class="mb-0">
-                                            @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                @endif
+
                                 <div class="row">
                                     <div class="col-md-6 form-group">
                                         <label class="form-label">Your Name *</label>
