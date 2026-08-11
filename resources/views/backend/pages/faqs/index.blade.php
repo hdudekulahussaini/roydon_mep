@@ -128,12 +128,11 @@
 
         </div>
 
-        @if ($faqs->hasPages())
-            <div class="card-footer bg-white py-3">
-                {{ $faqs->links() }}
-            </div>
-        @endif
-
+     @if ($faqs->hasPages())
+    <div class="card-footer bg-white">
+        {{ $faqs->links('pagination::bootstrap-5') }}
+    </div>
+@endif
     </div>
 
 @endsection

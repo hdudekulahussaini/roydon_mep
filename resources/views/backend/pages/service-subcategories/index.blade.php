@@ -75,11 +75,11 @@
 
                                 <td>
                                     @if ($sub->status)
-                                        <span class="badge bg-success-subtle text-success border border-success-subtle">
+                                        <span class="badge bg-success">
                                             Active
                                         </span>
                                     @else
-                                        <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle">
+                                        <span class="badge bg-dander">
                                             Inactive
                                         </span>
                                     @endif
