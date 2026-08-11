@@ -108,7 +108,8 @@ class FrontendController extends Controller
             ->orderBy('id', 'asc')
             ->get(['*']);
 
-        $banner = StandardBanner::query()->where('status', '=', true)->orderBy('sort_order', 'asc')->first(['*']);
+        $banner = StandardBanner::query()->latest()->first(['*']);
+
         $baselines = Baseline::query()->where('status', '=', true)->orderBy('sort_order', 'asc')->get(['*']);
 
         return view('frontend.pages.standards', compact(

@@ -636,19 +636,21 @@ body {
     display: none;
 }
 
-/* Responsive */
+/* =========================================
+   Responsive Global Rules
+========================================= */
 
 @media (max-width: 1100px) {
     .statistics-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-
     .dashboard-grid {
         grid-template-columns: 1fr;
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
+    /* At tablet width, we should consider collapsing the sidebar off-canvas */
     .admin-sidebar {
         transform: translateX(-100%);
     }
@@ -672,13 +674,25 @@ body {
         display: block;
         background: rgba(0, 0, 0, 0.5);
     }
+}
 
+@media (max-width: 768px) {
     .admin-header {
-        padding: 14px 16px;
+        padding: 12px 14px;
+        min-height: 60px;
+        flex-wrap: wrap;
+    }
+
+    .header-left h1 {
+        font-size: 18px;
+    }
+    
+    .header-left p {
+        display: none; /* Hide subtitle on small screens */
     }
 
     .admin-content {
-        padding: 18px 14px;
+        padding: 16px 12px;
     }
 
     .view-website-button span,
@@ -686,19 +700,81 @@ body {
     .profile-arrow {
         display: none;
     }
+    
+    .view-website-button {
+        padding: 7px 10px;
+    }
 
     .admin-profile {
-        padding-left: 10px;
+        padding-left: 8px;
     }
 
     .welcome-section {
         align-items: flex-start;
         flex-direction: column;
-        gap: 18px;
+        gap: 14px;
+        padding: 20px 18px;
+    }
+
+    .welcome-section h2 {
+        font-size: 20px;
     }
 
     .statistics-grid {
         grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    /* Tables on mobile */
+    .table-responsive {
+        border: 1px solid var(--admin-border);
+        border-radius: 8px;
+        margin-bottom: 0;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .admin-table td {
+        white-space: nowrap; /* Prevent columns from squishing too much */
+    }
+    
+    /* Ensure action buttons don't wrap in weird ways */
+    .admin-table td.text-end {
+        white-space: nowrap;
+    }
+
+    /* Adjust cards for mobile */
+    .card-body {
+        padding: 16px !important;
+    }
+    .card-header {
+        padding: 14px 16px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Tiny screens adjustments */
+    .admin-header {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+        padding-bottom: 15px;
+    }
+    
+    .header-right {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .header-left {
+        width: 100%;
+    }
+    
+    .sidebar-brand {
+        padding: 15px 20px;
+    }
+    
+    .welcome-section p {
+        font-size: 12px;
     }
 }
 
