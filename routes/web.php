@@ -29,8 +29,7 @@ use App\Http\Controllers\Backend\WorkController;
 use App\Http\Controllers\EnquiryController;
 use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\backend\PasswordController;
-use App\Http\Controllers\backend\ProfileController;
+
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', function () {
         return auth()->check()
@@ -70,11 +69,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::delete('why-choose-us-items/{item}', [WhyChooseUsController::class, 'destroyItem'])->name('why-choose-us-items.destroy');
 
         Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-        Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
-        Route::get('profile/password', [PasswordController::class, 'edit'])->name('profile.password.edit');
-        Route::put('profile/password', [PasswordController::class, 'update'])->name('profile.password.update');
-        Route::get('profile/password', [PasswordController::class, 'edit'])->name('profile.password.edit');
-        Route::put('profile/password', [PasswordController::class, 'update'])->name('profile.password.update');
         Route::resource('story-sections', StorySectionController::class)->except(['show']);
         Route::resource('company-values', CompanyValueController::class)->except(['show']);
         Route::resource('metrics', MetricController::class)->except(['show']);
