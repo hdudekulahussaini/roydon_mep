@@ -315,3 +315,18 @@
     </div>
 
 </aside>
+<style>
+/* Rounded scrollbar thumb for sidebar */
+.admin-sidebar {
+    overflow-y: scroll; /* always show scrollbar */
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #82b440 transparent; /* Firefox thumb color */
+}
+.admin-sidebar::-webkit-scrollbar {
+    width: 8px; /* always show scrollbar */
+}
+.admin-sidebar::-webkit-scrollbar-thumb {
+    background-color: #82b440;
+    border-radius: 8px;
+}
+</style>
