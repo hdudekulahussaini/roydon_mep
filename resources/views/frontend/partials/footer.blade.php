@@ -1,13 +1,13 @@
 <!-- footer -->
 <footer class="footer-bg footer-p mb-50 mt-50">
     <div class="footer-top pt-90"
-        style="background-image: url({{ asset('assets/img/bg/footer-bg.webp') }}); background-repeat: no-repeat; background-size: cover;">
+        style="background-image: url({{ asset('frontend/assets/img/bg/footer-bg.webp') }}); background-repeat: no-repeat; background-size: cover;">
         <div class="container">
             <div class="row justify-content-between">
                 <div class="col-xl-4 col-lg-4 col-sm-6">
                     <div class="footer-widget mb-30">
                         <div class="f-widget-title mb-10">
-                            <img src="{{ asset('assets/img/logo/roydon_mep_no_bg.webp') }}"
+                            <img src="{{ asset('frontend/assets/img/logo/roydon_mep_no_bg.webp') }}"
                                 alt="Roydon MEP Contracting - Hospital MEP Contractors South India"
                                 style="max-height: 85px; margin-left: -10px;">
                         </div>

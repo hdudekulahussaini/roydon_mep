@@ -40,6 +40,11 @@ class FrontendController extends Controller
         $whyChooseUsItems = WhyChooseUsItem::all();
         $projects = Project::query()->latest('created_at')->get(['*']);
         $faqs = Faq::all();
+        $services = ServiceSubcategory::query()
+            ->where('status', true)
+            ->orderBy('id')
+            ->take(6)
+            ->get();
 
         return view('frontend.pages.index', compact(
             'banner',
@@ -50,6 +55,7 @@ class FrontendController extends Controller
             'whyChooseUsItems',
             'projects',
             'faqs',
+            'services',
         ));
     }
 

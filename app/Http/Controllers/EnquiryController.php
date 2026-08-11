@@ -29,7 +29,7 @@ class EnquiryController extends Controller
             });
         }
 
-        $enquiries = $query->paginate(20)->withQueryString();
+        $enquiries = $query->paginate(10)->withQueryString();
         $selected = $request->query('selected');
         $selectedEnquiry = $selected ? Enquiry::query()->find($selected) : ($enquiries->first() ?? null);
 

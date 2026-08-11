@@ -117,7 +117,7 @@
 
     {{-- Footer / Pagination --}}
     @if ($enquiries->total() > 0)
-        <div class="card-footer bg-white">
+        <div class="card-footer bg-white py-3">
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
                 <div class="small text-muted">
                     Showing
@@ -129,11 +129,9 @@
                     enquiries
                 </div>
 
-                @if ($enquiries->hasPages())
-                    <div>
-                        {{ $enquiries->onEachSide(1)->links('pagination::bootstrap-5') }}
-                    </div>
-                @endif
+                <div class="overflow-auto">
+                    {{ $enquiries->onEachSide(1)->links('pagination::bootstrap-5') }}
+                </div>
             </div>
         </div>
     @endif

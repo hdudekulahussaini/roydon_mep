@@ -644,12 +644,14 @@ body {
     .statistics-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
     .dashboard-grid {
         grid-template-columns: 1fr;
     }
 }
 
 @media (max-width: 1024px) {
+
     /* At tablet width, we should consider collapsing the sidebar off-canvas */
     .admin-sidebar {
         transform: translateX(-100%);
@@ -686,9 +688,10 @@ body {
     .header-left h1 {
         font-size: 18px;
     }
-    
+
     .header-left p {
-        display: none; /* Hide subtitle on small screens */
+        display: none;
+        /* Hide subtitle on small screens */
     }
 
     .admin-content {
@@ -700,7 +703,7 @@ body {
     .profile-arrow {
         display: none;
     }
-    
+
     .view-website-button {
         padding: 7px 10px;
     }
@@ -724,7 +727,7 @@ body {
         grid-template-columns: 1fr;
         gap: 12px;
     }
-    
+
     /* Tables on mobile */
     .table-responsive {
         border: 1px solid var(--admin-border);
@@ -732,11 +735,12 @@ body {
         margin-bottom: 0;
         -webkit-overflow-scrolling: touch;
     }
-    
+
     .admin-table td {
-        white-space: nowrap; /* Prevent columns from squishing too much */
+        white-space: nowrap;
+        /* Prevent columns from squishing too much */
     }
-    
+
     /* Ensure action buttons don't wrap in weird ways */
     .admin-table td.text-end {
         white-space: nowrap;
@@ -746,12 +750,14 @@ body {
     .card-body {
         padding: 16px !important;
     }
+
     .card-header {
         padding: 14px 16px !important;
     }
 }
 
 @media (max-width: 480px) {
+
     /* Tiny screens adjustments */
     .admin-header {
         flex-direction: column;
@@ -759,20 +765,20 @@ body {
         align-items: flex-start;
         padding-bottom: 15px;
     }
-    
+
     .header-right {
         width: 100%;
         justify-content: space-between;
     }
-    
+
     .header-left {
         width: 100%;
     }
-    
+
     .sidebar-brand {
         padding: 15px 20px;
     }
-    
+
     .welcome-section p {
         font-size: 12px;
     }

@@ -8,7 +8,7 @@
                     <div class="row align-items-center">
                         <div class="col-xl-2 col-lg-2 col-md-5">
                             <div class="logo">
-                                <a href="{{ route('home') }}"><img src="{{ asset('assets/img/logo/roydon_mep_no_bg.webp') }}"
+                                <a href="{{ route('home') }}"><img src="{{ asset('frontend/assets/img/logo/roydon_mep_no_bg.webp') }}"
                                         alt="Roydon MEP Contracting - Hospital MEP Contractors South India"
                                         style="max-height: 90px; transition: all 0.3s ease;"></a>
                             </div>

@@ -17,7 +17,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         rel="stylesheet">
 
-    <link href="{{ asset('assets/fontawesome-pro/css/all.min.css') }}"
+    <link href="{{ asset('frontend/assets/fontawesome-pro/css/all.min.css') }}"
         rel="stylesheet">
 
     <link href="{{ asset('backend/assets/css/admin.css') }}"
