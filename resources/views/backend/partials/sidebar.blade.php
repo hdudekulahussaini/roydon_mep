@@ -2,16 +2,13 @@
 
     <div class="sidebar-brand">
 
-        <div class="brand-symbol">
-            R
-        </div>
+        <a href="{{ route('admin.dashboard') }}" class="brand-logo-link">
+            <img src="{{ asset('frontend/assets/img/logo/roydon_mep_no_bg.webp') }}"
+                alt="Roydon MEP Contracting"
+                class="sidebar-logo-img">
+        </a>
 
-        <div class="brand-text">
-            <h2>ROYDON</h2>
-            <span>MEP ADMIN</span>
-        </div>
-
-        <button type="button" class="sidebar-close-btn d-lg-none" id="sidebarClose" aria-label="Close Sidebar">
+        <button type="button" class="sidebar-close-btn d-lg-none ms-auto" id="sidebarClose" aria-label="Close Sidebar">
             <i class="fa-solid fa-xmark"></i>
         </button>
 
@@ -328,9 +325,11 @@
 </aside>
 
 <style>
-    /* Sidebar Dropdown Styles */
+    /* Sidebar Dropdown & Sub-link Styles (White Theme) */
     .sidebar-dropdown {
         width: 100%;
+        margin-bottom: 2px;
+        overflow-x: hidden;
     }
 
     .sidebar-dropdown-toggle {
@@ -344,13 +343,19 @@
         gap: 0;
     }
 
+    .sidebar-dropdown.open > .sidebar-dropdown-toggle {
+        background: #f0fdfd;
+        color: #0E9B9B;
+        font-weight: 600;
+    }
+
     .sidebar-chevron {
         margin-left: auto;
         font-size: 0.7rem;
         transition: transform 0.25s ease;
-        opacity: 0.6;
         padding-left: 8px;
         flex-shrink: 0;
+        color: #0E9B9B;
     }
 
     .sidebar-dropdown.open > .sidebar-dropdown-toggle .sidebar-chevron i,
@@ -361,8 +366,12 @@
     .sidebar-dropdown-menu {
         display: none;
         flex-direction: column;
-        padding-left: 0;
+        padding-left: 6px;
+        margin-top: 2px;
+        margin-bottom: 4px;
         overflow: hidden;
+        border-left: 2px solid #cceeee;
+        margin-left: 20px;
     }
 
     .sidebar-dropdown.open > .sidebar-dropdown-menu {
@@ -370,9 +379,24 @@
     }
 
     .sidebar-sub-link {
-        padding-left: 2.6rem !important;
-        font-size: 0.85rem !important;
-        opacity: 0.88;
+        padding-left: 1.2rem !important;
+        font-size: 0.84rem !important;
+        min-height: 38px !important;
+        margin-bottom: 2px !important;
+        border-radius: 6px !important;
+        color: #64748b !important;
+    }
+
+    .sidebar-sub-link:hover {
+        background: #f0fdfd !important;
+        color: #0E9B9B !important;
+    }
+
+    .sidebar-sub-link.active {
+        background: #e6f7f7 !important;
+        color: #0E9B9B !important;
+        font-weight: 700 !important;
+        box-shadow: inset 0 0 0 1px #b3e6e6 !important;
     }
 
     .sidebar-sub-link:before {
@@ -381,10 +405,14 @@
         width: 5px;
         height: 5px;
         border-radius: 50%;
-        background: currentColor;
+        background: #94a3b8;
         margin-right: 8px;
-        opacity: 0.5;
         flex-shrink: 0;
+    }
+
+    .sidebar-sub-link.active:before {
+        background: #0E9B9B;
+        box-shadow: 0 0 6px rgba(14, 155, 155, 0.6);
     }
 
     .sidebar-sub-link .sidebar-icon {
@@ -400,6 +428,7 @@
         padding: 2px 8px;
         border-radius: 50rem;
         line-height: 1.2;
+        box-shadow: 0 2px 8px rgba(14, 155, 155, 0.3);
     }
 </style>
 

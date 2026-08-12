@@ -81,8 +81,21 @@
 
             </div>
 
-        </main>
+    </div>
 
+    <!-- Global Image Preview Lightbox Modal -->
+    <div class="modal fade" id="imagePreviewModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+                <div class="modal-header border-0 bg-dark text-white py-3">
+                    <h6 class="modal-title mb-0 fw-bold"><i class="fa-solid fa-image me-2 text-info"></i> Image Preview</h6>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-0 text-center bg-black d-flex align-items-center justify-content-center" style="min-height: 300px; max-height: 80vh;">
+                    <img id="globalModalPreviewImage" src="" alt="Full Preview" style="max-width: 100%; max-height: 80vh; object-fit: contain;">
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
