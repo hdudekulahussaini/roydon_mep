@@ -21,6 +21,11 @@ class StorySectionController extends Controller
 
     public function create()
     {
+        if (StorySection::count() >= 1) {
+            flash()->warning('A story section already exists. You can only edit the existing one.');
+            return redirect()->route('admin.story-sections.index');
+        }
+
         return view(
             'backend.pages.story_sections.create'
         );
@@ -28,6 +33,11 @@ class StorySectionController extends Controller
 
     public function store(Request $request)
     {
+        if (StorySection::count() >= 1) {
+            flash()->error('A story section already exists. You can only edit the existing one.');
+            return redirect()->route('admin.story-sections.index');
+        }
+
         $validated = $request->validate([
             'title' => [
                 'required',

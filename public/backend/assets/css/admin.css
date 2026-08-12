@@ -1249,7 +1249,7 @@ body {
     gap: 0;
 }
 
-.sidebar-dropdown.open > .sidebar-dropdown-toggle {
+.sidebar-dropdown.open>.sidebar-dropdown-toggle {
     background: #f0fdfd;
     color: #0E9B9B;
     font-weight: 600;
@@ -1264,7 +1264,7 @@ body {
     color: #0E9B9B;
 }
 
-.sidebar-dropdown.open > .sidebar-dropdown-toggle .sidebar-chevron i,
+.sidebar-dropdown.open>.sidebar-dropdown-toggle .sidebar-chevron i,
 .sidebar-dropdown-toggle[aria-expanded="true"] .sidebar-chevron i {
     transform: rotate(180deg);
 }
@@ -1280,7 +1280,7 @@ body {
     margin-left: 20px;
 }
 
-.sidebar-dropdown.open > .sidebar-dropdown-menu {
+.sidebar-dropdown.open>.sidebar-dropdown-menu {
     display: flex;
 }
 
@@ -1581,7 +1581,7 @@ body {
 .cs-card {
     background: #fff;
     border-radius: 14px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
     overflow: hidden;
 }
 
@@ -1601,7 +1601,7 @@ body {
 }
 
 .cs-card-header p {
-    color: rgba(255,255,255,0.8);
+    color: rgba(255, 255, 255, 0.8);
     font-size: 0.83rem;
     margin: 2px 0 0;
 }
@@ -1686,7 +1686,7 @@ body {
 .cs-form-card {
     background: #fff;
     border-radius: 14px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
     overflow: hidden;
 }
 
@@ -1703,7 +1703,7 @@ body {
 }
 
 .cs-form-header p {
-    color: rgba(255,255,255,0.8);
+    color: rgba(255, 255, 255, 0.8);
     font-size: 0.82rem;
     margin: 3px 0 0;
 }
@@ -1743,7 +1743,7 @@ body {
 }
 
 /* Action Button Sizing in Tables */
-.table .btn-sm {
+.table td:not([colspan]) .btn-sm {
     width: 32px;
     height: 32px;
     padding: 0;
@@ -1756,6 +1756,7 @@ body {
     width: 100%;
     border-collapse: collapse;
 }
+
 .cs-metrics-table th {
     font-size: 0.75rem;
     text-transform: uppercase;
@@ -1766,20 +1767,24 @@ body {
     background: #f8f9fc;
     border-bottom: 1px solid #eee;
 }
+
 .cs-metrics-table td {
     padding: 8px 12px;
     font-size: 0.9rem;
     color: #1e2533;
     border-bottom: 1px solid #f4f4f4;
 }
+
 .cs-metrics-table tr:last-child td {
     border-bottom: none;
 }
+
 .no-setting-box {
     text-align: center;
     padding: 60px 20px;
     color: #9aa0b0;
 }
+
 .no-setting-box i {
     font-size: 2.5rem;
     margin-bottom: 12px;
@@ -1794,6 +1799,7 @@ body {
     border-radius: 10px;
     overflow: hidden;
 }
+
 .metrics-builder-head,
 .process-builder-head {
     background: #f8f9fc;
@@ -1803,6 +1809,7 @@ body {
     padding: 10px 14px;
     border-bottom: 1px solid #e8eaf0;
 }
+
 .metrics-builder-head span,
 .process-builder-head span {
     font-size: 0.72rem;
@@ -1811,6 +1818,7 @@ body {
     letter-spacing: 0.5px;
     color: #9aa0b0;
 }
+
 .metrics-row {
     display: grid;
     grid-template-columns: 1fr 1fr 44px;
@@ -1819,10 +1827,12 @@ body {
     border-bottom: 1px solid #f4f4f4;
     padding: 8px 14px;
 }
+
 .metrics-row:last-child,
 .process-row:last-child {
     border-bottom: none;
 }
+
 .metrics-row input,
 .process-row input {
     border-radius: 6px;
@@ -1833,12 +1843,14 @@ body {
     color: #1e2533;
     transition: border-color 0.2s;
 }
+
 .metrics-row input:focus,
 .process-row input:focus {
     outline: none;
     border-color: #0E9B9B;
-    box-shadow: 0 0 0 2px rgba(14,155,155,0.1);
+    box-shadow: 0 0 0 2px rgba(14, 155, 155, 0.1);
 }
+
 .btn-remove-row {
     width: 34px;
     height: 34px;
@@ -1853,9 +1865,11 @@ body {
     font-size: 0.8rem;
     transition: background 0.2s;
 }
+
 .btn-remove-row:hover {
     background: #fcd9de;
 }
+
 .btn-add-row {
     display: inline-flex;
     align-items: center;
@@ -1871,9 +1885,11 @@ body {
     cursor: pointer;
     transition: background 0.2s;
 }
+
 .btn-add-row:hover {
     background: #ddf3f3;
 }
+
 .cs-form-actions {
     display: flex;
     gap: 10px;
@@ -1881,6 +1897,7 @@ body {
     border-top: 1px solid #f0f0f0;
     background: #fafbfc;
 }
+
 .btn-save {
     background: linear-gradient(135deg, #0E9B9B, #087474);
     color: #fff;
@@ -1895,7 +1912,11 @@ body {
     gap: 7px;
     transition: opacity 0.2s;
 }
-.btn-save:hover { opacity: 0.9; }
+
+.btn-save:hover {
+    opacity: 0.9;
+}
+
 .btn-cancel {
     background: #fff;
     color: #6c757d;
@@ -1910,12 +1931,18 @@ body {
     gap: 7px;
     transition: background 0.2s;
 }
-.btn-cancel:hover { background: #f5f7fa; color: #444; }
+
+.btn-cancel:hover {
+    background: #f5f7fa;
+    color: #444;
+}
+
 .cs-divider {
     border: none;
     border-top: 1px solid #f0f0f0;
     margin: 28px 0;
 }
+
 .process-row {
     display: flex;
     align-items: center;
@@ -1923,6 +1950,7 @@ body {
     padding: 8px 14px;
     border-bottom: 1px solid #f4f4f4;
 }
+
 .process-step-num {
     width: 26px;
     height: 26px;
