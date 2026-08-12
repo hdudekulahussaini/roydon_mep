@@ -28,10 +28,17 @@
         </a>
 
         {{-- Enquiries --}}
+        @php
+            $lastSeenId = session('last_seen_enquiry_id', 0);
+            $unseenEnquiries = \App\Models\Enquiry::where('id', '>', $lastSeenId)->count();
+        @endphp
         <a href="{{ route('admin.enquiries.index') }}"
             class="sidebar-link {{ request()->routeIs('admin.enquiries.*') ? 'active' : '' }}">
             <span class="sidebar-icon"><i class="fa-solid fa-inbox"></i></span>
             <span>Enquiries</span>
+            @if($unseenEnquiries > 0)
+                <span class="sidebar-count-badge ms-auto">{{ $unseenEnquiries }}</span>
+            @endif
         </a>
 
         {{-- Home Page --}}

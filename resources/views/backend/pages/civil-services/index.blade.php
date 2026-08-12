@@ -59,12 +59,15 @@
                                 </td>
 
                                 <td>
-                                    <div class="fs-5 text-secondary">
-                                        <i class="{{ $service->icon }}"></i>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div class="bg-dark text-warning rounded-3 d-flex align-items-center justify-content-center shadow-sm"
+                                            style="width: 40px; height: 40px; min-width: 40px;">
+                                            <i class="{{ $service->icon }} fs-5"></i>
+                                        </div>
+                                        <small class="text-muted text-nowrap" style="font-size: 11px;">
+                                            <code>{{ $service->icon }}</code>
+                                        </small>
                                     </div>
-                                    <small class="text-muted d-block" style="font-size: 11px;">
-                                        <code>{{ $service->icon }}</code>
-                                    </small>
                                 </td>
 
                                 <td>

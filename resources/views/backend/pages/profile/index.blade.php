@@ -3,11 +3,13 @@
 @section('page-title', 'My Profile')
 
 @section('content')
-<div class="container-fluid">
+<div class="container-fluid px-0">
 
     {{-- Header Banner --}}
     <div class="profile-header-banner">
-        <span class="badge-role"><i class="fa-solid fa-shield-halved me-1"></i> Administrator Account</span>
+        <span class="badge-role">
+            <i class="fa-solid fa-shield-halved me-1"></i> Administrator Account
+        </span>
         <h2>Account Settings & Security</h2>
         <p>Manage your personal administrator credentials and login password.</p>
     </div>
@@ -32,16 +34,28 @@
 
                     <div class="profile-detail-list">
                         <div class="detail-item">
-                            <span class="label"><i class="fa-solid fa-user-tag text-muted"></i> Role</span>
-                            <span class="value text-success"><i class="fa-solid fa-circle-check me-1"></i> Super Admin</span>
+                            <span class="label">
+                                <i class="fa-solid fa-user-tag text-muted"></i> Role
+                            </span>
+                            <span class="value text-success">
+                                <i class="fa-solid fa-circle-check me-1"></i> Super Admin
+                            </span>
                         </div>
                         <div class="detail-item">
-                            <span class="label"><i class="fa-solid fa-shield-halved text-muted"></i> Account Status</span>
-                            <span class="value badge bg-success bg-opacity-10 text-success px-2 py-1 rounded-pill">Active</span>
+                            <span class="label">
+                                <i class="fa-solid fa-shield-halved text-muted"></i> Account Status
+                            </span>
+                            <span class="value badge bg-success bg-opacity-10 text-success px-2 py-1 rounded-pill">
+                                Active
+                            </span>
                         </div>
                         <div class="detail-item">
-                            <span class="label"><i class="fa-solid fa-clock text-muted"></i> Account Created</span>
-                            <span class="value">{{ $user->created_at ? $user->created_at->format('M d, Y') : 'N/A' }}</span>
+                            <span class="label">
+                                <i class="fa-solid fa-clock text-muted"></i> Account Created
+                            </span>
+                            <span class="value">
+                                {{ $user->created_at ? $user->created_at->format('M d, Y') : 'N/A' }}
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -65,7 +79,9 @@
 
                         @if ($errors->any())
                             <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
-                                <strong><i class="fa-solid fa-triangle-exclamation me-2"></i> Please fix the following errors:</strong>
+                                <strong>
+                                    <i class="fa-solid fa-triangle-exclamation me-2"></i> Please fix the following errors:
+                                </strong>
                                 <ul class="mb-0 mt-2 ps-3">
                                     @foreach ($errors->all() as $error)
                                         <li>{{ $error }}</li>
@@ -96,16 +112,19 @@
                                 </div>
                             </div>
 
-                            <div class="mb-3">
+                            <div class="mb-4">
                                 <label class="form-label-custom" for="current_password">Current Password *</label>
                                 <div class="password-wrapper">
                                     <input type="password" id="current_password" name="current_password"
                                         class="form-control-custom @error('current_password') is-invalid @enderror"
-                                        placeholder="Enter your current password" autocomplete="current-password" required>
+                                        placeholder="Enter your current password" autocomplete="new-password" required>
                                     <button type="button" class="toggle-pw" data-target="current_password" aria-label="Toggle password visibility">
                                         <i class="fa-regular fa-eye" id="icon-current_password"></i>
                                     </button>
                                 </div>
+                                @error('current_password')
+                                    <div class="text-danger small mt-1">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <div class="row g-3 mb-4">
@@ -119,6 +138,9 @@
                                             <i class="fa-regular fa-eye" id="icon-password"></i>
                                         </button>
                                     </div>
+                                    @error('password')
+                                        <div class="text-danger small mt-1">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="col-md-6">
@@ -149,4 +171,42 @@
     </div>
 
 </div>
+
+<script>
+    (function() {
+        function initPasswordToggles() {
+            document.querySelectorAll('.toggle-pw').forEach(function (button) {
+                const newButton = button.cloneNode(true);
+                button.parentNode.replaceChild(newButton, button);
+                
+                newButton.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const targetId = newButton.getAttribute('data-target');
+                    const inputField = document.getElementById(targetId);
+                    const icon = newButton.querySelector('i');
+                    
+                    if (inputField && icon) {
+                        if (inputField.type === 'password') {
+                            inputField.type = 'text';
+                            icon.classList.remove('fa-eye');
+                            icon.classList.add('fa-eye-slash');
+                        } else {
+                            inputField.type = 'password';
+                            icon.classList.remove('fa-eye-slash');
+                            icon.classList.add('fa-eye');
+                        }
+                    }
+                });
+            });
+
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initPasswordToggles);
+        } else {
+            initPasswordToggles();
+        }
+    })();
+</script>
 @endsection

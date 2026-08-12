@@ -34,7 +34,17 @@
                         @forelse ($specialisations as $spec)
                             <tr>
                                 <td class="ps-4">{{ $spec->id }}</td>
-                                <td><i class="{{ $spec->icon }} fa-2x"></i></td>
+                                <td>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div class="bg-dark text-info rounded-3 d-flex align-items-center justify-content-center shadow-sm"
+                                            style="width: 40px; height: 40px; min-width: 40px;">
+                                            <i class="{{ $spec->icon }} fs-5"></i>
+                                        </div>
+                                        <small class="text-muted text-nowrap" style="font-size: 11px;">
+                                            <code>{{ $spec->icon }}</code>
+                                        </small>
+                                    </div>
+                                </td>
                                 <td><strong>{{ $spec->title }}</strong></td>
                                 <td>{{ Str::limit($spec->description, 50) }}</td>
                                 <td class="text-end pe-4">

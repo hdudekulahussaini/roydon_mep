@@ -321,22 +321,38 @@ body {
 
 .notification-button {
     position: relative;
-    border: 0;
-    background: transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f0fdfd;
     color: #0E9B9B;
-    font-size: 19px;
-    cursor: pointer;
+    font-size: 18px;
+    text-decoration: none;
+    transition: all 0.2s ease;
 }
 
-.notification-dot {
+.notification-button:hover {
+    background: #0E9B9B;
+    color: #ffffff;
+}
+
+.notification-dot,
+.notification-badge {
     position: absolute;
-    top: 1px;
-    right: 1px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
+    top: -2px;
+    right: -2px;
     background: #ef4444;
-    box-shadow: 0 0 6px rgba(239, 68, 68, 0.6);
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: 50px;
+    line-height: 1;
+    border: 2px solid #ffffff;
+    box-shadow: 0 2px 6px rgba(239, 68, 68, 0.4);
 }
 
 .admin-profile {
@@ -477,9 +493,9 @@ body {
 
 .statistics-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 17px;
-    margin-bottom: 22px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 24px;
 }
 
 .stat-card {

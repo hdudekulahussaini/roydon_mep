@@ -3,14 +3,14 @@
     {{-- Title --}}
     <div class="col-md-12">
         <label for="title" class="form-label fw-semibold">
-            Service Title <span class="text-danger">*</span>
+            Specialisation Title <span class="text-danger">*</span>
         </label>
         <input type="text"
             id="title"
             name="title"
-            value="{{ old('title', $civilService?->title) }}"
+            value="{{ old('title', $hospitalSpecialisation?->title) }}"
             class="form-control @error('title') is-invalid @enderror"
-            placeholder="e.g. Structural & RCC Works"
+            placeholder="e.g. Operation Theatre (OT) Systems & Airflow"
             required>
         @error('title')
             <div class="invalid-feedback">
@@ -35,9 +35,9 @@
                     <div class="col-auto">
                         <div class="d-flex flex-column align-items-center justify-content-center bg-dark text-white rounded-3 p-3 text-center"
                             style="width: 105px; height: 105px; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
-                            <i id="icon-preview" class="{{ old('icon', $civilService?->icon ?? 'fa-light fa-helmet-safety') }} fs-1 mb-1 text-warning"></i>
+                            <i id="icon-preview" class="{{ old('icon', $hospitalSpecialisation?->icon ?? 'fa-light fa-hospital') }} fs-1 mb-1 text-info"></i>
                             <span class="badge bg-secondary text-white small" style="font-size: 9px; max-width: 95px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" id="icon-tag">
-                                {{ old('icon', $civilService?->icon ?? 'fa-light fa-helmet-safety') }}
+                                {{ old('icon', $hospitalSpecialisation?->icon ?? 'fa-light fa-hospital') }}
                             </span>
                         </div>
                     </div>
@@ -55,9 +55,9 @@
                             <input type="text"
                                 id="icon"
                                 name="icon"
-                                value="{{ old('icon', $civilService?->icon ?? 'fa-light fa-helmet-safety') }}"
+                                value="{{ old('icon', $hospitalSpecialisation?->icon ?? 'fa-light fa-hospital') }}"
                                 class="form-control @error('icon') is-invalid @enderror"
-                                placeholder="e.g. fa-light fa-helmet-safety"
+                                placeholder="e.g. fa-light fa-hospital"
                                 required>
                             <button type="button" class="btn btn-outline-secondary" id="clear-icon-btn" title="Clear Icon">
                                 <i class="fa-solid fa-xmark"></i>
@@ -81,11 +81,11 @@
 
                 </div>
 
-                {{-- Preset Civil Service Icons --}}
+                {{-- Preset Hospital Specialisation Icons --}}
                 <div class="mt-3 pt-3 border-top">
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         <label class="form-label small fw-semibold text-secondary mb-0">
-                            <i class="fa-solid fa-grip me-1"></i> Quick Pick Civil & Construction Icons:
+                            <i class="fa-solid fa-grip me-1"></i> Quick Pick Hospital & Healthcare Icons:
                         </label>
                         <small class="text-muted" style="font-size: 11px;">Click icon to select</small>
                     </div>
@@ -93,25 +93,27 @@
                     <div class="d-flex flex-wrap gap-2 icon-preset-grid" id="icon-preset-container">
                         @php
                             $presetIcons = [
-                                ['icon' => 'fa-light fa-helmet-safety', 'label' => 'Safety Helmet'],
-                                ['icon' => 'fa-light fa-building', 'label' => 'Building'],
-                                ['icon' => 'fa-light fa-city', 'label' => 'Civil City'],
-                                ['icon' => 'fa-light fa-compass-drafting', 'label' => 'Drafting & Design'],
-                                ['icon' => 'fa-light fa-trowel-bricks', 'label' => 'Masonry & Bricks'],
-                                ['icon' => 'fa-light fa-paint-roller', 'label' => 'Paint Roller'],
+                                ['icon' => 'fa-light fa-hospital', 'label' => 'Hospital Building'],
+                                ['icon' => 'fa-light fa-heart-pulse', 'label' => 'Heart & Pulse'],
+                                ['icon' => 'fa-light fa-stethoscope', 'label' => 'Stethoscope'],
+                                ['icon' => 'fa-light fa-user-doctor', 'label' => 'Doctor / Specialist'],
+                                ['icon' => 'fa-light fa-x-ray', 'label' => 'X-Ray & Radiology'],
+                                ['icon' => 'fa-light fa-flask-vial', 'label' => 'Pathology Lab'],
+                                ['icon' => 'fa-light fa-biohazard', 'label' => 'Cleanroom & Biohazard'],
+                                ['icon' => 'fa-light fa-wind', 'label' => 'Medical HVAC Air'],
+                                ['icon' => 'fa-light fa-shield-virus', 'label' => 'Infection Control'],
+                                ['icon' => 'fa-light fa-hospital-user', 'label' => 'Patient Care'],
+                                ['icon' => 'fa-light fa-syringe', 'label' => 'Pharma Systems'],
+                                ['icon' => 'fa-light fa-dna', 'label' => 'Genomics & Speciality'],
+                                ['icon' => 'fa-light fa-ambulance', 'label' => 'Emergency Care'],
+                                ['icon' => 'fa-light fa-microscope', 'label' => 'Research Lab'],
+                                ['icon' => 'fa-light fa-plug-circle-bolt', 'label' => 'Medical Power'],
+                                ['icon' => 'fa-light fa-brain', 'label' => 'Neurology Care'],
                                 ['icon' => 'fa-light fa-house-crack', 'label' => 'Structural Repair'],
                                 ['icon' => 'fa-light fa-mound', 'label' => 'Earth Mound'],
-                                ['icon' => 'fa-light fa-screwdriver-wrench', 'label' => 'MEP Tools'],
-                                ['icon' => 'fa-light fa-hammer', 'label' => 'Construction'],
-                                ['icon' => 'fa-light fa-ruler-combined', 'label' => 'Survey & Measure'],
-                                ['icon' => 'fa-light fa-palette', 'label' => 'Finishing & Palette'],
-                                ['icon' => 'fa-light fa-hospital', 'label' => 'Hospital Civil'],
-                                ['icon' => 'fa-light fa-shield-halved', 'label' => 'Safety Compliance'],
-                                ['icon' => 'fa-light fa-plug', 'label' => 'Electrical Civil'],
-                                ['icon' => 'fa-light fa-droplet', 'label' => 'Plumbing Works'],
-                                ['icon' => 'fa-light fa-dumpster', 'label' => 'Site Clearance'],
-                                ['icon' => 'fa-light fa-truck-field', 'label' => 'Earthworks'],
-                                ['icon' => 'fa-light fa-layer-group', 'label' => 'Structural Layers'],
+                                ['icon' => 'fa-light fa-paint-roller', 'label' => 'Paint Roller'],
+                                ['icon' => 'fa-light fa-trowel-bricks', 'label' => 'Masonry Bricks'],
+                                ['icon' => 'fa-light fa-plug', 'label' => 'Plug / Electrical'],
                             ];
                         @endphp
 
@@ -134,15 +136,15 @@
     {{-- Description --}}
     <div class="col-12">
         <label for="description" class="form-label fw-semibold">
-            Service Description <span class="text-danger">*</span>
+            Specialisation Description <span class="text-danger">*</span>
         </label>
         <textarea
             id="description"
             name="description"
             rows="5"
             class="form-control @error('description') is-invalid @enderror"
-            placeholder="Describe the civil service work details..."
-            required>{{ old('description', $civilService?->description) }}</textarea>
+            placeholder="Describe the hospital specialisation details..."
+            required>{{ old('description', $hospitalSpecialisation?->description) }}</textarea>
         @error('description')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -163,9 +165,9 @@
         const styleBtns = document.querySelectorAll('.icon-style-btn');
 
         function updateIconDisplay(val) {
-            const iconClass = val.trim() || 'fa-light fa-helmet-safety';
+            const iconClass = val.trim() || 'fa-light fa-hospital';
             if (iconPreview) {
-                iconPreview.className = iconClass + ' fs-1 mb-1 text-warning';
+                iconPreview.className = iconClass + ' fs-1 mb-1 text-info';
             }
             if (iconTag) {
                 iconTag.textContent = iconClass;
@@ -228,13 +230,12 @@
                 const newPrefix = this.dataset.prefix;
                 let currentVal = iconInput.value.trim();
                 const parts = currentVal.split(' ');
-                
-                // Replace prefix like fa-light, fa-solid, fa-regular, fa-duotone
+
                 let iconName = parts.length > 1 ? parts.slice(1).join(' ') : parts[0];
                 if (parts[0].startsWith('fa-')) {
                     iconName = parts.slice(1).join(' ');
                 }
-                
+
                 const updatedClass = `${newPrefix} ${iconName}`.trim();
                 iconInput.value = updatedClass;
                 updateIconDisplay(updatedClass);
@@ -243,4 +244,3 @@
     });
 </script>
 @endpush
-

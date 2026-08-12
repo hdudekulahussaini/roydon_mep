@@ -1,40 +1,65 @@
 @extends('layouts.backend.app')
 
 @section('title', 'Add Service Subcategory')
-@section('page-title', 'Service Subcategories')
+@section('page-title', 'Add Service Subcategory')
 
 @section('content')
 
-    <div class="row justify-content-center">
+    <div class="card border-0 shadow-sm">
 
-        <div class="col-lg-10">
+        <div class="card-header bg-white py-3">
 
-            <div class="card border-0 shadow-sm">
+            <div class="d-flex justify-content-between align-items-center">
 
-                <div class="card-header bg-white py-3">
-                    <h5 class="mb-0">Add New Service Subcategory</h5>
+                <div>
+                    <h5 class="mb-1">Create Service Subcategory</h5>
+
+                    <p class="text-muted small mb-0">
+                        Add a new service subcategory and configure its details, media, and key offerings.
+                    </p>
                 </div>
 
-                <form action="{{ route('admin.service-subcategories.store') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
+                <a href="{{ route('admin.service-subcategories.index') }}"
+                    class="btn btn-outline-secondary btn-sm">
 
-                    <div class="card-body">
-                        @include('backend.pages.service-subcategories._form', ['serviceSubcategory' => null])
-                    </div>
-
-                    <div class="card-footer bg-white py-3 text-end">
-                        <a href="{{ route('admin.service-subcategories.index') }}" class="btn btn-light me-2">
-                            Cancel
-                        </a>
-
-                        <button type="submit" class="btn btn-dark">
-                            <i class="fa-solid fa-save me-1"></i>
-                            Save Subcategory
-                        </button>
-                    </div>
-                </form>
+                    <i class="fa-solid fa-arrow-left me-1"></i>
+                    Back
+                </a>
 
             </div>
+
+        </div>
+
+        <div class="card-body p-4">
+
+            <form action="{{ route('admin.service-subcategories.store') }}"
+                method="POST"
+                enctype="multipart/form-data">
+
+                @csrf
+
+                @include(
+                    'backend.pages.service-subcategories._form',
+                    ['serviceSubcategory' => null]
+                )
+
+                <div class="mt-4">
+
+                    <button type="submit" class="btn btn-dark">
+
+                        <i class="fa-solid fa-floppy-disk me-1"></i>
+                        Save Subcategory
+                    </button>
+
+                    <a href="{{ route('admin.service-subcategories.index') }}"
+                        class="btn btn-outline-secondary ms-2">
+
+                        Cancel
+                    </a>
+
+                </div>
+
+            </form>
 
         </div>
 

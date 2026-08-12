@@ -12,7 +12,7 @@
             <div class="d-flex justify-content-between align-items-center">
 
                 <div>
-                    <h5 class="mb-1">Service Subcategories</h5>
+                    <h5 class="mb-1 fw-semibold">Service Subcategories</h5>
 
                     <p class="text-muted small mb-0">
                         Manage dynamic pages for individual services and specialisations.
@@ -39,9 +39,10 @@
                     <thead class="table-light">
 
                         <tr>
-                            <th class="ps-4">ID</th>
+                            <th class="ps-4" style="width: 70px;">ID</th>
+                            <th style="width: 90px;">Image</th>
+                            <th>Title &amp; Heading</th>
                             <th>Parent Category</th>
-                            <th>Title</th>
                             <th>Slug</th>
                             <th>Status</th>
                             <th class="text-end pe-4">Actions</th>
@@ -55,31 +56,50 @@
 
                             <tr>
 
-                                <td class="ps-4">
-                                    {{ $sub->id }}
+                                <td class="ps-4 fw-semibold text-muted">
+                                    #{{ $sub->id }}
                                 </td>
 
                                 <td>
-                                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle">
-                                        {{ $sub->category->name ?? 'N/A' }}
+                                    @if ($sub->banner_image)
+                                        <img src="{{ asset('storage/' . $sub->banner_image) }}"
+                                            alt="{{ $sub->title }}"
+                                            class="rounded-2 border object-fit-cover shadow-sm"
+                                            style="width: 45px; height: 45px;">
+                                    @else
+                                        <div class="bg-dark text-warning rounded-2 d-flex align-items-center justify-content-center shadow-sm"
+                                            style="width: 45px; height: 45px; min-width: 45px;">
+                                            <i class="fa-solid fa-screwdriver-wrench fs-6"></i>
+                                        </div>
+                                    @endif
+                                </td>
+
+                                <td>
+                                    <strong class="d-block text-dark">{{ $sub->title }}</strong>
+                                    @if ($sub->heading)
+                                        <small class="text-muted d-block text-truncate" style="max-width: 280px; font-size: 12px;">
+                                            {{ $sub->heading }}
+                                        </small>
+                                    @endif
+                                </td>
+
+                                <td>
+                                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle fw-medium px-2 py-1">
+                                        <i class="fa-solid fa-folder me-1"></i>{{ $sub->category->name ?? 'N/A' }}
                                     </span>
                                 </td>
 
                                 <td>
-                                    <strong>{{ $sub->title }}</strong>
-                                </td>
-
-                                <td>
-                                    <code>{{ $sub->slug }}</code>
+                                    <code class="bg-light px-2 py-1 rounded text-dark border" style="font-size: 12px;">{{ $sub->slug }}</code>
                                 </td>
 
                                 <td>
                                     @if ($sub->status)
-                                        <span class="badge bg-success">
+                                        <span class="badge bg-success-subtle text-success border border-success-subtle px-2 py-1">
                                             Active
                                         </span>
                                     @else
-                                        <span class="badge bg-dander">
+                                        <span class="badge bg-danger-subtle text-danger border border-danger-subtle px-2 py-1">
                                             Inactive
                                         </span>
                                     @endif
@@ -130,7 +150,8 @@
 
                             <tr>
 
-                                <td colspan="6" class="text-center py-4 text-muted">
+                                <td colspan="7" class="text-center py-5 text-muted">
+                                    <i class="fa-solid fa-folder-open fs-2 mb-2 text-muted opacity-50 d-block"></i>
                                     No service subcategories found.
                                 </td>
 
@@ -147,7 +168,7 @@
         </div>
 
         @if ($subcategories->hasPages())
-            <div class="card-footer bg-white py-3">
+            <div class="card-footer bg-white py-3 border-top border-light">
                 {{ $subcategories->links() }}
             </div>
         @endif

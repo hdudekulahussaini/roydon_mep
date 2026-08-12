@@ -5,7 +5,7 @@
 
 @section('content')
 
-<div class="card">
+<div class="card border-0 shadow-sm">
 
     {{-- Header --}}
     <div class="card-header bg-white py-3">
@@ -14,7 +14,7 @@
 
             <div>
 
-                <h5 class="mb-1">
+                <h5 class="mb-1 fw-semibold">
                     Edit Standard
                 </h5>
 
@@ -63,6 +63,17 @@
                     'standard' => $standard
                 ]
             )
+
+            <div class="mt-4">
+                <button type="submit" class="btn btn-dark">
+                    <i class="fa-solid fa-floppy-disk me-1"></i>
+                    Update Standard
+                </button>
+
+                <a href="{{ route('admin.standards.index') }}" class="btn btn-outline-secondary ms-2">
+                    Cancel
+                </a>
+            </div>
 
         </form>
 
