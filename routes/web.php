@@ -2,21 +2,21 @@
 
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\backend\BaselineController;
 use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\backend\CivilServiceController;
 use App\Http\Controllers\Backend\CompanyValueController;
 use App\Http\Controllers\backend\ContactSettingController;
+use App\Http\Controllers\backend\FooterController;
 use App\Http\Controllers\Backend\CoverageController;
 use App\Http\Controllers\backend\FaqController;
-use App\Http\Controllers\backend\FooterController;
 use App\Http\Controllers\backend\HomeBannerController;
 use App\Http\Controllers\backend\HospitalSpecialisationController;
 use App\Http\Controllers\Backend\MetricController;
 use App\Http\Controllers\Backend\OfficeLocationController;
 use App\Http\Controllers\backend\PremiumStatController;
-use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\backend\ProjectController;
 use App\Http\Controllers\Backend\ProjectProcessController;
 use App\Http\Controllers\backend\ServiceSubcategoryController;
@@ -70,6 +70,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::delete('why-choose-us-items/{item}', [WhyChooseUsController::class, 'destroyItem'])->name('why-choose-us-items.destroy');
 
         Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+        // Profile
+        Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+        Route::put('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password');
         Route::resource('story-sections', StorySectionController::class)->except(['show']);
         Route::resource('company-values', CompanyValueController::class)->except(['show']);
         Route::resource('metrics', MetricController::class)->except(['show']);
@@ -78,13 +82,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('project-processes', ProjectProcessController::class)->except(['show']);
         Route::resource('works', WorkController::class)->except(['show']);
         Route::delete('enquiries/bulk-destroy', [EnquiryController::class, 'bulkDestroy'])->name('enquiries.bulk-destroy');
-        Route::resource('enquiries', EnquiryController::class)->only(['index', 'show', 'destroy']);
+        Route::resource('enquiries', EnquiryController::class)->except(['create', 'store']);
         Route::resource('contact-settings', ContactSettingController::class)->only(['index', 'edit', 'update']);
         Route::resource('footers', FooterController::class)->except(['show']);
-
-        // Profile & password
-        Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
-        Route::put('profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password');
     });
 });
 

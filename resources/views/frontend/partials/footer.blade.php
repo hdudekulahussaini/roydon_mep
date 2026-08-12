@@ -46,7 +46,7 @@
                         </div>
                         <div class="footer-link">
                             <ul>
-                                @foreach($headerServices as $serv)
+                                @foreach($headerServices->take(6) as $serv)
                                     <li><a href="{{ route('services.show', $serv->slug) }}">{{ $serv->title }}</a></li>
                                 @endforeach
                             </ul>
