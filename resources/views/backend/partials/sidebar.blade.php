@@ -2,16 +2,13 @@
 
     <div class="sidebar-brand">
 
-        <div class="brand-symbol">
-            R
-        </div>
+        <a href="{{ route('admin.dashboard') }}" class="brand-logo-link">
+            <img src="{{ asset('frontend/assets/img/logo/roydon_mep_no_bg.webp') }}"
+                alt="Roydon MEP Contracting"
+                class="sidebar-logo-img">
+        </a>
 
-        <div class="brand-text">
-            <h2>ROYDON</h2>
-            <span>MEP ADMIN</span>
-        </div>
-
-        <button type="button" class="sidebar-close-btn d-lg-none" id="sidebarClose" aria-label="Close Sidebar">
+        <button type="button" class="sidebar-close-btn d-lg-none ms-auto" id="sidebarClose" aria-label="Close Sidebar">
             <i class="fa-solid fa-xmark"></i>
         </button>
 
@@ -31,18 +28,10 @@
         </a>
 
         {{-- Enquiries --}}
-        @php
-            $maxEnquiryId = \App\Models\Enquiry::max('id') ?? 0;
-            $lastSeenId = session('last_seen_enquiry_id', $maxEnquiryId);
-            $unseenEnquiries = \App\Models\Enquiry::where('id', '>', $lastSeenId)->count();
-        @endphp
         <a href="{{ route('admin.enquiries.index') }}"
             class="sidebar-link {{ request()->routeIs('admin.enquiries.*') ? 'active' : '' }}">
             <span class="sidebar-icon"><i class="fa-solid fa-inbox"></i></span>
             <span>Enquiries</span>
-            @if($unseenEnquiries > 0)
-                <span class="sidebar-count-badge ms-auto">{{ $unseenEnquiries }}</span>
-            @endif
         </a>
 
         {{-- Home Page --}}
@@ -98,23 +87,11 @@
         </div>
 
         {{-- Projects --}}
-        @php
-            $projectsActive = request()->routeIs('admin.projects.*');
-        @endphp
-        <div class="sidebar-dropdown {{ $projectsActive ? 'open' : '' }}">
-            <button type="button" class="sidebar-link sidebar-dropdown-toggle {{ $projectsActive ? 'active' : '' }}">
-                <span class="sidebar-icon"><i class="fa-solid fa-diagram-project"></i></span>
-                <span>Projects</span>
-                <span class="sidebar-chevron ms-auto"><i class="fa-solid fa-chevron-down"></i></span>
-            </button>
-            <div class="sidebar-dropdown-menu">
-                <a href="{{ route('admin.projects.index') }}"
-                    class="sidebar-link sidebar-sub-link {{ request()->routeIs('admin.projects.index') || request()->routeIs('admin.projects.create') ? 'active' : '' }}">
-                    <span class="sidebar-icon"><i class="fa-solid fa-list"></i></span>
-                    <span>All Projects</span>
-                </a>
-            </div>
-        </div>
+        <a href="{{ route('admin.projects.index') }}"
+            class="sidebar-link {{ request()->routeIs('admin.projects.*') ? 'active' : '' }}">
+            <span class="sidebar-icon"><i class="fa-solid fa-diagram-project"></i></span>
+            <span>Projects</span>
+        </a>
 
         {{-- About Page --}}
         @php
@@ -172,12 +149,12 @@
                 <a href="{{ route('admin.service-subcategories.index') }}"
                     class="sidebar-link sidebar-sub-link {{ request()->routeIs('admin.service-subcategories.*') ? 'active' : '' }}">
                     <span class="sidebar-icon"><i class="fa-solid fa-tags"></i></span>
-                    <span>Service Subcategories</span>
+                    <span>Service</span>
                 </a>
                 <a href="{{ route('admin.specialisation-subcategories.index') }}"
                     class="sidebar-link sidebar-sub-link {{ request()->routeIs('admin.specialisation-subcategories.*') ? 'active' : '' }}">
                     <span class="sidebar-icon"><i class="fa-solid fa-house-medical-circle-check"></i></span>
-                    <span>Specialisation Subcat.</span>
+                    <span>Specialisation</span>
                 </a>
             </div>
         </div>
@@ -326,102 +303,3 @@
     </div>
 
 </aside>
-
-<style>
-    /* Sidebar Dropdown Styles */
-    .sidebar-dropdown {
-        width: 100%;
-    }
-
-    .sidebar-dropdown-toggle {
-        width: 100%;
-        background: none;
-        border: none;
-        cursor: pointer;
-        text-align: left;
-        display: flex;
-        align-items: center;
-        gap: 0;
-    }
-
-    .sidebar-chevron {
-        margin-left: auto;
-        font-size: 0.7rem;
-        transition: transform 0.25s ease;
-        opacity: 0.6;
-        padding-left: 8px;
-        flex-shrink: 0;
-    }
-
-    .sidebar-dropdown.open > .sidebar-dropdown-toggle .sidebar-chevron i,
-    .sidebar-dropdown-toggle[aria-expanded="true"] .sidebar-chevron i {
-        transform: rotate(180deg);
-    }
-
-    .sidebar-dropdown-menu {
-        display: none;
-        flex-direction: column;
-        padding-left: 0;
-        overflow: hidden;
-    }
-
-    .sidebar-dropdown.open > .sidebar-dropdown-menu {
-        display: flex;
-    }
-
-    .sidebar-sub-link {
-        padding-left: 2.6rem !important;
-        font-size: 0.85rem !important;
-        opacity: 0.88;
-    }
-
-    .sidebar-sub-link:before {
-        content: '';
-        display: inline-block;
-        width: 5px;
-        height: 5px;
-        border-radius: 50%;
-        background: currentColor;
-        margin-right: 8px;
-        opacity: 0.5;
-        flex-shrink: 0;
-    }
-
-    .sidebar-sub-link .sidebar-icon {
-        font-size: 0.8rem;
-    }
-
-    .sidebar-count-badge {
-        margin-left: auto;
-        background: #0E9B9B;
-        color: #ffffff;
-        font-size: 0.75rem;
-        font-weight: 600;
-        padding: 2px 8px;
-        border-radius: 50rem;
-        line-height: 1.2;
-    }
-</style>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const toggles = document.querySelectorAll('.sidebar-dropdown-toggle');
-
-        toggles.forEach(function (toggle) {
-            toggle.addEventListener('click', function () {
-                const dropdown = this.closest('.sidebar-dropdown');
-                const isOpen = dropdown.classList.contains('open');
-
-                // Close all dropdowns
-                document.querySelectorAll('.sidebar-dropdown').forEach(function (d) {
-                    d.classList.remove('open');
-                });
-
-                // Toggle clicked one
-                if (!isOpen) {
-                    dropdown.classList.add('open');
-                }
-            });
-        });
-    });
-</script>

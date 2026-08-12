@@ -33,8 +33,6 @@ class EnquiryController extends Controller
         $selected = $request->query('selected');
         $selectedEnquiry = $selected ? Enquiry::query()->find($selected) : ($enquiries->first() ?? null);
 
-        session(['last_seen_enquiry_id' => Enquiry::max('id') ?? 0]);
-
         return view('backend.pages.enquiries.index', compact('enquiries', 'selectedEnquiry'));
     }
 
