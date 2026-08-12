@@ -12,10 +12,10 @@
             <div class="d-flex justify-content-between align-items-center">
 
                 <div>
-                    <h5 class="mb-1">Create Service Subcategory</h5>
+                    <h5 class="mb-1">Create Service</h5>
 
                     <p class="text-muted small mb-0">
-                        Add a new service subcategory and configure its details, media, and key offerings.
+                        Add a new service and configure its details, media, and key offerings.
                     </p>
                 </div>
 
@@ -48,7 +48,7 @@
                     <button type="submit" class="btn btn-dark">
 
                         <i class="fa-solid fa-floppy-disk me-1"></i>
-                        Save Subcategory
+                        Save 
                     </button>
 
                     <a href="{{ route('admin.service-subcategories.index') }}"

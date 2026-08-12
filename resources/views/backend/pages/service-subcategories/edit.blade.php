@@ -12,7 +12,7 @@
             <div class="d-flex justify-content-between align-items-center">
 
                 <div>
-                    <h5 class="mb-1">Edit Service Subcategory</h5>
+                    <h5 class="mb-1">Edit Service </h5>
 
                     <p class="text-muted small mb-0">
                         Update the details, media, compliance, and key offerings of this service subcategory.
@@ -52,7 +52,7 @@
                     <button type="submit" class="btn btn-dark">
 
                         <i class="fa-solid fa-floppy-disk me-1"></i>
-                        Update Subcategory
+                        Update 
                     </button>
 
                     <a href="{{ route('admin.service-subcategories.index') }}"

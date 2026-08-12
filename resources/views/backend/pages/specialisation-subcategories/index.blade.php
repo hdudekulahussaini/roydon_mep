@@ -9,9 +9,9 @@
         <div class="card-header bg-white py-3">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
-                    <h5 class="mb-1">Specialisation Subcategories</h5>
+                    <h5 class="mb-1">Specialisation </h5>
                     <p class="text-muted small mb-0">
-                        Manage dynamic pages for Specialisation Subcategories.
+                        Manage dynamic pages for Specialisation.
                     </p>
                 </div>
                 <a href="{{ route('admin.specialisation-subcategories.create') }}" class="btn btn-dark">
@@ -70,7 +70,7 @@
                         @empty
                             <tr>
                                 <td colspan="6" class="text-center py-4 text-muted">
-                                    No Specialisation Subcategories found.
+                                    No Specialisation  found.
                                 </td>
                             </tr>
                         @endforelse
