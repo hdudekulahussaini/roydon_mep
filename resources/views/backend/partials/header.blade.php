@@ -29,13 +29,16 @@
             <span>View Website</span>
         </a>
 
-        <button type="button" class="notification-button">
+        @php
+            $lastSeenId = session('last_seen_enquiry_id', 0);
+            $unseenCount = \App\Models\Enquiry::where('id', '>', $lastSeenId)->count();
+        @endphp
+        <a href="{{ route('admin.enquiries.index') }}" class="notification-button" title="View Enquiries">
             <i class="fa-regular fa-bell"></i>
-
-            @if (($stats['new_enquiries'] ?? 0) > 0)
-                <span class="notification-dot"></span>
+            @if ($unseenCount > 0)
+                <span class="notification-badge">+{{ $unseenCount }}</span>
             @endif
-        </button>
+        </a>
 
         <div class="dropdown">
 

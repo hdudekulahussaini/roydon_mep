@@ -5,7 +5,7 @@
 
 @section('content')
 
-<div class="card">
+<div class="card border-0 shadow-sm">
 
     {{-- Header --}}
     <div class="card-header bg-white py-3">
@@ -14,7 +14,7 @@
 
             <div>
 
-                <h5 class="mb-1">
+                <h5 class="mb-1 fw-semibold">
                     Standards Management
                 </h5>
 
@@ -51,8 +51,12 @@
 
                     <tr>
 
-                        <th class="ps-4">
+                        <th class="ps-4" style="width: 60px;">
                             #
+                        </th>
+
+                        <th style="width: 70px;">
+                            Icon
                         </th>
 
                         <th>
@@ -95,26 +99,25 @@
                     <tr>
 
                         {{-- Number --}}
-                        <td class="ps-4">
+                        <td class="ps-4 fw-semibold text-muted">
+                            #{{ $loop->iteration }}
+                        </td>
 
-                            <span class="badge bg-light text-dark">
 
-                                {{ $loop->iteration }}
-
-                            </span>
-
+                        {{-- Icon --}}
+                        <td>
+                            <div class="bg-dark text-warning rounded-2 d-flex align-items-center justify-content-center shadow-sm"
+                                style="width: 40px; height: 40px;">
+                                <i class="{{ $standard->icon ?? 'fa-light fa-notes-medical' }} fs-5"></i>
+                            </div>
                         </td>
 
 
                         {{-- Section --}}
                         <td>
-
-                            <strong>
-
-                                {{ $standard->section->title ?? '—' }}
-
-                            </strong>
-
+                            <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-2 py-1">
+                                <i class="fa-solid fa-folder me-1"></i>{{ $standard->section->title ?? '—' }}
+                            </span>
                         </td>
 
 
@@ -123,11 +126,9 @@
 
                             @if($standard->abbr)
 
-                            <span class="badge bg-light text-dark">
-
+                            <code class="bg-light px-2 py-1 rounded text-dark border" style="font-size: 12px;">
                                 {{ $standard->abbr }}
-
-                            </span>
+                            </code>
 
                             @else
 
@@ -143,7 +144,7 @@
                         {{-- Title --}}
                         <td>
 
-                            <strong>
+                            <strong class="text-dark">
                                 {{ $standard->title }}
                             </strong>
 
@@ -154,7 +155,7 @@
                         <td>
 
                             <span
-                                class="text-muted"
+                                class="text-muted small"
                                 style="max-width: 250px; display: block;">
 
                                 {{ $standard->applied_to ?? '—' }}
@@ -167,7 +168,7 @@
                         {{-- Sort Order --}}
                         <td>
 
-                            <span class="badge bg-light text-dark">
+                            <span class="badge bg-light text-dark border">
 
                                 {{ $standard->sort_order }}
 
@@ -181,21 +182,14 @@
 
                             @if($standard->status)
 
-                            <span class="badge bg-success">
-
-
-
+                            <span class="badge bg-success-subtle text-success border border-success-subtle px-2 py-1">
                                 Active
-
                             </span>
 
                             @else
 
-                            <span class="badge bg-danger">
-
-
+                            <span class="badge bg-danger-subtle text-danger border border-danger-subtle px-2 py-1">
                                 Inactive
-
                             </span>
 
                             @endif
@@ -261,22 +255,19 @@
                     <tr>
 
                         <td
-                            colspan="8"
-                            class="text-center py-5">
+                            colspan="9"
+                            class="text-center py-5 text-muted">
 
-                            <i
-                                class="fa-solid fa-book-open fs-2 text-muted"></i>
+                            <i class="fa-solid fa-book-open fs-2 text-muted opacity-50 d-block mb-2"></i>
 
-                            <p class="mt-2 mb-0 text-muted">
-
+                            <p class="mb-2">
                                 No standards found.
-
                             </p>
 
 
                             <a
                                 href="{{ route('admin.standards.create') }}"
-                                class="btn btn-sm btn-dark mt-3">
+                                class="btn btn-sm btn-dark">
 
                                 <i class="fa-solid fa-plus me-1"></i>
 
@@ -302,7 +293,7 @@
     {{-- Pagination --}}
     @if(method_exists($standards, 'hasPages') && $standards->hasPages())
 
-    <div class="card-footer bg-white">
+    <div class="card-footer bg-white py-3 border-top border-light">
 
         {{ $standards->links('pagination::bootstrap-5') }}
 

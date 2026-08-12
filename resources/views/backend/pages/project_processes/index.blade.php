@@ -70,23 +70,15 @@
 
 
                         <td>
-
-                            <div class="fs-5 text-secondary">
-
-                                <i class="{{ $process->icon }}"></i>
-
-                            </div>
-
-                            <small
-                                class="text-muted"
-                                style="font-size: 11px;">
-
-                                <code>
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="bg-dark text-warning rounded-2 d-flex align-items-center justify-content-center shadow-sm"
+                                    style="width: 42px; height: 42px; min-width: 42px;">
+                                    <i class="{{ $process->icon ?? 'fa-light fa-clipboard-list-check' }} fs-5"></i>
+                                </div>
+                                <code class="bg-light px-2 py-1 rounded text-dark border" style="font-size: 11px;">
                                     {{ $process->icon }}
                                 </code>
-
-                            </small>
-
+                            </div>
                         </td>
 
 

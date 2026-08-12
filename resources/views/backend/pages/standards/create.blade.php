@@ -5,7 +5,7 @@
 
 @section('content')
 
-<div class="card">
+<div class="card border-0 shadow-sm">
 
     {{-- Header --}}
     <div class="card-header bg-white py-3">
@@ -14,7 +14,7 @@
 
             <div>
 
-                <h5 class="mb-1">
+                <h5 class="mb-1 fw-semibold">
                     Create Standard
                 </h5>
 
@@ -49,13 +49,23 @@
 
             @csrf
 
-
             @include(
-            'backend.pages.standards._form',
-            [
-            'standard' => null
-            ]
+                'backend.pages.standards._form',
+                [
+                    'standard' => null
+                ]
             )
+
+            <div class="mt-4">
+                <button type="submit" class="btn btn-dark">
+                    <i class="fa-solid fa-floppy-disk me-1"></i>
+                    Save Standard
+                </button>
+
+                <a href="{{ route('admin.standards.index') }}" class="btn btn-outline-secondary ms-2">
+                    Cancel
+                </a>
+            </div>
 
         </form>
 
