@@ -216,14 +216,4 @@
         @endif
 
     </div>
-    <style>
-        .table .btn-sm {
-            width: 30px;
-            height: 30px;
-            padding: 0;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-    </style>
 @endsection

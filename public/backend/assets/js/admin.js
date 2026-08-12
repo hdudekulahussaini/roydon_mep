@@ -228,4 +228,25 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    /*
+     * Password Visibility Toggle
+     */
+    document.addEventListener('click', function (e) {
+        const btn = e.target.closest('.toggle-pw');
+        if (btn) {
+            const targetId = btn.dataset.target;
+            const input = document.getElementById(targetId);
+            const icon = document.getElementById('icon-' + targetId) || btn.querySelector('i');
+            if (input) {
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    if (icon) icon.classList.replace('fa-eye', 'fa-eye-slash');
+                } else {
+                    input.type = 'password';
+                    if (icon) icon.classList.replace('fa-eye-slash', 'fa-eye');
+                }
+            }
+        }
+    });
+
 });
