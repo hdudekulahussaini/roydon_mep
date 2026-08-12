@@ -12,8 +12,4 @@ class StandardBanner extends Model
     protected $fillable = [
         'image',
     ];
-
-    protected $casts = [
-        'status' => 'boolean',
-    ];
 }

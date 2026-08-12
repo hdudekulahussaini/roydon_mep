@@ -17,7 +17,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         rel="stylesheet">
 
-    <link href="{{ asset('assets/fontawesome-pro/css/all.min.css') }}"
+    <link href="{{ asset('frontend/assets/fontawesome-pro/css/all.min.css') }}"
         rel="stylesheet">
 
     <link href="{{ asset('backend/assets/css/admin.css') }}"
@@ -91,16 +91,37 @@
     <script>
         const sidebar = document.getElementById('adminSidebar');
         const sidebarToggle = document.getElementById('sidebarToggle');
+        const sidebarClose = document.getElementById('sidebarClose');
         const sidebarOverlay = document.getElementById('sidebarOverlay');
 
-        sidebarToggle?.addEventListener('click', function () {
-            sidebar.classList.toggle('show');
-            sidebarOverlay.classList.toggle('show');
+        function openSidebar() {
+            sidebar?.classList.add('show');
+            sidebarOverlay?.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSidebar() {
+            sidebar?.classList.remove('show');
+            sidebarOverlay?.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        sidebarToggle?.addEventListener('click', function (e) {
+            e.stopPropagation();
+            if (sidebar?.classList.contains('show')) {
+                closeSidebar();
+            } else {
+                openSidebar();
+            }
         });
 
-        sidebarOverlay?.addEventListener('click', function () {
-            sidebar.classList.remove('show');
-            sidebarOverlay.classList.remove('show');
+        sidebarClose?.addEventListener('click', closeSidebar);
+        sidebarOverlay?.addEventListener('click', closeSidebar);
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && sidebar?.classList.contains('show')) {
+                closeSidebar();
+            }
         });
     </script>
 

@@ -63,7 +63,7 @@
                             <div class="service-detail-contact wow fadeInUp animated" data-wow-delay="0.2s" style="background: linear-gradient(135deg, #0E9B9B 0%, #0B7878 100%); padding: 40px 30px; border-radius: 12px; color: #fff; text-align: center; margin-top: 40px; box-shadow: 0 10px 30px rgba(14,155,155,0.2);">
                                 <div style="font-size: 40px; margin-bottom: 15px; color: rgba(255,255,255,0.8);"><i class="fa-light fa-headset"></i></div>
                                 <h3 class="h3-title" style="color: #fff; font-size: 24px; margin-bottom: 15px; font-weight: 700;">Contact Us</h3>
-                                <p style="color: #E0F4F4; margin-bottom: 25px; font-size: 15px; line-height: 1.6;">We are here to assist you with any inquiries.</p>
+                                <p style="color: #E0F4F4; margin-bottom: 25px; font-size: 15px; line-height: 1.6;"> Contact us today for a turnkey compliance-driven execution.</p>
                                 <a href="tel:{{ str_replace(' ', '', $service->cta_phone) }}" title="Call now" style="display: inline-block; background: #fff; color: #0E9B9B; padding: 12px 25px; border-radius: 50px; font-weight: 700; font-size: 16px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">{{ $service->cta_phone }}</a>
                             </div>
                         </aside>

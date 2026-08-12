@@ -378,7 +378,7 @@
             tagsContainer.innerHTML = '';
             specializations.forEach((tag, index) => {
                 const badge = document.createElement('span');
-                badge.className = 'badge bg-light text-dark border d-inline-flex align-items-center gap-2 px-3 py-2 fs-6';
+                badge.className = 'badge rounded-pill bg-light text-dark border d-inline-flex align-items-center gap-2 px-3 py-2 fs-6 shadow-sm';
                 badge.innerHTML = `
                     <span>${tag}</span>
                     <i class="fa-solid fa-xmark remove-tag-btn text-danger" data-index="${index}" style="cursor: pointer; font-size: 0.9rem;" title="Remove"></i>

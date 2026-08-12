@@ -259,7 +259,7 @@
                     <img src="{{ asset('storage/' . $banner->image) }}"
                         alt="{{ $banner->alt_text ?? 'Roydon MEP - Standards' }}" class="std-banner-img">
                 @else
-                    <img src="{{ asset('assets/img/standards.webp') }}"
+                    <img src="{{ asset('frontend/assets/img/standards.webp') }}"
                         alt="Roydon MEP - Turnkey MEP Contractors in Hyderabad" class="std-banner-img">
                 @endif
             </div>

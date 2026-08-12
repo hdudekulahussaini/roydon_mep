@@ -40,6 +40,11 @@ class FrontendController extends Controller
         $whyChooseUsItems = WhyChooseUsItem::all();
         $projects = Project::query()->latest('created_at')->get(['*']);
         $faqs = Faq::all();
+        $services = ServiceSubcategory::query()
+            ->where('status', true)
+            ->orderBy('id')
+            ->take(6)
+            ->get();
 
         return view('frontend.pages.index', compact(
             'banner',
@@ -50,6 +55,7 @@ class FrontendController extends Controller
             'whyChooseUsItems',
             'projects',
             'faqs',
+            'services',
         ));
     }
 
@@ -108,7 +114,8 @@ class FrontendController extends Controller
             ->orderBy('id', 'asc')
             ->get(['*']);
 
-        $banner = StandardBanner::query()->where('status', '=', true)->orderBy('sort_order', 'asc')->first(['*']);
+        $banner = StandardBanner::query()->latest()->first(['*']);
+
         $baselines = Baseline::query()->where('status', '=', true)->orderBy('sort_order', 'asc')->get(['*']);
 
         return view('frontend.pages.standards', compact(

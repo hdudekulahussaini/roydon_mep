@@ -37,7 +37,7 @@
 
                     <span class="input-group-text bg-light text-dark fs-5">
                         <i id="icon-preview-{{ $index }}"
-                            class="{{ $link['icon'] ?? 'fa-light fa-link' }}"></i>
+                            class="fa-fw {{ $link['icon'] ?? 'fa-light fa-link' }}"></i>
                     </span>
 
                     <input type="text"
@@ -143,7 +143,8 @@
 
                     const iconClass = this.value.trim() || 'fa-solid fa-link';
 
-                    iconPreview.className = iconClass;
+                    // Ensure FontAwesome fixed width class
+                    iconPreview.className = 'fa-fw ' + iconClass;
 
                 });
 
@@ -228,7 +229,8 @@
 
                 const iconClass = this.value.trim() || 'fa-solid fa-link';
 
-                iconPreview.className = iconClass;
+                // Add fixed width class for alignment
+                iconPreview.className = 'fa-fw ' + iconClass;
 
             });
 

@@ -82,14 +82,14 @@
                             @if($value->status)
 
                             <span class="badge bg-success">
-                                <i class="fa-solid fa-check me-1"></i>
+                                
                                 Active
                             </span>
 
                             @else
 
-                            <span class="badge bg-secondary">
-                                <i class="fa-solid fa-xmark me-1"></i>
+                            <span class="badge bg-danger">
+                               
                                 Inactive
                             </span>
 

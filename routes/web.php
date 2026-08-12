@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\backend\BaselineController;
 use App\Http\Controllers\backend\CategoryController;
@@ -25,7 +26,6 @@ use App\Http\Controllers\backend\StandardController;
 use App\Http\Controllers\backend\StandardSectionController;
 use App\Http\Controllers\Backend\StorySectionController;
 use App\Http\Controllers\backend\WhyChooseUsController;
-use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\WorkController;
 use App\Http\Controllers\EnquiryController;
 use App\Http\Controllers\FrontendController;
@@ -70,6 +70,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::delete('why-choose-us-items/{item}', [WhyChooseUsController::class, 'destroyItem'])->name('why-choose-us-items.destroy');
 
         Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+        // Profile
+        Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+        Route::put('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password');
         Route::resource('story-sections', StorySectionController::class)->except(['show']);
         Route::resource('company-values', CompanyValueController::class)->except(['show']);
         Route::resource('metrics', MetricController::class)->except(['show']);
@@ -77,13 +81,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('coverages', CoverageController::class)->except(['show']);
         Route::resource('project-processes', ProjectProcessController::class)->except(['show']);
         Route::resource('works', WorkController::class)->except(['show']);
-        Route::resource('enquiries', EnquiryController::class)->only(['index', 'show', 'destroy']);
+        Route::delete('enquiries/bulk-destroy', [EnquiryController::class, 'bulkDestroy'])->name('enquiries.bulk-destroy');
+        Route::resource('enquiries', EnquiryController::class)->except(['create', 'store']);
         Route::resource('contact-settings', ContactSettingController::class)->only(['index', 'edit', 'update']);
         Route::resource('footers', FooterController::class)->except(['show']);
-
-        // Profile & password
-        Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
-        Route::put('profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password');
     });
 });
 

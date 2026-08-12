@@ -30,6 +30,7 @@ class LoginController extends Controller
         }
 
         $request->session()->regenerate();
+        session(['last_seen_enquiry_id' => \App\Models\Enquiry::max('id') ?? 0]);
 
         return redirect()->intended(route('admin.dashboard'));
     }

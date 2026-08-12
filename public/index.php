@@ -10,6 +10,14 @@ if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php'))
     require $maintenance;
 }
 
+// Automatically clear stale cached bootstrap files if present
+if (file_exists(__DIR__.'/../bootstrap/cache/routes-v7.php')) {
+    @unlink(__DIR__.'/../bootstrap/cache/routes-v7.php');
+}
+if (file_exists(__DIR__.'/../bootstrap/cache/config.php')) {
+    @unlink(__DIR__.'/../bootstrap/cache/config.php');
+}
+
 // Register the Composer autoloader...
 require __DIR__.'/../vendor/autoload.php';
 

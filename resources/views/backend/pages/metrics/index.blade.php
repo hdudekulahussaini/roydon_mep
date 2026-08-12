@@ -111,7 +111,6 @@
 
                             <span class="badge bg-success">
 
-                                <i class="fa-solid fa-check me-1"></i>
                                 Active
 
                             </span>
@@ -120,7 +119,7 @@
 
                             <span class="badge bg-secondary">
 
-                                <i class="fa-solid fa-xmark me-1"></i>
+                                
                                 Inactive
 
                             </span>

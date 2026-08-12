@@ -38,59 +38,54 @@
         @enderror
     </div>
 
-    {{-- Tags --}}
+    {{-- Tags / Specializations --}}
     <div class="col-md-6 col-12">
         <label for="tag-input" class="form-label fw-semibold">
-            Services Tags
+            Specializations / Services Tags
         </label>
 
-        <div class="border rounded p-3 bg-light">
-            <div class="d-flex gap-2 mb-3">
-                <input type="text"
-                    id="tag-input"
-                    class="form-control"
-                    placeholder="e.g. HVAC"
-                    autocomplete="off">
-                <button type="button" class="btn btn-outline-primary" id="add-tag-btn">
-                    Add
-                </button>
-            </div>
-
-            <div id="tag-chips" class="d-flex flex-wrap gap-2 mb-2">
-                @php
-                    $existingTags = collect(explode(',', old('tags', $project?->tags ?? '')))
-                        ->map(fn ($tag) => trim($tag))
-                        ->filter()
-                        ->values();
-                @endphp
-
-                @foreach ($existingTags as $tag)
-                    <span class="tag-chip badge rounded-pill bg-primary-subtle text-primary border border-primary-subtle d-inline-flex align-items-center gap-2 px-3 py-2"
-                        data-value="{{ $tag }}">
-                        <span class="tag-chip-text">{{ $tag }}</span>
-                        <button type="button"
-                            class="btn-close"
-                            data-remove-tag="{{ $tag }}"
-                            aria-label="Remove {{ $tag }}">
-                        </button>
-                    </span>
-                @endforeach
-            </div>
-
-            <input type="hidden"
-                id="tags"
-                name="tags"
-                value="{{ old('tags', $project?->tags) }}"
-                class="@error('tags') is-invalid @enderror"
-                required>
-
-            <small class="text-muted d-block">Add one service tag at a time, then remove any tag you do not need.</small>
-            @error('tags')
-                <div class="invalid-feedback d-block">
-                    {{ $message }}
-                </div>
-            @enderror
+        <div class="input-group mb-2">
+            <input type="text"
+                id="tag-input"
+                class="form-control"
+                placeholder="e.g., OT HVAC Systems, Medical Gas (MGPS)"
+                autocomplete="off">
+            <button type="button" class="btn btn-success px-4 fw-semibold" id="add-tag-btn">
+                <i class="fa-solid fa-plus me-1"></i> Add
+            </button>
         </div>
+
+        <div id="tag-chips" class="d-flex flex-wrap gap-2 mt-2">
+            @php
+                $existingTags = collect(explode(',', old('tags', $project?->tags ?? '')))
+                    ->map(fn ($tag) => trim($tag))
+                    ->filter()
+                    ->values();
+            @endphp
+
+            @foreach ($existingTags as $tag)
+                <span class="tag-chip badge rounded-pill bg-light text-dark border d-inline-flex align-items-center gap-2 px-3 py-2 fs-6 shadow-sm"
+                    data-value="{{ $tag }}">
+                    <span class="tag-chip-text fw-medium">{{ $tag }}</span>
+                    <i class="fa-solid fa-xmark text-danger cursor-pointer ms-1"
+                        data-remove-tag="{{ $tag }}"
+                        style="cursor: pointer; font-size: 0.9rem;"
+                        title="Remove {{ $tag }}"></i>
+                </span>
+            @endforeach
+        </div>
+
+        <input type="hidden"
+            id="tags"
+            name="tags"
+            value="{{ old('tags', $project?->tags) }}">
+
+        <small class="text-muted d-block mt-2">Type specialization name and click + Add or press Enter.</small>
+        @error('tags')
+            <div class="invalid-feedback d-block mt-1">
+                {{ $message }}
+            </div>
+        @enderror
     </div>
 
     @push('scripts')
@@ -100,6 +95,7 @@
                 const addTagBtn = document.getElementById('add-tag-btn');
                 const tagChips = document.getElementById('tag-chips');
                 const hiddenTagsInput = document.getElementById('tags');
+                const form = tagInput?.closest('form');
 
                 function updateHiddenInput() {
                     const tags = Array.from(tagChips.querySelectorAll('.tag-chip'))
@@ -109,55 +105,63 @@
                     hiddenTagsInput.value = tags.join(', ');
                 }
 
-                function addTag(value) {
+                function addSingleTag(value) {
                     const trimmedValue = value.trim();
-
-                    if (!trimmedValue) {
-                        return;
-                    }
+                    if (!trimmedValue) return;
 
                     const exists = Array.from(tagChips.querySelectorAll('.tag-chip'))
                         .some((chip) => chip.dataset.value.toLowerCase() === trimmedValue.toLowerCase());
 
-                    if (exists) {
-                        tagInput.value = '';
-                        return;
-                    }
+                    if (exists) return;
 
                     const chip = document.createElement('span');
-                    chip.className = 'tag-chip badge rounded-pill bg-primary-subtle text-primary border border-primary-subtle d-inline-flex align-items-center gap-2 px-3 py-2';
+                    chip.className = 'tag-chip badge rounded-pill bg-light text-dark border d-inline-flex align-items-center gap-2 px-3 py-2 fs-6 shadow-sm';
                     chip.dataset.value = trimmedValue;
                     chip.innerHTML = `
-                        <span class="tag-chip-text">${trimmedValue}</span>
-                        <button type="button" class="btn-close" data-remove-tag="${trimmedValue}" aria-label="Remove ${trimmedValue}"></button>
+                        <span class="tag-chip-text fw-medium">${trimmedValue}</span>
+                        <i class="fa-solid fa-xmark text-danger cursor-pointer ms-1" data-remove-tag="${trimmedValue}" style="cursor: pointer; font-size: 0.9rem;" title="Remove ${trimmedValue}"></i>
                     `;
 
                     tagChips.appendChild(chip);
+                }
+
+                function processInput(inputValue) {
+                    if (!inputValue || !inputValue.trim()) return;
+
+                    const parts = inputValue.split(',');
+                    parts.forEach(part => addSingleTag(part));
+
                     tagInput.value = '';
                     updateHiddenInput();
                 }
 
-                addTagBtn.addEventListener('click', function () {
-                    addTag(tagInput.value);
+                addTagBtn?.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    processInput(tagInput.value);
                 });
 
-                tagInput.addEventListener('keydown', function (event) {
+                tagInput?.addEventListener('keydown', function (event) {
                     if (event.key === 'Enter') {
                         event.preventDefault();
-                        addTag(tagInput.value);
+                        processInput(tagInput.value);
                     }
                 });
 
-                tagChips.addEventListener('click', function (event) {
-                    const removeButton = event.target.closest('button[data-remove-tag]');
-
-                    if (!removeButton) {
-                        return;
-                    }
+                tagChips?.addEventListener('click', function (event) {
+                    const removeButton = event.target.closest('[data-remove-tag]');
+                    if (!removeButton) return;
 
                     const chip = removeButton.closest('.tag-chip');
                     if (chip) {
                         chip.remove();
+                        updateHiddenInput();
+                    }
+                });
+
+                form?.addEventListener('submit', function () {
+                    if (tagInput && tagInput.value.trim()) {
+                        processInput(tagInput.value);
+                    } else {
                         updateHiddenInput();
                     }
                 });

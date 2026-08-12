@@ -79,28 +79,38 @@
     </div>
 
     <div class="col-md-6">
-        <label class="form-label fw-semibold">Banner Tags (e.g. MODULAR OT) <span class="text-danger">*</span></label>
-        <div id="banner-tags-container">
+        <label class="form-label fw-semibold">Banner Tags (e.g. MODULAR OT)</label>
+
+        <div class="input-group mb-2">
+            <input type="text"
+                id="banner_tag_input"
+                class="form-control"
+                placeholder="e.g., MODULAR OT, NABH"
+                autocomplete="off">
+            <button type="button" class="btn btn-success px-4 fw-semibold" id="add_banner_tag_btn">
+                <i class="fa-solid fa-plus me-1"></i> Add
+            </button>
+        </div>
+
+        <div id="banner_tag_chips" class="d-flex flex-wrap gap-2 mt-2">
             @php
-                $bannerTags = old(
-                    'banner_tags',
-                    isset($specialisationSubcategory) ? $specialisationSubcategory->banner_tags : [],
-                );
-                if (empty($bannerTags)) {
-                    $bannerTags = [''];
+                $bannerTags = old('banner_tags', isset($specialisationSubcategory) ? $specialisationSubcategory->banner_tags : []);
+                if (!is_array($bannerTags)) {
+                    $bannerTags = array_filter(array_map('trim', explode(',', (string) $bannerTags)));
                 }
             @endphp
-            @foreach ($bannerTags as $index => $bTag)
-                <div class="input-group mb-2 banner-tag-row">
-                    <input type="text" name="banner_tags[]" value="{{ $bTag }}" class="form-control"
-                        placeholder="Tag Name" required>
-                    <button class="btn btn-outline-danger remove-banner-tag-btn" type="button"><i
-                            class="fa-solid fa-times"></i></button>
-                </div>
+
+            @foreach ($bannerTags as $bTag)
+                @if(!empty(trim($bTag)))
+                    <span class="tag-chip badge rounded-pill bg-light text-dark border d-inline-flex align-items-center gap-2 px-3 py-2 fs-6 shadow-sm" data-value="{{ trim($bTag) }}">
+                        <span class="fw-medium">{{ trim($bTag) }}</span>
+                        <i class="fa-solid fa-xmark text-danger cursor-pointer ms-1 remove-banner-tag-btn" style="cursor: pointer; font-size: 0.9rem;" title="Remove"></i>
+                        <input type="hidden" name="banner_tags[]" value="{{ trim($bTag) }}">
+                    </span>
+                @endif
             @endforeach
         </div>
-        <button type="button" class="btn btn-sm btn-outline-secondary mt-1" id="add-banner-tag-btn"><i
-                class="fa-solid fa-plus"></i> Add Banner Tag</button>
+        <small class="text-muted d-block mt-2">Type tag name (or comma-separated tags) and click + Add or press Enter.</small>
     </div>
 
     {{-- Content Section --}}
@@ -189,26 +199,38 @@
     <hr class="my-4">
 
     {{-- Tags Section --}}
-    <h5 class="mb-3">Bottom Tags</h5>
+    <h5 class="mb-3">Bottom Tags / Specializations</h5>
     <div class="col-12">
-        <div id="tags-container">
+        <div class="input-group mb-2">
+            <input type="text"
+                id="bottom_tag_input"
+                class="form-control"
+                placeholder="e.g., OT HVAC Systems, Medical Gas (MGPS)"
+                autocomplete="off">
+            <button type="button" class="btn btn-success px-4 fw-semibold" id="add_bottom_tag_btn">
+                <i class="fa-solid fa-plus me-1"></i> Add
+            </button>
+        </div>
+
+        <div id="bottom_tag_chips" class="d-flex flex-wrap gap-2 mt-2">
             @php
                 $bottomTags = old('tags', isset($specialisationSubcategory) ? $specialisationSubcategory->tags : []);
-                if (empty($bottomTags)) {
-                    $bottomTags = [''];
+                if (!is_array($bottomTags)) {
+                    $bottomTags = array_filter(array_map('trim', explode(',', (string) $bottomTags)));
                 }
             @endphp
-            @foreach ($bottomTags as $index => $tag)
-                <div class="input-group mb-2 tag-row">
-                    <input type="text" name="tags[]" value="{{ $tag }}" class="form-control"
-                        placeholder="e.g. Laminar Airflow" required>
-                    <button class="btn btn-outline-danger remove-tag-btn" type="button"><i
-                            class="fa-solid fa-times"></i></button>
-                </div>
+
+            @foreach ($bottomTags as $tag)
+                @if(!empty(trim($tag)))
+                    <span class="tag-chip badge rounded-pill bg-light text-dark border d-inline-flex align-items-center gap-2 px-3 py-2 fs-6 shadow-sm" data-value="{{ trim($tag) }}">
+                        <span class="fw-medium">{{ trim($tag) }}</span>
+                        <i class="fa-solid fa-xmark text-danger cursor-pointer ms-1 remove-bottom-tag-btn" style="cursor: pointer; font-size: 0.9rem;" title="Remove"></i>
+                        <input type="hidden" name="tags[]" value="{{ trim($tag) }}">
+                    </span>
+                @endif
             @endforeach
         </div>
-        <button type="button" class="btn btn-sm btn-outline-secondary mt-1" id="add-tag-btn"><i
-                class="fa-solid fa-plus"></i> Add Tag</button>
+        <small class="text-muted d-block mt-2">Type tag name (or comma-separated tags) and click + Add or press Enter.</small>
     </div>
 
     <hr class="my-4">
@@ -298,34 +320,75 @@
                 });
             }
 
-            // Banner Tags Repeater
-            const bannerTagsContainer = document.getElementById('banner-tags-container');
-            document.getElementById('add-banner-tag-btn').addEventListener('click', function() {
-                const row = bannerTagsContainer.querySelector('.banner-tag-row').cloneNode(true);
-                row.querySelector('input').value = '';
-                bannerTagsContainer.appendChild(row);
-                attachBannerTagRemoveEvents();
-            });
+            // Helper function for tag managers
+            function initTagManager(inputId, addBtnId, chipsContainerId, inputName, removeBtnClass) {
+                const input = document.getElementById(inputId);
+                const addBtn = document.getElementById(addBtnId);
+                const container = document.getElementById(chipsContainerId);
+                if (!input || !container) return;
 
-            function attachBannerTagRemoveEvents() {
-                document.querySelectorAll('.remove-banner-tag-btn').forEach(btn => {
-                    btn.replaceWith(btn.cloneNode(true));
+                const form = input.closest('form');
+
+                function addSingleTag(value) {
+                    const trimmed = value.trim();
+                    if (!trimmed) return;
+
+                    const exists = Array.from(container.querySelectorAll('.tag-chip'))
+                        .some(chip => chip.dataset.value.toLowerCase() === trimmed.toLowerCase());
+
+                    if (exists) return;
+
+                    const chip = document.createElement('span');
+                    chip.className = 'tag-chip badge rounded-pill bg-light text-dark border d-inline-flex align-items-center gap-2 px-3 py-2 fs-6 shadow-sm';
+                    chip.dataset.value = trimmed;
+                    chip.innerHTML = `
+                        <span class="fw-medium">${trimmed}</span>
+                        <i class="fa-solid fa-xmark text-danger cursor-pointer ms-1 ${removeBtnClass}" style="cursor: pointer; font-size: 0.9rem;" title="Remove"></i>
+                        <input type="hidden" name="${inputName}" value="${trimmed}">
+                    `;
+
+                    container.appendChild(chip);
+                }
+
+                function processInput(val) {
+                    if (!val || !val.trim()) return;
+                    const parts = val.split(',');
+                    parts.forEach(part => addSingleTag(part));
+                    input.value = '';
+                }
+
+                addBtn?.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    processInput(input.value);
                 });
-                document.querySelectorAll('.remove-banner-tag-btn').forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        if (bannerTagsContainer.querySelectorAll('.banner-tag-row').length > 1) {
-                            this.closest('.banner-tag-row').remove();
-                        } else {
-                            this.closest('.banner-tag-row').querySelector('input').value = '';
-                        }
-                    });
+
+                input.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        processInput(input.value);
+                    }
+                });
+
+                container.addEventListener('click', function (e) {
+                    if (e.target.classList.contains(removeBtnClass) || e.target.closest('.' + removeBtnClass)) {
+                        const chip = e.target.closest('.tag-chip');
+                        chip?.remove();
+                    }
+                });
+
+                form?.addEventListener('submit', function () {
+                    if (input && input.value.trim()) {
+                        processInput(input.value);
+                    }
                 });
             }
-            attachBannerTagRemoveEvents();
+
+            initTagManager('banner_tag_input', 'add_banner_tag_btn', 'banner_tag_chips', 'banner_tags[]', 'remove-banner-tag-btn');
+            initTagManager('bottom_tag_input', 'add_bottom_tag_btn', 'bottom_tag_chips', 'tags[]', 'remove-bottom-tag-btn');
 
             // Features Repeater
             const featuresContainer = document.getElementById('features-container');
-            document.getElementById('add-feature-btn').addEventListener('click', function() {
+            document.getElementById('add-feature-btn')?.addEventListener('click', function() {
                 const firstRow = featuresContainer.querySelector('.feature-row');
                 const newRow = firstRow.cloneNode(true);
                 const inputs = newRow.querySelectorAll('input');
@@ -349,31 +412,6 @@
                 });
             }
             attachFeatureRemoveEvents();
-
-            // Bottom Tags Repeater
-            const tagsContainer = document.getElementById('tags-container');
-            document.getElementById('add-tag-btn').addEventListener('click', function() {
-                const row = tagsContainer.querySelector('.tag-row').cloneNode(true);
-                row.querySelector('input').value = '';
-                tagsContainer.appendChild(row);
-                attachTagRemoveEvents();
-            });
-
-            function attachTagRemoveEvents() {
-                document.querySelectorAll('.remove-tag-btn').forEach(btn => {
-                    btn.replaceWith(btn.cloneNode(true));
-                });
-                document.querySelectorAll('.remove-tag-btn').forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        if (tagsContainer.querySelectorAll('.tag-row').length > 1) {
-                            this.closest('.tag-row').remove();
-                        } else {
-                            this.closest('.tag-row').querySelector('input').value = '';
-                        }
-                    });
-                });
-            }
-            attachTagRemoveEvents();
         });
     </script>
 @endpush
