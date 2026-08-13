@@ -38,7 +38,7 @@ it('sends only the admin notification to the admin email and only the user confi
     });
 
     Mail::assertNotSent(EnquiryUserConfirmation::class, function ($mail) {
-        return $mail->hasTo('dharishbandi@gmail.com');
+        return $mail->hasTo('sreedhar@roydonmep.com');
     });
 
     Mail::assertNotSent(EnquiryAdminNotification::class, function ($mail) {
