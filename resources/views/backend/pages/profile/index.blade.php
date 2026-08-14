@@ -38,7 +38,7 @@
                                 <i class="fa-solid fa-user-tag text-muted"></i> Role
                             </span>
                             <span class="value text-success">
-                                <i class="fa-solid fa-circle-check me-1"></i> Super Admin
+                                <i class="fa-solid fa-circle-check me-1"></i>  Admin
                             </span>
                         </div>
                         <div class="detail-item">
