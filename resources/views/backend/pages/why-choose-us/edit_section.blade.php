@@ -42,7 +42,10 @@
                         <input type="text" id="title" name="title" 
                             value="{{ old('title', $section?->title ?? 'Why Roydon MEP Contracting') }}" 
                             class="form-control @error('title') is-invalid @enderror" 
-                            placeholder="e.g. Why Roydon MEP Contracting" required>
+                            placeholder="e.g. Why Roydon <span>MEP</span> Contracting" required>
+                        <small class="text-muted d-block mt-1">
+                            <i class="fa-solid fa-circle-info me-1"></i> Tip: Wrap words in <code>&lt;span&gt;word&lt;/span&gt;</code> to highlight them in color (e.g., <code>Why Roydon &lt;span&gt;MEP&lt;/span&gt; Contracting</code>).
+                        </small>
                         @error('title')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror

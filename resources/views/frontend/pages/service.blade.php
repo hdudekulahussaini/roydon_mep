@@ -6,7 +6,7 @@
         <!-- breadcrumb-area -->
         <section class="pl-50 pr-50 ">
             @php
-                $bgImage = $service->banner_image ? ((str_starts_with($service->banner_image, 'assets/') || str_starts_with($service->banner_image, 'frontend/')) ? asset($service->banner_image) : Storage::url($service->banner_image)) : '';
+                $bgImage = $service->banner_image ? ((str_starts_with($service->banner_image, 'assets/') || str_starts_with($service->banner_image, 'frontend/')) ? asset($service->banner_image) : asset('storage/' . $service->banner_image)) : '';
             @endphp
             <div class="breadcrumb-area d-flex justify-content-center align-items-center" @if($bgImage) style="background-image: linear-gradient(rgba(15, 32, 68, 0.7), rgba(15, 32, 68, 0.7)), url({{ $bgImage }}); background-size: cover; background-position: center; border-radius: 15px; margin-top: 20px;" @else style="background-image: linear-gradient(rgba(15, 32, 68, 0.7), rgba(15, 32, 68, 0.7)); background-size: cover; background-position: center; border-radius: 15px; margin-top: 20px;" @endif>
                 <div class="container">
@@ -85,7 +85,7 @@
                                 <div class="two-column" style="margin-bottom: 45px;">
                                     <div class="row">
                                         @php
-                                            $img1 = (str_starts_with($service->images[0], 'assets/') || str_starts_with($service->images[0], 'frontend/')) ? asset($service->images[0]) : Storage::url($service->images[0]);
+                                            $img1 = (str_starts_with($service->images[0], 'assets/') || str_starts_with($service->images[0], 'frontend/')) ? asset($service->images[0]) : asset('storage/' . $service->images[0]);
                                         @endphp
                                         <div class="image-column col-xl-6 col-lg-12 col-md-12 mb-30">
                                             <figure class="image img-custom-anim-left wow fadeInLeft" data-delay=".1s" style="border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.08); margin: 0;">
@@ -94,7 +94,7 @@
                                         </div>
                                         @if(isset($service->images[1]))
                                         @php
-                                            $img2 = (str_starts_with($service->images[1], 'assets/') || str_starts_with($service->images[1], 'frontend/')) ? asset($service->images[1]) : Storage::url($service->images[1]);
+                                            $img2 = (str_starts_with($service->images[1], 'assets/') || str_starts_with($service->images[1], 'frontend/')) ? asset($service->images[1]) : asset('storage/' . $service->images[1]);
                                         @endphp
                                         <div class="text-column col-xl-6 col-lg-12 col-md-12 mb-30">
                                             <figure class="image img-custom-anim-right wow fadeInRight" data-delay=".2s" style="border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.08); margin: 0;">

@@ -7,7 +7,7 @@
     <main>
         <!-- breadcrumb-area -->
         <section class="pl-50 pr-50 ">
-            <div class="breadcrumb-area d-flex justify-content-center align-items-center" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('{{ $banner?->image_path ? Storage::url($banner->image_path) : '' }}'); background-size: cover; background-position: center;">
+            <div class="breadcrumb-area d-flex justify-content-center align-items-center" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('{{ $banner?->image_path ? asset('storage/' . $banner->image_path) : '' }}'); background-size: cover; background-position: center;">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-xl-12 col-lg-12">

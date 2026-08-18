@@ -1880,7 +1880,6 @@ label {
 
 .slider-content h2 span {
     color: var(--primary-color);
-    text-decoration: underline;
 }
 
 .slider-content h5 {
@@ -14852,11 +14851,6 @@ blockquote cite {
     color: #0E9B9B;
 }
 
-.hero-tag:hover {
-    background: rgba(255, 255, 255, 0.25);
-    border-color: #0E9B9B;
-    transform: translateY(-3px);
-}
 
 .about-image-grid {
     display: grid;
@@ -15025,7 +15019,10 @@ blockquote cite {
 .hero-marquee-container {
     overflow: hidden;
     width: 100%;
-    position: relative;
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    z-index: 9;
     /* Smooth fade on left and right edges */
     -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
     mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
@@ -15039,13 +15036,20 @@ blockquote cite {
     animation: hero-marquee-scroll 12s linear infinite;
 }
 
-.hero-tags:hover {
-    animation-play-state: paused;
-}
-
 @keyframes hero-marquee-scroll {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
+}
+
+@media (max-width: 767px) {
+    .hero-marquee-container {
+        position: absolute !important;
+        bottom: 10px !important;
+        margin-top: 0 !important;
+    }
+    .hero-tags {
+        animation-duration: 20s !important;
+    }
 }
 
     .hero-tag {
@@ -15069,11 +15073,6 @@ blockquote cite {
         color: #0E9B9B;
     }
 
-    .hero-tag:hover {
-        background: rgba(255, 255, 255, 0.25);
-        border-color: #0E9B9B;
-        transform: translateY(-3px);
-    }
 
     .about-image-grid {
         display: grid;
@@ -15266,11 +15265,6 @@ blockquote cite {
         color: #0E9B9B;
     }
 
-    .hero-tag:hover {
-        background: rgba(255, 255, 255, 0.25);
-        border-color: #0E9B9B;
-        transform: translateY(-3px);
-    }
 
     .about-image-grid {
         display: grid;
@@ -15646,13 +15640,7 @@ blockquote cite {
         height: 100%;
     }
 
-    .single-premium-stat:hover {
-        background: rgba(14, 155, 155, 0.04);
-        border-color: #0E9B9B;
-        transform: translateY(-4px);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06), 0 2px 10px rgba(0, 0, 0, 0.03);
-        /* Subtle Apple-like shadow */
-    }
+
 
     .stat-icon {
         font-size: 22px;
@@ -15664,9 +15652,7 @@ blockquote cite {
         transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .single-premium-stat:hover .stat-icon {
-        transform: scale(1.05);
-    }
+
 
     .stat-content {
         flex: 1;
@@ -15695,21 +15681,7 @@ blockquote cite {
         line-height: 1.4;
     }
 
-    .hero-tags {
-        display: flex;
-        flex-wrap: wrap;
-        /* Always allow wrap if it gets too small */
-        gap: 8px;
-        width: 100%;
-    }
-
     @media (max-width: 991px) {
-        .hero-tags {
-            flex-wrap: wrap !important;
-            width: 100% !important;
-            white-space: normal !important;
-        }
-
         .premium-stats-area {
             margin-top: 40px;
         }
@@ -15763,18 +15735,13 @@ blockquote cite {
 
     .civil-service-card {
         background: #fff;
-        border: 1px solid #eef2f5;
+        border: 1px solid rgba(14, 155, 155, 0.2);
         border-radius: 12px;
         padding: 30px;
         height: 100%;
-        transition: all 0.3s ease;
         margin-bottom: 30px;
-    }
-
-    .civil-service-card:hover {
         transform: translateY(-5px);
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-        border-color: rgba(14, 155, 155, 0.2);
     }
 
     .civil-card-header {
@@ -15865,21 +15832,15 @@ blockquote cite {
 
     .spec-item {
         background: #fff;
-        border: 1px solid #edf1f5;
+        border: 1px solid rgba(14, 155, 155, 0.2);
         border-radius: 12px;
         padding: 20px 20px 15px;
         height: 100%;
         position: relative;
         overflow: hidden;
         z-index: 1;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-    }
-
-    .spec-item:hover {
         transform: translateY(-5px);
         box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
-        border-color: rgba(14, 155, 155, 0.2);
     }
 
     .spec-card-header {
@@ -15897,12 +15858,7 @@ blockquote cite {
         width: 45px;
         height: 45px;
         border-radius: 10px;
-        background: #f8fafc;
-        transition: all 0.3s ease;
         flex-shrink: 0;
-    }
-    
-    .spec-item:hover i {
         transform: scale(1.1) rotate(5deg);
         background: #fff;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
@@ -15920,14 +15876,9 @@ blockquote cite {
     .spec-item h4 {
         font-size: 16px;
         font-weight: 700;
-        color: #1e293b;
+        color: #0E9B9B;
         margin-bottom: 0;
         line-height: 1.2;
-        transition: color 0.3s ease;
-    }
-
-    .spec-item:hover h4 {
-        color: #0E9B9B;
     }
 
     .spec-item p {
@@ -15959,4 +15910,5 @@ blockquote cite {
         .civil-elegant-heading {
             font-size: 26px;
         }
-    }
+    } 
+.spec-seo { display: none; }

@@ -46,7 +46,7 @@
         <input type="file" class="form-control @error('banner_image') is-invalid @enderror" id="banner_image" name="banner_image" accept="image/*">
         @if($banner?->image_path)
             <div class="mt-2">
-                <img src="{{ Storage::url($banner->image_path) }}" alt="Current Banner Image" class="img-thumbnail" style="max-height: 150px;">
+                <img src="{{ asset('storage/' . $banner->image_path) }}" alt="Current Banner Image" class="img-thumbnail" style="max-height: 150px;">
                 <p class="text-muted small mt-1 mb-0">Current Image</p>
             </div>
         @endif

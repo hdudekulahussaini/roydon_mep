@@ -20,7 +20,6 @@ class SpecialisationSubcategory extends Model
         'features_heading',
         'features_description',
         'tags',
-        'seo_text',
         'status',
     ];
 

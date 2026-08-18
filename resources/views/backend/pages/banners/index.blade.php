@@ -78,7 +78,7 @@
 
                             @if ($banner->image_path)
 
-                                <img src="{{ Storage::url($banner->image_path) }}"
+                                <img src="{{ asset('storage/' . $banner->image_path) }}"
                                     alt="{{ $banner->heading ?: 'Banner' }}"
                                     class="rounded"
                                     style="

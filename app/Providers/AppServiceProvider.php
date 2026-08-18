@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        view()->composer('frontend.partials.header', function ($view) {
+        view()->composer(['frontend.partials.header', 'frontend.pages.specialisation'], function ($view) {
             $view->with('headerSpecialisations', SpecialisationSubcategory::where('status', true)->get());
         });
 
