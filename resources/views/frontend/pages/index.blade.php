@@ -130,7 +130,9 @@
                                         <div class="stat-content">
                                             <h3 class="stat-count">{{ $stat->count }}</h3>
                                             <h4 class="stat-title">{{ $stat->title }}</h4>
-                                            <p class="stat-desc">{{ $stat->description }}</p>
+                                            @if ($stat->description)
+                                                <p class="stat-desc">{{ $stat->description }}</p>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -223,7 +225,7 @@
                                                             </h3>
                                                         </div>
                                                     </div>
-                                                    <p>{{ Str::limit($service->description, 120) }}</p>
+                                                    <p>{{ $service->home_description ?: Str::limit($service->description, 120) }}</p>
                                                     <div class="sbtn mt-20">
                                                         <a href="{{ route('services.show', $service->slug) }}"
                                                             class="chevron-button">Read More <i
@@ -259,7 +261,7 @@
                     <div class="spec-grid-container">
                         <div class="row">
                             @foreach ($specialisations as $index => $spec)
-                                <div class="col-lg-3 col-md-6 col-sm-6 mb-30">
+                                <div class="col-lg-3 col-md-6 col-sm-6 ">
                                     <div class="spec-item wow fadeInUp" data-delay=".{{ ($index % 8) + 2 }}s">
                                         <div class="spec-card-header">
                                             <i class="{{ $spec->icon }} icon-color-{{ ($index % 8) + 1 }}"></i>

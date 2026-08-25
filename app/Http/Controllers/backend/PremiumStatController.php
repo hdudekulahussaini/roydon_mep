@@ -45,6 +45,7 @@ class PremiumStatController extends Controller
         PremiumStat::create($validated);
 
         flash()->success('Premium stat created successfully.');
+
         return redirect()->route('admin.premium-stats.index');
     }
 
@@ -73,6 +74,7 @@ class PremiumStatController extends Controller
         $premiumStat->update($validated);
 
         flash()->success('Premium stat updated successfully.');
+
         return redirect()->route('admin.premium-stats.index');
     }
 
@@ -85,6 +87,7 @@ class PremiumStatController extends Controller
         $premiumStat->delete();
 
         flash()->success('Premium stat deleted successfully.');
+
         return redirect()->route('admin.premium-stats.index');
     }
 
@@ -106,7 +109,7 @@ class PremiumStatController extends Controller
                 'max:255',
             ],
             'description' => [
-                'required',
+                'nullable',
                 'string',
                 'max:255',
             ],

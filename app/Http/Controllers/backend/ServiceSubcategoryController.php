@@ -66,6 +66,7 @@ class ServiceSubcategoryController extends Controller
         ServiceSubcategory::create($validated);
 
         flash()->success('Service Subcategory created successfully.');
+
         return redirect()->route('admin.service-subcategories.index');
     }
 
@@ -128,6 +129,7 @@ class ServiceSubcategoryController extends Controller
         $serviceSubcategory->update($validated);
 
         flash()->success('Service Subcategory updated successfully.');
+
         return redirect()->route('admin.service-subcategories.index');
     }
 
@@ -149,6 +151,7 @@ class ServiceSubcategoryController extends Controller
         $serviceSubcategory->delete();
 
         flash()->success('Service Subcategory deleted successfully.');
+
         return redirect()->route('admin.service-subcategories.index');
     }
 
@@ -180,6 +183,7 @@ class ServiceSubcategoryController extends Controller
             'slug' => ['nullable', 'string', 'max:255', $slugRule],
             'heading' => ['nullable', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
+            'home_description' => ['required', 'string'],
 
             'images' => ['nullable', 'array'],
             'images.*' => ['image', 'mimes:jpg,jpeg,png,webp', 'max:4096'],
@@ -187,6 +191,8 @@ class ServiceSubcategoryController extends Controller
             'banner_image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:4096'],
 
             'cta_phone' => ['nullable', 'string', 'max:50'],
+            'offerings_heading' => ['required', 'string', 'max:255'],
+            'offerings_main_description' => ['required', 'string'],
 
             'offerings_title' => ['nullable', 'array'],
             'offerings_title.*' => ['nullable', 'string', 'max:255'],

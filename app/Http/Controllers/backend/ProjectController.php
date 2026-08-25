@@ -52,6 +52,7 @@ class ProjectController extends Controller
         Project::create($validated);
 
         flash()->success('Project created successfully.');
+
         return redirect()->route('admin.projects.index');
     }
 
@@ -92,6 +93,7 @@ class ProjectController extends Controller
         $project->update($validated);
 
         flash()->success('Project updated successfully.');
+
         return redirect()->route('admin.projects.index');
     }
 
@@ -107,6 +109,7 @@ class ProjectController extends Controller
         $project->delete();
 
         flash()->success('Project deleted successfully.');
+
         return redirect()->route('admin.projects.index');
     }
 

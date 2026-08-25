@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Models\CivilService;
+use App\Models\ContactSetting;
 use App\Models\Enquiry;
+use App\Models\Footer;
 use App\Models\OfficeLocation;
 use App\Models\Project;
 use App\Models\ServiceSubcategory;
@@ -34,8 +36,8 @@ class AppServiceProvider extends ServiceProvider
         });
 
         view()->composer('frontend.partials.footer', function ($view) {
-            $view->with('footerData', \App\Models\Footer::first());
-            $view->with('contactSetting', \App\Models\ContactSetting::first());
+            $view->with('footerData', Footer::first());
+            $view->with('contactSetting', ContactSetting::first());
         });
 
         // Share admin dashboard stats with backend layouts

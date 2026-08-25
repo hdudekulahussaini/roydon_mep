@@ -29,13 +29,13 @@ class StandardController extends Controller
     {
         $validated = $request->validate([
             'standard_section_id' => 'required|integer|exists:standard_sections,id',
-            'icon'                => 'nullable|string|max:255',
-            'abbr'                => 'required|string|max:255',
-            'title'               => 'required|string|max:255',
-            'description'         => 'required|string',
-            'applied_to'          => 'nullable|string|max:255',
-            'sort_order'          => 'nullable|integer|min:0',
-            'status'              => 'nullable|boolean',
+            'icon' => 'nullable|string|max:255',
+            'abbr' => 'required|string|max:255',
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'applied_to' => 'nullable|string|max:255',
+            'sort_order' => 'nullable|integer|min:0',
+            'status' => 'nullable|boolean',
         ]);
 
         $validated['sort_order'] = $validated['sort_order'] ?? 0;
@@ -57,13 +57,13 @@ class StandardController extends Controller
     {
         $validated = $request->validate([
             'standard_section_id' => 'required|integer|exists:standard_sections,id',
-            'icon'                => 'nullable|string|max:255',
-            'abbr'                => 'required|string|max:255',
-            'title'               => 'required|string|max:255',
-            'description'         => 'required|string',
-            'applied_to'          => 'nullable|string|max:255',
-            'sort_order'          => 'nullable|integer|min:0',
-            'status'              => 'nullable|boolean',
+            'icon' => 'nullable|string|max:255',
+            'abbr' => 'required|string|max:255',
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'applied_to' => 'nullable|string|max:255',
+            'sort_order' => 'nullable|integer|min:0',
+            'status' => 'nullable|boolean',
         ]);
 
         $validated['sort_order'] = $validated['sort_order'] ?? 0;

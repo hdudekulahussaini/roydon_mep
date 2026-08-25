@@ -2,21 +2,21 @@
 
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\backend\BaselineController;
 use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\backend\CivilServiceController;
 use App\Http\Controllers\Backend\CompanyValueController;
 use App\Http\Controllers\backend\ContactSettingController;
-use App\Http\Controllers\backend\FooterController;
 use App\Http\Controllers\Backend\CoverageController;
 use App\Http\Controllers\backend\FaqController;
+use App\Http\Controllers\backend\FooterController;
 use App\Http\Controllers\backend\HomeBannerController;
 use App\Http\Controllers\backend\HospitalSpecialisationController;
 use App\Http\Controllers\Backend\MetricController;
 use App\Http\Controllers\Backend\OfficeLocationController;
 use App\Http\Controllers\backend\PremiumStatController;
+use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\backend\ProjectController;
 use App\Http\Controllers\Backend\ProjectProcessController;
 use App\Http\Controllers\backend\ServiceSubcategoryController;

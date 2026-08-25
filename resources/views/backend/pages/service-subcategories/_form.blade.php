@@ -51,6 +51,19 @@
         <label for="description" class="form-label fw-semibold">Description <span class="text-danger">*</span></label>
         <textarea id="description" name="description" rows="4"
             class="form-control @error('description') is-invalid @enderror" required>{{ old('description', $serviceSubcategory?->description) }}</textarea>
+        @error('description')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
+
+    <div class="col-12">
+        <label for="home_description" class="form-label fw-semibold">Home Page Description <span class="text-danger">*</span></label>
+        <textarea id="home_description" name="home_description" rows="3"
+            class="form-control @error('home_description') is-invalid @enderror"
+            placeholder="Short, engaging description displayed on the home page service card..." required>{{ old('home_description', $serviceSubcategory?->home_description) }}</textarea>
+        @error('home_description')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
     </div>
 
     {{-- Banner Image --}}
@@ -140,6 +153,28 @@
             <button type="button" class="btn btn-sm btn-outline-dark" id="add-offering-btn">
                 <i class="fa-solid fa-plus me-1"></i> Add Offering
             </button>
+        </div>
+
+        <div class="row g-3 mb-4">
+            <div class="col-12">
+                <label for="offerings_heading" class="form-label fw-semibold">Offerings Section Heading <span class="text-danger">*</span></label>
+                <input type="text" id="offerings_heading" name="offerings_heading"
+                    value="{{ old('offerings_heading', $serviceSubcategory?->offerings_heading) }}"
+                    class="form-control @error('offerings_heading') is-invalid @enderror"
+                    placeholder="e.g. Key Offerings in Hospital HVAC Systems" required>
+                @error('offerings_heading')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="col-12">
+                <label for="offerings_main_description" class="form-label fw-semibold">Offerings Section Description <span class="text-danger">*</span></label>
+                <textarea id="offerings_main_description" name="offerings_main_description" rows="3"
+                    class="form-control @error('offerings_main_description') is-invalid @enderror"
+                    placeholder="Introduction paragraph displayed above the offering cards..." required>{{ old('offerings_main_description', $serviceSubcategory?->offerings_main_description) }}</textarea>
+                @error('offerings_main_description')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
         </div>
 
         <div id="offerings-container">

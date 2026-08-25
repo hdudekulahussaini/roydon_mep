@@ -23,6 +23,7 @@ class StorySectionController extends Controller
     {
         if (StorySection::count() >= 1) {
             flash()->warning('A story section already exists. You can only edit the existing one.');
+
             return redirect()->route('admin.story-sections.index');
         }
 
@@ -35,6 +36,7 @@ class StorySectionController extends Controller
     {
         if (StorySection::count() >= 1) {
             flash()->error('A story section already exists. You can only edit the existing one.');
+
             return redirect()->route('admin.story-sections.index');
         }
 
@@ -74,6 +76,7 @@ class StorySectionController extends Controller
         StorySection::create($validated);
 
         flash()->success('Story section created successfully.');
+
         return redirect()->route('admin.story-sections.index');
     }
 
@@ -132,6 +135,7 @@ class StorySectionController extends Controller
         $storySection->update($validated);
 
         flash()->success('Story section updated successfully.');
+
         return redirect()->route('admin.story-sections.index');
     }
 
@@ -146,6 +150,7 @@ class StorySectionController extends Controller
         $storySection->delete();
 
         flash()->success('Story section deleted successfully.');
+
         return redirect()->route('admin.story-sections.index');
     }
 }

@@ -45,6 +45,7 @@ class HospitalSpecialisationController extends Controller
         HospitalSpecialisation::create($validated);
 
         flash()->success('Hospital specialisation created successfully.');
+
         return redirect()->route('admin.hospital-specialisations.index');
     }
 
@@ -73,6 +74,7 @@ class HospitalSpecialisationController extends Controller
         $hospitalSpecialisation->update($validated);
 
         flash()->success('Hospital specialisation updated successfully.');
+
         return redirect()->route('admin.hospital-specialisations.index');
     }
 
@@ -85,6 +87,7 @@ class HospitalSpecialisationController extends Controller
         $hospitalSpecialisation->delete();
 
         flash()->success('Hospital specialisation deleted successfully.');
+
         return redirect()->route('admin.hospital-specialisations.index');
     }
 

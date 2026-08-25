@@ -1,12 +1,14 @@
 <?php
 
 use App\Models\SpecialisationSubcategory;
+use Database\Seeders\CategorySeeder;
 use Database\Seeders\SpecialisationSubcategorySeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
 
 beforeEach(function () {
+    $this->seed(CategorySeeder::class);
     $this->seed(SpecialisationSubcategorySeeder::class);
 });
 

@@ -26,6 +26,7 @@ class FooterController extends Controller
         Footer::create($validated);
 
         flash()->success('Footer created successfully.');
+
         return redirect()->route('admin.footers.index');
     }
 
@@ -40,6 +41,7 @@ class FooterController extends Controller
         $footer->update($validated);
 
         flash()->success('Footer updated successfully.');
+
         return redirect()->route('admin.footers.index');
     }
 
@@ -48,6 +50,7 @@ class FooterController extends Controller
         $footer->delete();
 
         flash()->success('Footer deleted successfully.');
+
         return redirect()->route('admin.footers.index');
     }
 

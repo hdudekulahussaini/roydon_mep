@@ -33,7 +33,8 @@ class HomeBannerController extends Controller
     {
         if (HomeBanner::exists()) {
             flash()->error('Only one home banner is allowed. Please edit the existing one.');
-        return redirect()->route('admin.home-banners.index');
+
+            return redirect()->route('admin.home-banners.index');
         }
 
         return view('backend.pages.home-banners.create');
@@ -46,7 +47,8 @@ class HomeBannerController extends Controller
     {
         if (HomeBanner::exists()) {
             flash()->error('Only one home banner is allowed.');
-        return redirect()->route('admin.home-banners.index');
+
+            return redirect()->route('admin.home-banners.index');
         }
 
         $validated = $request->validate(
@@ -73,6 +75,7 @@ class HomeBannerController extends Controller
         HomeBanner::create($validated);
 
         flash()->success('Home banner created successfully.');
+
         return redirect()->route('admin.home-banners.index');
     }
 
@@ -125,6 +128,7 @@ class HomeBannerController extends Controller
         $homeBanner->update($validated);
 
         flash()->success('Home banner updated successfully.');
+
         return redirect()->route('admin.home-banners.index');
     }
 
@@ -141,6 +145,7 @@ class HomeBannerController extends Controller
         $homeBanner->delete();
 
         flash()->success('Home banner deleted successfully.');
+
         return redirect()->route('admin.home-banners.index');
     }
 

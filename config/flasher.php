@@ -37,8 +37,8 @@ return Configuration::from([
     // Map Laravel session flash keys to notification types
     'flash_bag' => [
         'success' => ['success'],
-        'error'   => ['error', 'danger'],
+        'error' => ['error', 'danger'],
         'warning' => ['warning', 'alarm'],
-        'info'    => ['info', 'notice', 'alert'],
+        'info' => ['info', 'notice', 'alert'],
     ],
 ]);

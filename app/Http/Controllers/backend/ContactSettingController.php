@@ -50,6 +50,7 @@ class ContactSettingController extends Controller
         ]);
 
         flash()->success('Contact settings updated.');
+
         return redirect()->route('admin.contact-settings.index');
     }
 }

@@ -45,6 +45,7 @@ class CivilServiceController extends Controller
         CivilService::create($validated);
 
         flash()->success('Civil service created successfully.');
+
         return redirect()->route('admin.civil-services.index');
     }
 
@@ -73,6 +74,7 @@ class CivilServiceController extends Controller
         $civilService->update($validated);
 
         flash()->success('Civil service updated successfully.');
+
         return redirect()->route('admin.civil-services.index');
     }
 
@@ -85,6 +87,7 @@ class CivilServiceController extends Controller
         $civilService->delete();
 
         flash()->success('Civil service deleted successfully.');
+
         return redirect()->route('admin.civil-services.index');
     }
 

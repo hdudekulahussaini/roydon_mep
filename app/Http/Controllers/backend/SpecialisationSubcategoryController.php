@@ -63,6 +63,7 @@ class SpecialisationSubcategoryController extends Controller
         SpecialisationSubcategory::create($validated);
 
         flash()->success('Specialisation subcategory created successfully.');
+
         return redirect()->route('admin.specialisation-subcategories.index');
     }
 
@@ -109,6 +110,7 @@ class SpecialisationSubcategoryController extends Controller
         $specialisationSubcategory->update($validated);
 
         flash()->success('Specialisation subcategory updated successfully.');
+
         return redirect()->route('admin.specialisation-subcategories.index');
     }
 
@@ -128,6 +130,7 @@ class SpecialisationSubcategoryController extends Controller
         $specialisationSubcategory->delete();
 
         flash()->success('Specialisation subcategory deleted successfully.');
+
         return redirect()->route('admin.specialisation-subcategories.index');
     }
 
