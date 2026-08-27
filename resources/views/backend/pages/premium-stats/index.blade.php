@@ -67,7 +67,7 @@
                                 </td>
 
                                 <td>
-                                    {{ $stat->description }}
+                                    {{ $stat->description ?: '—' }}
                                 </td>
 
                                 <td class="text-end pe-4">

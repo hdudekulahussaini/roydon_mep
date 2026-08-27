@@ -42,7 +42,7 @@ class ServiceSubcategorySeeder extends Seeder
             [
                 'title' => 'Hospital HVAC Systems',
                 'heading' => 'Advanced Hospital HVAC Systems',
-                'description' => 'We design, install, and commission advanced HVAC systems strictly tailored to healthcare environments. Our expertise ensures precise temperature control, optimal humidity, and critical air filtration to meet ASHRAE 170 and NABH standards. From operation theatres to isolation wards, we deliver zero-defect environments that safeguard patient health and facility compliance.',
+                'description' => 'We design, install, and commission advanced HVAC systems strictly tailored to healthcare environments. Our expertise ensures precise temperature control, optimal humidity, and critical air filtration to meet <strong>ASHRAE 170 and NABH standards</strong>. From operation theatres to isolation wards, we deliver zero-defect environments that safeguard patient health and facility compliance.',
                 'cta_title' => 'Need Healthcare MEP Experts?',
                 'cta_phone' => '+91-7330756745',
                 'cta_description' => 'Contact us today for a turnkey compliance-driven execution.',
@@ -164,6 +164,7 @@ class ServiceSubcategorySeeder extends Seeder
             $slug = Str::slug($service['title']);
             $service['category_id'] = $servicesCategory->id;
             $service['status'] = true;
+            unset($service['cta_title'], $service['cta_description']);
 
             ServiceSubcategory::updateOrCreate(
                 ['slug' => $slug],

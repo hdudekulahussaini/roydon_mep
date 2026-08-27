@@ -302,6 +302,7 @@ class SpecialisationSubcategorySeeder extends Seeder
         ];
 
         foreach ($data as $item) {
+            unset($item['cta_title'], $item['cta_description'], $item['cta_button_url']);
             SpecialisationSubcategory::updateOrCreate(['slug' => $item['slug']], $item);
         }
     }

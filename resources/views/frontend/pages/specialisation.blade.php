@@ -136,93 +136,40 @@
             letter-spacing: 0.3px;
         }
 
-        .spec-sidebar-widget {
-            background: #F6FAFA;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
-        }
 
-        .spec-sidebar-title {
-            color: #0F2044;
-            border-bottom: 2px solid #0E9B9B;
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-            font-size: 22px;
-            font-weight: 700;
-        }
-
-        .spec-nav-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .spec-nav-item {
-            margin-bottom: 10px;
-        }
-
-        .spec-nav-item a {
-            color: #4B5F70;
-            font-weight: 500;
-            display: block;
-            padding: 10px 15px;
-            border-radius: 6px;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .spec-nav-item.active a,
-        .spec-nav-item a:hover {
-            color: #0E9B9B;
-            font-weight: 700;
-            background: #fff;
-            border-left: 4px solid #0E9B9B;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-            padding-left: 15px;
-        }
-
-        .spec-contact-card {
-            background: linear-gradient(135deg, #0E9B9B 0%, #0B7878 100%);
-            padding: 35px 25px;
+        .sidebar-cta {
+            background: #0F2044;
+            padding: 40px;
             border-radius: 12px;
             color: #fff;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(14,155,155,0.2);
+            position: sticky;
+            top: 100px;
         }
 
-        .spec-contact-card h3 {
+        .sidebar-cta h3 {
             color: #fff;
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 12px;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
         }
 
-        .spec-contact-card p {
-            color: #E0F4F4;
-            margin-bottom: 25px;
-            font-size: 14px;
-            line-height: 1.6;
+        .sidebar-cta p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 30px;
         }
 
-        .spec-contact-card .btn-cta {
-            display: inline-block;
-            background: #fff;
-            color: #0E9B9B;
-            padding: 12px 28px;
+        .sidebar-cta .btn-w {
+            background: #0E9B9B;
+            color: #fff;
+            padding: 15px 30px;
             border-radius: 50px;
             font-weight: 700;
-            font-size: 15px;
-            text-decoration: none;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: inline-block;
+            transition: background 0.3s;
         }
 
-        .spec-contact-card .btn-cta:hover {
-            background: #0F2044;
-            color: #fff;
-            transform: translateY(-2px);
+        .sidebar-cta .btn-w:hover {
+            background: #0C8888;
         }
 
         @media (max-width: 767px) {
@@ -246,20 +193,23 @@
         <!-- Hero Section -->
         @php
             $bgImage = $specialisation->banner_image
-                ? ((str_starts_with($specialisation->banner_image, 'assets/') || str_starts_with($specialisation->banner_image, 'frontend/'))
+                ? (str_starts_with($specialisation->banner_image, 'assets/') ||
+                str_starts_with($specialisation->banner_image, 'frontend/')
                     ? asset($specialisation->banner_image)
                     : asset('storage/' . $specialisation->banner_image))
                 : '';
 
             $contentImage = $specialisation->image
-                ? ((str_starts_with($specialisation->image, 'assets/') || str_starts_with($specialisation->image, 'frontend/'))
+                ? (str_starts_with($specialisation->image, 'assets/') ||
+                str_starts_with($specialisation->image, 'frontend/')
                     ? asset($specialisation->image)
                     : asset('storage/' . $specialisation->image))
                 : '';
         @endphp
 
         <section class="pl-50 pr-50">
-            <div class="spec-hero" @if ($bgImage) style="background-image: url('{{ $bgImage }}');" @endif>
+            <div class="spec-hero"
+                @if ($bgImage) style="background-image: url('{{ $bgImage }}');" @endif>
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-lg-10">
@@ -309,7 +259,8 @@
                                         <div class="spec-item">
                                             <div class="lb">{{ $heading }}</div>
                                             @if (isset($specialisation->features_description[$index]) && !empty($specialisation->features_description[$index]))
-                                                <div class="vl">{{ $specialisation->features_description[$index] }}</div>
+                                                <div class="vl">{{ $specialisation->features_description[$index] }}
+                                                </div>
                                             @endif
                                         </div>
                                     @endif
@@ -330,38 +281,11 @@
 
                     <!-- Right Sidebar -->
                     <div class="col-lg-4">
-                        <aside class="spec-sidebar">
-                            {{-- Specialisations Navigation Widget --}}
-                            @if(isset($headerSpecialisations) && $headerSpecialisations->count() > 0)
-                                <div class="spec-sidebar-widget">
-                                    <h3 class="spec-sidebar-title">Specialisations</h3>
-                                    <ul class="spec-nav-list">
-                                        @foreach($headerSpecialisations as $spec)
-                                            @php
-                                                $isActive = ($spec->id === $specialisation->id || $spec->slug === $specialisation->slug);
-                                            @endphp
-                                            <li class="spec-nav-item {{ $isActive ? 'active' : '' }}">
-                                                <a href="{{ route('specialisations.show', $spec->slug) }}">
-                                                    {{ $spec->title }}
-                                                </a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
-
-                            {{-- Contact CTA Widget --}}
-                            <div class="spec-contact-card wow fadeInUp animated" data-wow-delay="0.2s">
-                                <div style="font-size: 36px; margin-bottom: 15px; color: rgba(255,255,255,0.85);">
-                                    <i class="fa-light fa-hospital"></i>
-                                </div>
-                                <h3>Need Hospital MEP Experts?</h3>
-                                <p>
-                                    Tell us your clinical area and engineering requirements and we will outline our turnkey approach.
-                                </p>
-                                <a href="{{ route('contact') }}" class="btn-cta">Discuss Your Project</a>
-                            </div>
-                        </aside>
+                        <div class="sidebar-cta">
+                            <h3>Need specialist MEP for your hospital area?</h3>
+                            <p>Tell us the clinical area and we'll outline our approach and timeline.</p>
+                            <a href="{{ route('contact') }}" class="btn-w">Discuss Your Project</a>
+                        </div>
                     </div>
                 </div>
             </div>
