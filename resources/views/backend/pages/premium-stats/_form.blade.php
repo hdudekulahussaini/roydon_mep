@@ -41,15 +41,14 @@
     {{-- Description --}}
     <div class="col-12">
         <label for="description" class="form-label fw-semibold">
-            Description
+            Description <span class="text-muted fw-normal">(Optional)</span>
         </label>
         <input type="text"
             id="description"
             name="description"
             value="{{ old('description', $premiumStat?->description) }}"
             class="form-control @error('description') is-invalid @enderror"
-            placeholder="e.g. Delivered 2018–2026 or Healthcare & Commercial"
-            required>
+            placeholder="e.g. Delivered 2018–2026 or Healthcare & Commercial">
         @error('description')
             <div class="invalid-feedback">
                 {{ $message }}

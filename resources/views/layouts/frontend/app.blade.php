@@ -24,6 +24,10 @@
         .main-menu ul li a {
             font-size: 17px !important;
         }
+
+        .second-menu {
+            margin-top: 35px !important;
+        }
     </style>
     @stack('styles')
 </head>

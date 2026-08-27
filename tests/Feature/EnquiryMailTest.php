@@ -29,16 +29,18 @@ it('sends only the admin notification to the admin email and only the user confi
 
     $response->assertRedirect();
 
-    Mail::assertSent(EnquiryAdminNotification::class, function ($mail) {
-        return $mail->hasTo('dharishbandi@gmail.com');
+    $adminEmail = config('mail.admin_address', 'sreedhar@roydonmep.com');
+
+    Mail::assertSent(EnquiryAdminNotification::class, function ($mail) use ($adminEmail) {
+        return $mail->hasTo($adminEmail);
     });
 
     Mail::assertSent(EnquiryUserConfirmation::class, function ($mail) {
         return $mail->hasTo('user@example.com');
     });
 
-    Mail::assertNotSent(EnquiryUserConfirmation::class, function ($mail) {
-        return $mail->hasTo('sreedhar@roydonmep.com');
+    Mail::assertNotSent(EnquiryUserConfirmation::class, function ($mail) use ($adminEmail) {
+        return $mail->hasTo($adminEmail);
     });
 
     Mail::assertNotSent(EnquiryAdminNotification::class, function ($mail) {

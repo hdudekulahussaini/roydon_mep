@@ -80,7 +80,7 @@ class FrontendController extends Controller
 
     public function contact(): View
     {
-        $banner = Banner::query()->where('page_name', '=', 'contact')->first(['*']);
+        $banner = Banner::query()->whereIn('page_name', ['get_a_quote', 'contact'])->first(['*']);
         $contactSetting = ContactSetting::query()->first(['*']);
 
         return view('frontend.pages.contact', compact(

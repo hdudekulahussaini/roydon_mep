@@ -77,7 +77,7 @@
                                 <div style="display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #0E9B9B; background: rgba(14,155,155,0.1); padding: 6px 16px; border-radius: 50px; margin-bottom: 15px;">Specialized Execution</div>
                                 <h2 style="color: #0F2044; font-size: 38px; font-weight: 700; margin-bottom: 25px; line-height: 1.2;"> {{ $service->heading }} </h2>
                                 <p style="color: #4B5F70; font-size: 16px; line-height: 1.8; margin-bottom: 35px;">
-                                    {{ $service->description }}
+                                    {!! $service->description !!}
                                 </p>
 
                                 @if($service->images && is_array($service->images) && count($service->images) > 0)
@@ -106,10 +106,14 @@
                                 </div>
                                 @endif
 
-                                <h3 style="color: #0F2044; font-size: 28px; font-weight: 700; margin-bottom: 25px;">Key Offerings in {{ $service->title }}</h3>
-                                <p style="color: #4B5F70; font-size: 16px; line-height: 1.8; margin-bottom: 30px;">
-                                    Our healthcare execution capabilities are vast and uncompromising. We handle complex planning, installations, and validation to guarantee full operational success.
-                                </p>
+                                @if ($service->offerings_heading)
+                                    <h3 style="color: #0F2044; font-size: 28px; font-weight: 700; margin-bottom: 25px;">{{ $service->offerings_heading }}</h3>
+                                @endif
+                                @if ($service->offerings_main_description)
+                                    <p style="color: #4B5F70; font-size: 16px; line-height: 1.8; margin-bottom: 30px;">
+                                        {{ $service->offerings_main_description }}
+                                    </p>
+                                @endif
                                 
                                 <div class="row mb-40">
                                     @if($service->offerings_title && is_array($service->offerings_title))

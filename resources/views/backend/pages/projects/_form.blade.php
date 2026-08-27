@@ -218,8 +218,7 @@
             name="scope"
             value="{{ old('scope', $project?->scope) }}"
             class="form-control @error('scope') is-invalid @enderror"
-            placeholder="e.g. Full MEP — No sub-bids or Electrical & HVAC"
-            required>
+            placeholder="e.g. Full MEP — No sub-bids or Electrical & HVAC">
         @error('scope')
             <div class="invalid-feedback">
                 {{ $message }}
