@@ -70,7 +70,7 @@
 
         @if (isset($specialisationSubcategory) && $specialisationSubcategory->banner_image)
             <div class="mt-2" id="existing-banner-container">
-                <img src="{{ Storage::url($specialisationSubcategory->banner_image) }}" alt="Current Banner"
+                <img src="{{ asset('storage/' . $specialisationSubcategory->banner_image) }}" alt="Current Banner"
                     class="img-thumbnail" style="max-height: 150px; object-fit: cover;">
                 <div class="small text-muted mt-1" id="existing-banner-help">Uploading a new image will replace this
                     one.</div>
@@ -131,7 +131,7 @@
 
         @if (isset($specialisationSubcategory) && $specialisationSubcategory->image)
             <div class="mt-2" id="existing-image-container">
-                <img src="{{ Storage::url($specialisationSubcategory->image) }}" alt="Current Image"
+                <img src="{{ asset('storage/' . $specialisationSubcategory->image) }}" alt="Current Image"
                     class="img-thumbnail" style="max-height: 150px; object-fit: cover;">
                 <div class="small text-muted mt-1" id="existing-image-help">Uploading a new image will replace this
                     one.</div>
@@ -231,17 +231,6 @@
             @endforeach
         </div>
         <small class="text-muted d-block mt-2">Type tag name (or comma-separated tags) and click + Add or press Enter.</small>
-    </div>
-
-    <hr class="my-4">
-
-    {{-- SEO Section --}}
-    <h5 class="mb-3">SEO Text</h5>
-    <div class="col-12">
-        <label for="seo_text" class="form-label fw-semibold">Footer SEO Text <span
-                class="text-danger">*</span></label>
-        <textarea id="seo_text" name="seo_text" rows="2" class="form-control"
-            placeholder="SEO: OT MEP contractor..." required>{{ old('seo_text', $specialisationSubcategory?->seo_text ?? '') }}</textarea>
     </div>
 
 </div>

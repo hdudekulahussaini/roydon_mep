@@ -17,9 +17,17 @@
                                         @php
                                             $rawTitle = e($banner->title);
                                             if (str_contains($rawTitle, '{') && str_contains($rawTitle, '}')) {
-                                                $formattedTitle = preg_replace('/\{([^}]+)\}/', '<span>$1</span>', $rawTitle);
+                                                $formattedTitle = preg_replace(
+                                                    '/\{([^}]+)\}/',
+                                                    '<span>$1</span>',
+                                                    $rawTitle,
+                                                );
                                             } else {
-                                                $formattedTitle = preg_replace('/\b(MEP)\b/i', '<span>$1</span>', $rawTitle);
+                                                $formattedTitle = preg_replace(
+                                                    '/\b(MEP)\b/i',
+                                                    '<span>$1</span>',
+                                                    $rawTitle,
+                                                );
                                             }
                                         @endphp
                                         <h2 class="">{!! $formattedTitle !!}</h2>
@@ -41,22 +49,22 @@
                             style="position: absolute; bottom: 110px; right: 50px; z-index: 10; display: flex; gap: 20px; align-items: flex-start;">
                             @if ($banner->iso_9001_image)
                                 <div class="iso-badge-wrapper text-center">
-                                    <img src="{{ asset('storage/' . $banner->iso_9001_image) }}" alt="{{ $banner->iso_9001_title }}"
-                                        class="iso-cert-img mb-10">
+                                    <img src="{{ asset('storage/' . $banner->iso_9001_image) }}"
+                                        alt="{{ $banner->iso_9001_title }}" class="iso-cert-img mb-10">
                                     <span class="iso-cert-name">{!! str_replace('|', '<br>', e($banner->iso_9001_title)) !!}</span>
                                 </div>
                             @endif
                             @if ($banner->iso_14001_image)
                                 <div class="iso-badge-wrapper text-center">
-                                    <img src="{{ asset('storage/' . $banner->iso_14001_image) }}" alt="{{ $banner->iso_14001_title }}"
-                                        class="iso-cert-img iso-cert-middle mb-10">
+                                    <img src="{{ asset('storage/' . $banner->iso_14001_image) }}"
+                                        alt="{{ $banner->iso_14001_title }}" class="iso-cert-img iso-cert-middle mb-10">
                                     <span class="iso-cert-name">{!! str_replace('|', '<br>', e($banner->iso_14001_title)) !!}</span>
                                 </div>
                             @endif
                             @if ($banner->iso_45001_image)
                                 <div class="iso-badge-wrapper text-center">
-                                    <img src="{{ asset('storage/' . $banner->iso_45001_image) }}" alt="{{ $banner->iso_45001_title }}"
-                                        class="iso-cert-img mb-10">
+                                    <img src="{{ asset('storage/' . $banner->iso_45001_image) }}"
+                                        alt="{{ $banner->iso_45001_title }}" class="iso-cert-img mb-10">
                                     <span class="iso-cert-name">{!! str_replace('|', '<br>', e($banner->iso_45001_title)) !!}</span>
                                 </div>
                             @endif
@@ -86,7 +94,8 @@
                                                 $icon = 'fa-x-ray';
                                             }
                                         @endphp
-                                        <span class="hero-tag"><i class="fa-light {{ $icon }}"></i> {{ $spec }}</span>
+                                        <span class="hero-tag"><i class="fa-light {{ $icon }}"></i>
+                                            {{ $spec }}</span>
                                     @endforeach
                                 </div>
                             </div>
@@ -96,7 +105,7 @@
             </section>
         @endif
         <!-- slider-area-end -->
-         
+
         <!-- premium-stats-area -->
         @if ($stats && $stats->isNotEmpty())
             <section class="premium-stats-area">
@@ -108,7 +117,7 @@
                                     'fa-light fa-building',
                                     'fa-light fa-clock',
                                     'fa-light fa-chart-area',
-                                    'fa-light fa-headset'
+                                    'fa-light fa-headset',
                                 ];
                             @endphp
 
@@ -168,65 +177,71 @@
         @endif
         <!-- hospital-civil-services-area-end -->
 
-        
+
         <!-- services-area -->
         @if ($services && $services->isNotEmpty())
-        <section class="services-area p-relative fix">
-            <div class="container-box pt-50 pb-50" style="background-color: #004250;">
-                <div class="animations-01"><img src="{{ asset('frontend/assets/img/bg/an-img-02.webp') }}"
-                        alt="Roydon MEP - Turnkey MEP Contractors in Hyderabad"></div>
-                <div class="container">
-                    <div class="row justify-content-center mb-55">
-                        <div class="col-lg-6 col-md-12">
-                            <div class="section-title text-center wow fadeInDown animated" data-animation="fadeInDown"
-                                data-delay=".4s">
+            <section class="services-area p-relative fix">
+                <div class="container-box pt-50 pb-50" style="background-color: #004250;">
+                    <div class="animations-01"><img src="{{ asset('frontend/assets/img/bg/an-img-02.webp') }}"
+                            alt="Roydon MEP - Turnkey MEP Contractors in Hyderabad"></div>
+                    <div class="container">
+                        <div class="row justify-content-center mb-55">
+                            <div class="col-lg-6 col-md-12">
+                                <div class="section-title text-center wow fadeInDown animated" data-animation="fadeInDown"
+                                    data-delay=".4s">
 
-                                <h2 class="">MEP Turnkey Contractors</h2>
+                                    <h2 class="">MEP Turnkey Contractors</h2>
+                                </div>
+
                             </div>
-
                         </div>
-                    </div>
-                    <div class="row" style="row-gap: 20px;">
-                        @foreach ($services->take(6) as $service)
-                        <div class="col-lg-4 col-md-6 col-sm-12">
-                            <div class="services-box wow fadeInUp animated" data-animation="fadeInUp" data-delay=".4s">
-                                <div class="services-content">
-                                    @if ($service->banner_image)
-                                    <div class="img-custom-anim-left wow fadeInLeft services-icon">
-                                        <img src="{{ Storage::url($service->banner_image) }}"
-                                            alt="{{ $service->title }}">
-                                    </div>
-                                    @endif
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="icon-box">
-                                                <div class="icon">
-                                                    <div>
-                                                        @php $icon = is_array($service->offerings_icon) ? ($service->offerings_icon[0] ?? 'fa-light fa-hospital') : 'fa-light fa-hospital'; @endphp
-                                                        <i class="{{ $icon }}" style="font-size: 45px; color: #0E9B9B;"></i>
+                        <div class="row" style="row-gap: 20px;">
+                            @foreach ($services->take(6) as $service)
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="services-box wow fadeInUp animated" data-animation="fadeInUp"
+                                        data-delay=".4s">
+                                        <div class="services-content">
+                                            @if ($service->banner_image)
+                                                <div class="img-custom-anim-left wow fadeInLeft services-icon">
+                                                    <img src="{{ asset('storage/' . $service->banner_image) }}"
+                                                        alt="{{ $service->title }}">
+                                                </div>
+                                            @endif
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="icon-box">
+                                                        <div class="icon">
+                                                            <div>
+                                                                @php $icon = is_array($service->offerings_icon) ? ($service->offerings_icon[0] ?? 'fa-light fa-hospital') : 'fa-light fa-hospital'; @endphp
+                                                                <i class="{{ $icon }}"
+                                                                    style="font-size: 45px; color: #0E9B9B;"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="heading">
+                                                            <h3><a
+                                                                    href="{{ route('services.show', $service->slug) }}">{{ $service->title }}</a>
+                                                            </h3>
+                                                        </div>
+                                                    </div>
+                                                    <p>{{ Str::limit($service->description, 120) }}</p>
+                                                    <div class="sbtn mt-20">
+                                                        <a href="{{ route('services.show', $service->slug) }}"
+                                                            class="chevron-button">Read More <i
+                                                                class="fa-light fa-bolt"></i></a>
                                                     </div>
                                                 </div>
-                                                <div class="heading">
-                                                    <h3><a href="{{ route('services.show', $service->slug) }}">{{ $service->title }}</a></h3>
-                                                </div>
-                                            </div>
-                                            <p>{{ Str::limit($service->description, 120) }}</p>
-                                            <div class="sbtn mt-20">
-                                                <a href="{{ route('services.show', $service->slug) }}" class="chevron-button">Read More <i class="fa-light fa-bolt"></i></a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endforeach
                         </div>
-                        @endforeach
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
         @endif
         <!-- services-area-end -->
-         
+
         <!-- hospital-specialisations-area -->
         @if ($specialisations && $specialisations->isNotEmpty())
             <section class="hospital-specialisations-area">
@@ -267,49 +282,172 @@
             <section class="pt-120 pb-90 p-relative">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-5 d-flex flex-column">
                             <div class="section-title mb-30 wow fadeInDown animated" data-delay=".4s">
-                                <div class="sub-title">
-                                    <i class="fa-light fa-bolt"></i> {{ $whyChooseUs->sub_title }} <i class="fa-light fa-bolt"></i>
+                                <div class="sub-title"
+                                    style="color: #facc15; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px;">
+                                    <i class="fa-light fa-bolt"></i> {{ $whyChooseUs->sub_title }} <i
+                                        class="fa-light fa-bolt"></i>
                                 </div>
-                                <h2 class="">
-                                    {!! str_replace(['Roydon MEP', 'Suvih Engineering'], ['<span>Roydon MEP</span>', '<span>Suvih Engineering</span>'], e($whyChooseUs->title)) !!}
+                                <h2
+                                    style="font-weight: 900; font-size: 42px; line-height: 1.1; color: #002233; text-transform: uppercase;">
+                                    @if (str_contains($whyChooseUs->title, '<span>') || str_contains($whyChooseUs->title, '<span '))
+                                        {!! preg_replace('/<span([^>]*)>/i', '<span$1 style="color: #facc15;">', $whyChooseUs->title) !!}
+                                    @else
+                                        {!! str_replace(
+                                            ['Roydon MEP', 'Suvih Engineering', 'MEP', 'mep'],
+                                            [
+                                                'ROYDON <span style="color: #facc15;">MEP</span>',
+                                                'SUVIH <span style="color: #facc15;">ENGINEERING</span>',
+                                                '<span style="color: #facc15;">MEP</span>',
+                                                '<span style="color: #facc15;">MEP</span>',
+                                            ],
+                                            e($whyChooseUs->title),
+                                        ) !!}
+                                    @endif
                                 </h2>
+                                <p
+                                    style="font-size: 15px; font-weight: 500; margin-top: 20px; color: #333; line-height: 1.6;">
+                                    {{ $whyChooseUs->description }}
+                                </p>
                             </div>
-                            <div class="why-choose-text">
-                                <div class="img-custom-anim-left wow fadeInLeft img mb-30">
-                                    <img src="{{ str_contains($whyChooseUs->image, 'assets/') ? asset($whyChooseUs->image) : asset('storage/' . $whyChooseUs->image) }}"
-                                        alt="{{ $whyChooseUs->title }}"
-                                        style="border-radius: 15px; width: 100%; max-height: 400px; object-fit: cover; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-8">
-                                        <p>{{ $whyChooseUs->description }}</p>
+                            <div class="why-choose-text d-flex flex-column flex-grow-1">
+                                @if ($whyChooseUs->image)
+                                    @php
+                                        $whyImg =
+                                            str_starts_with($whyChooseUs->image, 'assets/') ||
+                                            str_starts_with($whyChooseUs->image, 'img/') ||
+                                            str_starts_with($whyChooseUs->image, 'frontend/')
+                                                ? asset($whyChooseUs->image)
+                                                : (file_exists(public_path($whyChooseUs->image))
+                                                    ? asset($whyChooseUs->image)
+                                                    : asset('storage/' . $whyChooseUs->image));
+                                    @endphp
+                                    <div class="img-custom-anim-left wow fadeInLeft img mb-20 flex-grow-1"
+                                        style="position: relative; min-height: 200px;">
+                                        <img src="{{ $whyImg }}" alt="{{ $whyChooseUs->title }}"
+                                            style="position: absolute; top: 0; left: 0; border-radius: 12px; width: 100%; height: 100%; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
                                     </div>
-                                    <div class="col-lg-4"> <a href="{{ route('contact') }}" class="btn">Contact Us <i
-                                                class="fa-light fa-bolt"></i></a></div>
+                                @endif
+                                <div class="d-flex align-items-center justify-content-between" style="padding: 10px 0;">
+                                    <div class="d-flex align-items-start" style="gap: 15px; max-width: 65%;">
+                                        <div class="icon" style="font-size: 32px; color: #002233; margin-top: 5px;">
+                                            <i class="fa-light fa-shield-check"></i>
+                                        </div>
+                                        <p
+                                            style="margin: 0; font-size: 13px; line-height: 1.5; color: #333; font-weight: 500;">
+                                            We deliver healthcare facilities that meet<br>NABH and international
+                                            standards—<br>ensuring safety, compliance, and long-term reliability.</p>
+                                    </div>
+                                    <div>
+                                        <a href="{{ route('contact') }}" class="btn"
+                                            style="background-color: #facc15; color: #000; border: none; font-weight: 800; font-size: 14px; padding: 15px 25px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.5px;">CONTACT
+                                            US <i class="fa-light fa-bolt"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6">
-                            @if ($whyChooseUsItems && $whyChooseUsItems->isNotEmpty())
-                                <div class="row timeline">
+                        <div class="col-lg-7 pl-40">
+                            <div class="row timeline custom-why-timeline" style="position: relative; margin-top: 10px;">
+                                <style>
+                                    .custom-why-timeline {
+                                        padding-left: 20px;
+                                    }
+
+                                    .custom-why-item {
+                                        display: flex;
+                                        gap: 25px;
+                                        position: relative;
+                                        padding-bottom: 25px;
+                                        margin-bottom: 5px;
+                                    }
+
+                                    .custom-why-item::after {
+                                        content: "";
+                                        width: 1px;
+                                        border-left: 2px dashed #d1d5db;
+                                        position: absolute;
+                                        top: 50px;
+                                        bottom: 0px;
+                                        left: 24px;
+                                        z-index: 1;
+                                    }
+
+                                    .custom-why-item:last-child::after {
+                                        display: none;
+                                    }
+
+                                    .custom-why-icon {
+                                        width: 50px;
+                                        height: 50px;
+                                        background-color: #0E9B9B;
+                                        border-radius: 50%;
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: center;
+                                        color: white;
+                                        font-size: 22px;
+                                        position: relative;
+                                        z-index: 2;
+                                        flex-shrink: 0;
+                                    }
+
+                                    .custom-why-content {
+                                        flex: 1;
+                                        padding-bottom: 25px;
+                                        border-bottom: 1px solid #e5e7eb;
+                                    }
+
+                                    .custom-why-item:last-child .custom-why-content {
+                                        border-bottom: none;
+                                    }
+
+                                    .custom-why-content h3 {
+                                        font-size: 18px;
+                                        font-weight: 800;
+                                        color: #002233;
+                                        margin-bottom: 8px;
+                                        text-transform: uppercase;
+                                        letter-spacing: 0.5px;
+                                    }
+
+                                    .custom-why-content p {
+                                        font-size: 14px;
+                                        line-height: 1.6;
+                                        color: #4b5563;
+                                        margin: 0;
+                                    }
+                                </style>
+                                @php
+                                    $icons = [
+                                        'fa-light fa-bullseye-pointer',
+                                        'fa-light fa-users',
+                                        'fa-light fa-building',
+                                        'fa-light fa-shield-plus',
+                                        'fa-light fa-award',
+                                        'fa-light fa-certificate',
+                                        'fa-light fa-gear',
+                                    ];
+                                @endphp
+                                @if ($whyChooseUsItems && $whyChooseUsItems->isNotEmpty())
                                     @foreach ($whyChooseUsItems as $index => $item)
                                         <div class="col-lg-12 col-md-12">
-                                            <div class="services-02-item mb-20 wow fadeInDown animated" data-delay=".4s">
-                                                <div class="services-02-thumb">
-                                                    <span></span>
+                                            <div class="custom-why-item wow fadeInDown animated"
+                                                data-delay=".{{ ($index % 5) + 2 }}s">
+                                                <div class="custom-why-icon">
+                                                    <i class="{{ $icons[$index % count($icons)] }}"></i>
                                                 </div>
-                                                <div class="services-02-content">
+                                                <div class="custom-why-content">
                                                     <h3>{{ $item->title }}</h3>
                                                     <p>{{ $item->description }}</p>
                                                 </div>
                                             </div>
                                         </div>
                                     @endforeach
-                                </div>
-                            @endif
+                                @endif
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </section>
@@ -333,9 +471,11 @@
                             <div class="col-lg-4 col-md-6">
                                 <div class="project-card text-center mb-30"
                                     style="padding: 15px; background: #fff; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin: 0 10px; transition: transform 0.3s ease;">
-                                    <img src="{{ str_contains($project->image, 'assets/') ? asset($project->image) : asset('storage/' . $project->image) }}" alt="{{ $project->title }}"
+                                    <img src="{{ str_contains($project->image, 'assets/') ? asset($project->image) : asset('storage/' . $project->image) }}"
+                                        alt="{{ $project->title }}"
                                         style="width: 100%; height: 220px; object-fit: cover; border-radius: 10px; margin-bottom: 15px;">
-                                    <h3 style="font-size: 18px; font-weight: 600; color: #004250; margin-bottom: 0;">{{ $project->title }}</h3>
+                                    <h3 style="font-size: 18px; font-weight: 600; color: #004250; margin-bottom: 0;">
+                                        {{ $project->title }}</h3>
                                 </div>
                             </div>
                         @endforeach
@@ -356,9 +496,10 @@
                 <div class="container">
                     <div class="row justify-content-center mb-40">
                         <div class="col-lg-8 col-md-12 text-center">
-                            <div class="section-title wow fadeInDown animated" data-animation="fadeInDown animated" data-delay=".2s">
-                                <div class="sub-title"> <i class="fa-light fa-bolt"></i> frequently asked question <i class="fa-light fa-bolt"></i></div>
-                                <h2 class="">Solving Your <span>Doubts,</span> <span>One</span> Question at a Time</h2>
+                            <div class="section-title wow fadeInDown animated" data-animation="fadeInDown animated"
+                                data-delay=".2s">
+                                <div class="sub-title"> <i class="fa-light fa-bolt"></i> frequently asked question <i
+                                        class="fa-light fa-bolt"></i></div>
                             </div>
                         </div>
                     </div>
@@ -371,12 +512,15 @@
                                         <div class="card">
                                             <div class="card-header" id="headingLeft{{ $faq->id }}">
                                                 <h2 class="mb-0">
-                                                    <button class="faq-btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLeft{{ $faq->id }}">
+                                                    <button class="faq-btn collapsed" type="button"
+                                                        data-bs-toggle="collapse"
+                                                        data-bs-target="#collapseLeft{{ $faq->id }}">
                                                         {{ $faq->question }}
                                                     </button>
                                                 </h2>
                                             </div>
-                                            <div id="collapseLeft{{ $faq->id }}" class="collapse" data-bs-parent="#accordionExampleLeft">
+                                            <div id="collapseLeft{{ $faq->id }}" class="collapse"
+                                                data-bs-parent="#accordionExampleLeft">
                                                 <div class="card-body">
                                                     {{ $faq->answer }}
                                                 </div>
@@ -386,7 +530,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- Right Column -->
                         <div class="col-lg-6 col-md-12 wow fadeInUp animated" data-animation="fadeInUp" data-delay=".4s">
                             <div class="faq-wrap pl-15">
@@ -395,12 +539,15 @@
                                         <div class="card">
                                             <div class="card-header" id="headingRight{{ $faq->id }}">
                                                 <h2 class="mb-0">
-                                                    <button class="faq-btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRight{{ $faq->id }}">
+                                                    <button class="faq-btn collapsed" type="button"
+                                                        data-bs-toggle="collapse"
+                                                        data-bs-target="#collapseRight{{ $faq->id }}">
                                                         {{ $faq->question }}
                                                     </button>
                                                 </h2>
                                             </div>
-                                            <div id="collapseRight{{ $faq->id }}" class="collapse" data-bs-parent="#accordionExampleRight">
+                                            <div id="collapseRight{{ $faq->id }}" class="collapse"
+                                                data-bs-parent="#accordionExampleRight">
                                                 <div class="card-body">
                                                     {{ $faq->answer }}
                                                 </div>
@@ -430,7 +577,8 @@
                                 <div class="container">
 
 
-                                    <form action="{{ route('enquiries.store') }}" method="POST" class="contact-form pl-50">
+                                    <form action="{{ route('enquiries.store') }}" method="POST"
+                                        class="contact-form pl-50">
                                         @csrf
                                         <div class="row align-items-center">
                                             <div class="col-lg-12">
@@ -446,9 +594,7 @@
                                             <div class="col-lg-6 col-md-6">
                                                 <div class="contact-field p-relative c-name mb-30">
                                                     <input type="text" id="qname" name="name"
-                                                        placeholder="Your Name *"
-                                                        value="{{ old('name') }}"
-                                                        required>
+                                                        placeholder="Your Name *" value="{{ old('name') }}" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6">
@@ -461,30 +607,26 @@
                                             <div class="col-lg-6 col-md-6">
                                                 <div class="contact-field p-relative c-name mb-30">
                                                     <input type="email" id="qemail" name="email"
-                                                        placeholder="Email Address *"
-                                                        value="{{ old('email') }}"
+                                                        placeholder="Email Address *" value="{{ old('email') }}"
                                                         required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6">
                                                 <div class="contact-field p-relative c-name mb-30">
                                                     <input type="tel" id="qphone" name="phone"
-                                                        placeholder="Phone / WhatsApp"
-                                                        value="{{ old('phone') }}">
+                                                        placeholder="Phone / WhatsApp" value="{{ old('phone') }}">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6">
                                                 <div class="contact-field p-relative c-name mb-30">
                                                     <input type="text" id="qcity" name="city"
-                                                        placeholder="Project City"
-                                                        value="{{ old('city') }}">
+                                                        placeholder="Project City" value="{{ old('city') }}">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6">
                                                 <div class="contact-field p-relative c-name mb-30">
                                                     <input type="text" id="qbeds" name="bed_count"
-                                                        placeholder="Bed Count (approx)"
-                                                        value="{{ old('bed_count') }}">
+                                                        placeholder="Bed Count (approx)" value="{{ old('bed_count') }}">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-12">
@@ -492,15 +634,33 @@
                                                     <div class="select">
                                                         <select name="project_type" id="qscope">
                                                             <option value="">Project Type</option>
-                                                            <option value="New Hospital — Full MEP" {{ old('project_type') == 'New Hospital — Full MEP' ? 'selected' : '' }}>New Hospital — Full MEP</option>
-                                                            <option value="Hospital Retrofit / Upgrade" {{ old('project_type') == 'Hospital Retrofit / Upgrade' ? 'selected' : '' }}>Hospital Retrofit / Upgrade</option>
-                                                            <option value="OT / ICU / Clean Room MEP" {{ old('project_type') == 'OT / ICU / Clean Room MEP' ? 'selected' : '' }}>OT / ICU / Clean Room MEP</option>
-                                                            <option value="Medical Gas Pipeline (MGPS) Only" {{ old('project_type') == 'Medical Gas Pipeline (MGPS) Only' ? 'selected' : '' }}>Medical Gas Pipeline (MGPS) Only</option>
-                                                            <option value="HVAC Systems Only" {{ old('project_type') == 'HVAC Systems Only' ? 'selected' : '' }}>HVAC Systems Only</option>
-                                                            <option value="Electrical Systems Only" {{ old('project_type') == 'Electrical Systems Only' ? 'selected' : '' }}>Electrical Systems Only</option>
-                                                            <option value="Plumbing &amp; Fire Fighting Only" {{ old('project_type') == 'Plumbing & Fire Fighting Only' ? 'selected' : '' }}>Plumbing &amp; Fire Fighting Only</option>
-                                                            <option value="NABH Compliance Project" {{ old('project_type') == 'NABH Compliance Project' ? 'selected' : '' }}>NABH Compliance Project</option>
-                                                            <option value="Other" {{ old('project_type') == 'Other' ? 'selected' : '' }}>Other</option>
+                                                            <option value="New Hospital — Full MEP"
+                                                                {{ old('project_type') == 'New Hospital — Full MEP' ? 'selected' : '' }}>
+                                                                New Hospital — Full MEP</option>
+                                                            <option value="Hospital Retrofit / Upgrade"
+                                                                {{ old('project_type') == 'Hospital Retrofit / Upgrade' ? 'selected' : '' }}>
+                                                                Hospital Retrofit / Upgrade</option>
+                                                            <option value="OT / ICU / Clean Room MEP"
+                                                                {{ old('project_type') == 'OT / ICU / Clean Room MEP' ? 'selected' : '' }}>
+                                                                OT / ICU / Clean Room MEP</option>
+                                                            <option value="Medical Gas Pipeline (MGPS) Only"
+                                                                {{ old('project_type') == 'Medical Gas Pipeline (MGPS) Only' ? 'selected' : '' }}>
+                                                                Medical Gas Pipeline (MGPS) Only</option>
+                                                            <option value="HVAC Systems Only"
+                                                                {{ old('project_type') == 'HVAC Systems Only' ? 'selected' : '' }}>
+                                                                HVAC Systems Only</option>
+                                                            <option value="Electrical Systems Only"
+                                                                {{ old('project_type') == 'Electrical Systems Only' ? 'selected' : '' }}>
+                                                                Electrical Systems Only</option>
+                                                            <option value="Plumbing &amp; Fire Fighting Only"
+                                                                {{ old('project_type') == 'Plumbing & Fire Fighting Only' ? 'selected' : '' }}>
+                                                                Plumbing &amp; Fire Fighting Only</option>
+                                                            <option value="NABH Compliance Project"
+                                                                {{ old('project_type') == 'NABH Compliance Project' ? 'selected' : '' }}>
+                                                                NABH Compliance Project</option>
+                                                            <option value="Other"
+                                                                {{ old('project_type') == 'Other' ? 'selected' : '' }}>
+                                                                Other</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -510,11 +670,21 @@
                                                     <div class="select">
                                                         <select name="expected_programme" id="qtl">
                                                             <option value="">Expected Programme</option>
-                                                            <option value="Urgent" {{ old('expected_programme') == 'Urgent' ? 'selected' : '' }}>Urgent — Under 3 months</option>
-                                                            <option value="3–6 months" {{ old('expected_programme') == '3–6 months' ? 'selected' : '' }}>3–6 months</option>
-                                                            <option value="6–12 months" {{ old('expected_programme') == '6–12 months' ? 'selected' : '' }}>6–12 months</option>
-                                                            <option value="12–24 months" {{ old('expected_programme') == '12–24 months' ? 'selected' : '' }}>12–24 months</option>
-                                                            <option value="Planning stage" {{ old('expected_programme') == 'Planning stage' ? 'selected' : '' }}>Planning stage — TBC</option>
+                                                            <option value="Urgent"
+                                                                {{ old('expected_programme') == 'Urgent' ? 'selected' : '' }}>
+                                                                Urgent — Under 3 months</option>
+                                                            <option value="3–6 months"
+                                                                {{ old('expected_programme') == '3–6 months' ? 'selected' : '' }}>
+                                                                3–6 months</option>
+                                                            <option value="6–12 months"
+                                                                {{ old('expected_programme') == '6–12 months' ? 'selected' : '' }}>
+                                                                6–12 months</option>
+                                                            <option value="12–24 months"
+                                                                {{ old('expected_programme') == '12–24 months' ? 'selected' : '' }}>
+                                                                12–24 months</option>
+                                                            <option value="Planning stage"
+                                                                {{ old('expected_programme') == 'Planning stage' ? 'selected' : '' }}>
+                                                                Planning stage — TBC</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -529,8 +699,8 @@
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="slider-btn">
-                                                    <button type="submit" class="btn ss-btn" data-animation="fadeInRight"
-                                                        data-delay=".8s"> Submit Enquiry <i
+                                                    <button type="submit" class="btn ss-btn"
+                                                        data-animation="fadeInRight" data-delay=".8s"> Submit Enquiry <i
                                                             class="fa-light fa-bolt"></i></button>
                                                 </div>
                                             </div>
@@ -547,6 +717,6 @@
             </div>
         </section>
         <!-- contact-area-end -->
-        
+
     </main>
 @endsection

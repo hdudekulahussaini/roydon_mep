@@ -151,7 +151,6 @@ class SpecialisationSubcategoryController extends Controller
             'features_description.*' => ['nullable', 'string'],
             'tags' => ['nullable', 'array'],
             'tags.*' => ['string'],
-            'seo_text' => ['nullable', 'string'],
         ];
     }
 }

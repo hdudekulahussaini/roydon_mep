@@ -45,7 +45,7 @@ class EnquiryController extends Controller
     {
         $enquiry = Enquiry::create($request->validated());
 
-        $adminEmail = 'dharishbandi@gmail.com';
+        $adminEmail = config('mail.admin_address', 'sreedhar@roydonmep.com');
 
         Mail::to($adminEmail)
             ->send(new EnquiryAdminNotification($enquiry));

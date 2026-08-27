@@ -22,10 +22,12 @@
                     </p>
                 </div>
 
-                <a href="{{ route('admin.story-sections.create') }}" class="btn btn-dark">
-                    <i class="fa-solid fa-plus me-1"></i>
-                    Add Story Section
-                </a>
+                @if ($storySections->isEmpty())
+                    <a href="{{ route('admin.story-sections.create') }}" class="btn btn-dark">
+                        <i class="fa-solid fa-plus me-1"></i>
+                        Add Story Section
+                    </a>
+                @endif
 
             </div>
 
@@ -216,7 +218,7 @@
 
     </div>
     <style>
-        .table .btn-sm {
+        .table td:not([colspan]) .btn-sm {
             width: 30px;
             height: 30px;
             padding: 0;
