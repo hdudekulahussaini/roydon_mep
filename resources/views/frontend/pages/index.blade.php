@@ -184,8 +184,6 @@
         @if ($services && $services->isNotEmpty())
             <section class="services-area p-relative fix">
                 <div class="container-box pt-50 pb-50" style="background-color: #004250;">
-                    <div class="animations-01"><img src="{{ asset('frontend/assets/img/bg/an-img-02.webp') }}"
-                            alt="Roydon MEP - Turnkey MEP Contractors in Hyderabad"></div>
                     <div class="container">
                         <div class="row justify-content-center mb-55">
                             <div class="col-lg-6 col-md-12">
@@ -638,7 +636,7 @@
                                                             <option value="">Project Type</option>
                                                             <option value="New Hospital — Full MEP"
                                                                 {{ old('project_type') == 'New Hospital — Full MEP' ? 'selected' : '' }}>
-                                                                New Hospital — Full MEP</option>
+                                                                New Hospital — Full Civil & MEP</option>
                                                             <option value="Hospital Retrofit / Upgrade"
                                                                 {{ old('project_type') == 'Hospital Retrofit / Upgrade' ? 'selected' : '' }}>
                                                                 Hospital Retrofit / Upgrade</option>
